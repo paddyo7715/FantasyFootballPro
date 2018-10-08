@@ -1,0 +1,26 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FntasyFootballPro"
+        mc:Ignorable="d"
+        Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" >
+    <DockPanel>
+        <Label DockPanel.Dock="Top" FontSize="42" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Height="150" Foreground="White">Fantasy Football Pro</Label>
+        <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Image Width="700" Height="600"  Source="Images/MainMenuImage.jpg"></Image>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <Button Width="160" Height="70" Name="mmNew" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen">New League</Button>
+                <Label Height="20"></Label>
+                <Button Width="160" Height="70" Name="mmLoad" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen">Load League</Button>
+                <Label Height="20"></Label>
+                <Button Width="160" Height="70" Name="mmAdmin" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen">Administration</Button>
+                <Label Height="20"></Label>
+                <Button Width="160" Height="70" Name="mmExit" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen" Click="mmExit_Click">Exit</Button>
+            </StackPanel>
+        </StackPanel>
+        <!-- default is to fill -->
+
+    </DockPanel>
+</Window>

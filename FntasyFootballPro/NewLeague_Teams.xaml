@@ -1,0 +1,273 @@
+﻿<Window x:Class="NewLeague_Teams"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FntasyFootballPro"
+        mc:Ignorable="d"
+        Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" FontSize="42" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="100" Foreground="White">New League Teams</Label>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Name="newl2Cancel" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Cancel</Button>
+            <Button Name="newl2Submit" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Submit</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv1gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam1" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam1" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam2" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam2" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam3" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam3" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam4" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam4" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam5" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam5" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv2gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam6" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam6" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam7" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam7" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam8" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam8" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam9" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam9" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam10" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam10" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv3gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam11" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam11" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam12" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam12" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam13" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam13" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam14" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam14" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam15" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam15" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv4gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam16" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam16" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam17" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam17" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam18" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam18" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam19" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam19" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam20" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam20" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center">
+ 
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv5gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam21" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam21" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam22" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam22" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam23" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam23" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam24" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam24" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam25" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam25" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv6gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam26" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam26" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam27" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam27" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam28" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam28" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam29" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam29" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam30" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam30" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv7gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam31" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam31" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam32" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam32" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam33" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam33" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam34" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam34" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam35" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam35" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                
+                <GroupBox Margin="1,1,1,1" FontSize="14" FontWeight="Bold"
+                  Foreground="White">
+
+                    <GroupBox.Header>
+                        <Label Name="newldiv8gh" FontSize="14" Foreground="White"></Label>
+                    </GroupBox.Header>
+
+                    <StackPanel Width="350" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam36" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam36" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam37" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam37" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam38" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam38" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam39" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam39" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="newlimgTeam40" Width="20" Height="20"></Image>
+                            <Label Name="newllblTeam40" Padding="10,0,0,0" Width="100" FontSize="14" Foreground="White" MouseDown="TeamLabel_MouseDown"></Label>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

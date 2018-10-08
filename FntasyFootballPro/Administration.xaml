@@ -1,0 +1,48 @@
+﻿<Window x:Class="Administration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FntasyFootballPro"
+        mc:Ignorable="d"
+        Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" FontSize="42" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Height="150" Foreground="White">Administration</Label>
+        <Button DockPanel.Dock="bottom" Name="admBack" FontSize="14" Width="100" VerticalAlignment="Top" Margin="20">Back</Button>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+        <GroupBox Margin="10,10,10,10" FontSize="16" FontWeight="Bold"
+                  Foreground="White">
+
+            <GroupBox.Header>
+                Potential Player Names:
+            </GroupBox.Header>
+
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label FontSize="20" Foreground="White">Total First Names:</Label>
+                    <Label FontSize="20" Foreground="White" Width="120" Name="admtotFirstName" />
+                    <Label FontSize="20" Foreground="White">Total Last Names:</Label>
+                    <Label FontSize="20" Foreground="White" Width="120" Name="admtotLastName" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="20" Foreground="White">First Names:</Label>
+                    <TextBox Name="admFirstName" FontSize="20" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="50" />
+                    <Label FontSize="20" Foreground="White">Last Names:</Label>
+                        <TextBox Name="admLastName" FontSize="20" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="50" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                        <TextBox Name="admtxtSelectFile" FontSize="20" Width="500" Height="30" Foreground="Black" Background="white"  />
+                    <Button Name="admUbtnSelectFile" FontSize="14" Width="100">Select File</Button>
+                </StackPanel>
+                <StackPanel>
+                    <Button Name="admSubmit" FontSize="14" Width="100">Submit</Button>
+                </StackPanel>
+                    
+                            
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+    </DockPanel>
+
+</Window>
