@@ -24,16 +24,12 @@
 
                     <StackPanel Width="500" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <Label Width="200" FontSize="18" Foreground="White">City Abbreviation:</Label>
-                            <TextBox Name="newtCityAbb" FontSize="18" Width="50" Height="30" Foreground="Black" Background="white" MaxLength="6" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Width="200" FontSize="18" Foreground="White">City:</Label>
-                            <TextBox Name="newtCity" FontSize="18" Width="300" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Width="200" FontSize="18" Foreground="White">Nickname:</Label>
-                            <TextBox Name="newtNickname" FontSize="18" Width="300" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                            <Label Width="80" FontSize="14" Foreground="White">City Abbr:</Label>
+                            <TextBox Name="newtCityAbb" FontSize="14" Width="30" Height="20" Foreground="Black" Background="white" MaxLength="6" />
+                            <Label Width="50" FontSize="14" Foreground="White">City:</Label>
+                            <TextBox Name="newtCity" FontSize="14" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                            <Label Width="50" FontSize="14" Foreground="White">Nickname:</Label>
+                            <TextBox Name="newtNickname" FontSize="14" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Width="200" FontSize="18" Foreground="White">Helmet Image:</Label>
@@ -41,8 +37,9 @@
                             <Button Name="newtbtnHelmetImgPath" FontSize="14" Width="100">Select File</Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
-                            <Label Width="200" FontSize="18" Foreground="White">Helmet Color:</Label>
-                            <xctk:ColorPicker Name="newtHelmentColor" SelectedColorChanged="newtHelmentColor_SelectedColorChanged" Height="30"  Width="80" ></xctk:ColorPicker>
+                            <Label Width="200" FontSize="14" Foreground="White">Helmet Color:</Label>
+                            <TextBox Name="newtHelmetColor" FontSize="14" Width="50" Height="20" Foreground="Black" Background="white"  />
+                            <xctk:ColorPicker Name="newtHelmentColor" SelectedColorChanged="newtHelmentColor_SelectedColorChanged"  Height="20"  Width="20" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Width="200" FontSize="18" Foreground="White">Home Jersey Color:</Label>
