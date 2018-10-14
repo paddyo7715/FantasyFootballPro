@@ -25,11 +25,22 @@
                     <StackPanel Width="500" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <Label Width="80" FontSize="14" Foreground="White">City Abbr:</Label>
-                            <TextBox Name="newtCityAbb" FontSize="14" Width="30" Height="20" Foreground="Black" Background="white" MaxLength="6" />
+                            <TextBox Name="newtCityAbb" FontSize="12" Width="30" Height="20" Foreground="Black" Background="white" MaxLength="6" />
                             <Label Width="50" FontSize="14" Foreground="White">City:</Label>
-                            <TextBox Name="newtCity" FontSize="14" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
-                            <Label Width="50" FontSize="14" Foreground="White">Nickname:</Label>
-                            <TextBox Name="newtNickname" FontSize="14" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                            <TextBox Name="newtCity" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                            <Label Width="75" FontSize="14" Foreground="White">Nickname:</Label>
+                            <TextBox Name="newtNickname" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="80" FontSize="14" Foreground="White">Stadium:</Label>
+                            <TextBox Name="newtStadium" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" />
+                            <Label Width="70" FontSize="14" Foreground="White">Location:</Label>
+                            <TextBox Name="newtStadiumLocation" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="200" FontSize="18" Foreground="White">Stadium Image:</Label>
+                            <TextBox Name="newtStadiumPath" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
+                            <Button Name="newtbtnStadiumPath" FontSize="14" Width="90" Height="30">Image File</Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Width="200" FontSize="18" Foreground="White">Helmet Image:</Label>
