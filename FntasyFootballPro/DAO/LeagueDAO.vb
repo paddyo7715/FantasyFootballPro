@@ -89,9 +89,11 @@ Public Class LeagueDAO
                 Dim t_id As Integer
                 Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams_Per_Division, t_count)
                 sSQL = "INSERT INTO TEAMS (ID, Division_ID, City_Abr, City, Nickname, Helmet_img_path,
-                        Helmet_Color, Home_jersey_Color, Home_Pants_Color, Away_jersey_Color, Away_Pants_Color) 
+                        Helmet_Color, Home_jersey_Color, Home_Pants_Color, Away_jersey_Color, Away_Pants_Color,
+                        Stadium_Name,Stadium_Location,Stadium_Img_Path) 
                         VALUES(@ID, @Division_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
-                        @Helmet_Color, @Home_jersey_Color, @Home_Pants_Color, @Away_jersey_Color, @Away_Pants_Color)"
+                        @Helmet_Color, @Home_jersey_Color, @Home_Pants_Color, @Away_jersey_Color, @Away_Pants_Color,
+                        @Stadium_Name,@Stadium_Location,@Stadium_Img_path)"
                 cmdTeam.CommandText = sSQL
                 cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t_id
                 cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = CommonUtils.getDivisionNum_from_Team_Number(nl.Teams.Count - nl.Num_Teams_Per_Division, t_id)
@@ -104,6 +106,10 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@Home_Pants_Color", Data.DbType.String).Value = t.Home_Pants_Color
                 cmdTeam.Parameters.Add("@Away_jersey_Color", Data.DbType.String).Value = t.Away_jersey_Color
                 cmdTeam.Parameters.Add("@Away_Pants_Color", Data.DbType.String).Value = t.Away_Pants_Color
+
+                cmdTeam.Parameters.Add("@Stadium_Name", Data.DbType.String).Value = t.Stadium_Name
+                cmdTeam.Parameters.Add("@Stadium_Location", Data.DbType.String).Value = t.Stadium_Location
+                cmdTeam.Parameters.Add("@Stadium_Img_path", Data.DbType.String).Value = t.Stadium_Img_Path
                 cmdTeam.ExecuteNonQuery()
 
                 strStage = "Inserting Players"

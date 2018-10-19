@@ -5,6 +5,9 @@
     Property City_Abr As String
     Property City As String
     Property Nickname As String
+    Property Stadium_Name As String
+    Property Stadium_Location As String
+    Property Stadium_Img_Path As String
     Property Helmet_img_path As String
     Property Helmet_Color As String
     Property Home_jersey_Color As String
@@ -17,7 +20,8 @@
     Public Sub setFields(ByVal City_Abr As String, ByVal City As String, ByVal Nickname As String,
                        ByVal Helmet_img_path As String, ByVal Helmet_Color As String,
                        ByVal Home_jersey_Color As String, ByVal Home_Pants_Color As String,
-                       ByVal Away_jersey_Color As String, ByVal Away_Pants_Color As String)
+                       ByVal Away_jersey_Color As String, ByVal Away_Pants_Color As String,
+                        ByVal Stadium As String, ByVal Stadium_location As String, ByVal Stadium_img_path As String)
 
         Me.City_Abr = City_Abr
         Me.City = City
@@ -28,6 +32,10 @@
         Me.Home_Pants_Color = Home_Pants_Color
         Me.Away_jersey_Color = Away_jersey_Color
         Me.Away_Pants_Color = Away_Pants_Color
+        Me.Stadium_Name = Stadium
+        Me.Stadium_Location = Stadium_location
+        Me.Stadium_Img_Path = Stadium_img_path
+
 
     End Sub
 

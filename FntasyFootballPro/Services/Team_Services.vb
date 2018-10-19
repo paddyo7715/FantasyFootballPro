@@ -16,6 +16,8 @@
         r.Add(p.CreatePlayer(Base_Player.Position.OL, League_Teams, r, 0, ""))
         r.Add(p.CreatePlayer(Base_Player.Position.OL, League_Teams, r, 0, ""))
         r.Add(p.CreatePlayer(Base_Player.Position.OL, League_Teams, r, 0, ""))
+        r.Add(p.CreatePlayer(Base_Player.Position.K, League_Teams, r, 0, ""))
+        r.Add(p.CreatePlayer(Base_Player.Position.P, League_Teams, r, 0, ""))
 
         'Defense
         r.Add(p.CreatePlayer(Base_Player.Position.DL, League_Teams, r, 0, ""))

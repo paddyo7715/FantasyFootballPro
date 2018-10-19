@@ -2,6 +2,7 @@
     'Folders / Files
     Public Const LEAGUE_DB_FOLDER As String = "FFPro_Data"
     Public Const LEAGUE_HELMETS_SUBFOLDER As String = "Helmet_Images"
+    Public Const LEAGUE_STADIUM_SUBFOLDER As String = "Stadium_Images"
     Public Const BLANK_DB_FOLDER As String = "/Database"
     Public Const DB_FILE_EXT As String = "db"
     Public Const BLANK_DB As String = "BlankDB.db"
@@ -30,7 +31,7 @@
     Public Const CBHIGHNUM As Integer = 49
 
     Public Const KLOWNUM As Integer = 1
-    Public Const KHIGHNUM As Integer = 9
+    Public Const KHIGHNUM As Integer = 6
 
     'age
     Public Const STARTING_ROOKIE_AGE As Integer = 20

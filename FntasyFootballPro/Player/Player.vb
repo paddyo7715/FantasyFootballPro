@@ -146,6 +146,9 @@
             Case Base_Player.Position.LB
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
+            Case Base_Player.Position.K, Base_Player.Position.P
+                r.Kicking_Accuracy = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
+                r.Leg_Strength = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
         End Select
 
         Return r

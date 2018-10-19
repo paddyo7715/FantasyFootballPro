@@ -32,6 +32,18 @@ Public Class NewTeam
         newtCity.Text = League_Teams(team_ind).City
         newtNickname.Text = League_Teams(team_ind).Nickname
 
+        If Not IsNothing(League_Teams(team_ind).Stadium_Name) Then
+            newtStadium.Text = League_Teams(team_ind).Stadium_Name
+        End If
+
+        If Not IsNothing(League_Teams(team_ind).Stadium_Location) Then
+            newtStadiumLocation.Text = League_Teams(team_ind).Stadium_Location
+        End If
+
+        If Not IsNothing(League_Teams(team_ind).Stadium_Img_Path) Then
+            newtStadiumPath.Text = League_Teams(team_ind).Stadium_Img_Path
+        End If
+
         If Not IsNothing(League_Teams(team_ind).Helmet_img_path) Then
             newtHelmetImgPath.Text = League_Teams(team_ind).Helmet_img_path
             Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & League_Teams(team_ind).Helmet_img_path))
@@ -75,6 +87,11 @@ Public Class NewTeam
         If CommonUtils.isBlank(newtHelmetImgPath.Text) Then Throw New Exception("Helmet image must be supplied!")
         If CommonUtils.isBlank(newtCityAbb.Text) Then Throw New Exception("City abbreviation must be supplied!")
 
+        If CommonUtils.isBlank(newtStadium.Text) Then Throw New Exception("Stadium name must be supplied!")
+        If CommonUtils.isBlank(newtStadiumLocation.Text) Then Throw New Exception("Stadium location must be supplied!")
+        If CommonUtils.isBlank(newtStadiumPath.Text) Then Throw New Exception("Stadium image path must be supplied!")
+
+
         If IsNothing(New_League.Teams(team_ind).Players) OrElse New_League.Teams(team_ind).Players.Count < Application_Constants.PLAYERS_PER_TEAM Then
             Throw New Exception("You must roll this team before continuing.")
         End If
@@ -114,25 +131,6 @@ Public Class NewTeam
         End If
     End Sub
 
-    Private Sub newtPlayersGrid_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles newtPlayersGrid.SelectionChanged
-        Try
-            Dim new_t As New_Team = New_League.Teams(team_ind)
-            validate()
-
-            Dim hel_color As String = Helmet_color.Background.GetHashCode
-            Dim hjersey_color As String = home_jersey_color.Background.GetHashCode
-            Dim ajersey_color As String = away_jersey_color.Background.GetHashCode
-            Dim hpants_color As String = home_pants_color.Background.GetHashCode
-            Dim apants_color As String = away_pants_color.Background.GetHashCode
-
-            new_t.setFields(newtCityAbb.Text, newtCity.Text, newtNickname.Text, newtHelmetImgPath.Text,
-                    hel_color, hjersey_color, hpants_color, ajersey_color, apants_color)
-            new_t.Players = Roster
-
-        Catch ex As Exception
-            MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
-        End Try
-    End Sub
 
     Private Sub newtRollTeam_Click(sender As Object, e As RoutedEventArgs) Handles newtRollTeam.Click
         Dim ts As New Team_Services()
@@ -146,5 +144,26 @@ Public Class NewTeam
         End Try
 
 
+    End Sub
+
+    Private Sub newtPlayersGrid_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles newtPlayersGrid.SelectionChanged
+        Try
+            Dim new_t As New_Team = New_League.Teams(team_ind)
+            validate()
+
+            Dim hel_color As String = Helmet_color.Background.GetHashCode
+            Dim hjersey_color As String = home_jersey_color.Background.GetHashCode
+            Dim ajersey_color As String = away_jersey_color.Background.GetHashCode
+            Dim hpants_color As String = home_pants_color.Background.GetHashCode
+            Dim apants_color As String = away_pants_color.Background.GetHashCode
+
+            new_t.setFields(newtCityAbb.Text, newtCity.Text, newtNickname.Text, newtHelmetImgPath.Text,
+                    hel_color, hjersey_color, hpants_color, ajersey_color, apants_color,
+newtStadium.Text, newtStadiumLocation.Text, newtStadiumPath.Text)
+            new_t.Players = Roster
+
+        Catch ex As Exception
+            MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End Try
     End Sub
 End Class
