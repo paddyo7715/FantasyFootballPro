@@ -32,9 +32,9 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Width="80" FontSize="14" Foreground="White">Stadium:</Label>
-                            <TextBox Name="newtStadium" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" />
+                            <TextBox Name="newtStadium" FontSize="12" Width="130" Height="20" Foreground="Black" Background="white" />
                             <Label Width="70" FontSize="14" Foreground="White">Location:</Label>
-                            <TextBox Name="newtStadiumLocation" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                            <TextBox Name="newtStadiumLocation" FontSize="12" Width="170" Height="20" Foreground="Black" Background="white" MaxLength="100" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label Width="160" FontSize="14" Foreground="White">Stadium Image:</Label>
@@ -51,25 +51,25 @@
                     </GroupBox.Header>
                     <StackPanel Width="500" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" >
-                        <Label Width="100" FontSize="14" Foreground="White">Helmet Color:</Label>
+                        <Label Width="130" FontSize="14" Foreground="White">Helmet Color:</Label>
                         <xctk:ColorPicker Name="newtHelmentColor" SelectedColorChanged="newtHelmentColor_SelectedColorChanged"  Height="20"  Width="20" />
-                        <Label Width="100" FontSize="14" Foreground="White">Helmet Logo Color:</Label>
+                        <Label Width="130" FontSize="14" Foreground="White">Logo Color:</Label>
                         <xctk:ColorPicker Name="newtHelmentLogoColor" SelectedColorChanged="newtHelmentLogoColor_SelectedColorChanged"  Height="20"  Width="20" />
-                        <Label Width="100" FontSize="14" Foreground="White">Facemask Color:</Label>
+                        <Label Width="130" FontSize="14" Foreground="White">Facemask Color:</Label>
                         <xctk:ColorPicker Name="newtFacemaskColor" SelectedColorChanged="newtFacemaskColor_SelectedColorChanged"  Height="20"  Width="20" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
-                            <Label Width="100" FontSize="14" Foreground="White">Middle Stripe 1:</Label>
+                            <Label Width="130" FontSize="14" Foreground="White">Middle Stripe 1:</Label>
                             <xctk:ColorPicker Name="newtHelmentStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="20" />
-                            <Label Width="100" FontSize="14" Foreground="White">Middle Stripe 2:</Label>
+                            <Label Width="130" FontSize="14" Foreground="White">Middle Stripe 2:</Label>
                             <xctk:ColorPicker Name="newtHelmentStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="20" />
-                            <Label Width="100" FontSize="14" Foreground="White">Middle Stripe 3:</Label>
+                            <Label Width="130" FontSize="14" Foreground="White">Middle Stripe 3:</Label>
                             <xctk:ColorPicker Name="newtHelmentStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="20" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Label Width="100" FontSize="18" Foreground="White">Helmet Image:</Label>
-                            <TextBox Name="newtHelmetImgPath" FontSize="20" Width="200" Height="30" Foreground="Black" Background="white"  />
-                            <Button Name="newtbtnHelmetImgPath" FontSize="14" Width="100">Select File</Button>
+                            <Label Width="160" FontSize="14" Foreground="White">Helmet Image:</Label>
+                            <TextBox Name="newtHelmetImgPath" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
+                            <Button Name="newtbtnHelmetImgPath" FontSize="12" Width="90" Height="20">Select File</Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <Label Width="100" FontSize="14" Foreground="White">Socks Color:</Label>
