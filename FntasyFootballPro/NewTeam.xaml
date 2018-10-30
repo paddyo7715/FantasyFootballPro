@@ -127,12 +127,11 @@
                     </StackPanel>
                 </GroupBox>
 
-
+                <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold" Foreground="White">
+                    <GroupBox.Header>
+                        Home Pants:
+                    </GroupBox.Header>
                 <StackPanel Width="500" Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Width="200" FontSize="18" Foreground="White">Home Jersey Color:</Label>
-                            <xctk:ColorPicker Name="newtHomeJerseyColor" SelectedColorChanged="HomeJerseyColor_SelectedColorChanged" Height="30" Width="80" ></xctk:ColorPicker>
-                        </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label Width="200" FontSize="18" Foreground="White">Home Pants Color:</Label>
                         <xctk:ColorPicker Name="newtHomePantsColor" SelectedColorChanged="HomePantsColor_SelectedColorChanged" Height="30" Width="80" ></xctk:ColorPicker>

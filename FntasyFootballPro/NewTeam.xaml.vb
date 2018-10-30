@@ -186,4 +186,60 @@ newtStadium.Text, newtStadiumLocation.Text, newtStadiumPath.Text)
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub
+
+    Private Sub newtHomeJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeNumberOutlineColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseyNumberColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve4Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve5Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve6Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve7Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve8Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve9Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve10Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
 End Class
