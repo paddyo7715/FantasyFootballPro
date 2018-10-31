@@ -86,9 +86,9 @@
                     </GroupBox.Header>
                     <StackPanel Width="500" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" >
-                            <Label Width="130" FontSize="14" Foreground="White">Jersey Color:</Label>
+                            <Label Width="160" FontSize="14" Foreground="White">Jersey Color:</Label>
                             <xctk:ColorPicker Name="newtHomeJerseyColor" SelectedColorChanged="newtHomeJerseyColor_SelectedColorChanged"  Height="20"  Width="20" />
-                            <Label Width="130" FontSize="14" Foreground="White">Shoulder Stripe Color:</Label>
+                            <Label Width="160" FontSize="14" Foreground="White">Shoulder Stripe Color:</Label>
                             <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="20" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
