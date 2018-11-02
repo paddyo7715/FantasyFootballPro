@@ -8,14 +8,14 @@
         mc:Ignorable="d"
         Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False">
     <DockPanel>
-        <Label DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="100" Foreground="White">New Team</Label>
+        <Label DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="50" Foreground="White">New Team</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newt1Cancel" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Cancel</Button>
             <Button Name="newt1Add" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Add</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="TOP" Margin="10">
-                <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold"  Foreground="White">
+                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"  Foreground="White">
 
                     <GroupBox.Header>
                         General Info:
@@ -45,7 +45,7 @@
                 </GroupBox>
 
 
-                <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold" Foreground="White">
+                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
                     <GroupBox.Header>
                         Helmet and Footwear:
                     </GroupBox.Header>
@@ -80,7 +80,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold" Foreground="White">
+                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
                     <GroupBox.Header>
                         Home Jersey:
                     </GroupBox.Header>
@@ -127,7 +127,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold" Foreground="White">
+                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
                     <GroupBox.Header>
                         Home Pants:
                     </GroupBox.Header>
@@ -147,7 +147,7 @@
             </StackPanel>
             </GroupBox>
  
-            <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold"
+            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"
                   Foreground="White">
 
                     <GroupBox.Header>
@@ -175,7 +175,7 @@
 
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="TOP" Margin="10">
-                <GroupBox Margin="4,4,4,4" FontSize="18" FontWeight="Bold"
+                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"
                   Foreground="White">
 
                     <GroupBox.Header>
