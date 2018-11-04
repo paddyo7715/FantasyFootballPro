@@ -152,7 +152,6 @@
     <Compile Include="Team\Jersey.vb" />
     <Compile Include="Team\Pants.vb" />
     <Compile Include="Team\Stadium.vb" />
-    <Compile Include="Team\Team.vb" />
     <Compile Include="Team\Uniform.vb" />
     <Page Include="Administration.xaml">
       <SubType>Designer</SubType>
