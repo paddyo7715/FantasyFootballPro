@@ -33,7 +33,7 @@
         Conferences.Add(Conference2)
 
         For i As Integer = 0 To Num_Divisions * Num_Teams_Per_Division - 1
-            Teams.Add(New New_Team("New Team"))
+            Teams.Add(New TeamMdl(i + 1, "New Team"))
         Next
 
 

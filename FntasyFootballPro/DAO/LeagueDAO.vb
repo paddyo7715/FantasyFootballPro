@@ -86,7 +86,6 @@ Public Class LeagueDAO
             strStage = "Inserting Team"
             Dim t_count As Integer = 0
             For Each t In nl.Teams
-                Dim t_id As Integer
                 Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams_Per_Division, t_count)
                 sSQL = "INSERT INTO TEAMS (ID, Division_ID, City_Abr, City, Nickname, Helmet_img_path,
                         Helmet_Color, Helmet_Logo_Color, Helmet_Facemask_Color, Helmet_Middle_Stripe_1, Helmet_Middle_Stripe_2,Helmet_Middle_Stripe_3, Socks_Color, Cleats_Color,
@@ -123,7 +122,7 @@ Public Class LeagueDAO
                         @Away_Pants_Color, @Away_Pants_Stripe_Color_1, @Away_Pants_Stripe_Color_2, @Away_Pants_Stripe_Color_3,
                         @Stadium_Name,@Stadium_Location,@Stadium_Img_path)"
                 cmdTeam.CommandText = sSQL
-                cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t_id
+                cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t.id
                 cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = CommonUtils.getDivisionNum_from_Team_Number(nl.Teams.Count - nl.Num_Teams_Per_Division, t_id)
                 cmdTeam.Parameters.Add("@City_Abr", Data.DbType.String).Value = t.City_Abr
                 cmdTeam.Parameters.Add("@City", Data.DbType.String).Value = t.City

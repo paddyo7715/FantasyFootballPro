@@ -11,5 +11,5 @@
     Property Conferences As List(Of String) = New List(Of String)
     Property Divisions As List(Of String) = New List(Of String)
 
-    Property Teams As List(Of New_Team) = New List(Of New_Team)
+    Property Teams As List(Of TeamMdl) = New List(Of TeamMdl)
 End Class

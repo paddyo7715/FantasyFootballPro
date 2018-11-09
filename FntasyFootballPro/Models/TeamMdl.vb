@@ -1,7 +1,8 @@
-﻿Public MustInherit Class Base_Team
+﻿Public Class TeamMdl
 
     Public Const PLAYERS_PER_TEAM = 18
 
+    Property id As Integer
     Property City_Abr As String
     Property City As String
     Property Nickname As String
@@ -9,6 +10,10 @@
     Property Uniform As Uniform
 
     Property Players As List(Of New_Player)
+    Public Sub New(ByVal id As Integer, ByVal Nickname As String)
+        Me.id = id
+        Me.Nickname = Nickname
+    End Sub
 
     Public Sub setFields(ByVal City_Abr As String, ByVal City As String, ByVal Nickname As String,
                        ByVal Stadium As Stadium, ByVal uniform As Uniform)

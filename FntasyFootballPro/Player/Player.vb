@@ -1,5 +1,5 @@
 ﻿Public Class Player
-    Public Function CreatePlayer(ByVal pos As Base_Player.Position, ByVal League_Teams As List(Of New_Team),
+    Public Function CreatePlayer(ByVal pos As Base_Player.Position, ByVal League_Teams As List(Of TeamMdl),
                              ByVal Players As List(Of New_Player),
                              ByVal team_ind As Integer, ByVal league_DB_Connecdtion As String) As New_Player
 

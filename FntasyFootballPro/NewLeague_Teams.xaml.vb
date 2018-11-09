@@ -16,12 +16,12 @@
         Me.NewLeague_Settings = NewLeague_Settings
         Me.New_League = New_League
 
-        Dim League_Teams As List(Of New_Team)
+        Dim League_Teams As List(Of TeamMdl)
 
-        League_Teams = New List(Of New_Team)
+        League_Teams = New List(Of TeamMdl)
         With NewLeague_Settings
             For i As Integer = 0 To CInt(.newlnumdivisions.Text) * CInt(.newlnumteamsperdivisions.Text) - 1
-                League_Teams.Add(New New_Team("New Team"))
+                League_Teams.Add(New TeamMdl(i + 1, "New Team"))
             Next
         End With
         Me.New_League.Teams = League_Teams

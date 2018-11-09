@@ -128,9 +128,8 @@
     <Compile Include="Models\Base_League.vb" />
     <Compile Include="Models\New_League.vb" />
     <Compile Include="Models\Base_Player.vb" />
-    <Compile Include="Models\Base_Team.vb" />
+    <Compile Include="Models\TeamMdl.vb" />
     <Compile Include="Models\New_Player.vb" />
-    <Compile Include="Models\New_Team.vb" />
     <Compile Include="NewLeague_Settings.xaml.vb">
       <DependentUpon>NewLeague_Settings.xaml</DependentUpon>
     </Compile>

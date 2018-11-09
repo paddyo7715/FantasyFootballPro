@@ -24,7 +24,7 @@ Public Class NewTeam
     End Sub
     Public Sub setfields()
 
-        Dim League_Teams As List(Of New_Team) = New_League.Teams
+        Dim League_Teams As List(Of TeamMdl) = New_League.Teams
         Dim colorConverter As ColorConverter = New ColorConverter()
         Dim bc As BrushConverter = New BrushConverter()
 
@@ -168,7 +168,7 @@ Public Class NewTeam
 
     Private Sub newtPlayersGrid_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles newtPlayersGrid.SelectionChanged
         Try
-            Dim new_t As New_Team = New_League.Teams(team_ind)
+            Dim new_t As TeamMdl = New_League.Teams(team_ind)
             validate()
 
             Dim hel_color As String = Helmet_color.Background.GetHashCode
