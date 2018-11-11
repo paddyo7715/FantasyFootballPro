@@ -49,138 +49,256 @@
                             </StackPanel>
                         </StackPanel>
                         </GroupBox>
+                        <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"  Foreground="White">
+
+                            <GroupBox.Header>
+                                Stadium Image:
+                            </GroupBox.Header>
+                            <Image Name="Stadium_image" Width="250" Height="250"></Image>
+                        </GroupBox>
+
                     </StackPanel>
                 </TabItem>
 
                 <TabItem Header="Uniform">
                     <StackPanel Orientation="Vertical">
-                        <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
-                        <GroupBox.Header>
-                            Helmet and Footwear:
-                        </GroupBox.Header>
-                        <StackPanel Width="500" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" >
-                                <Label Width="130" FontSize="14" Foreground="White">Helmet Color:</Label>
-                                <xctk:ColorPicker Name="newtHelmentColor" SelectedColorChanged="newtHelmentColor_SelectedColorChanged"  Height="20"  Width="20" />
-                                <Label Width="130" FontSize="14" Foreground="White">Logo Color:</Label>
-                                <xctk:ColorPicker Name="newtHelmentLogoColor" SelectedColorChanged="newtHelmentLogoColor_SelectedColorChanged"  Height="20"  Width="20" />
-                                <Label Width="130" FontSize="14" Foreground="White">Facemask Color:</Label>
-                                <xctk:ColorPicker Name="newtFacemaskColor" SelectedColorChanged="newtFacemaskColor_SelectedColorChanged"  Height="20"  Width="20" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" >
-                                <Label Width="130" FontSize="14" Foreground="White">Middle Stripe 1:</Label>
-                                <xctk:ColorPicker Name="newtHelmentStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                <Label Width="130" FontSize="14" Foreground="White">Middle Stripe 2:</Label>
-                                <xctk:ColorPicker Name="newtHelmentStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                <Label Width="130" FontSize="14" Foreground="White">Middle Stripe 3:</Label>
-                                <xctk:ColorPicker Name="newtHelmentStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="20" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="160" FontSize="14" Foreground="White">Helmet Image:</Label>
-                                <TextBox Name="newtHelmetImgPath" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
-                                <Button Name="newtbtnHelmetImgPath" FontSize="12" Width="90" Height="20">Select File</Button>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" >
-                                <Label Width="100" FontSize="14" Foreground="White">Socks Color:</Label>
-                                <xctk:ColorPicker Name="newtSockColor" SelectedColorChanged="newtSockColor_SelectedColorChanged"  Height="20"  Width="20" />
-                                <Label Width="100" FontSize="14" Foreground="White">Cleats Color:</Label>
-                                <xctk:ColorPicker Name="newtCleatsColor" SelectedColorChanged="newtCleatsColor_SelectedColorChanged"  Height="20"  Width="20" />
-                            </StackPanel>
-                        </StackPanel>
-                        </GroupBox>
-
-                        <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
-                            <GroupBox.Header>
-                                Home Jersey:
-                            </GroupBox.Header>
-                            <StackPanel Width="500" Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Width="160" FontSize="14" Foreground="White">Jersey Color:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseyColor" SelectedColorChanged="newtHomeJerseyColor_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="160" FontSize="14" Foreground="White">Shoulder Stripe Color:</Label>
-                                    <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="20" />
+                        <StackPanel Orientation="Horizontal">
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                <GroupBox.Header>
+                                    Helmet Colors:
+                                </GroupBox.Header>
+                                <StackPanel Width="500" Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="60" FontSize="12" Foreground="White">Helmet:</Label>
+                                        <xctk:ColorPicker Name="newtHelmentColor" SelectedColorChanged="newtHelmentColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="50" FontSize="12" Foreground="White">Logo:</Label>
+                                        <xctk:ColorPicker Name="newtHelmentLogoColor" SelectedColorChanged="newtHelmentLogoColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="70" FontSize="12" Foreground="White">Facemask:</Label>
+                                        <xctk:ColorPicker Name="newtFacemaskColor" SelectedColorChanged="newtFacemaskColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
+                                        <xctk:ColorPicker Name="newtHelmentStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
+                                        <xctk:ColorPicker Name="newtHelmentStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
+                                        <xctk:ColorPicker Name="newtHelmentStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Width="100" FontSize="12" Foreground="White">Helmet Image:</Label>
+                                        <TextBox Name="newtHelmetImgPath" FontSize="12" Width="170" Height="20" Foreground="Black" Background="white"  />
+                                        <Button Name="newtbtnHelmetImgPath" FontSize="12" Width="80" Height="20">Select File</Button>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Width="130" FontSize="14" Foreground="White">Number Color:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseyNumberColor" SelectedColorChanged="newtHomeJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="130" FontSize="14" Foreground="White">Number Outline Color:</Label>
-                                    <xctk:ColorPicker Name="newtHomeNumberOutlineColor" SelectedColorChanged="newtHomeNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="20" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Width="130" FontSize="14" Foreground="White">Sleeve Stripe Colors:</Label>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Width="25" FontSize="14" Foreground="White">1:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve1Color" SelectedColorChanged="newtHomeJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">2:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve2Color" SelectedColorChanged="newtHomeJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">3:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve3Color" SelectedColorChanged="newtHomeJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">4:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve4Color" SelectedColorChanged="newtHomeJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">5:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve5Color" SelectedColorChanged="newtHomeJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label Width="25" FontSize="14" Foreground="White">6:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve6Color" SelectedColorChanged="newtHomeJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">7:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve7Color" SelectedColorChanged="newtHomeJerseySleeve7Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">8:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve8Color" SelectedColorChanged="newtHomeJerseySleeve8Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">9:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve9Color" SelectedColorChanged="newtHomeJerseySleeve9Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                    <Label Width="25" FontSize="14" Foreground="White">10:</Label>
-                                    <xctk:ColorPicker Name="newtHomeJerseySleeve10Color" SelectedColorChanged="newtHomeJerseySleeve10Color_SelectedColorChanged"  Height="20"  Width="20" />
-                                </StackPanel>
-                            </StackPanel>
-                        </GroupBox>
-
-                        <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
-                            <GroupBox.Header>
-                                Home Pants:
-                            </GroupBox.Header>
-                            <StackPanel Width="500" Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="200" FontSize="18" Foreground="White">Home Pants Color:</Label>
-                                    <xctk:ColorPicker Name="newtHomePantsColor" SelectedColorChanged="HomePantsColor_SelectedColorChanged" Height="30" Width="80" ></xctk:ColorPicker>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="200" FontSize="18" Foreground="White">Away Jersey Color:</Label>
-                                    <xctk:ColorPicker Name="newtAwayJerseyColor" SelectedColorChanged="AwayJerseyColor_SelectedColorChanged" Height="30" Width="80" ></xctk:ColorPicker>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="200" FontSize="18" Foreground="White">Away Pants Color:</Label>
-                                    <xctk:ColorPicker Name="newtAwayPantsColor" SelectedColorChanged="AwayPantsColor_SelectedColorChanged" Height="30" Width="80" ></xctk:ColorPicker>
-                                </StackPanel>
-                            </StackPanel>
-                        </GroupBox>
-
-                        <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"
-                  Foreground="White">
-
-                            <GroupBox.Header>
-                                Graphics:
-                            </GroupBox.Header>
-                            <StackPanel Width="500" Orientation="horizontal">
-                                <StackPanel Orientation="Vertical">
+                            </GroupBox>
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                <GroupBox.Header>
+                                    Helmet Image:
+                                </GroupBox.Header>
+                                <StackPanel Width="130" Orientation="horizontal">
                                     <Image Name="Helmet_image" Width="120" Height="120"></Image>
                                 </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Label Name="Helmet_color" Width="40" Height="40"></Label>
+                            </GroupBox>
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                <GroupBox.Header>
+                                    Footwear:
+                                </GroupBox.Header>
+                                <StackPanel Width="300" Orientation="Vertical">
+                                    <Label Width="100" FontSize="12" Foreground="White">Socks Color:</Label>
+                                    <xctk:ColorPicker Name="newtSockColor" SelectedColorChanged="newtSockColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                    <Label Width="100" FontSize="12" Foreground="White">Cleats Color:</Label>
+                                    <xctk:ColorPicker Name="newtCleatsColor" SelectedColorChanged="newtCleatsColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                    <GroupBox.Header>
+                                        Home Jersey Colors:
+                                    </GroupBox.Header>
+                                    <StackPanel Width="500" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Label Width="40" FontSize="12" Foreground="White">Jersey:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseyColor" SelectedColorChanged="newtHomeJerseyColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="50" FontSize="12" Foreground="White">Sleeve:</Label>
+                                            <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
+                                            <xctk:ColorPicker Name="newtHomeSleeveColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Label Width="60" FontSize="12" Foreground="White">Number:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseyNumberColor" SelectedColorChanged="newtHomeJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="100" FontSize="12" Foreground="White">Number Outline:</Label>
+                                            <xctk:ColorPicker Name="newtHomeNumberOutlineColor" SelectedColorChanged="newtHomeNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Label Width="50" FontSize="12" Foreground="White">Top:</Label>
+                                            <Label Width="25" FontSize="12" Foreground="White">1:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve1Color" SelectedColorChanged="newtHomeJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="25" FontSize="12" Foreground="White">2:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve2Color" SelectedColorChanged="newtHomeJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="25" FontSize="12" Foreground="White">3:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve3Color" SelectedColorChanged="newtHomeJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Width="50" FontSize="12" Foreground="White">Middle:</Label>
+                                            <Label Width="25" FontSize="12" Foreground="White">4:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve4Color" SelectedColorChanged="newtHomeJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="25" FontSize="12" Foreground="White">5:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve5Color" SelectedColorChanged="newtHomeJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="25" FontSize="12" Foreground="White">6:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve6Color" SelectedColorChanged="newtHomeJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Width="50" FontSize="12" Foreground="White">Bottom:</Label>
+                                            <Label Width="25" FontSize="12" Foreground="White">7:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve7Color" SelectedColorChanged="newtHomeJerseySleeve7Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="25" FontSize="12" Foreground="White">8:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve8Color" SelectedColorChanged="newtHomeJerseySleeve8Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="25" FontSize="12" Foreground="White">9:</Label>
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve9Color" SelectedColorChanged="newtHomeJerseySleeve9Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        </StackPanel>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Label Name="home_jersey_color" Width="40" Height="40"></Label>
-                                        <Label Name="away_jersey_color" Width="40" Height="40"></Label>
+                                </GroupBox>
+
+                                <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                    <GroupBox.Header>
+                                        Home Pants Colors:
+                                    </GroupBox.Header>
+                                    <StackPanel Width="500" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Width="60" FontSize="18" Foreground="White">Pants:</Label>
+                                            <xctk:ColorPicker Name="newtHomePantsColor" SelectedColorChanged="HomePantsColor_SelectedColorChanged" Height="20" Width="20" ></xctk:ColorPicker>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
+                                            <xctk:ColorPicker Name="newtHomePantsStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
+                                            <xctk:ColorPicker Name="newtHomePantsStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                            <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
+                                            <xctk:ColorPicker Name="newtHomePantsStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        </StackPanel>
+
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Label Name="home_pants_color" Width="40" Height="40"></Label>
-                                        <Label Name="away_pants_color" Width="40" Height="40"></Label>
+                                </GroupBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+
+                                <GroupBox.Header>
+                                    Home Uniform:
+                                </GroupBox.Header>
+                                <StackPanel Width="200" Orientation="horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Name="Helmet_color" Width="40" Height="40"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Name="home_jersey_color" Width="40" Height="40"></Label>
+                                            <Label Name="away_jersey_color" Width="40" Height="40"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Name="home_pants_color" Width="40" Height="40"></Label>
+                                            <Label Name="away_pants_color" Width="40" Height="40"></Label>
+                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+
+                            <GroupBox.Header>
+                                Away Uniform:
+                            </GroupBox.Header>
+                            <StackPanel Width="200" Orientation="horizontal">
                             </StackPanel>
                         </GroupBox>
+                    </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                <GroupBox.Header>
+                                    Away Jersey Colors:
+                                </GroupBox.Header>
+                                <StackPanel Width="500" Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="40" FontSize="12" Foreground="White">Jersey:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseyColor" SelectedColorChanged="newtAwayJerseyColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="50" FontSize="12" Foreground="White">Sleeve:</Label>
+                                        <xctk:ColorPicker Name="newtAwayShoulderStripeColor" SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
+                                        <xctk:ColorPicker Name="newtAwaySleeveColor" SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="60" FontSize="12" Foreground="White">Number:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseyNumberColor" SelectedColorChanged="newtAwayJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="100" FontSize="12" Foreground="White">Number Outline:</Label>
+                                        <xctk:ColorPicker Name="newtAwayNumberOutlineColor" SelectedColorChanged="newtAwayNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="50" FontSize="12" Foreground="White">Top:</Label>
+                                        <Label Width="25" FontSize="12" Foreground="White">1:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve1Color" SelectedColorChanged="newtAwayJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="25" FontSize="12" Foreground="White">2:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve2Color" SelectedColorChanged="newtAwayJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="25" FontSize="12" Foreground="White">3:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve3Color" SelectedColorChanged="newtAwayJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Width="50" FontSize="12" Foreground="White">Middle:</Label>
+                                        <Label Width="25" FontSize="12" Foreground="White">4:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve4Color" SelectedColorChanged="newtAwayJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="25" FontSize="12" Foreground="White">5:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve5Color" SelectedColorChanged="newtAwayJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="25" FontSize="12" Foreground="White">6:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve6Color" SelectedColorChanged="newtAwayJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Width="50" FontSize="12" Foreground="White">Bottom:</Label>
+                                        <Label Width="25" FontSize="12" Foreground="White">7:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve7Color" SelectedColorChanged="newtAwayJerseySleeve7Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="25" FontSize="12" Foreground="White">8:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve8Color" SelectedColorChanged="newtAwayJerseySleeve8Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="25" FontSize="12" Foreground="White">9:</Label>
+                                        <xctk:ColorPicker Name="newtAwayJerseySleeve9Color" SelectedColorChanged="newtAwayJerseySleeve9Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold" Foreground="White">
+                                <GroupBox.Header>
+                                    Away Pants Colors:
+                                </GroupBox.Header>
+                                <StackPanel Width="500" Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Width="60" FontSize="18" Foreground="White">Pants:</Label>
+                                        <xctk:ColorPicker Name="newtAwayPantsColor" SelectedColorChanged="AwayPantsColor_SelectedColorChanged" Height="20" Width="20" ></xctk:ColorPicker>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
+                                        <xctk:ColorPicker Name="newtAwayPantsStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
+                                        <xctk:ColorPicker Name="newtAwayPantsStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                        <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
+                                        <xctk:ColorPicker Name="newtAwayPantsStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="20" />
+                                    </StackPanel>
+
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+
+
+
                     </StackPanel>
                 </TabItem>
 

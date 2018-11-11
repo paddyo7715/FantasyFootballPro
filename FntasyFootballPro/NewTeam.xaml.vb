@@ -130,6 +130,14 @@ Public Class NewTeam
             Helmet_image.Source = New BitmapImage(New Uri(filepath))
         End If
     End Sub
+    Private Sub newtbtnStadiumPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnStadiumPath.Click
+        Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
+        If (OpenFileDialog.ShowDialog() = True) Then
+            Dim filepath As String = OpenFileDialog.FileName
+            newtStadiumPath.Text = filepath
+            Stadium_image.Source = New BitmapImage(New Uri(filepath))
+        End If
+    End Sub
 
 
     Private Sub newtRollTeam_Click(sender As Object, e As RoutedEventArgs) Handles newtRollTeam.Click
@@ -150,6 +158,7 @@ Public Class NewTeam
         Try
             Dim new_t As TeamMdl = New_League.Teams(team_ind)
             Dim stadium As StadiumMdl = Nothing
+            Dim Footwear As Footwear = Nothing
             Dim hel_color As String = Helmet_color.Background.GetHashCode
             Dim hjersey_color As String = home_jersey_color.Background.GetHashCode
             Dim ajersey_color As String = away_jersey_color.Background.GetHashCode
@@ -159,7 +168,7 @@ Public Class NewTeam
             'Create the Stadium Object for this team
             stadium = New StadiumMdl(team_ind, newtStadium.Text, newtStadiumLocation.Text,
                                     newtStadiumCapacity.Text, newtStadiumPath.Text)
-
+            Footwear = New Footwear(, )
 
             new_t.setFields(newtCityAbb.Text, newtCity.Text, newtNickname.Text, newtHelmetImgPath.Text,
                     hel_color, hjersey_color, hpants_color, ajersey_color, apants_color,
