@@ -65,7 +65,7 @@ Public Class NewLeague_Settings
         Try
             validate()
 
-            Dim nl As New_League = New New_League(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
+            Dim nl As Leaguemdl = New Leaguemdl(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
             CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, CInt(newlnumdivisions.Text),
             CInt(newlnumteamsperdivisions.Text), newldiv1.Text, newldiv2.Text, newldiv3.Text, newldiv4.Text, newldiv5.Text, newldiv6.Text, newldiv7.Text, newldiv8.Text, newlConf1.Text, newlConf2.Text)
 

@@ -2,12 +2,12 @@
 
     Property winMainMenu As MainWindow
     Property NewLeague_Settings As NewLeague_Settings
-    Property New_League As New_League = Nothing
+    Property New_League As Leaguemdl = Nothing
 
 
 
     Public Sub New(ByVal winMainMenu As MainWindow, ByVal NewLeague_Settings As NewLeague_Settings,
-                   ByVal New_League As New_League)
+                   ByVal New_League As Leaguemdl)
 
         ' This call is required by the designer.
         InitializeComponent()

@@ -4,9 +4,9 @@ Imports System.Data.SQLite
 Public Class LeagueDAO
 
     Property League_con As SQLiteConnection = Nothing
-    Property nl As New_League
+    Property nl As Leaguemdl
 
-    Public Sub New(ByVal nl As New_League)
+    Public Sub New(ByVal nl As Leaguemdl)
         Me.nl = nl
     End Sub
 
@@ -84,9 +84,10 @@ Public Class LeagueDAO
             Next
 
             strStage = "Inserting Team"
-            Dim t_count As Integer = 0
+            Dim t_id As Integer = 0
             For Each t In nl.Teams
-                Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams_Per_Division, t_count)
+                t_id += 1
+                Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams_Per_Division, t_id)
                 sSQL = "INSERT INTO TEAMS (ID, Division_ID, City_Abr, City, Nickname, Helmet_img_path,
                         Helmet_Color, Helmet_Logo_Color, Helmet_Facemask_Color, Helmet_Middle_Stripe_1, Helmet_Middle_Stripe_2,Helmet_Middle_Stripe_3, Socks_Color, Cleats_Color,
                         Home_jersey_Color, Home_Jersey_Shoulder_Stripe, Home_Jersey_Number_Color, Home_Jersey_Number_Outline_Color,
@@ -208,8 +209,6 @@ Public Class LeagueDAO
                     cmdPlayers.Parameters.Add("@Kicker_Leg_Accuracy", Data.DbType.Int16).Value = P.Ratings.Kicking_Accuracy
                     cmdPlayers.ExecuteNonQuery()
                 Next
-                t_count += 1
-
             Next
 
             strStage = "Creating schedule"

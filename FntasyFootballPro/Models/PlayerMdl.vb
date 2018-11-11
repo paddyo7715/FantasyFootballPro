@@ -1,4 +1,4 @@
-﻿Public MustInherit Class Base_Player
+﻿Public MustInherit Class PlayerMdl
     Public Enum Position
         QB
         RB

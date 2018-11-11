@@ -6,12 +6,12 @@ Public Class NewTeam
     Property winMainMenu As MainWindow
     Property NewLeague_Teams As NewLeague_Teams
     Property team_ind As Integer
-    Property Roster As List(Of New_Player) = Nothing
-    Property New_League As New_League = Nothing
+    Property Roster As List(Of PlayerMdl) = Nothing
+    Property New_League As Leaguemdl = Nothing
 
 
     Public Sub New(ByVal winMainMenu As MainWindow, ByVal NewLeague_Teams As NewLeague_Teams,
-                   ByVal team_ind As Integer, ByVal New_League As New_League)
+                   ByVal team_ind As Integer, ByVal New_League As Leaguemdl)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -79,26 +79,6 @@ Public Class NewTeam
             newtAwayPantsColor.SelectedColor = CType(ColorConverter.ConvertFromString(away_pants_c), Color)
         End If
 
-    End Sub
-    Private Sub validate()
-        If CommonUtils.isBlank(newtCityAbb.Text) Then Throw New Exception("City abbreviation must be supplied!")
-        If CommonUtils.isBlank(newtCity.Text) Then Throw New Exception("City must be supplied!")
-        If CommonUtils.isBlank(newtNickname.Text) Or newtNickname.Text = "New Team" Then Throw New Exception("Team nickname must be supplied!")
-        If CommonUtils.isBlank(newtHelmetImgPath.Text) Then Throw New Exception("Helmet image must be supplied!")
-        If CommonUtils.isBlank(newtCityAbb.Text) Then Throw New Exception("City abbreviation must be supplied!")
-
-        If CommonUtils.isBlank(newtStadium.Text) Then Throw New Exception("Stadium name must be supplied!")
-        If CommonUtils.isBlank(newtStadiumLocation.Text) Then Throw New Exception("Stadium location must be supplied!")
-        If CommonUtils.isBlank(newtStadiumPath.Text) Then Throw New Exception("Stadium image path must be supplied!")
-
-
-        If IsNothing(New_League.Teams(team_ind).Players) OrElse New_League.Teams(team_ind).Players.Count < Application_Constants.PLAYERS_PER_TEAM Then
-            Throw New Exception("You must roll this team before continuing.")
-        End If
-
-        If IsNothing(Roster) OrElse Roster.Count <> 18 Then
-            Throw New Exception("You must first create the team roster.")
-        End If
     End Sub
     Private Sub newtHelmentLogoColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
@@ -169,13 +149,17 @@ Public Class NewTeam
     Private Sub newtPlayersGrid_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles newtPlayersGrid.SelectionChanged
         Try
             Dim new_t As TeamMdl = New_League.Teams(team_ind)
-            validate()
-
+            Dim stadium As StadiumMdl = Nothing
             Dim hel_color As String = Helmet_color.Background.GetHashCode
             Dim hjersey_color As String = home_jersey_color.Background.GetHashCode
             Dim ajersey_color As String = away_jersey_color.Background.GetHashCode
             Dim hpants_color As String = home_pants_color.Background.GetHashCode
             Dim apants_color As String = away_pants_color.Background.GetHashCode
+
+            'Create the Stadium Object for this team
+            stadium = New StadiumMdl(team_ind, newtStadium.Text, newtStadiumLocation.Text,
+                                    newtStadiumCapacity.Text, newtStadiumPath.Text)
+
 
             new_t.setFields(newtCityAbb.Text, newtCity.Text, newtNickname.Text, newtHelmetImgPath.Text,
                     hel_color, hjersey_color, hpants_color, ajersey_color, apants_color,

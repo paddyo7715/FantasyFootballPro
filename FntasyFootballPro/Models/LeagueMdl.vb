@@ -1,6 +1,17 @@
-﻿Public Class New_League
-    Inherits Base_League
+﻿Public Class Leaguemdl
+    Property Short_Name As String
+    Property Long_Name As String
+    Property Starting_Year As Integer
+    Property Number_of_weeks As Integer
+    Property Number_of_Games As Integer
+    Property Championship_Game_Name As String
+    Property Num_Divisions As Integer
+    Property Num_Teams_Per_Division As Integer
 
+    Property Conferences As List(Of String) = New List(Of String)
+    Property Divisions As List(Of String) = New List(Of String)
+
+    Property Teams As List(Of TeamMdl) = New List(Of TeamMdl)
 
     Sub New(ByVal Short_Name As String, ByVal Long_Name As String, ByVal Starting_Year As Integer,
             ByVal Number_of_weeks As Integer, ByVal Number_of_Games As Integer,
@@ -35,9 +46,6 @@
         For i As Integer = 0 To Num_Divisions * Num_Teams_Per_Division - 1
             Teams.Add(New TeamMdl(i + 1, "New Team"))
         Next
-
-
-
     End Sub
 
 End Class

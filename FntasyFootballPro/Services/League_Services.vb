@@ -2,7 +2,7 @@
 Imports System.IO
 
 Public Class League_Services
-    Public Sub CreateNewLeague(ByVal nl As New_League)
+    Public Sub CreateNewLeague(ByVal nl As Leaguemdl)
 
         'Check if Fantasy Football Pro Directory exists under My Documents.  If not then create it.
         Dim DIRPath As String = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.LEAGUE_DB_FOLDER)

@@ -125,11 +125,9 @@
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
-    <Compile Include="Models\Base_League.vb" />
-    <Compile Include="Models\New_League.vb" />
-    <Compile Include="Models\Base_Player.vb" />
+    <Compile Include="Models\LeagueMdl.vb" />
+    <Compile Include="Models\PlayerMdl.vb" />
     <Compile Include="Models\TeamMdl.vb" />
-    <Compile Include="Models\New_Player.vb" />
     <Compile Include="NewLeague_Settings.xaml.vb">
       <DependentUpon>NewLeague_Settings.xaml</DependentUpon>
     </Compile>
@@ -150,7 +148,7 @@
     <Compile Include="Team\Helmet.vb" />
     <Compile Include="Team\Jersey.vb" />
     <Compile Include="Team\Pants.vb" />
-    <Compile Include="Team\Stadium.vb" />
+    <Compile Include="Models\StadiumMdl.vb" />
     <Compile Include="Team\Uniform.vb" />
     <Page Include="Administration.xaml">
       <SubType>Designer</SubType>

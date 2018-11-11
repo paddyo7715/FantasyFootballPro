@@ -1,5 +1,5 @@
 ﻿Public Class Player
-    Public Function CreatePlayer(ByVal pos As Base_Player.Position, ByVal League_Teams As List(Of TeamMdl),
+    Public Function CreatePlayer(ByVal pos As PlayerMdl.Position, ByVal League_Teams As List(Of TeamMdl),
                              ByVal Players As List(Of New_Player),
                              ByVal team_ind As Integer, ByVal league_DB_Connecdtion As String) As New_Player
 
@@ -53,33 +53,33 @@
         Return r
 
     End Function
-    Public Function getPlayerNumber(ByVal pos As Base_Player.Position) As Integer
+    Public Function getPlayerNumber(ByVal pos As PlayerMdl.Position) As Integer
 
         Dim r As Integer
         Dim iLower As Integer = 0
         Dim iUpper As Integer = 0
 
         Select Case pos
-            Case Base_Player.Position.QB
+            Case PlayerMdl.Position.QB
                 r = CommonUtils.getRandomNum(App_Constants.QBLOWNUM, App_Constants.QBHIGHNUM)
-            Case Base_Player.Position.RB
+            Case PlayerMdl.Position.RB
                 r = CommonUtils.getRandomNum(App_Constants.RBLOWNUM, App_Constants.RBHIGHNUM)
-            Case Base_Player.Position.WR
+            Case PlayerMdl.Position.WR
                 r = CommonUtils.getRandomNum(App_Constants.WRLOWNUM, App_Constants.WRHIGHNUM)
-            Case Base_Player.Position.OL
+            Case PlayerMdl.Position.OL
                 r = CommonUtils.getRandomNum(App_Constants.OLLOWNUM, App_Constants.OLHIGHNUM)
-            Case Base_Player.Position.DL
+            Case PlayerMdl.Position.DL
                 While True
                     r = CommonUtils.getRandomNum(App_Constants.DLLOWNUM, App_Constants.DLHIGHNUM)
                     If r < 80 Or r > 89 Then
                         Exit While
                     End If
                 End While
-            Case Base_Player.Position.LB
+            Case PlayerMdl.Position.LB
                 r = CommonUtils.getRandomNum(App_Constants.LBLOWNUM, App_Constants.LBHIGHNUM)
-            Case Base_Player.Position.CB
+            Case PlayerMdl.Position.CB
                 r = CommonUtils.getRandomNum(App_Constants.CBLOWNUM, App_Constants.CBHIGHNUM)
-            Case Base_Player.Position.K, Base_Player.Position.P
+            Case PlayerMdl.Position.K, PlayerMdl.Position.P
                 r = CommonUtils.getRandomNum(App_Constants.KLOWNUM, App_Constants.KHIGHNUM)
         End Select
 
@@ -111,42 +111,42 @@
         Return r
     End Function
 
-    Public Function Create_Player_Abilities(ByVal pos As Base_Player.Position)
+    Public Function Create_Player_Abilities(ByVal pos As PlayerMdl.Position)
         Dim r As Player_Abilities = New Player_Abilities
 
         Select Case pos
-            Case Base_Player.Position.QB
+            Case PlayerMdl.Position.QB
                 r.Accuracy_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Decision_Making = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Arm_Strength_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Fumble_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
-            Case Base_Player.Position.RB
+            Case PlayerMdl.Position.RB
                 r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Agilty_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Fumble_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
-            Case Base_Player.Position.WR
+            Case PlayerMdl.Position.WR
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Agilty_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Hands_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Fumble_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
-            Case Base_Player.Position.OL
+            Case PlayerMdl.Position.OL
                 r.Pass_Block_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Run_Block_Rating = CommonUtils.getRandomNum(Math.Max(App_Constants.ABILITY_LOW_RATING, r.Pass_Block_Rating - App_Constants.OL_RUN_PASS_BLOCK_DELTA),
                                      Math.Min(App_Constants.ABILITY_HIGH_RATING, r.Pass_Block_Rating + App_Constants.OL_RUN_PASS_BLOCK_DELTA))
-            Case Base_Player.Position.DL
+            Case PlayerMdl.Position.DL
                 r.Pass_Attack = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Run_Attack = CommonUtils.getRandomNum(Math.Max(App_Constants.ABILITY_LOW_RATING, r.Pass_Attack - App_Constants.OL_RUN_PASS_BLOCK_DELTA),
                                      Math.Min(App_Constants.ABILITY_HIGH_RATING, r.Pass_Attack + App_Constants.OL_RUN_PASS_BLOCK_DELTA))
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
-            Case Base_Player.Position.CB
+            Case PlayerMdl.Position.CB
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Hands_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
-            Case Base_Player.Position.LB
+            Case PlayerMdl.Position.LB
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
-            Case Base_Player.Position.K, Base_Player.Position.P
+            Case PlayerMdl.Position.K, PlayerMdl.Position.P
                 r.Kicking_Accuracy = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
                 r.Leg_Strength = CommonUtils.getRandomNum(App_Constants.ABILITY_LOW_RATING, App_Constants.ABILITY_HIGH_RATING)
         End Select
