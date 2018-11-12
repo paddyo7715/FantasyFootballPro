@@ -7,7 +7,7 @@
     Property City As String
     Property Nickname As String
     Property Stadium As StadiumMdl
-    Property Uniform As Uniform
+    Property Uniform As UniformMdl
 
     Property Players As List(Of PlayerMdl)
     Public Sub New(ByVal id As Integer, ByVal Nickname As String)
@@ -16,13 +16,30 @@
     End Sub
 
     Public Sub setFields(ByVal City_Abr As String, ByVal City As String, ByVal Nickname As String,
-                       ByVal Stadium As StadiumMdl, ByVal uniform As Uniform)
+                       ByVal Stadium As StadiumMdl, ByVal uniform As UniformMdl, ByVal Players As List(Of PlayerMdl))
 
         Me.City_Abr = City_Abr
         Me.City = City
         Me.Nickname = Nickname
         Me.Stadium = Stadium
         Me.Uniform = uniform
+
+        validate()
+    End Sub
+
+    Private Sub validate()
+
+        If CommonUtils.isBlank(City_Abr) Then
+            Throw New Exception("City Abbriviation must have a value")
+        End If
+
+        If CommonUtils.isBlank(City) Then
+            Throw New Exception("City must have a value")
+        End If
+
+        If CommonUtils.isBlank(Nickname) Then
+            Throw New Exception("Nickname must have a value")
+        End If
 
     End Sub
 

@@ -1,9 +1,9 @@
 ﻿Public Class Player
     Public Function CreatePlayer(ByVal pos As PlayerMdl.Position, ByVal League_Teams As List(Of TeamMdl),
-                             ByVal Players As List(Of New_Player),
-                             ByVal team_ind As Integer, ByVal league_DB_Connecdtion As String) As New_Player
+                             ByVal Players As List(Of PlayerMdl),
+                             ByVal team_ind As Integer, ByVal league_DB_Connecdtion As String) As PlayerMdl
 
-        Dim r As New_Player = New New_Player()
+        Dim r As PlayerMdl = New PlayerMdl()
 
         Dim PlayerName As String() = Nothing
         Dim player_number As Integer = 0
@@ -86,7 +86,7 @@
         Return r
 
     End Function
-    Public Function isPlayerNumber_Unique_Team_Memoory(ByVal number As String, ByVal Players As List(Of New_Player)) As Boolean
+    Public Function isPlayerNumber_Unique_Team_Memoory(ByVal number As String, ByVal Players As List(Of PlayerMdl)) As Boolean
         Dim r As Boolean = True
 
         If Not IsNothing(Players) Then

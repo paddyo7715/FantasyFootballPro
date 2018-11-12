@@ -1,15 +1,13 @@
 ﻿Public Class StadiumMdl
-    Property ID As Integer
     Property Stadium_Name As String
     Property Stadium_Location As String
     Property Capacity As String
     Property Stadium_Img_Path As String
 
 
-    Public Sub New(ByVal ID As Integer, ByVal Stadium_Name As String, ByVal Stadium_Location As String,
+    Public Sub New(ByVal Stadium_Name As String, ByVal Stadium_Location As String,
                    ByVal Capacity As String, ByVal Stadium_Img_Path As String)
 
-        Me.ID = ID
         Me.Stadium_Img_Path = Stadium_Img_Path
         Me.Stadium_Location = Stadium_Location
         Me.Capacity = Capacity

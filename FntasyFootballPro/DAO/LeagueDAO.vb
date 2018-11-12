@@ -90,38 +90,38 @@ Public Class LeagueDAO
                 Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams_Per_Division, t_id)
                 sSQL = "INSERT INTO TEAMS (ID, Division_ID, City_Abr, City, Nickname, Helmet_img_path,
                         Helmet_Color, Helmet_Logo_Color, Helmet_Facemask_Color, Helmet_Middle_Stripe_1, Helmet_Middle_Stripe_2,Helmet_Middle_Stripe_3, Socks_Color, Cleats_Color,
-                        Home_jersey_Color, Home_Jersey_Shoulder_Stripe, Home_Jersey_Number_Color, Home_Jersey_Number_Outline_Color,
+                        Home_jersey_Color,Home_Sleeve_Color, Home_Jersey_Shoulder_Stripe, Home_Jersey_Number_Color, Home_Jersey_Number_Outline_Color,
                         Home_Jersey_Sleeve_Stripe_Color_1, Home_Jersey_Sleeve_Stripe_Color_2,
                         Home_Jersey_Sleeve_Stripe_Color_3, Home_Jersey_Sleeve_Stripe_Color_4,
                         Home_Jersey_Sleeve_Stripe_Color_5 Home_Jersey_Sleeve_Stripe_Color_6.                       
                         Home_Jersey_Sleeve_Stripe_Color_7, Home_Jersey_Sleeve_Stripe_Color_8,
-                        Home_Jersey_Sleeve_Stripe_Color_9, Home_Jersey_Sleeve_Stripe_Color_10,
+                        Home_Jersey_Sleeve_Stripe_Color_9, 
                         Home_Pants_Color, Home_Pants_Stripe_Color_1,  Home_Pants_Stripe_Color_2, Home_Pants_Stripe_Color_3,
-                        Away_jersey_Color, Away_Jersey_Shoulder_Stripe, Away_Jersey_Number_Color, Away_Jersey_Number_Outline_Color,
+                        Away_jersey_Color, Away_Sleeve_Color,Away_Jersey_Shoulder_Stripe, Away_Jersey_Number_Color, Away_Jersey_Number_Outline_Color,
                         Away_Jersey_Sleeve_Stripe_Color_1, Away_Jersey_Sleeve_Stripe_Color_2,
                         Away_Jersey_Sleeve_Stripe_Color_3, Away_Jersey_Sleeve_Stripe_Color_4,
                         Away_Jersey_Sleeve_Stripe_Color_5 Away_Jersey_Sleeve_Stripe_Color_6.   
                         Away_Jersey_Sleeve_Stripe_Color_7, Away_Jersey_Sleeve_Stripe_Color_8,
-                        Away_Jersey_Sleeve_Stripe_Color_9, Away_Jersey_Sleeve_Stripe_Color_10,
+                        Away_Jersey_Sleeve_Stripe_Color_9, 
                         Away_Pants_Color, Away_Pants_Stripe_Color_1,  Away_Pants_Stripe_Color_2, Away_Pants_Stripe_Color_3,
-                        Stadium_Name,Stadium_Location,Stadium_Img_Path) 
+                        Stadium_Name,Stadium_Location,Stadium_Capacity,Stadium_Img_Path) 
                         VALUES(@ID, @Division_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
                         @Helmet_Color, @Helmet_Logo_Color,@Helmet_Facemask_Color, @Helmet_Middle_Stripe_1, @Helmet_Middle_Stripe_2, @Helmet_Middle_Stripe_3,  
-                        @Home_jersey_Color, @Home_Jersey_Shoulder_Stripe, @Home_Jersey_Number_Color, @Home_Jersey_Number_Outline_Color,
+                        @Home_jersey_Color,@Home_Sleeve_Color, @Home_Jersey_Shoulder_Stripe, @Home_Jersey_Number_Color, @Home_Jersey_Number_Outline_Color,
                         @Home_Jersey_Sleeve_Stripe_Color_1, @Home_Jersey_Sleeve_Stripe_Color_2,
                         @Home_Jersey_Sleeve_Stripe_Color_3, @Home_Jersey_Sleeve_Stripe_Color_4,
-                        @Home_Jersey_Sleeve_Stripe_Color_5 @Home_Jersey_Sleeve_Stripe_Color_6.                        Home_Jersey_Sleeve_Stripe_Color_7, Home_Jersey_Sleeve_Stripe_Color_1,
+                        @Home_Jersey_Sleeve_Stripe_Color_5, @Home_Jersey_Sleeve_Stripe_Color_6,
                         @Home_Jersey_Sleeve_Stripe_Color_7, @Home_Jersey_Sleeve_Stripe_Color_8,
                         @Home_Jersey_Sleeve_Stripe_Color_9, @Home_Jersey_Sleeve_Stripe_Color_10,
                         @Home_Pants_Color, @Home_Pants_Stripe_Color_1, @Home_Pants_Stripe_Color_2, @Home_Pants_Stripe_Color_3,
-                        @Away_jersey_Color, @Away_Jersey_Shoulder_Stripe, @Away_Jersey_Number_Color, @Away_Jersey_Number_Outline_Color,
+                        @Away_jersey_Color, @Away_Sleeve_Color, @Away_Jersey_Shoulder_Stripe, @Away_Jersey_Number_Color, @Away_Jersey_Number_Outline_Color,
                         @Away_Jersey_Sleeve_Stripe_Color_1, @Away_Jersey_Sleeve_Stripe_Color_2,
                         @Away_Jersey_Sleeve_Stripe_Color_3, @Away_Jersey_Sleeve_Stripe_Color_4,
-                        @Away_Jersey_Sleeve_Stripe_Color_5 @Away_Jersey_Sleeve_Stripe_Color_6.                        Away_Jersey_Sleeve_Stripe_Color_7, Away_Jersey_Sleeve_Stripe_Color_1,
+                        @Away_Jersey_Sleeve_Stripe_Color_5, @Away_Jersey_Sleeve_Stripe_Color_6.                       
                         @Away_Jersey_Sleeve_Stripe_Color_7, @Away_Jersey_Sleeve_Stripe_Color_8,
                         @Away_Jersey_Sleeve_Stripe_Color_9, @Away_Jersey_Sleeve_Stripe_Color_10,
                         @Away_Pants_Color, @Away_Pants_Stripe_Color_1, @Away_Pants_Stripe_Color_2, @Away_Pants_Stripe_Color_3,
-                        @Stadium_Name,@Stadium_Location,@Stadium_Img_path)"
+                        @Stadium_Name,@Stadium_Location,@Stadium_Capacity,@Stadium_Img_path)"
                 cmdTeam.CommandText = sSQL
                 cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t.id
                 cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = CommonUtils.getDivisionNum_from_Team_Number(nl.Teams.Count - nl.Num_Teams_Per_Division, t_id)
@@ -138,6 +138,7 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@Socks_Color", Data.DbType.String).Value = t.Uniform.Footwear.Socks_Color
                 cmdTeam.Parameters.Add("@Cleats_Color", Data.DbType.String).Value = t.Uniform.Footwear.Cleats_Color
                 cmdTeam.Parameters.Add("@Home_jersey_Color", Data.DbType.String).Value = t.Uniform.Home_Jersey.Jersey_Color
+                cmdTeam.Parameters.Add("@Home_Sleeve_Color", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Color
                 cmdTeam.Parameters.Add("@Home_jersey_Shoulder_Stripe", Data.DbType.String).Value = t.Uniform.Home_Jersey.Shoulder_Stripe_Color
                 cmdTeam.Parameters.Add("@Home_Jersey_Number_Color", Data.DbType.String).Value = t.Uniform.Home_Jersey.Number_Color
                 cmdTeam.Parameters.Add("@Home_Jersey_Number_Outline_Color", Data.DbType.String).Value = t.Uniform.Home_Jersey.Number_Outline_Color
@@ -145,17 +146,17 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_2", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe2
                 cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_3", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe3
                 cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_4", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe4
-                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_5", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe6
-                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_6", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe7
-                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_7", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe8
-                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_8", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe9
-                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_9", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe10
-                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_10", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe1
+                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_5", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe5
+                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_6", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe6
+                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_7", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe7
+                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_8", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe8
+                cmdTeam.Parameters.Add("@Home_Jersey_Sleeve_Stripe_Color_9", Data.DbType.String).Value = t.Uniform.Home_Jersey.Sleeve_Stripe9
                 cmdTeam.Parameters.Add("@Home_Pants_Color", Data.DbType.String).Value = t.Uniform.Home_Pants.Pants_Color
                 cmdTeam.Parameters.Add("@Home_Pants_Stripe_Color_1", Data.DbType.String).Value = t.Uniform.Home_Pants.Stripe_Color_1
                 cmdTeam.Parameters.Add("@Home_Pants_Stripe_Color_2", Data.DbType.String).Value = t.Uniform.Home_Pants.Stripe_Color_2
                 cmdTeam.Parameters.Add("@Home_Pants_Stripe_Color_3", Data.DbType.String).Value = t.Uniform.Home_Pants.Stripe_Color_3
                 cmdTeam.Parameters.Add("@Away_jersey_Color", Data.DbType.String).Value = t.Uniform.Away_Jersey.Jersey_Color
+                cmdTeam.Parameters.Add("@Away_Sleeve_Color", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Color
                 cmdTeam.Parameters.Add("@Away_jersey_Shoulder_Stripe", Data.DbType.String).Value = t.Uniform.Away_Jersey.Shoulder_Stripe_Color
                 cmdTeam.Parameters.Add("@Away_Jersey_Number_Color", Data.DbType.String).Value = t.Uniform.Away_Jersey.Number_Color
                 cmdTeam.Parameters.Add("@Away_Jersey_Number_Outline_Color", Data.DbType.String).Value = t.Uniform.Away_Jersey.Number_Outline_Color
@@ -163,18 +164,18 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_2", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe2
                 cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_3", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe3
                 cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_4", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe4
-                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_5", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe6
-                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_6", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe7
-                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_7", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe8
-                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_8", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe9
-                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_9", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe10
-                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_10", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe1
+                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_5", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe5
+                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_6", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe6
+                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_7", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe7
+                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_8", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe8
+                cmdTeam.Parameters.Add("@Away_Jersey_Sleeve_Stripe_Color_9", Data.DbType.String).Value = t.Uniform.Away_Jersey.Sleeve_Stripe9
                 cmdTeam.Parameters.Add("@Away_Pants_Color", Data.DbType.String).Value = t.Uniform.Away_Pants.Pants_Color
                 cmdTeam.Parameters.Add("@Away_Pants_Stripe_Color_1", Data.DbType.String).Value = t.Uniform.Away_Pants.Stripe_Color_1
                 cmdTeam.Parameters.Add("@Away_Pants_Stripe_Color_2", Data.DbType.String).Value = t.Uniform.Away_Pants.Stripe_Color_2
                 cmdTeam.Parameters.Add("@Away_Pants_Stripe_Color_3", Data.DbType.String).Value = t.Uniform.Away_Pants.Stripe_Color_3
                 cmdTeam.Parameters.Add("@Stadium_Name", Data.DbType.String).Value = t.Stadium.Stadium_Name
                 cmdTeam.Parameters.Add("@Stadium_Location", Data.DbType.String).Value = t.Stadium.Stadium_Location
+                cmdTeam.Parameters.Add("@Stadium_Capacity", Data.DbType.String).Value = t.Stadium.Capacity
                 cmdTeam.Parameters.Add("@Stadium_Img_path", Data.DbType.String).Value = t.Stadium.Stadium_Img_Path
                 cmdTeam.ExecuteNonQuery()
 
