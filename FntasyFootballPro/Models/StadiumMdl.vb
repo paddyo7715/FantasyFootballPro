@@ -1,8 +1,8 @@
 ﻿Public Class StadiumMdl
-    Property Stadium_Name As String
-    Property Stadium_Location As String
-    Property Capacity As String
-    Property Stadium_Img_Path As String
+    Property Stadium_Name As String = ""
+    Property Stadium_Location As String = ""
+    Property Capacity As String = ""
+    Property Stadium_Img_Path As String = ""
 
 
     Public Sub New(ByVal Stadium_Name As String, ByVal Stadium_Location As String,

@@ -32,54 +32,37 @@ Public Class NewTeam
         newtCity.Text = League_Teams(team_ind).City
         newtNickname.Text = League_Teams(team_ind).Nickname
 
-        If Not IsNothing(League_Teams(team_ind).Stadium.Stadium_Name) Then
+        If Not IsNothing(League_Teams(team_ind).Stadium) Then
             newtStadium.Text = League_Teams(team_ind).Stadium.Stadium_Name
-        End If
-
-        If Not IsNothing(League_Teams(team_ind).Stadium.Stadium_Location) Then
             newtStadiumLocation.Text = League_Teams(team_ind).Stadium.Stadium_Location
-        End If
-
-        If Not IsNothing(League_Teams(team_ind).Stadium.Stadium_Img_Path) Then
             newtStadiumPath.Text = League_Teams(team_ind).Stadium.Stadium_Img_Path
-        End If
-
-        If Not IsNothing(League_Teams(team_ind).Stadium.Capacity) Then
             newtStadiumCapacity.Text = League_Teams(team_ind).Stadium.Capacity
         End If
 
-        If Not IsNothing(League_Teams(team_ind).Uniform.Helmet.Helmet_img_path) Then
-            newtHelmetImgPath.Text = League_Teams(team_ind).Uniform.Helmet.Helmet_img_path
-            Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & League_Teams(team_ind).Uniform.Helmet.Helmet_img_path))
+        If Not IsNothing(League_Teams(team_ind).Graphics) Then
+            newtHelmetImgPath.Text = League_Teams(team_ind).Graphics.Helmet_img_path
+            Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & League_Teams(team_ind).Graphics.Helmet_img_path))
         End If
 
-        If Not IsNothing(League_Teams(team_ind).Uniform.Helmet.Helmet_Color) Then
+        If Not IsNothing(League_Teams(team_ind).Uniform) Then
             Dim hel_color As String = League_Teams(team_ind).Uniform.Helmet.Helmet_Color
-            Helmet_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(hel_color), Color))
+            '            Helmet_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(hel_color), Color))
             newtHelmentColor.SelectedColor = CType(ColorConverter.ConvertFromString(hel_color), Color)
-        End If
 
-        If Not IsNothing(League_Teams(team_ind).Home_jersey_Color) Then
-            Dim home_jersey_c As String = League_Teams(team_ind).Home_jersey_Color
-            home_jersey_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(home_jersey_c), Color))
+            Dim home_jersey_c As String = League_Teams(team_ind).Uniform.Home_Jersey.Jersey_Color
+            '            home_jersey_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(home_jersey_c), Color))
             newtHomeJerseyColor.SelectedColor = CType(ColorConverter.ConvertFromString(home_jersey_c), Color)
-        End If
 
-        If Not IsNothing(League_Teams(team_ind).Away_jersey_Color) Then
-            Dim away_jersey_c As String = League_Teams(team_ind).Away_jersey_Color
-            away_jersey_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(away_jersey_c), Color))
+            Dim away_jersey_c As String = League_Teams(team_ind).Uniform.Away_Jersey.Jersey_Color
+            '            away_jersey_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(away_jersey_c), Color))
             newtAwayJerseyColor.SelectedColor = CType(ColorConverter.ConvertFromString(away_jersey_c), Color)
-        End If
 
-        If Not IsNothing(League_Teams(team_ind).Home_Pants_Color) Then
-            Dim home_pants_c As String = League_Teams(team_ind).Home_Pants_Color
-            home_pants_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(home_pants_c), Color))
+            Dim home_pants_c As String = League_Teams(team_ind).Uniform.Home_Pants.Pants_Color
+            '            home_pants_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(home_pants_c), Color))
             newtHomePantsColor.SelectedColor = CType(ColorConverter.ConvertFromString(home_pants_c), Color)
-        End If
 
-        If Not IsNothing(League_Teams(team_ind).Away_Pants_Color) Then
-            Dim away_pants_c As String = League_Teams(team_ind).Away_Pants_Color
-            away_pants_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(away_pants_c), Color))
+            Dim away_pants_c As String = League_Teams(team_ind).Uniform.Away_Pants.Pants_Color
+            '           away_pants_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(away_pants_c), Color))
             newtAwayPantsColor.SelectedColor = CType(ColorConverter.ConvertFromString(away_pants_c), Color)
         End If
 
@@ -106,20 +89,63 @@ Public Class NewTeam
 
     End Sub
     Private Sub newtHelmentColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        Helmet_color.Background = New SolidColorBrush(newtHelmentColor.SelectedColor)
+        '        Helmet_color.Background = New SolidColorBrush(newtHelmentColor.SelectedColor)
     End Sub
     Private Sub HomeJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        home_jersey_color.Background = New SolidColorBrush(newtHomeJerseyColor.SelectedColor)
+        '        home_jersey_color.Background = New SolidColorBrush(newtHomeJerseyColor.SelectedColor)
     End Sub
     Private Sub AwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        away_jersey_color.Background = New SolidColorBrush(newtAwayJerseyColor.SelectedColor)
+        '        away_jersey_color.Background = New SolidColorBrush(newtAwayJerseyColor.SelectedColor)
     End Sub
     Private Sub HomePantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        home_pants_color.Background = New SolidColorBrush(newtHomePantsColor.SelectedColor)
+        '        home_pants_color.Background = New SolidColorBrush(newtHomePantsColor.SelectedColor)
     End Sub
     Private Sub AwayPantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        away_pants_color.Background = New SolidColorBrush(newtAwayPantsColor.SelectedColor)
+        '        away_pants_color.Background = New SolidColorBrush(newtAwayPantsColor.SelectedColor)
     End Sub
+    Private Sub newtAwaySleeveColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayNumberOutlineColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve4Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve5Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve6Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve7Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve8Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseySleeve9Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseyNumberColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+
 
     Private Sub newt1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newt1Cancel.Click
         Me.Close()
@@ -158,7 +184,7 @@ Public Class NewTeam
 
     End Sub
 
-    Private Sub newtPlayersGrid_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles newtPlayersGrid.SelectionChanged
+    Private Sub newt1Add_Click(sender As Object, e As RoutedEventArgs) Handles newt1Add.Click
         Try
             Dim new_t As TeamMdl = New_League.Teams(team_ind)
             Dim stadium As StadiumMdl = Nothing
@@ -169,6 +195,7 @@ Public Class NewTeam
             Dim Away_Jersey As JerseyMdl = Nothing
             Dim Away_Pants As PantsMdl = Nothing
             Dim Uniform As UniformMdl = Nothing
+            Dim Graphics As Graphics = Nothing
 
             Dim City_Abr As String = newtCityAbb.Background.GetHashCode
             Dim City As String = newtCity.Background.GetHashCode
@@ -227,7 +254,7 @@ Public Class NewTeam
             stadium = New StadiumMdl(newtStadium.Text, newtStadiumLocation.Text,
                                     newtStadiumCapacity.Text, newtStadiumPath.Text)
             Footwear = New FootwearMdl(socks_color, cleats_color)
-            Helmet = New HelmetMdl(newtHelmetImgPath.Text, helmet_color, helmet_logo_color,
+            Helmet = New HelmetMdl(helmet_color, helmet_logo_color,
                                 helmet_facemask_color, helmet_stripe_1, helmet_stripe_2, helmet_stripe_3)
             Home_Jersey = New JerseyMdl(Home_Jersey_Color, Home_Sleeve_Color, Home_Shoulder_Stripe_Color,
                                 Home_Jersey_Number_Color, Home_Jersey_Outline_Number_Color,
@@ -239,18 +266,19 @@ Public Class NewTeam
             Home_Pants = New PantsMdl(Home_Pants_Color, Home_Pants_Stripe_1_Color,
                                 Home_Pants_Stripe_2_Color, Home_Pants_Stripe_3_Color)
 
-            away_Jersey = New JerseyMdl(away_Jersey_Color, away_Sleeve_Color, away_Shoulder_Stripe_Color,
+            Away_Jersey = New JerseyMdl(away_Jersey_Color, away_Sleeve_Color, away_Shoulder_Stripe_Color,
                                 away_Jersey_Number_Color, away_Jersey_Outline_Number_Color,
                                 away_Jersey_Sleeve_1_Color, away_Jersey_Sleeve_2_Color,
                                 away_Jersey_Sleeve_3_Color, away_Jersey_Sleeve_4_Color,
                                 away_Jersey_Sleeve_5_Color, away_Jersey_Sleeve_6_Color,
                                 away_Jersey_Sleeve_7_Color, away_Jersey_Sleeve_8_Color,
                                 away_Jersey_Sleeve_9_Color)
-            away_Pants = New PantsMdl(away_Pants_Color, away_Pants_Stripe_1_Color,
+            Away_Pants = New PantsMdl(away_Pants_Color, away_Pants_Stripe_1_Color,
                                 away_Pants_Stripe_2_Color, away_Pants_Stripe_3_Color)
+            Graphics = New Graphics(newtHelmetImgPath.Text)
             Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
-            new_t.setFields(City_Abr, City, Nickname, stadium, Uniform, Roster)
+            new_t.setFields(City_Abr, City, Nickname, stadium, Uniform, Graphics, Roster)
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)

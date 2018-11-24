@@ -1,8 +1,8 @@
 ﻿Public Class PantsMdl
-    Property Pants_Color As String
-    Property Stripe_Color_1 As String
-    Property Stripe_Color_2 As String
-    Property Stripe_Color_3 As String
+    Property Pants_Color As String = ""
+    Property Stripe_Color_1 As String = ""
+    Property Stripe_Color_2 As String = ""
+    Property Stripe_Color_3 As String = ""
 
     Public Sub New(ByVal Pants_Color As String, ByVal Stripe_Color_1 As String,
                    ByVal Stripe_Color_2 As String, ByVal Stripe_Color_3 As String)

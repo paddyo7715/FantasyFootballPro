@@ -125,6 +125,7 @@
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
+    <Compile Include="Models\Graphics.vb" />
     <Compile Include="Models\LeagueMdl.vb" />
     <Compile Include="Models\PlayerMdl.vb" />
     <Compile Include="Models\TeamMdl.vb" />

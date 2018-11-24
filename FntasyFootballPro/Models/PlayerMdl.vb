@@ -12,9 +12,9 @@
     End Enum
 
 
-    Property First_Name As String
-    Property Last_Name As String
-    Property Age As Integer
+    Property First_Name As String = ""
+    Property Last_Name As String = ""
+    Property Age As Integer = ""
     Property Jersey_Number As Integer
     Property Active As Boolean
     Property Pos As Position
