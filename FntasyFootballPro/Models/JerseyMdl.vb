@@ -10,18 +10,13 @@
     Property Sleeve_Stripe4 As String = ""
     Property Sleeve_Stripe5 As String = ""
     Property Sleeve_Stripe6 As String = ""
-    Property Sleeve_Stripe7 As String = ""
-    Property Sleeve_Stripe8 As String = ""
-    Property Sleeve_Stripe9 As String = ""
 
 
     Public Sub New(ByVal Jersey_Color As String, ByVal Sleeve_Color As String, ByVal Shoulder_Stripe_Color As String,
         ByVal Number_Color As String, ByVal Number_Outline_Color As String,
         ByVal Sleeve_Stripe1 As String, ByVal Sleeve_Stripe2 As String,
         ByVal Sleeve_Stripe3 As String, ByVal Sleeve_Stripe4 As String,
-        ByVal Sleeve_Stripe5 As String, ByVal Sleeve_Stripe6 As String,
-        ByVal Sleeve_Stripe7 As String, ByVal Sleeve_Stripe8 As String,
-        ByVal Sleeve_Stripe9 As String)
+        ByVal Sleeve_Stripe5 As String, ByVal Sleeve_Stripe6 As String)
 
         Me.Jersey_Color = Jersey_Color
         Me.Sleeve_Color = Sleeve_Color
@@ -34,9 +29,6 @@
         Me.Sleeve_Stripe4 = Sleeve_Stripe4
         Me.Sleeve_Stripe5 = Sleeve_Stripe5
         Me.Sleeve_Stripe6 = Sleeve_Stripe6
-        Me.Sleeve_Stripe7 = Sleeve_Stripe7
-        Me.Sleeve_Stripe8 = Sleeve_Stripe8
-        Me.Sleeve_Stripe9 = Sleeve_Stripe9
 
         validate()
 
@@ -87,20 +79,6 @@
         If CommonUtils.isBlank(Sleeve_Stripe6) Then
             Throw New Exception("Jersey sleeve stripe 6 color must have a value")
         End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe7) Then
-            Throw New Exception("Jersey sleeve stripe 7 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe8) Then
-            Throw New Exception("Jersey sleeve stripe 8 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe9) Then
-            Throw New Exception("Jersey sleeve stripe 9 color must have a value")
-        End If
-
-
 
     End Sub
 

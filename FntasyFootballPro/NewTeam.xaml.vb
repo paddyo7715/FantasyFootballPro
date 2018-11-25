@@ -206,9 +206,6 @@ Public Class NewTeam
             Dim helmet_color As String = newtHelmentColor.Background.GetHashCode
             Dim helmet_logo_color As String = newtHelmentLogoColor.Background.GetHashCode
             Dim helmet_facemask_color As String = newtFacemaskColor.Background.GetHashCode
-            Dim helmet_stripe_1 As String = newtHelmentStripe1Color.Background.GetHashCode
-            Dim helmet_stripe_2 As String = newtHelmentStripe2Color.Background.GetHashCode
-            Dim helmet_stripe_3 As String = newtHelmentStripe3Color.Background.GetHashCode
 
             Dim Home_Jersey_Color As String = newtHomeJerseyColor.Background.GetHashCode
             Dim Home_Sleeve_Color As String = newtHomeSleeveColor.Background.GetHashCode
@@ -221,9 +218,6 @@ Public Class NewTeam
             Dim Home_Jersey_Sleeve_4_Color As String = newtHomeJerseySleeve4Color.Background.GetHashCode
             Dim Home_Jersey_Sleeve_5_Color As String = newtHomeJerseySleeve5Color.Background.GetHashCode
             Dim Home_Jersey_Sleeve_6_Color As String = newtHomeJerseySleeve6Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_7_Color As String = newtHomeJerseySleeve7Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_8_Color As String = newtHomeJerseySleeve8Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_9_Color As String = newtHomeJerseySleeve9Color.Background.GetHashCode
 
             Dim Home_Pants_Color As String = newtHomePantsColor.Background.GetHashCode
             Dim Home_Pants_Stripe_1_Color As String = newtHomePantsStripe1Color.Background.GetHashCode
@@ -241,9 +235,6 @@ Public Class NewTeam
             Dim away_Jersey_Sleeve_4_Color As String = newtAwayJerseySleeve4Color.Background.GetHashCode
             Dim away_Jersey_Sleeve_5_Color As String = newtAwayJerseySleeve5Color.Background.GetHashCode
             Dim away_Jersey_Sleeve_6_Color As String = newtAwayJerseySleeve6Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_7_Color As String = newtAwayJerseySleeve7Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_8_Color As String = newtAwayJerseySleeve8Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_9_Color As String = newtAwayJerseySleeve9Color.Background.GetHashCode
 
             Dim away_Pants_Color As String = newtAwayPantsColor.Background.GetHashCode
             Dim away_Pants_Stripe_1_Color As String = newtAwayPantsStripe1Color.Background.GetHashCode
@@ -255,14 +246,13 @@ Public Class NewTeam
                                     newtStadiumCapacity.Text, newtStadiumPath.Text)
             Footwear = New FootwearMdl(socks_color, cleats_color)
             Helmet = New HelmetMdl(helmet_color, helmet_logo_color,
-                                helmet_facemask_color, helmet_stripe_1, helmet_stripe_2, helmet_stripe_3)
+                                helmet_facemask_color)
             Home_Jersey = New JerseyMdl(Home_Jersey_Color, Home_Sleeve_Color, Home_Shoulder_Stripe_Color,
                                 Home_Jersey_Number_Color, Home_Jersey_Outline_Number_Color,
                                 Home_Jersey_Sleeve_1_Color, Home_Jersey_Sleeve_2_Color,
                                 Home_Jersey_Sleeve_3_Color, Home_Jersey_Sleeve_4_Color,
-                                Home_Jersey_Sleeve_5_Color, Home_Jersey_Sleeve_6_Color,
-                                Home_Jersey_Sleeve_7_Color, Home_Jersey_Sleeve_8_Color,
-                                Home_Jersey_Sleeve_9_Color)
+                                Home_Jersey_Sleeve_5_Color, Home_Jersey_Sleeve_6_Color)
+
             Home_Pants = New PantsMdl(Home_Pants_Color, Home_Pants_Stripe_1_Color,
                                 Home_Pants_Stripe_2_Color, Home_Pants_Stripe_3_Color)
 
@@ -270,9 +260,8 @@ Public Class NewTeam
                                 away_Jersey_Number_Color, away_Jersey_Outline_Number_Color,
                                 away_Jersey_Sleeve_1_Color, away_Jersey_Sleeve_2_Color,
                                 away_Jersey_Sleeve_3_Color, away_Jersey_Sleeve_4_Color,
-                                away_Jersey_Sleeve_5_Color, away_Jersey_Sleeve_6_Color,
-                                away_Jersey_Sleeve_7_Color, away_Jersey_Sleeve_8_Color,
-                                away_Jersey_Sleeve_9_Color)
+                                away_Jersey_Sleeve_5_Color, away_Jersey_Sleeve_6_Color)
+
             Away_Pants = New PantsMdl(away_Pants_Color, away_Pants_Stripe_1_Color,
                                 away_Pants_Stripe_2_Color, away_Pants_Stripe_3_Color)
             Graphics = New Graphics(newtHelmetImgPath.Text)
