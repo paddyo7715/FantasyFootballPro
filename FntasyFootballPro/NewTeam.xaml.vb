@@ -8,6 +8,7 @@ Public Class NewTeam
     Property team_ind As Integer
     Property Roster As List(Of PlayerMdl) = Nothing
     Property New_League As Leaguemdl = Nothing
+    Property Uniform_Img As Uniform_Image
 
 
     Public Sub New(ByVal winMainMenu As MainWindow, ByVal NewLeague_Teams As NewLeague_Teams,
@@ -20,6 +21,12 @@ Public Class NewTeam
         Me.team_ind = team_ind
         Me.winMainMenu = winMainMenu
         Me.New_League = New_League
+
+        Uniform_Img = New Uniform_Image("c:/Database/blankUniform.png")
+
+
+        newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
 
     End Sub
     Public Sub setfields()
