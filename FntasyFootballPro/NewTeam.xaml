@@ -186,8 +186,8 @@
                                         Home Uniform:
                                     </GroupBox.Header>
                                     <StackPanel Width="200" Height="400" Orientation="horizontal">
-                                        <StackPanel Orientation="Vertical">
-                                            <Image Name="newtHomeUniform"></Image>
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Image Name="newtHomeUniform" Width="165" Height="370"></Image>
                                             <Button Name="newtResetHomeUniformbtn" FontSize="12" Width="90" Height="20">Image File</Button>
                                         </StackPanel>
                                     </StackPanel>

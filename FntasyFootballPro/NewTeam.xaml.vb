@@ -22,8 +22,10 @@ Public Class NewTeam
         Me.winMainMenu = winMainMenu
         Me.New_League = New_League
 
-        Uniform_Img = New Uniform_Image("c:/Database/blankUniform.png")
 
+        '        Uniform_Img = New Uniform_Image(My.Application.Info.DirectoryPath + "/Images/blankUniform.png")
+        Uniform_Img = New Uniform_Image("../../Images/blankUniform.png")
+        Uniform_Img.GreyOutUniform(True)
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
