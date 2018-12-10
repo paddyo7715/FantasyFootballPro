@@ -120,7 +120,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Application_Constants.vb" />
     <Compile Include="Common\CommonUtils.vb" />
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />

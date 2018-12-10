@@ -39,26 +39,34 @@ Public Class Uniform_Image
 
     End Function
     Public Function getAwayUniform_Image() As BitmapImage
-        Dim hBitmap As IntPtr = Away_Uniform_Image.GetHbitmap()
-        Dim retval As BitmapImage = New BitmapImage()
 
-        Dim bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions())
+        Dim stream As MemoryStream = New MemoryStream()
 
-        Dim encoder = New BmpBitmapEncoder()
-        Dim memoryStream = New MemoryStream()
+        Away_Uniform_Image.Save(stream, ImageFormat.Png) ' Was .Bmp, but this did Not show a transparent background.
 
-        encoder.Frames.Add(BitmapFrame.Create(bitmapSource))
-        encoder.Save(memoryStream)
+        stream.Position = 0
+        Dim result As BitmapImage = New BitmapImage()
+        result.BeginInit()
+        ' According to MSDN, "The default OnDemand cache option retains access to the stream until the image is needed."
+        ' Force the bitmap to load right now so we can dispose the stream.
+        result.CacheOption = BitmapCacheOption.OnLoad
+        result.StreamSource = stream
+        result.EndInit()
+        result.Freeze()
+        Return result
 
-        retval.BeginInit()
-        retval.StreamSource = New MemoryStream(memoryStream.ToArray())
-        retval.EndInit()
-
-        memoryStream.Close()
-
-        Return retval
     End Function
-    Public Sub GreyOutUniform(ByVal bHome As Boolean)
+    Public Sub Flip_All_Colors(ByVal bHome As Boolean,
+                               ByVal helmet_color As Color, ByVal fasemask_color As Color,
+                               ByVal hel_logo_color As Color, ByVal jersey_color As Color,
+                               ByVal number_color As Color, ByVal num_outline_color As Color,
+                               ByVal sleeve_color As Color, ByVal shoulder_stripe_color As Color,
+                               ByVal sleeve_stripe_1_color As Color, ByVal sleeve_stripe_2_color As Color,
+                               ByVal sleeve_stripe_3_color As Color, ByVal sleeve_stripe_4_color As Color,
+                               ByVal sleeve_stripe_5_color As Color, ByVal sleeve_stripe_6_color As Color,
+                               ByVal pants_color As Color, ByVal pants_stripe_1_color As Color,
+                               ByVal pants_stripe_2_color As Color, ByVal pants_stripe_3_color As Color,
+                               ByVal socks_color As Color, ByVal cleats_color As Color)
 
         Dim x As Integer
         Dim y As Integer
@@ -66,27 +74,104 @@ Public Class Uniform_Image
         Dim green As Byte
         Dim blue As Byte
 
-        Dim grey_red As Byte = 40
-        Dim grey_green As Byte = 40
-        Dim grey_blue As Byte = 40
-        Dim grey_color As Color = Color.FromArgb(grey_red, grey_green, grey_blue)
+
 
         Dim img As Bitmap = Nothing
+
         If bHome Then
             img = Home_Uniform_image
         Else
             img = Away_Uniform_Image
         End If
 
-        For x = 0 To img.Width - 1
-            For y = 0 To img.Height - 1
-                red = img.GetPixel(x, y).R
-                green = img.GetPixel(x, y).G
-                blue = img.GetPixel(x, y).B
+        For x = 0 To stock_image.Width - 1
+            For y = 0 To stock_image.Height - 1
+                red = stock_image.GetPixel(x, y).R
+                green = stock_image.GetPixel(x, y).G
+                blue = stock_image.GetPixel(x, y).B
 
-                If red = 128 And blue = 0 And green = 0 Then
-                    img.SetPixel(x, y, grey_color)
+                Dim the_color As Color = Color.FromArgb(red, green, blue)
+
+                If the_color.ToArgb = App_Constants.STOCK_HELMET_COLOR.ToArgb Then
+                    img.SetPixel(x, y, helmet_color)
                 End If
+
+                If the_color.ToArgb = App_Constants.STOCK_FACEMASK.ToArgb Then
+                    img.SetPixel(x, y, fasemask_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_HEL_LOGO_COLOR.ToArgb Then
+                    img.SetPixel(x, y, hel_logo_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_JERSEY_COLOR.ToArgb Then
+                    img.SetPixel(x, y, jersey_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_NUMBER_COLOR.ToArgb Then
+                    img.SetPixel(x, y, number_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_NUM_OUTLINE_COLOR.ToArgb Then
+                    img.SetPixel(x, y, num_outline_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SHOULDER_STRIPE_COLOR.ToArgb Then
+                    img.SetPixel(x, y, shoulder_stripe_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_STRIPE_1_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_stripe_1_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_STRIPE_2_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_stripe_2_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_STRIPE_3_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_stripe_3_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_STRIPE_4_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_stripe_4_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_STRIPE_5_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_stripe_5_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SLEEVE_STRIPE_6_COLOR.ToArgb Then
+                    img.SetPixel(x, y, sleeve_stripe_6_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_PANTS_COLOR.ToArgb Then
+                    img.SetPixel(x, y, pants_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_PANTS_STRIPE_1_COLOR.ToArgb Then
+                    img.SetPixel(x, y, pants_stripe_1_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_PANTS_STRIPE_2_COLOR.ToArgb Then
+                    img.SetPixel(x, y, pants_stripe_2_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_PANTS_STRIPE_3_COLOR.ToArgb Then
+                    img.SetPixel(x, y, pants_stripe_3_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_SOCKS_COLOR.ToArgb Then
+                    img.SetPixel(x, y, socks_color)
+                End If
+
+                If the_color.ToArgb = App_Constants.STOCK_CLEATES_COLOR.ToArgb Then
+                    img.SetPixel(x, y, cleats_color)
+                End If
+
             Next
         Next
 
@@ -99,11 +184,6 @@ Public Class Uniform_Image
         Dim green As Byte
         Dim blue As Byte
 
-        Dim grey_red As Byte = 40
-        Dim grey_green As Byte = 40
-        Dim grey_blue As Byte = 40
-        Dim grey_color As Color = Color.FromArgb(grey_red, grey_green, grey_blue)
-
         Dim img As Bitmap = Nothing
         If bHome Then
             img = Home_Uniform_image
@@ -111,15 +191,18 @@ Public Class Uniform_Image
             img = Away_Uniform_Image
         End If
 
-        For x = 0 To img.Width - 1
-            For y = 0 To img.Height - 1
-                red = img.GetPixel(x, y).R
-                green = img.GetPixel(x, y).G
-                blue = img.GetPixel(x, y).B
+        For x = 0 To stock_image.Width - 1
+            For y = 0 To stock_image.Height - 1
+                red = stock_image.GetPixel(x, y).R
+                green = stock_image.GetPixel(x, y).G
+                blue = stock_image.GetPixel(x, y).B
 
-                If red = 128 And blue = 0 And green = 0 Then
-                    img.SetPixel(x, y, grey_color)
+                Dim the_color As Color = Color.FromArgb(red, green, blue)
+
+                If the_color.ToArgb = old_color.ToArgb Then
+                    img.SetPixel(x, y, new_color)
                 End If
+
             Next
         Next
 

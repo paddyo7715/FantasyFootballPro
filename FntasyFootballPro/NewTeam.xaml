@@ -164,15 +164,15 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsStripe1Color" SelectedColorChanged="newtHomePantsStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsStripe2Color" SelectedColorChanged="newtHomePantsStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsStripe3Color" SelectedColorChanged="newtHomePantsStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
 
                                     </StackPanel>
@@ -264,15 +264,15 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsStripe1Color" SelectedColorChanged="newtHelmentStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsStripe1Color" SelectedColorChanged="newtAwayPantsStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsStripe2Color" SelectedColorChanged="newtHelmentStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsStripe2Color" SelectedColorChanged="newtAwayPantsStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsStripe3Color" SelectedColorChanged="newtHelmentStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsStripe3Color" SelectedColorChanged="newtAwayPantsStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
 
                                     </StackPanel>

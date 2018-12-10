@@ -25,7 +25,29 @@ Public Class NewTeam
 
         '        Uniform_Img = New Uniform_Image(My.Application.Info.DirectoryPath + "/Images/blankUniform.png")
         Uniform_Img = New Uniform_Image("../../Images/blankUniform.png")
-        Uniform_Img.GreyOutUniform(True)
+        Uniform_Img.Flip_All_Colors(True,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR)
+
+        Uniform_Img.Flip_All_Colors(False,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR)
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
@@ -82,15 +104,6 @@ Public Class NewTeam
     Private Sub newtFacemaskColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
     End Sub
-    Private Sub newtHelmentStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-
-    End Sub
-    Private Sub newtHelmentStripe2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-
-    End Sub
-    Private Sub newtHelmentStripe3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-
-    End Sub
     Private Sub newtSockColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
     End Sub
@@ -98,7 +111,13 @@ Public Class NewTeam
 
     End Sub
     Private Sub newtHelmentColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        '        Helmet_color.Background = New SolidColorBrush(newtHelmentColor.SelectedColor)
+
+        Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
+        Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_HELMET_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+        Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_HELMET_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+
+        newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub HomeJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
         '        home_jersey_color.Background = New SolidColorBrush(newtHomeJerseyColor.SelectedColor)
@@ -154,7 +173,24 @@ Public Class NewTeam
     Private Sub newtAwayShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
     End Sub
+    Private Sub newtHomePantsStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
+    End Sub
+    Private Sub newtHomePantsStripe2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtHomePantsStripe3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayPantsStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayPantsStripe2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayPantsStripe3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
 
     Private Sub newt1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newt1Cancel.Click
         Me.Close()
