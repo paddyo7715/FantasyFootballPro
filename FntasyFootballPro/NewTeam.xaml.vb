@@ -100,8 +100,22 @@ Public Class NewTeam
     End Sub
     Private Sub newtHelmentLogoColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
+        Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHelmentLogoColor.SelectedColor).Color
+        Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_HEL_LOGO_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+        Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_HEL_LOGO_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+
+        newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
+
     End Sub
     Private Sub newtFacemaskColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtFacemaskColor.SelectedColor).Color
+        Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_FACEMASK, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+        Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_FACEMASK, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+
+        newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
 
     End Sub
     Private Sub newtSockColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
@@ -119,17 +133,56 @@ Public Class NewTeam
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
-    Private Sub HomeJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        '        home_jersey_color.Background = New SolidColorBrush(newtHomeJerseyColor.SelectedColor)
+    Private Sub newtHomeShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
     End Sub
-    Private Sub AwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        '        away_jersey_color.Background = New SolidColorBrush(newtAwayJerseyColor.SelectedColor)
+
+    Private Sub newtHomeNumberOutlineColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
     End Sub
-    Private Sub HomePantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        '        home_pants_color.Background = New SolidColorBrush(newtHomePantsColor.SelectedColor)
+
+    Private Sub newtHomeJerseyNumberColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
     End Sub
-    Private Sub AwayPantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-        '        away_pants_color.Background = New SolidColorBrush(newtAwayPantsColor.SelectedColor)
+
+    Private Sub newtHomeJerseySleeve1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve4Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve5Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve6Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve7Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve8Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve9Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+    End Sub
+
+    Private Sub newtHomeJerseySleeve10Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
     End Sub
     Private Sub newtAwaySleeveColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
@@ -168,9 +221,14 @@ Public Class NewTeam
 
     End Sub
     Private Sub newtAwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
-
+        Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseyColor.SelectedColor).Color
+        Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_JERSEY_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+        newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub newtAwayShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtHomePantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
     End Sub
     Private Sub newtHomePantsStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
@@ -180,6 +238,9 @@ Public Class NewTeam
 
     End Sub
     Private Sub newtHomePantsStripe3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+    End Sub
+    Private Sub newtAwayPantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
     End Sub
     Private Sub newtAwayPantsStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
@@ -321,57 +382,12 @@ Public Class NewTeam
 
     Private Sub newtHomeJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
-    End Sub
+        Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseyColor.SelectedColor).Color
+        Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_JERSEY_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+        newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
 
-    Private Sub newtHomeShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeNumberOutlineColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
     End Sub
 
-    Private Sub newtHomeJerseyNumberColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
-    End Sub
-
-    Private Sub newtHomeJerseySleeve1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve4Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve5Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve6Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve7Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve8Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve9Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
-
-    Private Sub newtHomeJerseySleeve10Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
-
-    End Sub
 End Class

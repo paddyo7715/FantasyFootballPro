@@ -160,7 +160,7 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <Label Width="60" FontSize="18" Foreground="White">Pants:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsColor" SelectedColorChanged="HomePantsColor_SelectedColorChanged" Height="20" Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsColor" SelectedColorChanged="newtHomePantsColor_SelectedColorChanged" Height="20" Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
@@ -260,7 +260,7 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <Label Width="60" FontSize="18" Foreground="White">Pants:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsColor" SelectedColorChanged="AwayPantsColor_SelectedColorChanged" Height="20" Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsColor" SelectedColorChanged="newtAwayPantsColor_SelectedColorChanged" Height="20" Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
