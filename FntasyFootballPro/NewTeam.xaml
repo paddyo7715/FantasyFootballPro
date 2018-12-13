@@ -129,7 +129,7 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
-                                            <xctk:ColorPicker Name="newtHomeSleeveColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeSleeveColor" SelectedColorChanged="newtHomeSleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>                                       
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
