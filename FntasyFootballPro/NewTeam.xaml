@@ -119,7 +119,7 @@
                                             <Label Width="40" FontSize="12" Foreground="White">Jersey:</Label>
                                             <xctk:ColorPicker Name="newtHomeJerseyColor" SelectedColorChanged="newtHomeJerseyColor_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="50" FontSize="12" Foreground="White">Sleeve:</Label>
-                                            <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeSleeveColor" SelectedColorChanged="newtHomeSleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Number:</Label>
@@ -129,7 +129,7 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
-                                            <xctk:ColorPicker Name="newtHomeSleeveColor" SelectedColorChanged="newtHomeSleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>                                       
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
@@ -219,7 +219,7 @@
                                             <Label Width="40" FontSize="12" Foreground="White">Jersey:</Label>
                                             <xctk:ColorPicker Name="newtAwayJerseyColor" SelectedColorChanged="newtAwayJerseyColor_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="50" FontSize="12" Foreground="White">Sleeve:</Label>
-                                            <xctk:ColorPicker Name="newtAwayShoulderStripeColor" SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwaySleeveColor" SelectedColorChanged="newtAwaySleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Number:</Label>
@@ -229,7 +229,7 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
-                                            <xctk:ColorPicker Name="newtAwaySleeveColor" SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayShoulderStripeColor" SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
