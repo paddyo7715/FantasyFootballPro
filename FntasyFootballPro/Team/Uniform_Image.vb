@@ -19,7 +19,6 @@ Public Class Uniform_Image
 
 
     End Sub
-    '    Public Function getHomeUniform_Image() As ImageSource
     Public Function getHomeUniform_Image() As BitmapImage
 
         Dim stream As MemoryStream = New MemoryStream()

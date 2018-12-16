@@ -159,7 +159,7 @@
                                     </GroupBox.Header>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Width="60" FontSize="18" Foreground="White">Pants:</Label>
+                                            <Label Width="60" FontSize="12" Foreground="White">Pants:</Label>
                                             <xctk:ColorPicker Name="newtHomePantsColor" SelectedColorChanged="newtHomePantsColor_SelectedColorChanged" Height="20" Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
@@ -185,10 +185,9 @@
                                     <GroupBox.Header>
                                         Home Uniform:
                                     </GroupBox.Header>
-                                    <StackPanel Width="200" Height="400" Orientation="horizontal">
+                                    <StackPanel Width="200" Height="400" Orientation="horizontal" HorizontalAlignment="Center">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Image Name="newtHomeUniform" Width="165" Height="370"></Image>
-                                            <Button Name="newtResetHomeUniformbtn" FontSize="12" Width="90" Height="20">Image File</Button>
+                                            <Image Name="newtHomeUniform" Width="165" Height="370" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -203,7 +202,6 @@
                                     <StackPanel Width="200" Height="400" Orientation="horizontal">
                                         <StackPanel Orientation="Vertical">
                                             <Image Name="newtAwayUniform"></Image>
-                                            <Button Name="newtResetAwayUniformbtn" FontSize="12" Width="90" Height="20">Image File</Button>
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
