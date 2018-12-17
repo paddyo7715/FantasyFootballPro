@@ -52,7 +52,7 @@
                 Dim teamImg As Image = Me.FindName(teamImage)
                 teamLbl.Content = New_League.Teams(i - 1).Nickname
                 Dim img_path As String = Nothing
-                If Not IsNothing(New_League.Teams(i - 1).Uniform) Then img_path = New_League.Teams(i - 1).Graphics.Helmet_img_path
+                If Not IsNothing(New_League.Teams(i - 1).Uniform) Then img_path = New_League.Teams(i - 1).Helmet_img_path
                 If Not IsNothing(img_path) Then
                     Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
                     teamImg.Source = helmetIMG_source

@@ -120,7 +120,7 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@City_Abr", Data.DbType.String).Value = t.City_Abr
                 cmdTeam.Parameters.Add("@City", Data.DbType.String).Value = t.City
                 cmdTeam.Parameters.Add("@Nickname", Data.DbType.String).Value = t.Nickname
-                cmdTeam.Parameters.Add("@Helmet_img_path", Data.DbType.String).Value = t.Graphics.Helmet_img_path
+                cmdTeam.Parameters.Add("@Helmet_img_path", Data.DbType.String).Value = t.Helmet_img_path
                 cmdTeam.Parameters.Add("@Helmet_Color", Data.DbType.String).Value = t.Uniform.Helmet.Helmet_Color
                 cmdTeam.Parameters.Add("@Helmet_Logo_Color", Data.DbType.String).Value = t.Uniform.Helmet.Helmet_Logo_Color
                 cmdTeam.Parameters.Add("@Helmet_Facemask_Color", Data.DbType.String).Value = t.Uniform.Helmet.Helmet_Facemask_Color

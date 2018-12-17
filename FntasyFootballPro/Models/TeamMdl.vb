@@ -8,7 +8,7 @@
     Property Nickname As String = ""
     Property Stadium As StadiumMdl
     Property Uniform As UniformMdl
-    Property Graphics As Graphics
+    Property Helmet_img_path As String = ""
 
     Property Players As List(Of PlayerMdl)
     Public Sub New(ByVal id As Integer, ByVal Nickname As String)
@@ -17,14 +17,14 @@
     End Sub
 
     Public Sub setFields(ByVal City_Abr As String, ByVal City As String, ByVal Nickname As String,
-                       ByVal Stadium As StadiumMdl, ByVal uniform As UniformMdl, ByVal Graphics As Graphics, ByVal Players As List(Of PlayerMdl))
+                       ByVal Stadium As StadiumMdl, ByVal uniform As UniformMdl, ByVal Helmet_img_path As String, ByVal Players As List(Of PlayerMdl))
 
         Me.City_Abr = City_Abr
         Me.City = City
         Me.Nickname = Nickname
         Me.Stadium = Stadium
         Me.Uniform = uniform
-        Me.Graphics = Graphics
+        Me.Helmet_img_path = Helmet_img_path
 
         Me.Players = Players
 
@@ -43,6 +43,10 @@
 
         If CommonUtils.isBlank(Nickname) Then
             Throw New Exception("Nickname must have a value")
+        End If
+
+        If CommonUtils.isBlank(Helmet_img_path) Then
+            Throw New Exception("Helmet image path must have a value")
         End If
 
     End Sub

@@ -128,7 +128,7 @@
                                             <xctk:ColorPicker Name="newtHomeNumberOutlineColor" SelectedColorChanged="newtHomeNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
-                                            <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
+                                            <Label Width="100" FontSize="12" Foreground="White">Shoulder Loop:</Label>
                                             <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>                                       
                                         <StackPanel Orientation="Horizontal" >
@@ -199,9 +199,9 @@
                                     <GroupBox.Header>
                                         Away Uniform:
                                     </GroupBox.Header>
-                                    <StackPanel Width="200" Height="400" Orientation="horizontal">
-                                        <StackPanel Orientation="Vertical">
-                                            <Image Name="newtAwayUniform"></Image>
+                                    <StackPanel Width="200" Height="400" Orientation="horizontal" HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Image Name="newtAwayUniform" Width="165" Height="370" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -226,7 +226,7 @@
                                             <xctk:ColorPicker Name="newtAwayNumberOutlineColor" SelectedColorChanged="newtAwayNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
-                                            <Label Width="100" FontSize="12" Foreground="White">Shoulder Stripe:</Label>
+                                            <Label Width="100" FontSize="12" Foreground="White">Shoulder Loop:</Label>
                                             <xctk:ColorPicker Name="newtAwayShoulderStripeColor" SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
@@ -257,7 +257,7 @@
                                     </GroupBox.Header>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
-                                            <Label Width="60" FontSize="18" Foreground="White">Pants:</Label>
+                                            <Label Width="60" FontSize="12" Foreground="White">Pants:</Label>
                                             <xctk:ColorPicker Name="newtAwayPantsColor" SelectedColorChanged="newtAwayPantsColor_SelectedColorChanged" Height="20" Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
@@ -276,7 +276,6 @@
                                     </StackPanel>
                                 </GroupBox>
                             </StackPanel>
-
 
                         </StackPanel>
                     </StackPanel>
