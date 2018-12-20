@@ -10,6 +10,7 @@ Public Class NewTeam
     Property New_League As Leaguemdl = Nothing
     Property Uniform_Img As Uniform_Image
 
+    Property Event_from_Code As Boolean = False
 
     Public Sub New(ByVal winMainMenu As MainWindow, ByVal NewLeague_Teams As NewLeague_Teams,
                    ByVal team_ind As Integer, ByVal New_League As Leaguemdl)
@@ -100,6 +101,8 @@ Public Class NewTeam
     End Sub
     Private Sub newtHelmentLogoColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHelmentLogoColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_HEL_LOGO_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_HEL_LOGO_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
@@ -110,6 +113,8 @@ Public Class NewTeam
     End Sub
     Private Sub newtFacemaskColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtFacemaskColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_FACEMASK, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_FACEMASK, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
@@ -119,6 +124,9 @@ Public Class NewTeam
 
     End Sub
     Private Sub newtSockColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtSockColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SOCKS_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SOCKS_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
@@ -127,6 +135,9 @@ Public Class NewTeam
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub newtCleatsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtCleatsColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_CLEATES_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_CLEATES_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
@@ -135,6 +146,8 @@ Public Class NewTeam
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub newtHelmentColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
 
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_HELMET_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
@@ -145,15 +158,22 @@ Public Class NewTeam
     End Sub
     Private Sub newtHomeJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseyColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_JERSEY_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+
+        Event_from_Code = True
         newtHomeSleeveColor.SelectedColor = newtHomeJerseyColor.SelectedColor
         newtHomeShoulderStripeColor.SelectedColor = newtHomeJerseyColor.SelectedColor
-
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        Event_from_Code = False
 
     End Sub
     Private Sub newtHomeShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeShoulderStripeColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SHOULDER_STRIPE_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -161,6 +181,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeNumberOutlineColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeNumberOutlineColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_NUM_OUTLINE_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -169,6 +192,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeJerseyNumberColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseyNumberColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_NUMBER_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -176,9 +202,12 @@ Public Class NewTeam
     End Sub
     Private Sub newtHomeSleeveColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeSleeveColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
+        Event_from_Code = True
         newtHomeJerseySleeve1Color.SelectedColor = newtHomeSleeveColor.SelectedColor
         newtHomeJerseySleeve2Color.SelectedColor = newtHomeSleeveColor.SelectedColor
         newtHomeJerseySleeve3Color.SelectedColor = newtHomeSleeveColor.SelectedColor
@@ -187,9 +216,13 @@ Public Class NewTeam
         newtHomeJerseySleeve6Color.SelectedColor = newtHomeSleeveColor.SelectedColor
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        Event_from_Code = False
 
     End Sub
     Private Sub newtHomeJerseySleeve1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseySleeve1Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_STRIPE_1_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -198,6 +231,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeJerseySleeve2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseySleeve2Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_STRIPE_2_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -206,6 +242,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeJerseySleeve3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseySleeve3Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_STRIPE_3_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -214,6 +253,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeJerseySleeve4Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseySleeve4Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_STRIPE_4_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -222,6 +264,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeJerseySleeve5Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseySleeve5Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_STRIPE_5_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -229,34 +274,51 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtHomeJerseySleeve6Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomeJerseySleeve6Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_SLEEVE_STRIPE_6_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
     End Sub
     Private Sub newtHomePantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomePantsColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_PANTS_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
+        Event_from_Code = True
         newtHomePantsStripe1Color.SelectedColor = newtHomePantsColor.SelectedColor
         newtHomePantsStripe2Color.SelectedColor = newtHomePantsColor.SelectedColor
         newtHomePantsStripe3Color.SelectedColor = newtHomePantsColor.SelectedColor
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        Event_from_Code = False
     End Sub
     Private Sub newtHomePantsStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomePantsStripe1Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_PANTS_STRIPE_1_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
     End Sub
     Private Sub newtHomePantsStripe2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomePantsStripe2Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_PANTS_STRIPE_2_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
     End Sub
     Private Sub newtHomePantsStripe3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtHomePantsStripe3Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(True, App_Constants.STOCK_PANTS_STRIPE_3_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -266,15 +328,23 @@ Public Class NewTeam
 
     Private Sub newtAwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseyColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_JERSEY_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
+
+        Event_from_Code = True
         newtAwaySleeveColor.SelectedColor = newtAwayJerseyColor.SelectedColor
         newtAwayShoulderStripeColor.SelectedColor = newtAwayJerseyColor.SelectedColor
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
+        Event_from_Code = False
 
     End Sub
     Private Sub newtAwayShoulderStripeColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayShoulderStripeColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SHOULDER_STRIPE_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -282,6 +352,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayNumberOutlineColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayNumberOutlineColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_NUM_OUTLINE_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -290,6 +363,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayJerseyNumberColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseyNumberColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_NUMBER_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -297,9 +373,12 @@ Public Class NewTeam
     End Sub
     Private Sub newtAwaySleeveColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
 
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwaySleeveColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
+        Event_from_Code = True
         newtAwayJerseySleeve1Color.SelectedColor = newtAwaySleeveColor.SelectedColor
         newtAwayJerseySleeve2Color.SelectedColor = newtAwaySleeveColor.SelectedColor
         newtAwayJerseySleeve3Color.SelectedColor = newtAwaySleeveColor.SelectedColor
@@ -308,9 +387,13 @@ Public Class NewTeam
         newtAwayJerseySleeve6Color.SelectedColor = newtAwaySleeveColor.SelectedColor
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
+        Event_from_Code = False
 
     End Sub
     Private Sub newtAwayJerseySleeve1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseySleeve1Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_STRIPE_1_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -319,6 +402,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayJerseySleeve2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseySleeve2Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_STRIPE_2_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -327,6 +413,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayJerseySleeve3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseySleeve3Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_STRIPE_3_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -335,6 +424,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayJerseySleeve4Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseySleeve4Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_STRIPE_4_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -343,6 +435,9 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayJerseySleeve5Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseySleeve5Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_STRIPE_5_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
@@ -350,34 +445,51 @@ Public Class NewTeam
     End Sub
 
     Private Sub newtAwayJerseySleeve6Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayJerseySleeve6Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_SLEEVE_STRIPE_6_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub newtAwayPantsColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayPantsColor.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_PANTS_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
+        Event_from_Code = True
         newtAwayPantsStripe1Color.SelectedColor = newtAwayPantsColor.SelectedColor
         newtAwayPantsStripe2Color.SelectedColor = newtAwayPantsColor.SelectedColor
         newtAwayPantsStripe3Color.SelectedColor = newtAwayPantsColor.SelectedColor
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
+        Event_from_Code = False
     End Sub
     Private Sub newtAwayPantsStripe1Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayPantsStripe1Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_PANTS_STRIPE_1_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub newtAwayPantsStripe2Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayPantsStripe2Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_PANTS_STRIPE_2_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
     End Sub
     Private Sub newtAwayPantsStripe3Color_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Windows.Media.Color?))
+
+        If Event_from_Code Then Return
+
         Dim mc As System.Windows.Media.Color = New SolidColorBrush(newtAwayPantsStripe3Color.SelectedColor).Color
         Uniform_Img.Flip_One_Color(False, App_Constants.STOCK_PANTS_STRIPE_3_COLOR, System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B))
 

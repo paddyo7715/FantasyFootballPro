@@ -13,41 +13,41 @@
             <Button Name="newt1Cancel" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Cancel</Button>
             <Button Name="newt1Add" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Add</Button>
         </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="TOP" Margin="10">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="TOP" Margin="10">
             <TabControl  Background="DarkGreen" Foreground="White">
                 <TabItem Header="General">
                     <StackPanel Orientation="Vertical" Width="1000">
                         <GroupBox Margin="2,2,2,2" Width="500" FontSize="18" FontWeight="Bold"  Foreground="White">
 
-                        <GroupBox.Header>
-                            General Info:
-                        </GroupBox.Header>
+                            <GroupBox.Header>
+                                General Info:
+                            </GroupBox.Header>
 
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="80" FontSize="14" Foreground="White">City Abbr:</Label>
-                                <TextBox Name="newtCityAbb" FontSize="12" Width="30" Height="20" Foreground="Black" Background="white" MaxLength="6" />
-                                <Label Width="50" FontSize="14" Foreground="White">City:</Label>
-                                <TextBox Name="newtCity" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
-                                <Label Width="75" FontSize="14" Foreground="White">Nickname:</Label>
-                                <TextBox Name="newtNickname" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="80" FontSize="14" Foreground="White">Stadium:</Label>
-                                <TextBox Name="newtStadium" FontSize="12" Width="130" Height="20" Foreground="Black" Background="white" />
-                                <Label Width="70" FontSize="14" Foreground="White">Location:</Label>
-                                <TextBox Name="newtStadiumLocation" FontSize="12" Width="170" Height="20" Foreground="Black" Background="white" MaxLength="100" />
-                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Width="80" FontSize="14" Foreground="White">City Abbr:</Label>
+                                    <TextBox Name="newtCityAbb" FontSize="12" Width="30" Height="20" Foreground="Black" Background="white" MaxLength="6" />
+                                    <Label Width="50" FontSize="14" Foreground="White">City:</Label>
+                                    <TextBox Name="newtCity" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                                    <Label Width="75" FontSize="14" Foreground="White">Nickname:</Label>
+                                    <TextBox Name="newtNickname" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Width="80" FontSize="14" Foreground="White">Stadium:</Label>
+                                    <TextBox Name="newtStadium" FontSize="12" Width="130" Height="20" Foreground="Black" Background="white" />
+                                    <Label Width="70" FontSize="14" Foreground="White">Location:</Label>
+                                    <TextBox Name="newtStadiumLocation" FontSize="12" Width="170" Height="20" Foreground="Black" Background="white" MaxLength="100" />
+                                </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Width="150" FontSize="14" Foreground="White">Stadium Capacity:</Label>
                                     <TextBox Name="newtStadiumCapacity" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="14" Foreground="White">Stadium Image:</Label>
-                                <TextBox Name="newtStadiumPath" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
-                                <Button Name="newtbtnStadiumPath" FontSize="12" Width="90" Height="20">Image File</Button>
+                                    <Label Width="150" FontSize="14" Foreground="White">Stadium Image:</Label>
+                                    <TextBox Name="newtStadiumPath" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
+                                    <Button Name="newtbtnStadiumPath" FontSize="12" Width="90" Height="20">Image File</Button>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
                         </GroupBox>
                         <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"  Foreground="White">
 
@@ -130,7 +130,7 @@
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="100" FontSize="12" Foreground="White">Shoulder Loop:</Label>
                                             <xctk:ColorPicker Name="newtHomeShoulderStripeColor" SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
-                                        </StackPanel>                                       
+                                        </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
                                         </StackPanel>
@@ -341,7 +341,7 @@
                     </StackPanel>
                 </TabItem>
             </TabControl>
-            </StackPanel>
+        </StackPanel>
 
 
     </DockPanel>
