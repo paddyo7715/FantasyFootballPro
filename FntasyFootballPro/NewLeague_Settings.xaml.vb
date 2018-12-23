@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports Microsoft.Win32
 
 Public Class NewLeague_Settings
 
@@ -55,7 +56,14 @@ Public Class NewLeague_Settings
         End If
 
     End Sub
-
+    Private Sub newl1btnLogoPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnLogoPath.Click
+        Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
+        If (OpenFileDialog.ShowDialog() = True) Then
+            Dim filepath As String = OpenFileDialog.FileName
+            newl1LogoPath.Text = filepath
+            newl1LogoImage.Source = New BitmapImage(New Uri(filepath))
+        End If
+    End Sub
     Private Sub newl1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newl1Cancel.Click
         Me.Close()
         winMainMenu.Show()

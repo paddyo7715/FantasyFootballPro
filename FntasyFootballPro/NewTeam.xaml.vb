@@ -147,7 +147,12 @@ Public Class NewTeam
         Event_from_Code = True
         newtHomeSleeveColor.SelectedColor = newtHomeJerseyColor.SelectedColor
         newtHomeShoulderStripeColor.SelectedColor = newtHomeJerseyColor.SelectedColor
-        newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+        newtHomeJerseySleeve1Color.SelectedColor = newtHomeSleeveColor.SelectedColor
+        newtHomeJerseySleeve2Color.SelectedColor = newtHomeSleeveColor.SelectedColor
+        newtHomeJerseySleeve3Color.SelectedColor = newtHomeSleeveColor.SelectedColor
+        newtHomeJerseySleeve4Color.SelectedColor = newtHomeSleeveColor.SelectedColor
+        newtHomeJerseySleeve5Color.SelectedColor = newtHomeSleeveColor.SelectedColor
+        newtHomeJerseySleeve6Color.SelectedColor = newtHomeSleeveColor.SelectedColor
 
         setHomeUniform()
 
@@ -286,6 +291,12 @@ Public Class NewTeam
         Event_from_Code = True
         newtAwaySleeveColor.SelectedColor = newtAwayJerseyColor.SelectedColor
         newtAwayShoulderStripeColor.SelectedColor = newtAwayJerseyColor.SelectedColor
+        newtAwayJerseySleeve1Color.SelectedColor = newtAwaySleeveColor.SelectedColor
+        newtAwayJerseySleeve2Color.SelectedColor = newtAwaySleeveColor.SelectedColor
+        newtAwayJerseySleeve3Color.SelectedColor = newtAwaySleeveColor.SelectedColor
+        newtAwayJerseySleeve4Color.SelectedColor = newtAwaySleeveColor.SelectedColor
+        newtAwayJerseySleeve5Color.SelectedColor = newtAwaySleeveColor.SelectedColor
+        newtAwayJerseySleeve6Color.SelectedColor = newtAwaySleeveColor.SelectedColor
 
         setAwayUniform()
         Event_from_Code = False
@@ -574,103 +585,141 @@ Public Class NewTeam
         If Not IsNothing(newtHelmentColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
             helmetColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            helmetColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHelmentLogoColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHelmentLogoColor.SelectedColor).Color
             helmetLogoColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            helmetLogoColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtFacemaskColor.SelectedColor) Then
             mc = New SolidColorBrush(newtFacemaskColor.SelectedColor).Color
             helmetFacemaskColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            helmetFacemaskColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtSockColor.SelectedColor) Then
             mc = New SolidColorBrush(newtSockColor.SelectedColor).Color
             SocksColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            SocksColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtCleatsColor.SelectedColor) Then
             mc = New SolidColorBrush(newtCleatsColor.SelectedColor).Color
             CleatsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            CleatsColor = App_Constants.STOCK_GREY_COLOR
         End If
-
-
 
         If Not IsNothing(newtHomeJerseyColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseyColor.SelectedColor).Color
             HomeJerseyColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeSleeveColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeSleeveColor.SelectedColor).Color
             HomeJerseySleeveColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseySleeveColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeShoulderStripeColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeShoulderStripeColor.SelectedColor).Color
             HomeJerseyShoulderLoopColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyShoulderLoopColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseyNumberColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseyNumberColor.SelectedColor).Color
             HomeJerseyNumberColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyNumberColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeNumberOutlineColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeNumberOutlineColor.SelectedColor).Color
             HomeJerseyNumberOutlineColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyNumberOutlineColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseySleeve1Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseySleeve1Color.SelectedColor).Color
             HomeJerseyStripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyStripe_1 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseySleeve2Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseySleeve2Color.SelectedColor).Color
             HomeJerseyStripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyStripe_2 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseySleeve3Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseySleeve3Color.SelectedColor).Color
             HomeJerseyStripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyStripe_3 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseySleeve4Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseySleeve4Color.SelectedColor).Color
             HomeJerseyStripe_4 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyStripe_4 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseySleeve5Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseySleeve5Color.SelectedColor).Color
             HomeJerseyStripe_5 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyStripe_5 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomeJerseySleeve6Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomeJerseySleeve6Color.SelectedColor).Color
             HomeJerseyStripe_6 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomeJerseyStripe_6 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomePantsColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHomePantsColor.SelectedColor).Color
             HomePantsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomePantsColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomePantsStripe1Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomePantsStripe1Color.SelectedColor).Color
             HomePants_Stripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomePants_Stripe_1 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomePantsStripe2Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomePantsStripe2Color.SelectedColor).Color
             HomePants_Stripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomePants_Stripe_2 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHomePantsStripe3Color.SelectedColor) Then
             mc = New SolidColorBrush(newtHomePantsStripe3Color.SelectedColor).Color
             HomePants_Stripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            HomePants_Stripe_3 = App_Constants.STOCK_GREY_COLOR
         End If
 
         Uniform_Img.Flip_All_Colors(True, helmetColor, helmetFacemaskColor, helmetLogoColor, HomeJerseyColor,
@@ -716,101 +765,141 @@ Public Class NewTeam
         If Not IsNothing(newtHelmentColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
             helmetColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            helmetColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtHelmentLogoColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHelmentLogoColor.SelectedColor).Color
             helmetLogoColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            helmetLogoColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtFacemaskColor.SelectedColor) Then
             mc = New SolidColorBrush(newtFacemaskColor.SelectedColor).Color
             helmetFacemaskColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            helmetFacemaskColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtSockColor.SelectedColor) Then
             mc = New SolidColorBrush(newtSockColor.SelectedColor).Color
             SocksColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            SocksColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtCleatsColor.SelectedColor) Then
             mc = New SolidColorBrush(newtCleatsColor.SelectedColor).Color
             CleatsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            CleatsColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseyColor.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseyColor.SelectedColor).Color
             AwayJerseyColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwaySleeveColor.SelectedColor) Then
             mc = New SolidColorBrush(newtAwaySleeveColor.SelectedColor).Color
             AwayJerseySleeveColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseySleeveColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayShoulderStripeColor.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayShoulderStripeColor.SelectedColor).Color
             AwayJerseyShoulderLoopColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyShoulderLoopColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseyNumberColor.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseyNumberColor.SelectedColor).Color
             AwayJerseyNumberColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyNumberColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayNumberOutlineColor.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayNumberOutlineColor.SelectedColor).Color
             AwayJerseyNumberOutlineColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyNumberOutlineColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseySleeve1Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseySleeve1Color.SelectedColor).Color
             AwayJerseyStripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyStripe_1 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseySleeve2Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseySleeve2Color.SelectedColor).Color
             AwayJerseyStripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyStripe_2 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseySleeve3Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseySleeve3Color.SelectedColor).Color
             AwayJerseyStripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyStripe_3 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseySleeve4Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseySleeve4Color.SelectedColor).Color
             AwayJerseyStripe_4 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyStripe_4 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseySleeve5Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseySleeve5Color.SelectedColor).Color
             AwayJerseyStripe_5 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyStripe_5 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayJerseySleeve6Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayJerseySleeve6Color.SelectedColor).Color
             AwayJerseyStripe_6 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayJerseyStripe_6 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayPantsColor.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayPantsColor.SelectedColor).Color
             AwayPantsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayPantsColor = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayPantsStripe1Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayPantsStripe1Color.SelectedColor).Color
             AwayPants_Stripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayPants_Stripe_1 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayPantsStripe2Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayPantsStripe2Color.SelectedColor).Color
             AwayPants_Stripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayPants_Stripe_2 = App_Constants.STOCK_GREY_COLOR
         End If
 
         If Not IsNothing(newtAwayPantsStripe3Color.SelectedColor) Then
             mc = New SolidColorBrush(newtAwayPantsStripe3Color.SelectedColor).Color
             AwayPants_Stripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+        Else
+            AwayPants_Stripe_3 = App_Constants.STOCK_GREY_COLOR
         End If
 
         Uniform_Img.Flip_All_Colors(False, helmetColor, helmetFacemaskColor, helmetLogoColor, AwayJerseyColor,
