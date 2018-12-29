@@ -31,6 +31,8 @@ Public Class NewLeague_Settings
         If CommonUtils.isBlank(newl1shortname.Text) Then Throw New Exception("League Short Name must be supplied!")
         If CommonUtils.isBlank(newl1longname.Text) Then Throw New Exception("League Long Name must be supplied!")
         If CommonUtils.isBlank(newl1championshipgame.Text) Then Throw New Exception("Championship Game must be supplied!")
+        If CommonUtils.isBlank(newl1LogoPath.Text) Then Throw New Exception("League Logo Image must be supplied!")
+
 
         If CommonUtils.isBlank(newlnumweeks.Text) OrElse Not IsNumeric(newlnumweeks.Text) Then Throw New Exception("Invalid Value for Number of Weeks!")
         If CommonUtils.isBlank(newlnumgames.Text) OrElse Not IsNumeric(newlnumgames.Text) Then Throw New Exception("Invalid Value for Number of Games!")
@@ -73,7 +75,7 @@ Public Class NewLeague_Settings
         Try
             validate()
 
-            Dim nl As Leaguemdl = New Leaguemdl(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
+            Dim nl As Leaguemdl = New Leaguemdl(newl1LogoPath.Text, newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
             CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, CInt(newlnumdivisions.Text),
             CInt(newlnumteamsperdivisions.Text), newldiv1.Text, newldiv2.Text, newldiv3.Text, newldiv4.Text, newldiv5.Text, newldiv6.Text, newldiv7.Text, newldiv8.Text, newlConf1.Text, newlConf2.Text)
 
