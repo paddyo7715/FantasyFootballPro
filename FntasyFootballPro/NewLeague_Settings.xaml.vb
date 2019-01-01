@@ -31,7 +31,8 @@ Public Class NewLeague_Settings
         If CommonUtils.isBlank(newl1shortname.Text) Then Throw New Exception("League Short Name must be supplied!")
         If CommonUtils.isBlank(newl1longname.Text) Then Throw New Exception("League Long Name must be supplied!")
         If CommonUtils.isBlank(newl1championshipgame.Text) Then Throw New Exception("Championship Game must be supplied!")
-        If CommonUtils.isBlank(newl1LogoPath.Text) Then Throw New Exception("League Logo Image must be supplied!")
+        If CommonUtils.isBlank(newl1LogoPath.Text) Then Throw New Exception("League logo image must be supplied!")
+        If CommonUtils.isBlank(newl1TrophyPath.Text) Then Throw New Exception("League trophy image must be supplied!")
 
 
         If CommonUtils.isBlank(newlnumweeks.Text) OrElse Not IsNumeric(newlnumweeks.Text) Then Throw New Exception("Invalid Value for Number of Weeks!")
@@ -66,6 +67,14 @@ Public Class NewLeague_Settings
             newl1LogoImage.Source = New BitmapImage(New Uri(filepath))
         End If
     End Sub
+    Private Sub newl1btnTrophyPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnTrophyPath.Click
+        Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
+        If (OpenFileDialog.ShowDialog() = True) Then
+            Dim filepath As String = OpenFileDialog.FileName
+            newl1TrophyPath.Text = filepath
+            newl1TrophyImage.Source = New BitmapImage(New Uri(filepath))
+        End If
+    End Sub
     Private Sub newl1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newl1Cancel.Click
         Me.Close()
         winMainMenu.Show()
@@ -76,7 +85,7 @@ Public Class NewLeague_Settings
             validate()
 
             Dim nl As Leaguemdl = New Leaguemdl(newl1LogoPath.Text, newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
-            CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, CInt(newlnumdivisions.Text),
+            CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, newl1TrophyPath.Text, CInt(newlnumdivisions.Text),
             CInt(newlnumteamsperdivisions.Text), newldiv1.Text, newldiv2.Text, newldiv3.Text, newldiv4.Text, newldiv5.Text, newldiv6.Text, newldiv7.Text, newldiv8.Text, newlConf1.Text, newlConf2.Text)
 
             Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)

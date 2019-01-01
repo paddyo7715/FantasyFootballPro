@@ -39,6 +39,15 @@
                                     <TextBox Name="newtStadiumLocation" FontSize="12" Width="170" Height="20" Foreground="Black" Background="white" MaxLength="100" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
+                                    <Label Width="80" FontSize="14" Foreground="White">Field Type:</Label>
+                                    <ComboBox Name="newl1FieldType" FontSize="12" Width="100" Height="20" Foreground="Black" Background="white" IsEditable="False">
+                                        <ComboBoxItem IsSelected="True">Grass</ComboBoxItem>
+                                        <ComboBoxItem>Artificial</ComboBoxItem>
+                                    </ComboBox>
+                                    <Label Width="100" FontSize="14" Foreground="White">Field Color:</Label>
+                                    <xctk:ColorPicker Name="newl1FieldColor" Height="20"  Width="40" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
                                     <Label Width="150" FontSize="14" Foreground="White">Stadium Capacity:</Label>
                                     <TextBox Name="newtStadiumCapacity" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white"  />
                                 </StackPanel>

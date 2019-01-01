@@ -43,7 +43,7 @@ Public Class LeagueDAO
             tr = League_con.BeginTransaction
 
             strStage = "Inserting League Record"
-            sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Logo_filepath, Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name, Num_Divisions, Num_Teams_Per_Division) VALUES(@Short_Name, @Long_Name, @Logo_filepath, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name, @Num_Divisions, @Num_Teams_Per_Division)"
+            sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Logo_filepath, Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name,Championship_Game_Image_Path , Num_Divisions, Num_Teams_Per_Division) VALUES(@Short_Name, @Long_Name, @Logo_filepath, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name,@Championship_Game_Image_Path , @Num_Divisions, @Num_Teams_Per_Division)"
 
             cmdLeague = New SQLiteCommand(League_con)
             cmdLeague.CommandText = sSQL
@@ -54,6 +54,7 @@ Public Class LeagueDAO
             cmdLeague.Parameters.Add("@Number_of_weeks", Data.DbType.Int16).Value = nl.Number_of_weeks
             cmdLeague.Parameters.Add("@Number_of_Games", Data.DbType.Int16).Value = nl.Number_of_Games
             cmdLeague.Parameters.Add("@Champtionship_Game_Name", Data.DbType.String).Value = nl.Championship_Game_Name
+            cmdLeague.Parameters.Add("@Championship_Game_Image_Path", Data.DbType.String).Value = nl.Trophy_filepath
             cmdLeague.Parameters.Add("@Num_Divisions", Data.DbType.Int16).Value = nl.Num_Divisions
             cmdLeague.Parameters.Add("@Num_Teams_Per_Division", Data.DbType.Int16).Value = nl.Num_Teams_Per_Division
             cmdLeague.ExecuteNonQuery()
@@ -101,7 +102,7 @@ Public Class LeagueDAO
                         Away_Jersey_Sleeve_Stripe_Color_3, Away_Jersey_Sleeve_Stripe_Color_4,
                         Away_Jersey_Sleeve_Stripe_Color_5 Away_Jersey_Sleeve_Stripe_Color_6.   
                         Away_Pants_Color, Away_Pants_Stripe_Color_1,  Away_Pants_Stripe_Color_2, Away_Pants_Stripe_Color_3,
-                        Stadium_Name,Stadium_Location,Stadium_Capacity,Stadium_Img_Path) 
+                        Stadium_Name,Stadium_Location,Stadium_Field_Type,Stadium_Field_Color,Stadium_Capacity,Stadium_Img_Path) 
                         VALUES(@ID, @Division_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
                         @Helmet_Color, @Helmet_Logo_Color,@Helmet_Facemask_Color,   
                         @Home_jersey_Color,@Home_Sleeve_Color, @Home_Jersey_Shoulder_Stripe, @Home_Jersey_Number_Color, @Home_Jersey_Number_Outline_Color,
@@ -114,7 +115,7 @@ Public Class LeagueDAO
                         @Away_Jersey_Sleeve_Stripe_Color_3, @Away_Jersey_Sleeve_Stripe_Color_4,
                         @Away_Jersey_Sleeve_Stripe_Color_5, @Away_Jersey_Sleeve_Stripe_Color_6.                       
                         @Away_Pants_Color, @Away_Pants_Stripe_Color_1, @Away_Pants_Stripe_Color_2, @Away_Pants_Stripe_Color_3,
-                        @Stadium_Name,@Stadium_Location,@Stadium_Capacity,@Stadium_Img_path)"
+                        @Stadium_Name,@Stadium_Location,@Stadium_Field_Type,@Stadium_Field_Color,@Stadium_Capacity,@Stadium_Img_path)"
                 cmdTeam.CommandText = sSQL
                 cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t.id
                 cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = CommonUtils.getDivisionNum_from_Team_Number(nl.Teams.Count - nl.Num_Teams_Per_Division, t_id)
@@ -159,6 +160,8 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@Away_Pants_Stripe_Color_3", Data.DbType.String).Value = t.Uniform.Away_Pants.Stripe_Color_3
                 cmdTeam.Parameters.Add("@Stadium_Name", Data.DbType.String).Value = t.Stadium.Stadium_Name
                 cmdTeam.Parameters.Add("@Stadium_Location", Data.DbType.String).Value = t.Stadium.Stadium_Location
+                cmdTeam.Parameters.Add("@Stadium_Field_Type", Data.DbType.Int16).Value = t.Stadium.Field_Type
+                cmdTeam.Parameters.Add("@Stadium_Field_Color", Data.DbType.String).Value = t.Stadium.Field_Color
                 cmdTeam.Parameters.Add("@Stadium_Capacity", Data.DbType.String).Value = t.Stadium.Capacity
                 cmdTeam.Parameters.Add("@Stadium_Img_path", Data.DbType.String).Value = t.Stadium.Stadium_Img_Path
                 cmdTeam.ExecuteNonQuery()

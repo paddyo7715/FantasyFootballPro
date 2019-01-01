@@ -6,6 +6,7 @@
     Property Number_of_weeks As Integer
     Property Number_of_Games As Integer
     Property Championship_Game_Name As String = ""
+    Property Trophy_filepath As String = ""
     Property Num_Divisions As Integer
     Property Num_Teams_Per_Division As Integer
 
@@ -17,7 +18,8 @@
     Sub New(ByVal Logo_Filepath As String, ByVal Short_Name As String,
             ByVal Long_Name As String, ByVal Starting_Year As Integer,
             ByVal Number_of_weeks As Integer, ByVal Number_of_Games As Integer,
-            ByVal Championship_Game_Name As String, ByVal Num_Divisions As Integer,
+            ByVal Championship_Game_Name As String, ByVal Trophy_Filepath As String,
+            ByVal Num_Divisions As Integer,
             ByVal Num_Teams_Per_Division As Integer, ByVal Division1 As String,
             ByVal Division2 As String,
             ByVal Division3 As String, ByVal Division4 As String,
@@ -34,6 +36,7 @@
         Me.Number_of_weeks = Number_of_weeks
         Me.Number_of_Games = Number_of_Games
         Me.Championship_Game_Name = Championship_Game_Name
+        Me.Trophy_filepath = Trophy_Filepath
         Me.Num_Divisions = Num_Divisions
         Me.Num_Teams_Per_Division = Num_Teams_Per_Division
 

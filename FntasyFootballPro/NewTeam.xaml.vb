@@ -509,8 +509,9 @@ Public Class NewTeam
             Dim away_Pants_Stripe_2_Color As String = newtAwayPantsStripe2Color.Background.GetHashCode
             Dim away_Pants_Stripe_3_Color As String = newtAwayPantsStripe3Color.Background.GetHashCode
 
-
+            Dim Stadium_Field_Color As String = newl1FieldColor.Background.GetHashCode
             stadium = New StadiumMdl(newtStadium.Text, newtStadiumLocation.Text,
+                                     CInt(newl1FieldType.Text), Stadium_Field_Color,
                                     newtStadiumCapacity.Text, newtStadiumPath.Text)
             Footwear = New FootwearMdl(socks_color, cleats_color)
             Helmet = New HelmetMdl(helmet_color, helmet_logo_color,

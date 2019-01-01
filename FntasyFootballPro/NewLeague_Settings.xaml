@@ -19,45 +19,62 @@
                     Settings:
                 </GroupBox.Header>
 
-                <StackPanel Width="600" Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Short Names:</Label>
-                        <TextBox Name="newl1shortname" FontSize="18" Width="50" Height="30" Foreground="Black" Background="white" MaxLength="6" />
+
+                    <StackPanel Width="700" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="350" FontSize="18" Foreground="White">Short Names:</Label>
+                            <TextBox Name="newl1shortname" FontSize="18" Width="50" Height="30" Foreground="Black" Background="white" MaxLength="6" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="350" FontSize="18" Foreground="White">Long Names:</Label>
+                            <TextBox Name="newl1longname" FontSize="18" Width="300" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="350" FontSize="18" Foreground="White">League Logo Image:</Label>
+                            <TextBox Name="newl1LogoPath" FontSize="18" Width="200" Height="30" Foreground="Black" Background="white"  />
+                            <Button Name="newl1btnLogoPath" FontSize="14" Width="90" Height="30">Image File</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="350" FontSize="18" Foreground="White">Starting Year:</Label>
+                            <ComboBox Name="newl1StartingYear" FontSize="18" Width="100" Height="30" Foreground="Black" Background="white" Text="Is not open" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="350" FontSize="18" Foreground="White">Championship Game:</Label>
+                            <TextBox Name="newl1championshipgame" FontSize="18" Width="300" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Width="350" FontSize="18" Foreground="White">Championship Trophy:</Label>
+                            <TextBox Name="newl1TrophyPath" FontSize="18" Width="200" Height="30" Foreground="Black" Background="white"  />
+                            <Button Name="newl1btnTrophyPath" FontSize="14" Width="90" Height="30">Image File</Button>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Width="350" FontSize="18" Foreground="White">Number of Weeks in Season:</Label>
+                                    <TextBox  Name="newlnumweeks" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Width="350" FontSize="18" Foreground="White">Number of Games in Season:</Label>
+                                    <TextBox  Name="newlnumgames" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Width="350" FontSize="18" Foreground="White">Number of Division:</Label>
+                                    <TextBox  Name="newlnumdivisions" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Width="350" FontSize="18" Foreground="White">Number of Teams per Division:</Label>
+                                    <TextBox  Name="newlnumteamsperdivisions" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
+                                </StackPanel>
+                            </StackPanel>
+
+                        <StackPanel Orientation="vertical" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Name="newl1TrophyImage" Height="150" Width="150"  />
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Long Names:</Label>
-                        <TextBox Name="newl1longname" FontSize="18" Width="300" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="300" FontSize="30" Foreground="White">League Logo Image:</Label>
-                        <TextBox Name="newl1LogoPath" FontSize="18" Width="200" Height="30" Foreground="Black" Background="white"  />
-                        <Button Name="newl1btnLogoPath" FontSize="12" Width="90" Height="20">Image File</Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Starting Year:</Label>
-                        <ComboBox Name="newl1StartingYear" FontSize="18" Width="100" Height="30" Foreground="Black" Background="white" Text="Is not open" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Championship Game:</Label>
-                        <TextBox Name="newl1championshipgame" FontSize="18" Width="300" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Number of Weeks in Season:</Label>
-                        <TextBox  Name="newlnumweeks" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Number of Games in Season:</Label>
-                        <TextBox  Name="newlnumgames" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Number of Division:</Label>
-                        <TextBox  Name="newlnumdivisions" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Width="350" FontSize="18" Foreground="White">Number of Teams per Division:</Label>
-                        <TextBox  Name="newlnumteamsperdivisions" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                    </StackPanel>
-                </StackPanel>
+
+
 
             </GroupBox>
             <StackPanel Orientation="Horizontal">
