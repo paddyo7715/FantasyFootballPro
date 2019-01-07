@@ -28,29 +28,7 @@
 
         Me.Players = Players
 
-        validate()
     End Sub
-
-    Private Sub validate()
-
-        If CommonUtils.isBlank(City_Abr) Then
-            Throw New Exception("City Abbriviation must have a value")
-        End If
-
-        If CommonUtils.isBlank(City) Then
-            Throw New Exception("City must have a value")
-        End If
-
-        If CommonUtils.isBlank(Nickname) Then
-            Throw New Exception("Nickname must have a value")
-        End If
-
-        If CommonUtils.isBlank(Helmet_img_path) Then
-            Throw New Exception("Helmet image path must have a value")
-        End If
-
-    End Sub
-
 
 
 End Class

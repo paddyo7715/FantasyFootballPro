@@ -464,54 +464,277 @@ Public Class NewTeam
             Dim Away_Jersey As JerseyMdl = Nothing
             Dim Away_Pants As PantsMdl = Nothing
             Dim Uniform As UniformMdl = Nothing
+            Dim Stadium_Field_Color As String = Nothing
+            Dim socks_color As String = Nothing
+            Dim cleats_color As String = Nothing
+            Dim helmet_color As String = Nothing
+            Dim helmet_logo_color As String = Nothing
+            Dim helmet_facemask_color As String = Nothing
+            Dim Home_Jersey_Color As String = Nothing
+            Dim Home_Sleeve_Color As String = Nothing
+            Dim Home_Shoulder_Stripe_Color As String = Nothing
+            Dim Home_Jersey_Number_Color As String = Nothing
+            Dim Home_Jersey_Outline_Number_Color As String = Nothing
+            Dim Home_Jersey_Sleeve_1_Color As String = Nothing
+            Dim Home_Jersey_Sleeve_2_Color As String = Nothing
+            Dim Home_Jersey_Sleeve_3_Color As String = Nothing
+            Dim Home_Jersey_Sleeve_4_Color As String = Nothing
+            Dim Home_Jersey_Sleeve_5_Color As String = Nothing
+            Dim Home_Jersey_Sleeve_6_Color As String = Nothing
+            Dim Home_Pants_Color As String = Nothing
+            Dim Home_Pants_Stripe_1_Color As String = Nothing
+            Dim Home_Pants_Stripe_2_Color As String = Nothing
+            Dim Home_Pants_Stripe_3_Color As String = Nothing
 
-            Dim City_Abr As String = newtCityAbb.Background.GetHashCode
-            Dim City As String = newtCity.Background.GetHashCode
-            Dim Nickname As String = newtNickname.Background.GetHashCode
+            Dim Away_Jersey_Color As String = Nothing
+            Dim Away_Sleeve_Color As String = Nothing
+            Dim Away_Shoulder_Stripe_Color As String = Nothing
+            Dim Away_Jersey_Number_Color As String = Nothing
+            Dim Away_Jersey_Outline_Number_Color As String = Nothing
+            Dim Away_Jersey_Sleeve_1_Color As String = Nothing
+            Dim Away_Jersey_Sleeve_2_Color As String = Nothing
+            Dim Away_Jersey_Sleeve_3_Color As String = Nothing
+            Dim Away_Jersey_Sleeve_4_Color As String = Nothing
+            Dim Away_Jersey_Sleeve_5_Color As String = Nothing
+            Dim Away_Jersey_Sleeve_6_Color As String = Nothing
+            Dim Away_Pants_Color As String = Nothing
+            Dim Away_Pants_Stripe_1_Color As String = Nothing
+            Dim Away_Pants_Stripe_2_Color As String = Nothing
+            Dim Away_Pants_Stripe_3_Color As String = Nothing
 
-            Dim socks_color As String = newtSockColor.Background.GetHashCode
-            Dim cleats_color As String = newtCleatsColor.Background.GetHashCode
-            Dim helmet_color As String = newtHelmentColor.Background.GetHashCode
-            Dim helmet_logo_color As String = newtHelmentLogoColor.Background.GetHashCode
-            Dim helmet_facemask_color As String = newtFacemaskColor.Background.GetHashCode
 
-            Dim Home_Jersey_Color As String = newtHomeJerseyColor.Background.GetHashCode
-            Dim Home_Sleeve_Color As String = newtHomeSleeveColor.Background.GetHashCode
-            Dim Home_Shoulder_Stripe_Color As String = newtHomeShoulderStripeColor.Background.GetHashCode
-            Dim Home_Jersey_Number_Color As String = newtHomeJerseyNumberColor.Background.GetHashCode
-            Dim Home_Jersey_Outline_Number_Color As String = newtHomeNumberOutlineColor.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_1_Color As String = newtHomeJerseySleeve1Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_2_Color As String = newtHomeJerseySleeve2Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_3_Color As String = newtHomeJerseySleeve3Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_4_Color As String = newtHomeJerseySleeve4Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_5_Color As String = newtHomeJerseySleeve5Color.Background.GetHashCode
-            Dim Home_Jersey_Sleeve_6_Color As String = newtHomeJerseySleeve6Color.Background.GetHashCode
+            Dim City_Abr As String = newtCityAbb.Text
+            Dim City As String = newtCity.Text
+            Dim Nickname As String = newtNickname.Text
 
-            Dim Home_Pants_Color As String = newtHomePantsColor.Background.GetHashCode
-            Dim Home_Pants_Stripe_1_Color As String = newtHomePantsStripe1Color.Background.GetHashCode
-            Dim Home_Pants_Stripe_2_Color As String = newtHomePantsStripe2Color.Background.GetHashCode
-            Dim Home_Pants_Stripe_3_Color As String = newtHomePantsStripe3Color.Background.GetHashCode
+            Validate()
 
-            Dim away_Jersey_Color As String = newtAwayJerseyColor.Background.GetHashCode
-            Dim away_Sleeve_Color As String = newtAwaySleeveColor.Background.GetHashCode
-            Dim away_Shoulder_Stripe_Color As String = newtAwayShoulderStripeColor.Background.GetHashCode
-            Dim away_Jersey_Number_Color As String = newtAwayJerseyNumberColor.Background.GetHashCode
-            Dim away_Jersey_Outline_Number_Color As String = newtAwayNumberOutlineColor.Background.GetHashCode
-            Dim away_Jersey_Sleeve_1_Color As String = newtAwayJerseySleeve1Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_2_Color As String = newtAwayJerseySleeve2Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_3_Color As String = newtAwayJerseySleeve3Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_4_Color As String = newtAwayJerseySleeve4Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_5_Color As String = newtAwayJerseySleeve5Color.Background.GetHashCode
-            Dim away_Jersey_Sleeve_6_Color As String = newtAwayJerseySleeve6Color.Background.GetHashCode
+            If IsNothing(newtSockColor.SelectedColor) Then
+                socks_color = ""
+            Else
+                socks_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtSockColor.SelectedColor).Color)
+            End If
 
-            Dim away_Pants_Color As String = newtAwayPantsColor.Background.GetHashCode
-            Dim away_Pants_Stripe_1_Color As String = newtAwayPantsStripe1Color.Background.GetHashCode
-            Dim away_Pants_Stripe_2_Color As String = newtAwayPantsStripe2Color.Background.GetHashCode
-            Dim away_Pants_Stripe_3_Color As String = newtAwayPantsStripe3Color.Background.GetHashCode
+            If IsNothing(newtCleatsColor.SelectedColor) Then
+                cleats_color = ""
+            Else
+                cleats_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtCleatsColor.SelectedColor).Color)
+            End If
 
-            Dim Stadium_Field_Color As String = newl1FieldColor.Background.GetHashCode
+            If IsNothing(newtHelmentColor.SelectedColor) Then
+                helmet_color = ""
+            Else
+                helmet_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHelmentColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHelmentLogoColor.SelectedColor) Then
+                helmet_logo_color = ""
+            Else
+                helmet_logo_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHelmentLogoColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtFacemaskColor.SelectedColor) Then
+                helmet_facemask_color = ""
+            Else
+                helmet_facemask_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtFacemaskColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseyColor.SelectedColor) Then
+                Home_Jersey_Color = ""
+            Else
+                Home_Jersey_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseyColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeSleeveColor.SelectedColor) Then
+                Home_Sleeve_Color = ""
+            Else
+                Home_Sleeve_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeSleeveColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeShoulderStripeColor.SelectedColor) Then
+                Home_Shoulder_Stripe_Color = ""
+            Else
+                Home_Shoulder_Stripe_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeShoulderStripeColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseyNumberColor.SelectedColor) Then
+                Home_Jersey_Number_Color = ""
+            Else
+                Home_Jersey_Number_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseyNumberColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeNumberOutlineColor.SelectedColor) Then
+                Home_Jersey_Outline_Number_Color = ""
+            Else
+                Home_Jersey_Outline_Number_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeNumberOutlineColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseySleeve1Color.SelectedColor) Then
+                Home_Jersey_Sleeve_1_Color = ""
+            Else
+                Home_Jersey_Sleeve_1_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseySleeve1Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseySleeve2Color.SelectedColor) Then
+                Home_Jersey_Sleeve_2_Color = ""
+            Else
+                Home_Jersey_Sleeve_2_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseySleeve2Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseySleeve3Color.SelectedColor) Then
+                Home_Jersey_Sleeve_3_Color = ""
+            Else
+                Home_Jersey_Sleeve_3_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseySleeve3Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseySleeve4Color.SelectedColor) Then
+                Home_Jersey_Sleeve_4_Color = ""
+            Else
+                Home_Jersey_Sleeve_4_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseySleeve4Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseySleeve5Color.SelectedColor) Then
+                Home_Jersey_Sleeve_5_Color = ""
+            Else
+                Home_Jersey_Sleeve_5_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseySleeve5Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomeJerseySleeve6Color.SelectedColor) Then
+                Home_Jersey_Sleeve_6_Color = ""
+            Else
+                Home_Jersey_Sleeve_6_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomeJerseySleeve6Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomePantsColor.SelectedColor) Then
+                Home_Pants_Color = ""
+            Else
+                Home_Pants_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomePantsColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomePantsStripe1Color.SelectedColor) Then
+                Home_Pants_Stripe_1_Color = ""
+            Else
+                Home_Pants_Stripe_1_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomePantsStripe1Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomePantsStripe2Color.SelectedColor) Then
+                Home_Pants_Stripe_2_Color = ""
+            Else
+                Home_Pants_Stripe_2_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomePantsStripe2Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtHomePantsStripe3Color.SelectedColor) Then
+                Home_Pants_Stripe_3_Color = ""
+            Else
+                Home_Pants_Stripe_3_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtHomePantsStripe3Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseyColor.SelectedColor) Then
+                away_Jersey_Color = ""
+            Else
+                away_Jersey_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseyColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwaySleeveColor.SelectedColor) Then
+                away_Sleeve_Color = ""
+            Else
+                away_Sleeve_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwaySleeveColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayShoulderStripeColor.SelectedColor) Then
+                away_Shoulder_Stripe_Color = ""
+            Else
+                away_Shoulder_Stripe_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayShoulderStripeColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseyNumberColor.SelectedColor) Then
+                away_Jersey_Number_Color = ""
+            Else
+                away_Jersey_Number_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseyNumberColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayNumberOutlineColor.SelectedColor) Then
+                away_Jersey_Outline_Number_Color = ""
+            Else
+                away_Jersey_Outline_Number_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayNumberOutlineColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseySleeve1Color.SelectedColor) Then
+                away_Jersey_Sleeve_1_Color = ""
+            Else
+                away_Jersey_Sleeve_1_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseySleeve1Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseySleeve2Color.SelectedColor) Then
+                away_Jersey_Sleeve_2_Color = ""
+            Else
+                away_Jersey_Sleeve_2_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseySleeve2Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseySleeve3Color.SelectedColor) Then
+                away_Jersey_Sleeve_3_Color = ""
+            Else
+                away_Jersey_Sleeve_3_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseySleeve3Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseySleeve4Color.SelectedColor) Then
+                away_Jersey_Sleeve_4_Color = ""
+            Else
+                away_Jersey_Sleeve_4_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseySleeve4Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseySleeve5Color.SelectedColor) Then
+                away_Jersey_Sleeve_5_Color = ""
+            Else
+                away_Jersey_Sleeve_5_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseySleeve5Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayJerseySleeve6Color.SelectedColor) Then
+                away_Jersey_Sleeve_6_Color = ""
+            Else
+                away_Jersey_Sleeve_6_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayJerseySleeve6Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayPantsColor.SelectedColor) Then
+                away_Pants_Color = ""
+            Else
+                away_Pants_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayPantsColor.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayPantsStripe1Color.SelectedColor) Then
+                away_Pants_Stripe_1_Color = ""
+            Else
+                away_Pants_Stripe_1_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayPantsStripe1Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayPantsStripe2Color.SelectedColor) Then
+                away_Pants_Stripe_2_Color = ""
+            Else
+                away_Pants_Stripe_2_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayPantsStripe2Color.SelectedColor).Color)
+            End If
+
+            If IsNothing(newtAwayPantsStripe3Color.SelectedColor) Then
+                away_Pants_Stripe_3_Color = ""
+            Else
+                away_Pants_Stripe_3_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newtAwayPantsStripe3Color.SelectedColor).Color)
+            End If
+
+
+            Dim Field_Type_Int As Int16
+            If newl1FieldType.Text = "Grass" Then
+                Field_Type_Int = 1
+            ElseIf newl1FieldType.Text = "Artificial" Then
+                Field_Type_Int = 2
+            End If
+
+            If IsNothing(newl1FieldColor.SelectedColor) Then
+                Stadium_Field_Color = ""
+            Else
+                Stadium_Field_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newl1FieldColor.SelectedColor).Color)
+            End If
+
             stadium = New StadiumMdl(newtStadium.Text, newtStadiumLocation.Text,
-                                     CInt(newl1FieldType.Text), Stadium_Field_Color,
+                                     Field_Type_Int, Stadium_Field_Color,
                                     newtStadiumCapacity.Text, newtStadiumPath.Text)
             Footwear = New FootwearMdl(socks_color, cleats_color)
             Helmet = New HelmetMdl(helmet_color, helmet_logo_color,
@@ -916,6 +1139,50 @@ Public Class NewTeam
         SocksColor, CleatsColor)
 
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
+
+    End Sub
+
+    Private Sub Validate()
+
+
+
+        If CommonUtils.isBlank(newtCityAbb.Text) Then
+            Throw New Exception("City Abbriviation must have a value")
+        End If
+
+        If CommonUtils.isBlank(newtCity.Text) Then
+            Throw New Exception("City must have a value")
+        End If
+
+        If CommonUtils.isBlank(newtNickname.Text) Then
+            Throw New Exception("Nickname must have a value")
+        End If
+
+        If CommonUtils.isBlank(newtStadium.Text) Then
+            Throw New Exception("Stadium Name must have a value")
+        End If
+
+        If CommonUtils.isBlank(newtStadiumLocation.Text) Then
+            Throw New Exception("Stadium Location must have a value")
+        End If
+
+        If CommonUtils.isBlank(newtStadiumCapacity.Text) Then
+            Throw New Exception("Stadium Capacity must be supplied and numeric")
+        End If
+
+        If CommonUtils.isBlank(newtStadiumPath.Text) Then
+            Throw New Exception("Image of team stadium must be supplied")
+        End If
+
+        If CommonUtils.isBlank(CommonUtils.getHexfromColor(New SolidColorBrush(newl1FieldColor.SelectedColor).Color)) Then
+            Throw New Exception("Field color of team stadium must be supplied")
+        End If
+
+
+
+        If CommonUtils.isBlank(newtHelmetImgPath.Text) Then
+            Throw New Exception("Helmet image path must have a value")
+        End If
 
     End Sub
 

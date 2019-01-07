@@ -14,7 +14,7 @@
 
     Property First_Name As String = ""
     Property Last_Name As String = ""
-    Property Age As Integer = ""
+    Property Age As Integer = 0
     Property Jersey_Number As Integer
     Property Active As Boolean
     Property Pos As Position

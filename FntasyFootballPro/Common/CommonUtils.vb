@@ -43,4 +43,24 @@
         Return ((t_num - 1) Mod num_divs) + 1
 
     End Function
+    Public Shared Function getHexfromColor(ByVal c As System.Windows.Media.Color) As String
+        Dim r As String = Nothing
+
+        r = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2")
+
+        Return r
+    End Function
+    Public Shared Function getColorfromHex(ByVal s As String) As System.Windows.Media.Color
+        Dim r As System.Windows.Media.Color = Nothing
+        Dim red As Integer = 0
+        Dim green As Integer = 0
+        Dim blue As Integer = 0
+
+        red = Convert.ToInt32(s.Substring(1, 2), 16)
+        green = Convert.ToInt32(s.Substring(3, 2), 16)
+        blue = Convert.ToInt32(s.Substring(5, 2), 16)
+
+
+    End Function
+
 End Class
