@@ -30,56 +30,7 @@
         Me.Sleeve_Stripe5 = Sleeve_Stripe5
         Me.Sleeve_Stripe6 = Sleeve_Stripe6
 
-        validate()
-
     End Sub
 
-    Private Sub validate()
-
-        If CommonUtils.isBlank(Jersey_Color) Then
-            Throw New Exception("Jersey color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Color) Then
-            Throw New Exception("Jersey sleeve color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Shoulder_Stripe_Color) Then
-            Throw New Exception("Jersey shoulder stripe color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Number_Color) Then
-            Throw New Exception("Jersey numbering color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Number_Outline_Color) Then
-            Throw New Exception("Jersey number outline color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe1) Then
-            Throw New Exception("Jersey sleeve stripe 1 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe2) Then
-            Throw New Exception("Jersey sleeve stripe 2 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe3) Then
-            Throw New Exception("Jersey sleeve stripe 3 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe4) Then
-            Throw New Exception("Jersey sleeve stripe 4 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe5) Then
-            Throw New Exception("Jersey sleeve stripe 5 color must have a value")
-        End If
-
-        If CommonUtils.isBlank(Sleeve_Stripe6) Then
-            Throw New Exception("Jersey sleeve stripe 6 color must have a value")
-        End If
-
-    End Sub
 
 End Class
