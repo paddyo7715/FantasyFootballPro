@@ -63,12 +63,24 @@ Public Class NewTeam
         newtCityAbb.Text = League_Teams(team_ind).City_Abr
         newtCity.Text = League_Teams(team_ind).City
         newtNickname.Text = League_Teams(team_ind).Nickname
+        newtHelmetImgPath.Text = League_Teams(team_ind).Helmet_img_path
 
         If Not IsNothing(League_Teams(team_ind).Stadium) Then
             newtStadium.Text = League_Teams(team_ind).Stadium.Stadium_Name
             newtStadiumLocation.Text = League_Teams(team_ind).Stadium.Stadium_Location
             newtStadiumPath.Text = League_Teams(team_ind).Stadium.Stadium_Img_Path
             newtStadiumCapacity.Text = League_Teams(team_ind).Stadium.Capacity
+            newl1FieldType.SelectedIndex = League_Teams(team_ind).Stadium.Field_Type - 1
+            newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Stadium.Field_Color)
+        End If
+
+        If Not IsNothing(League_Teams(team_ind).Uniform.Helmet) Then
+            newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Color)
+            newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Logo_Color)
+            newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Facemask_Color)
+
+            newtSockColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Footwear.Socks_Color)
+            newtCleatsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Footwear.Cleats_Color)
         End If
 
         If Not CommonUtils.isBlank(League_Teams(team_ind).Helmet_img_path) Then
@@ -1148,6 +1160,9 @@ Public Class NewTeam
             Throw New Exception("Away pants stripe 3 color must have a value")
         End If
 
+        If IsNothing(Roster) Or Roster.Count = 0 Then
+            Throw New Exception("You must roll the team player")
+        End If
 
     End Sub
 
