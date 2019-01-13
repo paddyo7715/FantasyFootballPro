@@ -26,7 +26,7 @@
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Width="80" FontSize="14" Foreground="White">City Abbr:</Label>
-                                    <TextBox Name="newtCityAbb" FontSize="12" Width="30" Height="20" Foreground="Black" Background="white" MaxLength="6" />
+                                    <TextBox Name="newtCityAbb" FontSize="12" Width="40" Height="20" Foreground="Black" Background="white" MaxLength="6" />
                                     <Label Width="50" FontSize="14" Foreground="White">City:</Label>
                                     <TextBox Name="newtCity" FontSize="12" Width="110" Height="20" Foreground="Black" Background="white" MaxLength="100" />
                                     <Label Width="75" FontSize="14" Foreground="White">Nickname:</Label>

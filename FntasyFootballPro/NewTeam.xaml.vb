@@ -778,6 +778,10 @@ Public Class NewTeam
 
             new_t.setFields(City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
 
+            Me.Close()
+            NewLeague_Teams.setFields()
+            NewLeague_Teams.Show()
+
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
@@ -1167,6 +1171,10 @@ Public Class NewTeam
             Throw New Exception("Stadium Location must have a value")
         End If
 
+        If IsNothing(newl1FieldColor.SelectedColor) Then
+            Throw New Exception("Field color of team stadium must be supplied")
+        End If
+
         If CommonUtils.isBlank(newtStadiumCapacity.Text) Then
             Throw New Exception("Stadium Capacity must be supplied and numeric")
         End If
@@ -1174,11 +1182,6 @@ Public Class NewTeam
         If CommonUtils.isBlank(newtStadiumPath.Text) Then
             Throw New Exception("Image of team stadium must be supplied")
         End If
-
-        If CommonUtils.isBlank(CommonUtils.getHexfromColor(New SolidColorBrush(newl1FieldColor.SelectedColor).Color)) Then
-            Throw New Exception("Field color of team stadium must be supplied")
-        End If
-
 
         If IsNothing(newtHelmentColor.SelectedColor) Then
             Throw New Exception("A helmet color must be selected")
@@ -1324,7 +1327,7 @@ Public Class NewTeam
             Throw New Exception("Away pants stripe 3 color must have a value")
         End If
 
-        If IsNothing(Roster) Or Roster.Count = 0 Then
+        If IsNothing(Roster) OrElse Roster.Count = 0 Then
             Throw New Exception("You must roll the team player")
         End If
 
