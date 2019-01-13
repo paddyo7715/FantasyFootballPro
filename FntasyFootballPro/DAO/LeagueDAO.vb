@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.SQLite
+Imports System.IO
 
 Public Class LeagueDAO
 
@@ -49,12 +50,12 @@ Public Class LeagueDAO
             cmdLeague.CommandText = sSQL
             cmdLeague.Parameters.Add("@Short_Name", Data.DbType.String).Value = nl.Short_Name
             cmdLeague.Parameters.Add("@Long_Name", Data.DbType.String).Value = nl.Long_Name
-            cmdLeague.Parameters.Add("@Logo_filepath", Data.DbType.String).Value = nl.Logo_Filepath
+            cmdLeague.Parameters.Add("@Logo_filepath", Data.DbType.String).Value = Path.GetFileName(nl.Logo_Filepath)
             cmdLeague.Parameters.Add("@Starting_Year", Data.DbType.Int16).Value = nl.Starting_Year
             cmdLeague.Parameters.Add("@Number_of_weeks", Data.DbType.Int16).Value = nl.Number_of_weeks
             cmdLeague.Parameters.Add("@Number_of_Games", Data.DbType.Int16).Value = nl.Number_of_Games
             cmdLeague.Parameters.Add("@Champtionship_Game_Name", Data.DbType.String).Value = nl.Championship_Game_Name
-            cmdLeague.Parameters.Add("@Championship_Game_Image_Path", Data.DbType.String).Value = nl.Trophy_filepath
+            cmdLeague.Parameters.Add("@Championship_Game_Image_Path", Data.DbType.String).Value = Path.GetFileName(nl.Trophy_filepath)
             cmdLeague.Parameters.Add("@Num_Divisions", Data.DbType.Int16).Value = nl.Num_Divisions
             cmdLeague.Parameters.Add("@Num_Teams_Per_Division", Data.DbType.Int16).Value = nl.Num_Teams_Per_Division
             cmdLeague.ExecuteNonQuery()
@@ -122,7 +123,7 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@City_Abr", Data.DbType.String).Value = t.City_Abr
                 cmdTeam.Parameters.Add("@City", Data.DbType.String).Value = t.City
                 cmdTeam.Parameters.Add("@Nickname", Data.DbType.String).Value = t.Nickname
-                cmdTeam.Parameters.Add("@Helmet_img_path", Data.DbType.String).Value = t.Helmet_img_path
+                cmdTeam.Parameters.Add("@Helmet_img_path", Data.DbType.String).Value = Path.GetFileName(t.Helmet_img_path)
                 cmdTeam.Parameters.Add("@Helmet_Color", Data.DbType.String).Value = t.Uniform.Helmet.Helmet_Color
                 cmdTeam.Parameters.Add("@Helmet_Logo_Color", Data.DbType.String).Value = t.Uniform.Helmet.Helmet_Logo_Color
                 cmdTeam.Parameters.Add("@Helmet_Facemask_Color", Data.DbType.String).Value = t.Uniform.Helmet.Helmet_Facemask_Color
@@ -163,7 +164,7 @@ Public Class LeagueDAO
                 cmdTeam.Parameters.Add("@Stadium_Field_Type", Data.DbType.Int16).Value = t.Stadium.Field_Type
                 cmdTeam.Parameters.Add("@Stadium_Field_Color", Data.DbType.String).Value = t.Stadium.Field_Color
                 cmdTeam.Parameters.Add("@Stadium_Capacity", Data.DbType.String).Value = t.Stadium.Capacity
-                cmdTeam.Parameters.Add("@Stadium_Img_path", Data.DbType.String).Value = t.Stadium.Stadium_Img_Path
+                cmdTeam.Parameters.Add("@Stadium_Img_path", Data.DbType.String).Value = Path.GetFileName(t.Stadium.Stadium_Img_Path)
                 cmdTeam.ExecuteNonQuery()
 
                 strStage = "Inserting Players"

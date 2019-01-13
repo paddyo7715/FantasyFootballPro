@@ -60,6 +60,44 @@ Public Class NewTeam
         Dim colorConverter As ColorConverter = New ColorConverter()
         Dim bc As BrushConverter = New BrushConverter()
 
+        Dim mc As System.Windows.Media.Color = Nothing
+        Dim helmetColor As System.Drawing.Color = Nothing
+        Dim helmetLogoColor As System.Drawing.Color = Nothing
+        Dim helmetFacemaskColor As System.Drawing.Color = Nothing
+        Dim SocksColor As System.Drawing.Color = Nothing
+        Dim CleatsColor As System.Drawing.Color = Nothing
+        Dim HomeJerseyColor As System.Drawing.Color = Nothing
+        Dim HomeJerseySleeveColor As System.Drawing.Color = Nothing
+        Dim HomeJerseyShoulderLoopColor As System.Drawing.Color = Nothing
+        Dim HomeJerseyNumberColor As System.Drawing.Color = Nothing
+        Dim HomeJerseyNumberOutlineColor As System.Drawing.Color = Nothing
+        Dim HomeJerseyStripe_1 As System.Drawing.Color = Nothing
+        Dim HomeJerseyStripe_2 As System.Drawing.Color = Nothing
+        Dim HomeJerseyStripe_3 As System.Drawing.Color = Nothing
+        Dim HomeJerseyStripe_4 As System.Drawing.Color = Nothing
+        Dim HomeJerseyStripe_5 As System.Drawing.Color = Nothing
+        Dim HomeJerseyStripe_6 As System.Drawing.Color = Nothing
+        Dim HomePantsColor As System.Drawing.Color = Nothing
+        Dim HomePants_Stripe_1 As System.Drawing.Color = Nothing
+        Dim HomePants_Stripe_2 As System.Drawing.Color = Nothing
+        Dim HomePants_Stripe_3 As System.Drawing.Color = Nothing
+
+        Dim AwayJerseyColor As System.Drawing.Color = Nothing
+        Dim AwayJerseySleeveColor As System.Drawing.Color = Nothing
+        Dim AwayJerseyShoulderLoopColor As System.Drawing.Color = Nothing
+        Dim AwayJerseyNumberColor As System.Drawing.Color = Nothing
+        Dim AwayJerseyNumberOutlineColor As System.Drawing.Color = Nothing
+        Dim AwayJerseyStripe_1 As System.Drawing.Color = Nothing
+        Dim AwayJerseyStripe_2 As System.Drawing.Color = Nothing
+        Dim AwayJerseyStripe_3 As System.Drawing.Color = Nothing
+        Dim AwayJerseyStripe_4 As System.Drawing.Color = Nothing
+        Dim AwayJerseyStripe_5 As System.Drawing.Color = Nothing
+        Dim AwayJerseyStripe_6 As System.Drawing.Color = Nothing
+        Dim AwayPantsColor As System.Drawing.Color = Nothing
+        Dim AwayPants_Stripe_1 As System.Drawing.Color = Nothing
+        Dim AwayPants_Stripe_2 As System.Drawing.Color = Nothing
+        Dim AwayPants_Stripe_3 As System.Drawing.Color = Nothing
+
         newtCityAbb.Text = League_Teams(team_ind).City_Abr
         newtCity.Text = League_Teams(team_ind).City
         newtNickname.Text = League_Teams(team_ind).Nickname
@@ -74,40 +112,185 @@ Public Class NewTeam
             newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Stadium.Field_Color)
         End If
 
-        If Not IsNothing(League_Teams(team_ind).Uniform.Helmet) Then
+        If Not IsNothing(League_Teams(team_ind).Uniform) Then
             newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Color)
             newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Logo_Color)
             newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Facemask_Color)
 
             newtSockColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Footwear.Socks_Color)
             newtCleatsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Footwear.Cleats_Color)
+
+            newtHomeJerseyColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Jersey_Color)
+            newtHomeSleeveColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Color)
+            newtHomeShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Shoulder_Stripe_Color)
+            newtHomeJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Number_Color)
+            newtHomeNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Number_Outline_Color)
+            newtHomeJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe1)
+            newtHomeJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe2)
+            newtHomeJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe3)
+            newtHomeJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe4)
+            newtHomeJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe5)
+            newtHomeJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe6)
+
+            newtHomePantsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Pants_Color)
+            newtHomePantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Stripe_Color_1)
+            newtHomePantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Stripe_Color_2)
+            newtHomePantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Stripe_Color_3)
+
+            newtAwayJerseyColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Jersey_Color)
+            newtAwaySleeveColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Color)
+            newtAwayShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Shoulder_Stripe_Color)
+            newtAwayJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Number_Color)
+            newtAwayNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Number_Outline_Color)
+            newtAwayJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe1)
+            newtAwayJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe2)
+            newtAwayJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe3)
+            newtAwayJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe4)
+            newtAwayJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe5)
+            newtAwayJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe6)
+
+            newtAwayPantsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Pants_Color)
+            newtAwayPantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_1)
+            newtAwayPantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_2)
+            newtAwayPantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_3)
+
+
+            mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
+            helmetColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHelmentLogoColor.SelectedColor).Color
+            helmetLogoColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtFacemaskColor.SelectedColor).Color
+            helmetFacemaskColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtSockColor.SelectedColor).Color
+            SocksColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtCleatsColor.SelectedColor).Color
+            CleatsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseyColor.SelectedColor).Color
+            HomeJerseyColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeSleeveColor.SelectedColor).Color
+            HomeJerseySleeveColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeShoulderStripeColor.SelectedColor).Color
+            HomeJerseyShoulderLoopColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseyNumberColor.SelectedColor).Color
+            HomeJerseyNumberColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeNumberOutlineColor.SelectedColor).Color
+            HomeJerseyNumberOutlineColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseySleeve1Color.SelectedColor).Color
+            HomeJerseyStripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseySleeve2Color.SelectedColor).Color
+            HomeJerseyStripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseySleeve3Color.SelectedColor).Color
+            HomeJerseyStripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseySleeve4Color.SelectedColor).Color
+            HomeJerseyStripe_4 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseySleeve5Color.SelectedColor).Color
+            HomeJerseyStripe_5 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomeJerseySleeve6Color.SelectedColor).Color
+            HomeJerseyStripe_6 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomePantsColor.SelectedColor).Color
+            HomePantsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomePantsStripe1Color.SelectedColor).Color
+            HomePants_Stripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomePantsStripe2Color.SelectedColor).Color
+            HomePants_Stripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtHomePantsStripe3Color.SelectedColor).Color
+            HomePants_Stripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            Uniform_Img.Flip_All_Colors(True, helmetColor, helmetFacemaskColor, helmetLogoColor, HomeJerseyColor,
+            HomeJerseyNumberColor, HomeJerseyNumberOutlineColor,
+            HomeJerseySleeveColor, HomeJerseyShoulderLoopColor,
+            HomeJerseyStripe_1, HomeJerseyStripe_2,
+            HomeJerseyStripe_3, HomeJerseyStripe_4,
+            HomeJerseyStripe_5, HomeJerseyStripe_6,
+            HomePantsColor,
+            HomePants_Stripe_1,
+            HomePants_Stripe_2,
+            HomePants_Stripe_3,
+            SocksColor, CleatsColor)
+
+            newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
+
+            mc = New SolidColorBrush(newtAwayJerseyColor.SelectedColor).Color
+            AwayJerseyColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwaySleeveColor.SelectedColor).Color
+            AwayJerseySleeveColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayShoulderStripeColor.SelectedColor).Color
+            AwayJerseyShoulderLoopColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseyNumberColor.SelectedColor).Color
+            AwayJerseyNumberColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayNumberOutlineColor.SelectedColor).Color
+            AwayJerseyNumberOutlineColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseySleeve1Color.SelectedColor).Color
+            AwayJerseyStripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseySleeve2Color.SelectedColor).Color
+            AwayJerseyStripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseySleeve3Color.SelectedColor).Color
+            AwayJerseyStripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseySleeve4Color.SelectedColor).Color
+            AwayJerseyStripe_4 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseySleeve5Color.SelectedColor).Color
+            AwayJerseyStripe_5 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayJerseySleeve6Color.SelectedColor).Color
+            AwayJerseyStripe_6 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayPantsColor.SelectedColor).Color
+            AwayPantsColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayPantsStripe1Color.SelectedColor).Color
+            AwayPants_Stripe_1 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayPantsStripe2Color.SelectedColor).Color
+            AwayPants_Stripe_2 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            mc = New SolidColorBrush(newtAwayPantsStripe3Color.SelectedColor).Color
+            AwayPants_Stripe_3 = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
+
+            Uniform_Img.Flip_All_Colors(True, helmetColor, helmetFacemaskColor, helmetLogoColor, AwayJerseyColor,
+            AwayJerseyNumberColor, AwayJerseyNumberOutlineColor,
+            AwayJerseySleeveColor, AwayJerseyShoulderLoopColor,
+            AwayJerseyStripe_1, AwayJerseyStripe_2,
+            AwayJerseyStripe_3, AwayJerseyStripe_4,
+            AwayJerseyStripe_5, AwayJerseyStripe_6,
+            AwayPantsColor,
+            AwayPants_Stripe_1,
+            AwayPants_Stripe_2,
+            AwayPants_Stripe_3,
+            SocksColor, CleatsColor)
+
+            newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
         End If
 
-        If Not CommonUtils.isBlank(League_Teams(team_ind).Helmet_img_path) Then
-            newtHelmetImgPath.Text = League_Teams(team_ind).Helmet_img_path
-            Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & League_Teams(team_ind).Helmet_img_path))
-        End If
-
-        If Not IsNothing(League_Teams(team_ind).Uniform) Then
-            Dim hel_color As String = League_Teams(team_ind).Uniform.Helmet.Helmet_Color
-            '            Helmet_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(hel_color), Color))
-            newtHelmentColor.SelectedColor = CType(ColorConverter.ConvertFromString(hel_color), Color)
-
-            Dim home_jersey_c As String = League_Teams(team_ind).Uniform.Home_Jersey.Jersey_Color
-            '            home_jersey_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(home_jersey_c), Color))
-            newtHomeJerseyColor.SelectedColor = CType(ColorConverter.ConvertFromString(home_jersey_c), Color)
-
-            Dim away_jersey_c As String = League_Teams(team_ind).Uniform.Away_Jersey.Jersey_Color
-            '            away_jersey_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(away_jersey_c), Color))
-            newtAwayJerseyColor.SelectedColor = CType(ColorConverter.ConvertFromString(away_jersey_c), Color)
-
-            Dim home_pants_c As String = League_Teams(team_ind).Uniform.Home_Pants.Pants_Color
-            '            home_pants_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(home_pants_c), Color))
-            newtHomePantsColor.SelectedColor = CType(ColorConverter.ConvertFromString(home_pants_c), Color)
-
-            Dim away_pants_c As String = League_Teams(team_ind).Uniform.Away_Pants.Pants_Color
-            '           away_pants_color.Background = New SolidColorBrush(CType(ColorConverter.ConvertFromString(away_pants_c), Color))
-            newtAwayPantsColor.SelectedColor = CType(ColorConverter.ConvertFromString(away_pants_c), Color)
+        If Not IsNothing(League_Teams(team_ind).Players) AndAlso League_Teams(team_ind).Players.Count > 0 Then
+            newtPlayersGrid.ItemsSource = League_Teams(team_ind).Players
         End If
 
     End Sub
@@ -293,8 +476,6 @@ Public Class NewTeam
         setHomeUniform()
 
     End Sub
-
-
     Private Sub newtAwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
         If Event_from_Code Then Return
@@ -625,23 +806,6 @@ Public Class NewTeam
         Dim HomePants_Stripe_1 As System.Drawing.Color = Nothing
         Dim HomePants_Stripe_2 As System.Drawing.Color = Nothing
         Dim HomePants_Stripe_3 As System.Drawing.Color = Nothing
-
-        Dim AwayJerseyColor As System.Drawing.Color = Nothing
-        Dim AwayJerseySleeveColor As System.Drawing.Color = Nothing
-        Dim AwayJerseyShoulderLoopColor As System.Drawing.Color = Nothing
-        Dim AwayJerseyNumberColor As System.Drawing.Color = Nothing
-        Dim AwayJerseyNumberOutlineColor As System.Drawing.Color = Nothing
-        Dim AwayJerseyStripe_1 As System.Drawing.Color = Nothing
-        Dim AwayJerseyStripe_2 As System.Drawing.Color = Nothing
-        Dim AwayJerseyStripe_3 As System.Drawing.Color = Nothing
-        Dim AwayJerseyStripe_4 As System.Drawing.Color = Nothing
-        Dim AwayJerseyStripe_5 As System.Drawing.Color = Nothing
-        Dim AwayJerseyStripe_6 As System.Drawing.Color = Nothing
-        Dim AwayPantsColor As System.Drawing.Color = Nothing
-        Dim AwayPants_Stripe_1 As System.Drawing.Color = Nothing
-        Dim AwayPants_Stripe_2 As System.Drawing.Color = Nothing
-        Dim AwayPants_Stripe_3 As System.Drawing.Color = Nothing
-
 
         If Not IsNothing(newtHelmentColor.SelectedColor) Then
             mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color

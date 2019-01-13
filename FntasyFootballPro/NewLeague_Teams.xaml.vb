@@ -4,8 +4,6 @@
     Property NewLeague_Settings As NewLeague_Settings
     Property New_League As Leaguemdl = Nothing
 
-
-
     Public Sub New(ByVal winMainMenu As MainWindow, ByVal NewLeague_Settings As NewLeague_Settings,
                    ByVal New_League As Leaguemdl)
 
@@ -79,13 +77,17 @@
 
         Try
             validate()
+            Mouse.OverrideCursor = Cursors.Wait
             Dim ls As League_Services = New League_Services()
             ls.CreateNewLeague(New_League)
+            Mouse.OverrideCursor = Nothing
             NewLeague_Settings.Close()
             Me.Close()
             winMainMenu.Show()
         Catch ex As Exception
+            Mouse.OverrideCursor = Nothing
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+
         End Try
 
     End Sub

@@ -47,10 +47,13 @@ Public Class Administration
         Dim r As Long
 
         Try
+            Mouse.OverrideCursor = Cursors.Wait
             r = adm_service.AddPlayerNames(admFirstName.Text, admLastName.Text, admtxtSelectFile.Text)
+            Mouse.OverrideCursor = Nothing
             MessageBox.Show(Format(r, "###,###,###,##0") + " Player Names Added.", "", MessageBoxButton.OK, MessageBoxImage.Information)
             clearpage()
         Catch ex As Exception
+            Mouse.OverrideCursor = Nothing
             MessageBox.Show("An error occured while trying to add the new names " + CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub
