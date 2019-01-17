@@ -648,7 +648,7 @@ Public Class NewTeam
 
     Private Sub newt1Add_Click(sender As Object, e As RoutedEventArgs) Handles newt1Add.Click
         Try
-            Dim new_t As TeamMdl = New_League.Teams(team_ind)
+            Dim new_t As TeamMdl = New_League.Teams(team_ind - 1)
             Dim stadium As StadiumMdl = Nothing
             Dim Footwear As FootwearMdl = Nothing
             Dim Helmet As HelmetMdl = Nothing
