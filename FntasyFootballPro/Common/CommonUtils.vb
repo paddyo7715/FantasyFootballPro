@@ -1,4 +1,6 @@
-﻿Public Class CommonUtils
+﻿Imports System.Drawing
+
+Public Class CommonUtils
 
     Private Shared random As New Random()
 
@@ -51,15 +53,17 @@
         Return r
     End Function
     Public Shared Function getColorfromHex(ByVal s As String) As System.Windows.Media.Color
-        Dim r As System.Windows.Media.Color = Nothing
-        Dim red As Integer = 0
-        Dim green As Integer = 0
-        Dim blue As Integer = 0
+        Dim r As System.Windows.Media.Color = New System.Windows.Media.Color()
+        Dim red As Byte = 0
+        Dim green As Byte = 0
+        Dim blue As Byte = 0
 
-        red = Convert.ToInt32(s.Substring(1, 2), 16)
-        green = Convert.ToInt32(s.Substring(3, 2), 16)
-        blue = Convert.ToInt32(s.Substring(5, 2), 16)
+        red = CType(Convert.ToInt32(s.Substring(1, 2), 16), Byte)
+        green = CType(Convert.ToInt32(s.Substring(3, 2), 16), Byte)
+        blue = CType(Convert.ToInt32(s.Substring(5, 2), 16), Byte)
 
+        r = System.Windows.Media.Color.FromRgb(red, green, blue)
+        Return r
 
     End Function
 

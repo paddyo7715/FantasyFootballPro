@@ -25,9 +25,6 @@
         Me.New_League.Teams = League_Teams
 
     End Sub
-
-
-
     Public Sub setFields()
 
         newldiv1gh.Content = NewLeague_Settings.newldiv1.Text
@@ -48,7 +45,7 @@
 
                 Dim teamLbl As Label = Me.FindName(teamLabel)
                 Dim teamImg As Image = Me.FindName(teamImage)
-                teamLbl.Content = New_League.Teams(i - 1).Nickname
+                teamLbl.Content = New_League.Teams(i - 1).City
                 Dim img_path As String = Nothing
                 If Not IsNothing(New_League.Teams(i - 1).Uniform) Then img_path = New_League.Teams(i - 1).Helmet_img_path
                 If Not IsNothing(img_path) Then
@@ -63,7 +60,7 @@
         Dim l As Label = e.Source
         Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
         '        MessageBox.Show(l.Name & " " & n.ToString)
-        Dim NL_Team As NewTeam = New NewTeam(winMainMenu, Me, n, New_League)
+        Dim NL_Team As NewTeam = New NewTeam(winMainMenu, Me, n - 1, New_League)
         NL_Team.setfields()
         NL_Team.Show()
     End Sub
@@ -95,7 +92,7 @@
     Private Sub validate()
 
         For Each t In New_League.Teams
-            If t.Nickname = "New Team" Then
+            If t.City = "New Team" Then
                 Throw New Exception("Not all teams have been created!")
             End If
         Next

@@ -58,12 +58,12 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Margin="2,2,2,2" FontSize="18" FontWeight="Bold"  Foreground="White">
+                        <GroupBox Margin="2,2,2,2" FontSize="18" Width="500" FontWeight="Bold"  Foreground="White">
 
                             <GroupBox.Header>
                                 Stadium Image:
                             </GroupBox.Header>
-                            <Image Name="Stadium_image" Width="250" Height="250"></Image>
+                            <Image Name="Stadium_image" Width="350" Height="300"></Image>
                         </GroupBox>
 
                     </StackPanel>

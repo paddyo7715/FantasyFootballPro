@@ -11,9 +11,9 @@
     Property Helmet_img_path As String = ""
 
     Property Players As List(Of PlayerMdl)
-    Public Sub New(ByVal id As Integer, ByVal Nickname As String)
+    Public Sub New(ByVal id As Integer, ByVal City As String)
         Me.id = id
-        Me.Nickname = Nickname
+        Me.City = City
     End Sub
 
     Public Sub setFields(ByVal City_Abr As String, ByVal City As String, ByVal Nickname As String,

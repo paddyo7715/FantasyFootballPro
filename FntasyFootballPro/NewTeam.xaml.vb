@@ -636,10 +636,12 @@ Public Class NewTeam
         Dim ts As New Team_Services()
 
         Try
+            Mouse.OverrideCursor = Cursors.Wait
             Roster = ts.Roll_Players(New_League.Teams, "")
             newtPlayersGrid.ItemsSource = Roster
-
+            Mouse.OverrideCursor = Nothing
         Catch ex As Exception
+            Mouse.OverrideCursor = Nothing
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
 
