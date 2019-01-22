@@ -107,10 +107,17 @@ Public Class NewTeam
             newtStadium.Text = League_Teams(team_ind).Stadium.Stadium_Name
             newtStadiumLocation.Text = League_Teams(team_ind).Stadium.Stadium_Location
             newtStadiumPath.Text = League_Teams(team_ind).Stadium.Stadium_Img_Path
+            Stadium_image.Source = New BitmapImage(New Uri(League_Teams(team_ind).Stadium.Stadium_Img_Path))
             newtStadiumCapacity.Text = League_Teams(team_ind).Stadium.Capacity
             newl1FieldType.SelectedIndex = League_Teams(team_ind).Stadium.Field_Type - 1
             newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Stadium.Field_Color)
         End If
+
+        If Not IsNothing(League_Teams(team_ind).Helmet_img_path) AndAlso League_Teams(team_ind).Helmet_img_path.Length > 0 Then
+            newtHelmetImgPath.Text = League_Teams(team_ind).Helmet_img_path
+            Helmet_image.Source = New BitmapImage(New Uri(League_Teams(team_ind).Helmet_img_path))
+        End If
+
 
         If Not IsNothing(League_Teams(team_ind).Uniform) Then
             newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Color)
@@ -650,7 +657,7 @@ Public Class NewTeam
 
     Private Sub newt1Add_Click(sender As Object, e As RoutedEventArgs) Handles newt1Add.Click
         Try
-            Dim new_t As TeamMdl = New_League.Teams(team_ind - 1)
+            Dim new_t As TeamMdl = New_League.Teams(team_ind)
             Dim stadium As StadiumMdl = Nothing
             Dim Footwear As FootwearMdl = Nothing
             Dim Helmet As HelmetMdl = Nothing
