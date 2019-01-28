@@ -45,6 +45,57 @@ Public Class CommonUtils
         Return ((t_num - 1) Mod num_divs) + 1
 
     End Function
+    Public Shared Function getLeagueStructure(ByVal s As String) As Integer()
+
+        Dim i As Integer = 0
+        Dim Teams As Integer
+        Dim Weeks_in_Season As Integer
+        Dim Games_in_Season As Integer
+        Dim Num_Divisions As Integer
+        Dim Conferences As Integer
+        Dim PlayoffTeams As Integer
+
+        Dim ls As String() = s.Split(" ")
+        For Each l In ls
+            Select Case l
+                Case "Teams"
+                    Teams = ls(i + 1)
+                Case "Games"
+                    Games_in_Season = ls(i + 1)
+                Case "Weeks"
+                    Weeks_in_Season = ls(i + 1)
+                Case "Conferences"
+                    Conferences = ls(i + 1)
+                Case "Divisions"
+                    Num_Divisions = ls(i + 1)
+                Case "PlayoffTeams"
+                    PlayoffTeams = ls(i + 1)
+            End Select
+
+            i += 1
+        Next
+
+        Return New Integer() {Weeks_in_Season, Games_in_Season, Num_Divisions, Conferences, PlayoffTeams}
+
+
+    End Function
+
+    Public Shared Function getConferenceNum_from_Team_Number(ByVal num_confs As Integer, ByVal t_num As Integer) As Integer
+
+        Dim r As Integer
+
+        If num_confs = 0 Then
+            r = 0
+        ElseIf num_confs > t_num Then
+            r = 2
+        Else
+            r = 1
+        End If
+
+        Return r
+
+    End Function
+
     Public Shared Function getHexfromColor(ByVal c As System.Windows.Media.Color) As String
         Dim r As String = Nothing
 

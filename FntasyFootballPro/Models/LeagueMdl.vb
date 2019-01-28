@@ -7,8 +7,9 @@
     Property Number_of_Games As Integer
     Property Championship_Game_Name As String = ""
     Property Trophy_filepath As String = ""
-    Property Num_Divisions As Integer
-    Property Num_Teams_Per_Division As Integer
+    Property Num_Teams As Integer
+    Property Num_Playoff_Teams As Integer
+
 
     Property Conferences As List(Of String) = New List(Of String)
     Property Divisions As List(Of String) = New List(Of String)
@@ -19,8 +20,8 @@
             ByVal Long_Name As String, ByVal Starting_Year As Integer,
             ByVal Number_of_weeks As Integer, ByVal Number_of_Games As Integer,
             ByVal Championship_Game_Name As String, ByVal Trophy_Filepath As String,
-            ByVal Num_Divisions As Integer,
-            ByVal Num_Teams_Per_Division As Integer, ByVal Division1 As String,
+            ByVal Num_Teams As Integer, ByVal Num_Playoff_Teams As Integer,
+            ByVal Division1 As String,
             ByVal Division2 As String,
             ByVal Division3 As String, ByVal Division4 As String,
             ByVal Division5 As String, ByVal Division6 As String,
@@ -37,8 +38,8 @@
         Me.Number_of_Games = Number_of_Games
         Me.Championship_Game_Name = Championship_Game_Name
         Me.Trophy_filepath = Trophy_Filepath
-        Me.Num_Divisions = Num_Divisions
-        Me.Num_Teams_Per_Division = Num_Teams_Per_Division
+        Me.Num_Teams = Num_Teams
+        Me.Num_Playoff_Teams = Num_Playoff_Teams
 
         Divisions.Add(Division1)
         Divisions.Add(Division2)
@@ -52,7 +53,7 @@
         Conferences.Add(Conference1)
         Conferences.Add(Conference2)
 
-        For i As Integer = 0 To Num_Divisions * Num_Teams_Per_Division - 1
+        For i As Integer = 0 To Divisions.Count * (Num_Teams \ Divisions.Count) - 1
             Teams.Add(New TeamMdl(i + 1, "New Team"))
         Next
     End Sub

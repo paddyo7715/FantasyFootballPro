@@ -39,7 +39,9 @@ Public Class NewLeague_Settings
         If CommonUtils.isBlank(newlnumweeks.Text) OrElse Not IsNumeric(newlnumweeks.Text) Then Throw New Exception("Invalid Value for Number of Weeks!")
         If CommonUtils.isBlank(newlnumgames.Text) OrElse Not IsNumeric(newlnumgames.Text) Then Throw New Exception("Invalid Value for Number of Games!")
         If CommonUtils.isBlank(newlnumdivisions.Text) OrElse Not IsNumeric(newlnumdivisions.Text) Then Throw New Exception("Invalid Value for Number of Divisions!")
-        If CommonUtils.isBlank(newlnumteamsperdivisions.Text) OrElse Not IsNumeric(newlnumteamsperdivisions.Text) Then Throw New Exception("Invalid Value for Number of Teams in Each Division!")
+        If CommonUtils.isBlank(newlnumteams.Text) OrElse Not IsNumeric(newlnumteams.Text) Then Throw New Exception("Invalid Value for Number of Teams!")
+
+        If CommonUtils.isBlank(newlnumplayoffteams.Text) OrElse Not IsNumeric(newlnumplayoffteams.Text) Then Throw New Exception("Invalid Value for Number of Playoff Teams")
 
         If CommonUtils.isBlank(newlConf1.Text) Then Throw New Exception("Conference 1 Name Must be Supplied!")
         If CommonUtils.isBlank(newlConf2.Text) Then Throw New Exception("Conference 2 Name Must be Supplied!")
@@ -60,6 +62,22 @@ Public Class NewLeague_Settings
         End If
 
     End Sub
+
+    Private Sub newl1Structure_SelectionChanged(sender As Object, e As RoutedEventArgs) Handles newl1Structure.SelectionChanged
+
+        Dim v As Integer() = CommonUtils.getLeagueStructure(newl1Structure.SelectedItem)
+        newlnumweeks.Text = v(0)
+        newlnumgames.Text = v(1)
+        newlnumdivisions.Text = v(2)
+        newlnumteams.Text = v(3)
+        newlnumconferences.Text = v(4)
+        newlnumplayoffteams.Text = v(5)
+
+        SetAttr the conferences And divisions
+
+    End Sub
+
+
     Private Sub newl1btnLogoPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnLogoPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
         If (OpenFileDialog.ShowDialog() = True) Then
@@ -86,8 +104,8 @@ Public Class NewLeague_Settings
             validate()
 
             Dim nl As Leaguemdl = New Leaguemdl(newl1LogoPath.Text, newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
-            CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, newl1TrophyPath.Text, CInt(newlnumdivisions.Text),
-            CInt(newlnumteamsperdivisions.Text), newldiv1.Text, newldiv2.Text, newldiv3.Text, newldiv4.Text, newldiv5.Text, newldiv6.Text, newldiv7.Text, newldiv8.Text, newlConf1.Text, newlConf2.Text)
+            CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, newl1TrophyPath.Text,
+            CInt(newlnumteams.Text), CInt(newlnumplayoffteams.Text), newldiv1.Text, newldiv2.Text, newldiv3.Text, newldiv4.Text, newldiv5.Text, newldiv6.Text, newldiv7.Text, newldiv8.Text, newlConf1.Text, newlConf2.Text)
 
             Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)
             NL_Teams.setFields()

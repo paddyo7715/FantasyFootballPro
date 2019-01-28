@@ -47,34 +47,43 @@
                             <TextBox Name="newl1TrophyPath" FontSize="18" Width="200" Height="30" Foreground="Black" Background="white"  />
                             <Button Name="newl1btnTrophyPath" FontSize="14" Width="90" Height="30">Image File</Button>
                         </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="350" FontSize="18" Foreground="White">Number of Weeks in Season:</Label>
-                                    <TextBox  Name="newlnumweeks" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="350" FontSize="18" Foreground="White">Number of Games in Season:</Label>
-                                    <TextBox  Name="newlnumgames" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="350" FontSize="18" Foreground="White">Number of Division:</Label>
-                                    <TextBox  Name="newlnumdivisions" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Width="350" FontSize="18" Foreground="White">Number of Teams per Division:</Label>
-                                    <TextBox  Name="newlnumteamsperdivisions" FontSize="18" Width="40" Height="30" Foreground="Black" Background="white" MaxLength="100" />
-                                </StackPanel>
+                    <Label Width="80" FontSize="14" Foreground="White">Structure:</Label>
+                    <ComboBox Name="newl1Structure" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white" IsEditable="False">
+                        <ComboBoxItem IsSelected="True">Teams 40 Games 18 Weeks 20 Conferences 2 Divisions 8 PlayoffTeams 12</ComboBoxItem>
+                        <ComboBoxItem>Teams 10 Games 12 Weeks 14 Conferences 2 Divisions 2 PlayoffTeams 4</ComboBoxItem>
+                    </ComboBox>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="350" FontSize="18" Foreground="White">Number of Teams:</Label>
+                                <TextBox  Name="newlnumteams" IsReadOnly="True" FontSize="18" Width="40" Height="30" Foreground="Black" Background="LightGray" MaxLength="100" />
                             </StackPanel>
-
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="350" FontSize="18" Foreground="White">Number of Weeks in Season:</Label>
+                                <TextBox  Name="newlnumweeks" IsReadOnly="True" FontSize="18" Width="40" Height="30" Foreground="Black" Background="LightGray" MaxLength="100" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="350" FontSize="18" Foreground="White">Number of Games in Season:</Label>
+                                <TextBox  Name="newlnumgames" IsReadOnly="True" FontSize="18" Width="40" Height="30" Foreground="Black" Background="LightGray" MaxLength="100" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="350" FontSize="18" Foreground="White">Number of Division:</Label>
+                                <TextBox  Name="newlnumdivisions" IsReadOnly="True" FontSize="18" Width="40" Height="30" Foreground="Black" Background="LightGray" MaxLength="100" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="350" FontSize="18" Foreground="White">Number of Conferences:</Label>
+                                <TextBox  Name="newlnumconferences" IsReadOnly="True" FontSize="18" Width="40" Height="30" Foreground="Black" Background="LightGray" MaxLength="100" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="350" FontSize="18" Foreground="White">Number of Playoff Teams:</Label>
+                                <TextBox  Name="newlnumplayoffteams" IsReadOnly="True" FontSize="18" Width="40" Height="30" Foreground="Black" Background="LightGray" MaxLength="100" />
+                            </StackPanel>
+                        </StackPanel>
                         <StackPanel Orientation="vertical" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Image Name="newl1TrophyImage" Height="150" Width="150"  />
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
-
-
 
             </GroupBox>
             <StackPanel Orientation="Horizontal">

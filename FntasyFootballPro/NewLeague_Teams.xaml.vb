@@ -18,7 +18,7 @@
 
         League_Teams = New List(Of TeamMdl)
         With NewLeague_Settings
-            For i As Integer = 0 To CInt(.newlnumdivisions.Text) * CInt(.newlnumteamsperdivisions.Text) - 1
+            For i As Integer = 0 To CInt(.newlnumteams.Text) - 1
                 League_Teams.Add(New TeamMdl(i + 1, "New Team"))
             Next
         End With
@@ -39,7 +39,7 @@
 
 
         With NewLeague_Settings
-            For i As Integer = 1 To CInt(.newlnumdivisions.Text) * CInt(.newlnumteamsperdivisions.Text)
+            For i As Integer = 1 To CInt(.newlnumteams.Text)
                 Dim teamLabel = "newllblTeam" & i.ToString
                 Dim teamImage = "newlimgTeam" & i.ToString
 

@@ -44,7 +44,7 @@ Public Class LeagueDAO
             tr = League_con.BeginTransaction
 
             strStage = "Inserting League Record"
-            sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Logo_filepath, Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name,Championship_Game_Image_Path , Num_Divisions, Num_Teams_Per_Division) VALUES(@Short_Name, @Long_Name, @Logo_filepath, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name,@Championship_Game_Image_Path , @Num_Divisions, @Num_Teams_Per_Division)"
+            sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Logo_filepath, Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name,Championship_Game_Image_Path , Num_Teams, Playoff_Teams) VALUES(@Short_Name, @Long_Name, @Logo_filepath, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name,@Championship_Game_Image_Path , @Num_Teams, @Playoff_Teams)"
 
             cmdLeague = New SQLiteCommand(League_con)
             cmdLeague.CommandText = sSQL
@@ -56,8 +56,8 @@ Public Class LeagueDAO
             cmdLeague.Parameters.Add("@Number_of_Games", Data.DbType.Int16).Value = nl.Number_of_Games
             cmdLeague.Parameters.Add("@Champtionship_Game_Name", Data.DbType.String).Value = nl.Championship_Game_Name
             cmdLeague.Parameters.Add("@Championship_Game_Image_Path", Data.DbType.String).Value = Path.GetFileName(nl.Trophy_filepath)
-            cmdLeague.Parameters.Add("@Num_Divisions", Data.DbType.Int16).Value = nl.Num_Divisions
-            cmdLeague.Parameters.Add("@Num_Teams_Per_Division", Data.DbType.Int16).Value = nl.Num_Teams_Per_Division
+            cmdLeague.Parameters.Add("@Num_Teams", Data.DbType.Int16).Value = nl.Num_Teams
+            cmdLeague.Parameters.Add("@Playoff_Teams", Data.DbType.Int16).Value = nl.Num_Playoff_Teams
             cmdLeague.ExecuteNonQuery()
 
             strStage = "Inserting Conferences"
@@ -70,28 +70,26 @@ Public Class LeagueDAO
                 cmdConf.Parameters.Add("@ID", Data.DbType.Int16).Value = c_id + 1
                 cmdConf.Parameters.Add("@Conf_Name", Data.DbType.String).Value = c
                 cmdConf.ExecuteNonQuery()
+            Next
+            strStage = "Inserting Divisions"
+            cmdDiv = New SQLiteCommand(League_con)
 
-                strStage = "Inserting Divisions"
-                cmdDiv = New SQLiteCommand(League_con)
-                Dim delta1 As Integer = ((nl.Divisions.Count / nl.Conferences.Count) * (c_id - 1))
-                Dim delta2 As Integer = delta1 + (nl.Divisions.Count / nl.Conferences.Count)
-
-                For i As Integer = delta1 To delta2
-                    Dim d As String = nl.Divisions(i)
-                    sSQL = "INSERT INTO DIVISION (ID, Name) VALUES(@ID, @Name)"
-                    cmdDiv.CommandText = sSQL
-                    cmdDiv.Parameters.Add("@ID", Data.DbType.Int16).Value = i + 1
-                    cmdDiv.Parameters.Add("@Name", Data.DbType.String).Value = d
-                    cmdDiv.ExecuteNonQuery()
-                Next
+            For i As Integer = 1 To nl.Num_Teams \ nl.Divisions.Count
+                Dim d As String = nl.Divisions(i)
+                sSQL = "INSERT INTO DIVISION (ID, Name) VALUES(@ID, @Name)"
+                cmdDiv.CommandText = sSQL
+                cmdDiv.Parameters.Add("@ID", Data.DbType.Int16).Value = i
+                cmdDiv.Parameters.Add("@Name", Data.DbType.String).Value = d
+                cmdDiv.ExecuteNonQuery()
             Next
 
             strStage = "Inserting Team"
             Dim t_id As Integer = 0
             For Each t In nl.Teams
                 t_id += 1
-                Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams_Per_Division, t_id)
-                sSQL = "INSERT INTO TEAMS (ID, Division_ID, City_Abr, City, Nickname, Helmet_img_path,
+                Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams \ nl.Divisions.Count, t_id)
+                Dim c_num As Integer = CommonUtils.getConferenceNum_from_Team_Number(nl.Conferences.Count, t_id)
+                sSQL = "INSERT INTO TEAMS (ID, Division_ID, Conf_ID, City_Abr, City, Nickname, Helmet_img_path,
                         Helmet_Color, Helmet_Logo_Color, Helmet_Facemask_Color, Socks_Color, Cleats_Color,
                         Home_jersey_Color,Home_Sleeve_Color, Home_Jersey_Shoulder_Stripe, Home_Jersey_Number_Color, Home_Jersey_Number_Outline_Color,
                         Home_Jersey_Sleeve_Stripe_Color_1, Home_Jersey_Sleeve_Stripe_Color_2,
@@ -104,7 +102,7 @@ Public Class LeagueDAO
                         Away_Jersey_Sleeve_Stripe_Color_5 Away_Jersey_Sleeve_Stripe_Color_6.   
                         Away_Pants_Color, Away_Pants_Stripe_Color_1,  Away_Pants_Stripe_Color_2, Away_Pants_Stripe_Color_3,
                         Stadium_Name,Stadium_Location,Stadium_Field_Type,Stadium_Field_Color,Stadium_Capacity,Stadium_Img_Path) 
-                        VALUES(@ID, @Division_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
+                        VALUES(@ID, @Division_ID, @Conf_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
                         @Helmet_Color, @Helmet_Logo_Color,@Helmet_Facemask_Color,   
                         @Home_jersey_Color,@Home_Sleeve_Color, @Home_Jersey_Shoulder_Stripe, @Home_Jersey_Number_Color, @Home_Jersey_Number_Outline_Color,
                         @Home_Jersey_Sleeve_Stripe_Color_1, @Home_Jersey_Sleeve_Stripe_Color_2,
@@ -119,7 +117,8 @@ Public Class LeagueDAO
                         @Stadium_Name,@Stadium_Location,@Stadium_Field_Type,@Stadium_Field_Color,@Stadium_Capacity,@Stadium_Img_path)"
                 cmdTeam.CommandText = sSQL
                 cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t.id
-                cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = CommonUtils.getDivisionNum_from_Team_Number(nl.Teams.Count - nl.Num_Teams_Per_Division, t_id)
+                cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = d_num
+                cmdTeam.Parameters.Add("@Conf_ID", Data.DbType.Int16).Value = c_num
                 cmdTeam.Parameters.Add("@City_Abr", Data.DbType.String).Value = t.City_Abr
                 cmdTeam.Parameters.Add("@City", Data.DbType.String).Value = t.City
                 cmdTeam.Parameters.Add("@Nickname", Data.DbType.String).Value = t.Nickname
@@ -202,11 +201,11 @@ Public Class LeagueDAO
 
             strStage = "Creating schedule"
             '            Dim ls As New Schedule("APFL", 40, 5, 2, 18, 2)
-            Dim ls As New Schedule(nl.Short_Name, nl.Teams.Count, nl.Num_Teams_Per_Division, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks - nl.Number_of_Games)
+            Dim ls As New Schedule(nl.Short_Name, nl.Teams.Count, nl.Num_Teams \ nl.Divisions.Count, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks - nl.Number_of_Games)
 
             Dim s As List(Of String) = Nothing
             s = ls.Generate_Regular_Schedule()
-            Dim val_sched As New Validate_Sched(nl.Short_Name, nl.Teams.Count, nl.Num_Teams_Per_Division, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks - nl.Number_of_Games)
+            Dim val_sched As New Validate_Sched(nl.Short_Name, nl.Teams.Count, nl.Num_Teams \ nl.Divisions.Count, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks - nl.Number_of_Games)
 
             strStage = "Inserting schedule into database"
             Dim w As String = Nothing
