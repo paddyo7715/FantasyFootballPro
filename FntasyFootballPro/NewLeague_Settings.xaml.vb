@@ -66,14 +66,50 @@ Public Class NewLeague_Settings
     Private Sub newl1Structure_SelectionChanged(sender As Object, e As RoutedEventArgs) Handles newl1Structure.SelectionChanged
 
         Dim v As Integer() = CommonUtils.getLeagueStructure(newl1Structure.SelectedItem)
-        newlnumweeks.Text = v(0)
-        newlnumgames.Text = v(1)
-        newlnumdivisions.Text = v(2)
-        newlnumteams.Text = v(3)
-        newlnumconferences.Text = v(4)
-        newlnumplayoffteams.Text = v(5)
+        Dim num_weeks As Integer
+        Dim num_games As Integer
+        Dim num_divs As Integer
+        Dim num_teams As Integer
+        Dim num_confs As Integer
+        Dim num_playoff_teams As Integer
+        Dim last_div_first_group As Integer
 
-        SetAttr the conferences And divisions
+        num_weeks = v(0)
+        num_games = v(1)
+        num_divs = v(2)
+        num_teams = v(3)
+        num_confs = v(4)
+        num_playoff_teams = v(5)
+
+        newlnumweeks.Text = num_weeks.ToString
+        newlnumgames.Text = num_games.ToString
+        newlnumdivisions.Text = num_divs.ToString
+        newlnumteams.Text = num_confs.ToString
+        newlnumconferences.Text = num_confs.ToString
+        newlnumplayoffteams.Text = num_playoff_teams.ToString
+
+        If num_confs = 0 Then
+            conference_panel_1.Visibility = False
+            conference_panel_2.Visibility = False
+        End If
+
+        last_div_first_group = num_confs \ 2
+
+        gb_conf1.Header = "Divisions 1 to " + last_div_first_group.ToString + ":"
+        gb_conf2.Header = "Divisions " + (last_div_first_group + 1).ToString + " to " + last_div_first_group.ToString + ":"
+
+        'set the labels font text colors ext.
+
+        For i As Integer = 1 To last_div_first_group
+            Dim sp As StackPanel = New StackPanel()
+            sp.Orientation = "Horizontal"
+            Dim div_label As Label = New Label()
+            div_label.
+
+        Next
+
+
+
 
     End Sub
 

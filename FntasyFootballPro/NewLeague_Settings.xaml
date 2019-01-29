@@ -88,44 +88,28 @@
             </GroupBox>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="conference_panel_1" Orientation="Horizontal">
                         <Label Width="150" FontWeight="Bold" FontSize="18" Foreground="White">Conference 1:</Label>
                         <TextBox Name="newlConf1" FontSize="18" Width="150" Height="30" FontWeight="Bold" Foreground="Black" Background="white" MaxLength="60" />
                     </StackPanel>
 
-                    <GroupBox Margin="10,10,10,10" FontSize="18" FontWeight="Bold"
+                    <GroupBox Name="gb_conf1" Margin="10,10,10,10" FontSize="18" FontWeight="Bold"
                   Foreground="White">
                         <GroupBox.Header>
                             Divisions 1 to 4:
                         </GroupBox.Header>
 
                         <StackPanel Width="350" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 1:</Label>
-                                <TextBox Name="newldiv1" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 2:</Label>
-                                <TextBox Name="newldiv2" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 3:</Label>
-                                <TextBox Name="newldiv3" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 4:</Label>
-                                <TextBox Name="newldiv4" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="conference_panel_2" Orientation="Horizontal">
                         <Label Width="150" FontSize="18" FontWeight="Bold" Foreground="White">Conference 2</Label>
                         <TextBox Name="newlConf2" FontSize="18" Width="150" Height="30" FontWeight="Bold" Foreground="Black" Background="white" MaxLength="60" />
                     </StackPanel>
-                    <GroupBox Margin="10,10,10,10" FontSize="18" FontWeight="Bold"
+                    <GroupBox Name="gb_conf2" Margin="10,10,10,10" FontSize="18" FontWeight="Bold"
                   Foreground="White">
 
                         <GroupBox.Header>
@@ -133,22 +117,6 @@
                         </GroupBox.Header>
 
                         <StackPanel Width="350" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 5:</Label>
-                                <TextBox Name="newldiv5" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 6:</Label>
-                                <TextBox Name="newldiv6" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 7:</Label>
-                                <TextBox Name="newldiv7" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="150" FontSize="18" Foreground="White">Division 8:</Label>
-                                <TextBox Name="newldiv8" FontSize="18" Width="150" Height="30" Foreground="Black" Background="white" MaxLength="60" />
-                            </StackPanel>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
