@@ -43,19 +43,27 @@ Public Class NewLeague_Settings
 
         If CommonUtils.isBlank(newlnumplayoffteams.Text) OrElse Not IsNumeric(newlnumplayoffteams.Text) Then Throw New Exception("Invalid Value for Number of Playoff Teams")
 
-        If CommonUtils.isBlank(newlConf1.Text) Then Throw New Exception("Conference 1 Name Must be Supplied!")
-        If CommonUtils.isBlank(newlConf2.Text) Then Throw New Exception("Conference 2 Name Must be Supplied!")
+        If newl1Structure.SelectedIndex <> -1 Then
+            Throw New Exception("You must select a league structure!")
+        End If
 
-        If CommonUtils.isBlank(newldiv1.Text) Then Throw New Exception("Division 1 Name Must be Supplied!")
-        If CommonUtils.isBlank(newldiv2.Text) Then Throw New Exception("Division 2 Name Must be Supplied!")
-        If CommonUtils.isBlank(newldiv3.Text) Then Throw New Exception("Division 3 Name Must be Supplied!")
-        If CommonUtils.isBlank(newldiv4.Text) Then Throw New Exception("Division 4 Name Must be Supplied!")
+        For i As Integer = 1 To CInt(newlnumconferences.Text)
+            Dim conftxtname = "newlConf" & i.ToString
+            Dim conftxtbox As TextBox = Me.FindName(conftxtname)
 
-        If CommonUtils.isBlank(newldiv5.Text) Then Throw New Exception("Division 5 Name Must be Supplied!")
-        If CommonUtils.isBlank(newldiv6.Text) Then Throw New Exception("Division 6 Name Must be Supplied!")
-        If CommonUtils.isBlank(newldiv7.Text) Then Throw New Exception("Division 7 Name Must be Supplied!")
-        If CommonUtils.isBlank(newldiv8.Text) Then Throw New Exception("Division 8 Name Must be Supplied!")
+            If IsNothing(conftxtname) OrElse conftxtbox.Text = "" Then
+                Throw New Exception("Conference name " & i.ToString & " must be supplied!")
+            End If
+        Next
 
+        For i As Integer = 1 To CInt(newlnumdivisions.Text)
+            Dim divtxtname = "newldiv" & i.ToString
+            Dim divtxtbox As TextBox = Me.FindName(divtxtname)
+
+            If IsNothing(divtxtbox) OrElse divtxtbox.Text.Trim.Length = 0 Then
+                Throw New Exception("A name for division " & i.ToString & " must be supplied!")
+            End If
+        Next
 
         If Directory.Exists(DIRPath) Then
             Throw New Exception("League " & newl1shortname.Text & " already exists!")
@@ -73,6 +81,7 @@ Public Class NewLeague_Settings
         Dim num_confs As Integer
         Dim num_playoff_teams As Integer
         Dim last_div_first_group As Integer
+        Dim j As Integer
 
         num_weeks = v(0)
         num_games = v(1)
@@ -88,28 +97,164 @@ Public Class NewLeague_Settings
         newlnumconferences.Text = num_confs.ToString
         newlnumplayoffteams.Text = num_playoff_teams.ToString
 
-        If num_confs = 0 Then
-            conference_panel_1.Visibility = False
-            conference_panel_2.Visibility = False
+        Dim v_sp As StackPanel = New StackPanel()
+        v_sp.Orientation = "Vertical"
+
+        If num_confs = 2 Then
+            Dim conf_panel_1_sq As StackPanel = New StackPanel()
+            conf_panel_1_sq.Name = "conference_panel_1"
+            conf_panel_1_sq.Orientation = "Horizontal"
+
+            Dim conf_1_label As Label = New Label()
+            conf_1_label.Content = "Conference 1:"
+            conf_1_label.Width = 150
+            conf_1_label.FontSize = 18
+            conf_1_label.Foreground = Brushes.White
+
+            Dim txtConf1 As New TextBox()
+            txtConf1.Name = "newlConf1"
+            txtConf1.Width = 150
+            txtConf1.FontSize = 18
+            txtConf1.Height = 30
+            txtConf1.Foreground = Brushes.Black
+            txtConf1.Background = Brushes.White
+            txtConf1.MaxLength = 60
+
+            conf_panel_1_sq.Children.Add(conf_1_label)
+            conf_panel_1_sq.Children.Add(txtConf1)
+
+            v_sp.Children.Add(conf_panel_1_sq)
+
+            Dim gb_conf1 As GroupBox = New GroupBox()
+            gb_conf1.Name = "gb_conf1"
+            gb_conf1.Margin = New Thickness(10, 10, 10, 10)
+            gb_conf1.FontSize = 18
+            gb_conf1.Header = "Conference 1:"
+
+            v_sp.Children.Add(gb_conf1)
+
+            Dim conf_panel_2_sq As StackPanel = New StackPanel()
+            conf_panel_2_sq.Name = "conference_panel_2"
+            conf_panel_2_sq.Orientation = "Horizontal"
+
+            Dim conf_2_label As Label = New Label()
+            conf_2_label.Content = "Conference 2:"
+            conf_2_label.Width = 150
+            conf_2_label.FontSize = 18
+            conf_2_label.Foreground = Brushes.White
+
+            Dim txtConf2 As New TextBox()
+            txtConf2.Name = "newlConf2"
+            txtConf2.Width = 150
+            txtConf2.FontSize = 18
+            txtConf2.Height = 30
+            txtConf2.Foreground = Brushes.Black
+            txtConf2.Background = Brushes.White
+            txtConf2.MaxLength = 60
+
+            conf_panel_2_sq.Children.Add(conf_2_label)
+            conf_panel_2_sq.Children.Add(txtConf2)
+
+            v_sp.Children.Add(conf_panel_2_sq)
+
+            Dim gb_conf2 As GroupBox = New GroupBox()
+            gb_conf2.Name = "gb_conf2"
+            gb_conf2.Margin = New Thickness(10, 10, 10, 10)
+            gb_conf2.FontSize = 18
+            gb_conf2.Header = "Conference 2:"
+
+            v_sp.Children.Add(gb_conf2)
+
+            last_div_first_group = num_confs \ 2
+
+            'set the labels font text colors ext.
+            For i As Integer = 1 To last_div_first_group
+                j = i + last_div_first_group
+                Dim sp1 As StackPanel = New StackPanel()
+                sp1.Orientation = "Horizontal"
+                sp1.Name = "div1_staack"
+
+                Dim div_1_label As Label = New Label()
+                div_1_label.Content = "Division " & i.ToString
+                div_1_label.Width = 150
+                div_1_label.FontSize = 18
+                div_1_label.Foreground = Brushes.White
+
+                Dim txtDivision1 As New TextBox()
+                txtDivision1.Name = "newldiv" & i.ToString
+                txtDivision1.Width = 150
+                txtDivision1.FontSize = 18
+                txtDivision1.Height = 30
+                txtDivision1.Foreground = Brushes.Black
+                txtDivision1.Background = Brushes.LightGray
+                txtDivision1.IsReadOnly = True
+
+                sp1.Children.Add(div_1_label)
+                sp1.Children.Add(txtDivision1)
+
+                gb_conf1.Content = sp1
+
+                Dim sp2 As StackPanel = New StackPanel()
+                sp2.Orientation = "Horizontal"
+                sp1.Name = "div2_staack"
+
+                Dim div_2_label As Label = New Label()
+                div_2_label.Content = "Division " & j.ToString
+                div_2_label.Width = 150
+                div_2_label.FontSize = 18
+                div_2_label.Foreground = Brushes.White
+
+                Dim txtDivision2 As New TextBox()
+                txtDivision2.Name = "newldiv" & j.ToString
+                txtDivision2.Width = 150
+                txtDivision2.FontSize = 18
+                txtDivision2.Height = 30
+                txtDivision2.Foreground = Brushes.Black
+                txtDivision2.Background = Brushes.LightGray
+                txtDivision2.IsReadOnly = True
+
+                sp2.Children.Add(div_2_label)
+                sp2.Children.Add(txtDivision2)
+
+                gb_conf2.Content = sp2
+            Next
+        Else 'No conferences only divisions
+            Dim gb_conf1 As GroupBox = New GroupBox()
+            gb_conf1.Name = "gb_conf1"
+            gb_conf1.Margin = New Thickness(10, 10, 10, 10)
+            gb_conf1.FontSize = 18
+            gb_conf1.Header = "Divisions:"
+
+            v_sp.Children.Add(gb_conf1)
+
+            'set the labels font text colors ext.
+            For i As Integer = 1 To num_divs
+                Dim sp1 As StackPanel = New StackPanel()
+                sp1.Orientation = "Horizontal"
+                sp1.Name = "div1_staack"
+
+                Dim div_1_label As Label = New Label()
+                div_1_label.Content = "Division " & i.ToString
+                div_1_label.Width = 150
+                div_1_label.FontSize = 18
+                div_1_label.Foreground = Brushes.White
+
+                Dim txtDivision1 As New TextBox()
+                txtDivision1.Name = "newldiv" & i.ToString
+                txtDivision1.Width = 150
+                txtDivision1.FontSize = 18
+                txtDivision1.Height = 30
+                txtDivision1.Foreground = Brushes.Black
+                txtDivision1.Background = Brushes.LightGray
+                txtDivision1.IsReadOnly = True
+
+                sp1.Children.Add(div_1_label)
+                sp1.Children.Add(txtDivision1)
+
+                gb_conf1.Content = sp1
+            Next
+
         End If
-
-        last_div_first_group = num_confs \ 2
-
-        gb_conf1.Header = "Divisions 1 to " + last_div_first_group.ToString + ":"
-        gb_conf2.Header = "Divisions " + (last_div_first_group + 1).ToString + " to " + last_div_first_group.ToString + ":"
-
-        'set the labels font text colors ext.
-
-        For i As Integer = 1 To last_div_first_group
-            Dim sp As StackPanel = New StackPanel()
-            sp.Orientation = "Horizontal"
-            Dim div_label As Label = New Label()
-            div_label.
-
-        Next
-
-
-
 
     End Sub
 
@@ -135,13 +280,24 @@ Public Class NewLeague_Settings
         winMainMenu.Show()
     End Sub
     Private Sub newl1Next_Click(sender As Object, e As RoutedEventArgs) Handles newl1Next.Click
+        Dim Conferences_list As List(Of String) = New List(Of String)
+        Dim Divisions_list As List(Of String) = New List(Of String)
 
         Try
             validate()
 
+            If CInt(newlnumconferences.Text) = 2 Then
+                Conferences_list.Add(Me.FindName("newlConf1"))
+                Conferences_list.Add(Me.FindName("newlConf2"))
+            End If
+
+            For i As Integer = 1 To CInt(newlnumdivisions.Text)
+                Divisions_list.Add(Me.FindName("newldiv" & i.ToString))
+            Next
+
             Dim nl As Leaguemdl = New Leaguemdl(newl1LogoPath.Text, newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
             CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, newl1TrophyPath.Text,
-            CInt(newlnumteams.Text), CInt(newlnumplayoffteams.Text), newldiv1.Text, newldiv2.Text, newldiv3.Text, newldiv4.Text, newldiv5.Text, newldiv6.Text, newldiv7.Text, newldiv8.Text, newlConf1.Text, newlConf2.Text)
+            CInt(newlnumteams.Text), CInt(newlnumplayoffteams.Text), Conferences_list, Divisions_list)
 
             Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)
             NL_Teams.setFields()

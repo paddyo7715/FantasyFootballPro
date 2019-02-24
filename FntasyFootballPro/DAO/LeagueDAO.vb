@@ -89,7 +89,7 @@ Public Class LeagueDAO
                 t_id += 1
                 Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams \ nl.Divisions.Count, t_id)
                 Dim c_num As Integer = CommonUtils.getConferenceNum_from_Team_Number(nl.Conferences.Count, t_id)
-                sSQL = "INSERT INTO TEAMS (ID, Division_ID, Conf_ID, City_Abr, City, Nickname, Helmet_img_path,
+                sSQL = "INSERT INTO TEAMS (ID, Owner, Division_ID, Conf_ID, City_Abr, City, Nickname, Helmet_img_path,
                         Helmet_Color, Helmet_Logo_Color, Helmet_Facemask_Color, Socks_Color, Cleats_Color,
                         Home_jersey_Color,Home_Sleeve_Color, Home_Jersey_Shoulder_Stripe, Home_Jersey_Number_Color, Home_Jersey_Number_Outline_Color,
                         Home_Jersey_Sleeve_Stripe_Color_1, Home_Jersey_Sleeve_Stripe_Color_2,
@@ -102,7 +102,7 @@ Public Class LeagueDAO
                         Away_Jersey_Sleeve_Stripe_Color_5 Away_Jersey_Sleeve_Stripe_Color_6.   
                         Away_Pants_Color, Away_Pants_Stripe_Color_1,  Away_Pants_Stripe_Color_2, Away_Pants_Stripe_Color_3,
                         Stadium_Name,Stadium_Location,Stadium_Field_Type,Stadium_Field_Color,Stadium_Capacity,Stadium_Img_Path) 
-                        VALUES(@ID, @Division_ID, @Conf_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
+                        VALUES(@ID, @Owner, @Division_ID, @Conf_ID, @City_Abr, @City, @Nickname, @Helmet_img_path,
                         @Helmet_Color, @Helmet_Logo_Color,@Helmet_Facemask_Color,   
                         @Home_jersey_Color,@Home_Sleeve_Color, @Home_Jersey_Shoulder_Stripe, @Home_Jersey_Number_Color, @Home_Jersey_Number_Outline_Color,
                         @Home_Jersey_Sleeve_Stripe_Color_1, @Home_Jersey_Sleeve_Stripe_Color_2,
@@ -117,6 +117,7 @@ Public Class LeagueDAO
                         @Stadium_Name,@Stadium_Location,@Stadium_Field_Type,@Stadium_Field_Color,@Stadium_Capacity,@Stadium_Img_path)"
                 cmdTeam.CommandText = sSQL
                 cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t.id
+                cmdTeam.Parameters.Add("@Owner", Data.DbType.String).Value = t.Owner
                 cmdTeam.Parameters.Add("@Division_ID", Data.DbType.Int16).Value = d_num
                 cmdTeam.Parameters.Add("@Conf_ID", Data.DbType.Int16).Value = c_num
                 cmdTeam.Parameters.Add("@City_Abr", Data.DbType.String).Value = t.City_Abr

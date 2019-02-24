@@ -785,7 +785,7 @@ Public Class NewTeam
                                 away_Pants_Stripe_2_Color, away_Pants_Stripe_3_Color)
             Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
-            new_t.setFields(City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
+            new_t.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
 
             Me.Close()
             NewLeague_Teams.setFields()

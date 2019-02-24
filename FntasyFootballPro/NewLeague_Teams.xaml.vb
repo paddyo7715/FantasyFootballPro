@@ -1,4 +1,6 @@
-﻿Public Class NewLeague_Teams
+﻿Imports System.Windows.Controls
+
+Public Class NewLeague_Teams
 
     Property winMainMenu As MainWindow
     Property NewLeague_Settings As NewLeague_Settings
@@ -14,6 +16,9 @@
         Me.NewLeague_Settings = NewLeague_Settings
         Me.New_League = New_League
 
+        Dim t_id = 1
+        Dim teams_per_division As Integer = CInt(NewLeague_Settings.newlnumteams.Text) \ CInt(NewLeague_Settings.newlnumdivisions.Text)
+
         Dim League_Teams As List(Of TeamMdl)
 
         League_Teams = New List(Of TeamMdl)
@@ -24,21 +29,200 @@
         End With
         Me.New_League.Teams = League_Teams
 
+        If CInt(NewLeague_Settings.newlnumconferences.Text) = 2 Then
+            Dim v_sp1 As StackPanel = New StackPanel()
+            v_sp1.Orientation = "Vertical"
+            v_sp1.VerticalAlignment = "center"
+            v_sp1.HorizontalAlignment = "center"
+
+            Dim conf1_sp As StackPanel = New StackPanel()
+            conf1_sp.Orientation = "Horizontal"
+            conf1_sp.HorizontalAlignment = "center"
+
+            Dim conf1_label As Label = New Label()
+            conf1_label.Name = "newllblConf1"
+            conf1_label.Foreground = Brushes.White
+            conf1_label.Width = 150
+            conf1_label.FontSize = 18
+
+            conf1_sp.Children.Add(conf1_label)
+            v_sp1.Children.Add(conf1_sp)
+
+            With NewLeague_Settings
+                For i As Integer = 1 To CInt(.newlnumdivisions.Text)
+                    Dim gb_hdr_label As Label = New Label()
+                    gb_hdr_label.Content = .FindName("newldiv" & i.ToString).text
+                    gb_hdr_label.Foreground = Brushes.White
+
+                    Dim gb_div As GroupBox = New GroupBox()
+                    gb_div.Margin = New Thickness(1, 1, 1, 1)
+                    gb_div.FontSize = 14
+                    gb_div.Header = gb_hdr_label
+
+                    Dim v_sp_in_groupbox As StackPanel = New StackPanel()
+                    v_sp_in_groupbox.Orientation = "Vertical"
+                    v_sp_in_groupbox.Width = 350
+
+                    gb_div.Content = v_sp_in_groupbox
+
+                    For z As Integer = 1 To teams_per_division
+                        Dim sp_team As StackPanel = New StackPanel()
+                        sp_team.Orientation = "Hozizontal"
+
+                        Dim helmet_img As Image = New Image()
+                        helmet_img.Name = "newlimgTeam" & t_id.ToString
+                        helmet_img.Width = 20
+                        helmet_img.Height = 20
+
+                        Dim team_label As Label = New Label()
+                        team_label.Name = "newllblTeam" & t_id.ToString
+                        team_label.Foreground = Brushes.White
+                        team_label.Padding = New Thickness(10, 0, 0, 0)
+                        team_label.Width = 100
+                        team_label.FontSize = 14
+                        team_label.Foreground = Brushes.White
+                        team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
+
+                        sp_team.Children.Add(helmet_img)
+                        sp_team.Children.Add(team_label)
+
+                        v_sp_in_groupbox.Children.Add(sp_team)
+
+                        t_id += 1
+                    Next
+                Next
+            End With
+
+            Dim v_sp2 As StackPanel = New StackPanel()
+            v_sp2.Orientation = "Vertical"
+            v_sp2.HorizontalAlignment = "center"
+
+            Dim conf2_sp As StackPanel = New StackPanel()
+            conf2_sp.Orientation = "Horizontal"
+            conf2_sp.HorizontalAlignment = "center"
+
+            Dim conf2_label As Label = New Label()
+            conf2_label.Name = "newllblConf1"
+            conf2_label.Foreground = Brushes.White
+            conf2_label.Width = 150
+            conf2_label.FontSize = 18
+
+            conf2_sp.Children.Add(conf2_label)
+            v_sp2.Children.Add(conf2_sp)
+
+            With NewLeague_Settings
+                For i As Integer = 1 To CInt(.newlnumdivisions.Text)
+                    Dim gb_hdr_label As Label = New Label()
+                    gb_hdr_label.Content = .FindName("newldiv" & i.ToString).text
+                    gb_hdr_label.Foreground = Brushes.White
+
+                    Dim gb_div As GroupBox = New GroupBox()
+                    gb_div.Margin = New Thickness(1, 1, 1, 1)
+                    gb_div.FontSize = 14
+                    gb_div.Header = gb_hdr_label
+
+                    Dim v_sp_in_groupbox As StackPanel = New StackPanel()
+                    v_sp_in_groupbox.Orientation = "Vertical"
+                    v_sp_in_groupbox.Width = 350
+
+                    gb_div.Content = v_sp_in_groupbox
+
+                    For z As Integer = 1 To teams_per_division
+                        Dim sp_team As StackPanel = New StackPanel()
+                        sp_team.Orientation = "Hozizontal"
+
+                        Dim helmet_img As Image = New Image()
+                        helmet_img.Name = "newlimgTeam" & t_id.ToString
+                        helmet_img.Width = 20
+                        helmet_img.Height = 20
+
+                        Dim team_label As Label = New Label()
+                        team_label.Name = "newllblTeam" & t_id.ToString
+                        team_label.Foreground = Brushes.White
+                        team_label.Padding = New Thickness(10, 0, 0, 0)
+                        team_label.Width = 100
+                        team_label.FontSize = 14
+                        team_label.Foreground = Brushes.White
+                        team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
+
+                        sp_team.Children.Add(helmet_img)
+                        sp_team.Children.Add(team_label)
+
+                        v_sp_in_groupbox.Children.Add(sp_team)
+
+                        t_id += 1
+                    Next
+                Next
+            End With
+        Else 'No conferences
+            Dim v_sp As StackPanel = New StackPanel()
+            v_sp.Orientation = "Vertical"
+            v_sp.HorizontalAlignment = "center"
+
+            With NewLeague_Settings
+                For i As Integer = 1 To CInt(.newlnumdivisions.Text)
+                    Dim gb_hdr_label As Label = New Label()
+                    gb_hdr_label.Content = .FindName("newldiv" & i.ToString).text
+                    gb_hdr_label.Foreground = Brushes.White
+
+                    Dim gb_div As GroupBox = New GroupBox()
+                    gb_div.Margin = New Thickness(1, 1, 1, 1)
+                    gb_div.FontSize = 14
+                    gb_div.Header = gb_hdr_label
+
+                    Dim v_sp_in_groupbox As StackPanel = New StackPanel()
+                    v_sp_in_groupbox.Orientation = "Vertical"
+                    v_sp_in_groupbox.Width = 350
+
+                    gb_div.Content = v_sp_in_groupbox
+
+                    For z As Integer = 1 To teams_per_division
+                        Dim sp_team As StackPanel = New StackPanel()
+                        sp_team.Orientation = "Hozizontal"
+
+                        Dim helmet_img As Image = New Image()
+                        helmet_img.Name = "newlimgTeam" & t_id.ToString
+                        helmet_img.Width = 20
+                        helmet_img.Height = 20
+
+                        Dim team_label As Label = New Label()
+                        team_label.Name = "newllblTeam" & t_id.ToString
+                        team_label.Foreground = Brushes.White
+                        team_label.Padding = New Thickness(10, 0, 0, 0)
+                        team_label.Width = 100
+                        team_label.FontSize = 14
+                        team_label.Foreground = Brushes.White
+                        team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
+
+                        sp_team.Children.Add(helmet_img)
+                        sp_team.Children.Add(team_label)
+
+                        v_sp_in_groupbox.Children.Add(sp_team)
+
+                        t_id += 1
+                    Next
+                Next
+            End With
+
+        End If
+
     End Sub
     Public Sub setFields()
 
-        newldiv1gh.Content = NewLeague_Settings.newldiv1.Text
-        newldiv2gh.Content = NewLeague_Settings.newldiv2.Text
-        newldiv3gh.Content = NewLeague_Settings.newldiv3.Text
-        newldiv4gh.Content = NewLeague_Settings.newldiv4.Text
-
-        newldiv5gh.Content = NewLeague_Settings.newldiv5.Text
-        newldiv6gh.Content = NewLeague_Settings.newldiv6.Text
-        newldiv7gh.Content = NewLeague_Settings.newldiv7.Text
-        newldiv8gh.Content = NewLeague_Settings.newldiv8.Text
-
-
         With NewLeague_Settings
+            'set conferences
+            For i As Integer = 1 To CInt(.newlnumconferences.Text)
+                Dim confLabel = "newllblConf" & i.ToString
+                Dim confLbl As Label = Me.FindName(confLabel)
+                confLbl.Content = New_League.Conferences(i - 1)
+            Next
+
+            For i As Integer = 1 To CInt(.newlnumdivisions.Text)
+                Dim divLabel = "newldiv" & i.ToString
+                Dim divLbl As Label = Me.FindName(divLabel)
+                divLbl.Content = New_League.Divisions(i - 1)
+            Next
+
             For i As Integer = 1 To CInt(.newlnumteams.Text)
                 Dim teamLabel = "newllblTeam" & i.ToString
                 Dim teamImage = "newlimgTeam" & i.ToString

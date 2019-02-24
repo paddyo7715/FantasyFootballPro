@@ -49,8 +49,10 @@
                         </StackPanel>
                     <Label Width="80" FontSize="14" Foreground="White">Structure:</Label>
                     <ComboBox Name="newl1Structure" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white" IsEditable="False">
-                        <ComboBoxItem IsSelected="True">Teams 40 Games 18 Weeks 20 Conferences 2 Divisions 8 PlayoffTeams 12</ComboBoxItem>
-                        <ComboBoxItem>Teams 10 Games 12 Weeks 14 Conferences 2 Divisions 2 PlayoffTeams 4</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">Teams 10 Games 12 Weeks 14 Conferences 2 Divisions 2 PlayoffTeams 4</ComboBoxItem>
+                        <ComboBoxItem>Teams 12 Games 14 Weeks 16 Conferences 0 Divisions 3 PlayoffTeams 4</ComboBoxItem>
+                        <ComboBoxItem>Teams 32 Games 16 Weeks 18 Conferences 2 Divisions 8 PlayoffTeams 12</ComboBoxItem>
+                        <ComboBoxItem>Teams 40 Games 18 Weeks 20 Conferences 2 Divisions 8 PlayoffTeams 12</ComboBoxItem>
                     </ComboBox>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
@@ -86,41 +88,7 @@
                     </StackPanel>
 
             </GroupBox>
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Name="conference_panel_1" Orientation="Horizontal">
-                        <Label Width="150" FontWeight="Bold" FontSize="18" Foreground="White">Conference 1:</Label>
-                        <TextBox Name="newlConf1" FontSize="18" Width="150" Height="30" FontWeight="Bold" Foreground="Black" Background="white" MaxLength="60" />
-                    </StackPanel>
-
-                    <GroupBox Name="gb_conf1" Margin="10,10,10,10" FontSize="18" FontWeight="Bold"
-                  Foreground="White">
-                        <GroupBox.Header>
-                            Divisions 1 to 4:
-                        </GroupBox.Header>
-
-                        <StackPanel Width="350" Orientation="Vertical">
-                        </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Name="conference_panel_2" Orientation="Horizontal">
-                        <Label Width="150" FontSize="18" FontWeight="Bold" Foreground="White">Conference 2</Label>
-                        <TextBox Name="newlConf2" FontSize="18" Width="150" Height="30" FontWeight="Bold" Foreground="Black" Background="white" MaxLength="60" />
-                    </StackPanel>
-                    <GroupBox Name="gb_conf2" Margin="10,10,10,10" FontSize="18" FontWeight="Bold"
-                  Foreground="White">
-
-                        <GroupBox.Header>
-                            Divisions 5 to 8:
-                        </GroupBox.Header>
-
-                        <StackPanel Width="350" Orientation="Vertical">
-                        </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-
+            <StackPanel Name="spDivisions" Orientation="Horizontal">
             </StackPanel>
 
         </StackPanel>
