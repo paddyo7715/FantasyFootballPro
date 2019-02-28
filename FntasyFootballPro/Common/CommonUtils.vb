@@ -75,7 +75,7 @@ Public Class CommonUtils
             i += 1
         Next
 
-        Return New Integer() {Weeks_in_Season, Games_in_Season, Num_Divisions, Conferences, PlayoffTeams}
+        Return New Integer() {Weeks_in_Season, Games_in_Season, Num_Divisions, Teams, Conferences, PlayoffTeams}
 
 
     End Function

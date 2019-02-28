@@ -19,6 +19,7 @@ Public Class NewLeague_Settings
             newl1StartingYear.Items.Add(i.ToString)
         Next
         newl1StartingYear.Text = icurrentyear.ToString
+        newl1Structure.SelectedIndex = 0
 
     End Sub
 
@@ -73,7 +74,8 @@ Public Class NewLeague_Settings
 
     Private Sub newl1Structure_SelectionChanged(sender As Object, e As RoutedEventArgs) Handles newl1Structure.SelectionChanged
 
-        Dim v As Integer() = CommonUtils.getLeagueStructure(newl1Structure.SelectedItem)
+        Dim cbitem As ComboBoxItem = CType(newl1Structure.SelectedItem, ComboBoxItem)
+        Dim v As Integer() = CommonUtils.getLeagueStructure(cbitem.Content)
         Dim num_weeks As Integer
         Dim num_games As Integer
         Dim num_divs As Integer

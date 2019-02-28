@@ -49,10 +49,10 @@
                         </StackPanel>
                     <Label Width="80" FontSize="14" Foreground="White">Structure:</Label>
                     <ComboBox Name="newl1Structure" FontSize="12" Width="200" Height="20" Foreground="Black" Background="white" IsEditable="False">
-                        <ComboBoxItem IsSelected="True">Teams 10 Games 12 Weeks 14 Conferences 2 Divisions 2 PlayoffTeams 4</ComboBoxItem>
-                        <ComboBoxItem>Teams 12 Games 14 Weeks 16 Conferences 0 Divisions 3 PlayoffTeams 4</ComboBoxItem>
-                        <ComboBoxItem>Teams 32 Games 16 Weeks 18 Conferences 2 Divisions 8 PlayoffTeams 12</ComboBoxItem>
-                        <ComboBoxItem>Teams 40 Games 18 Weeks 20 Conferences 2 Divisions 8 PlayoffTeams 12</ComboBoxItem>
+                        <ComboBoxItem Content="Teams 10 Games 12 Weeks 14 Conferences 2 Divisions 2 PlayoffTeams 4"></ComboBoxItem>
+                        <ComboBoxItem Content="Teams 12 Games 14 Weeks 16 Conferences 0 Divisions 3 PlayoffTeams 4"></ComboBoxItem>
+                        <ComboBoxItem Content="Teams 32 Games 16 Weeks 18 Conferences 2 Divisions 8 PlayoffTeams 12"></ComboBoxItem>
+                        <ComboBoxItem Content="Teams 40 Games 18 Weeks 20 Conferences 2 Divisions 8 PlayoffTeams 12"></ComboBoxItem>
                     </ComboBox>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
