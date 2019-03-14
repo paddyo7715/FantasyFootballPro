@@ -9,8 +9,8 @@
     <DockPanel>
         <Label DockPanel.Dock="Top" FontSize="42" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="100" Foreground="White">New League Teams</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Name="newl2Cancel" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Cancel</Button>
-            <Button Name="newl2Submit" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Submit</Button>
+            <Button Name="newl2Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
+            <Button Name="newl2Submit" Style="{StaticResource appSubmitStyle}">Submit</Button>
         </StackPanel>
         <StackPanel Name="sp1" Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
 

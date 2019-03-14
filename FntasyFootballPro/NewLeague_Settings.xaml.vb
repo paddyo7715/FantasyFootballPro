@@ -44,10 +44,6 @@ Public Class NewLeague_Settings
 
         If CommonUtils.isBlank(newlnumplayoffteams.Text) OrElse Not IsNumeric(newlnumplayoffteams.Text) Then Throw New Exception("Invalid Value for Number of Playoff Teams")
 
-        If newl1Structure.SelectedIndex <> -1 Then
-            Throw New Exception("You must select a league structure!")
-        End If
-
         For i As Integer = 1 To CInt(newlnumconferences.Text)
             Dim conftxtname = "newlConf" & i.ToString
             Dim conftxtbox As TextBox = Me.FindName(conftxtname)
@@ -84,6 +80,10 @@ Public Class NewLeague_Settings
         Dim num_playoff_teams As Integer
         Dim last_div_first_group As Integer
         Dim j As Integer
+        Dim Largelblstyle As Style = Application.Current.FindResource("Largelbltyle")
+        Dim GroupBoxstyle As Style = Application.Current.FindResource("GroupBoxstyle")
+        Dim Largetxttyle As Style = Application.Current.FindResource("Largetxttyle")
+        Dim Conflbltyle As Style = Application.Current.FindResource("Conflbltyle")
 
         num_weeks = v(0)
         num_games = v(1)
@@ -95,172 +95,211 @@ Public Class NewLeague_Settings
         newlnumweeks.Text = num_weeks.ToString
         newlnumgames.Text = num_games.ToString
         newlnumdivisions.Text = num_divs.ToString
-        newlnumteams.Text = num_confs.ToString
+        newlnumteams.Text = num_teams.ToString
         newlnumconferences.Text = num_confs.ToString
         newlnumplayoffteams.Text = num_playoff_teams.ToString
 
-        Dim v_sp As StackPanel = New StackPanel()
-        v_sp.Orientation = "Vertical"
+        'Clear previous division selections
+        spDivisions.Children.Clear()
+        Me.unregisterControl("newlConf1")
+        Me.unregisterControl("newlConf2")
+
+        For I As Integer = 1 To CInt(num_teams)
+            Me.unregisterControl("newldiv" & I.ToString)
+        Next
 
         If num_confs = 2 Then
+            Dim v_sp1 As StackPanel = New StackPanel()
+            v_sp1.Orientation = Orientation.Vertical
+            v_sp1.VerticalAlignment = VerticalAlignment.Top
+            v_sp1.HorizontalAlignment = HorizontalAlignment.Center
+
             Dim conf_panel_1_sq As StackPanel = New StackPanel()
             conf_panel_1_sq.Name = "conference_panel_1"
-            conf_panel_1_sq.Orientation = "Horizontal"
+            conf_panel_1_sq.Orientation = Orientation.Horizontal
 
             Dim conf_1_label As Label = New Label()
             conf_1_label.Content = "Conference 1:"
-            conf_1_label.Width = 150
-            conf_1_label.FontSize = 18
-            conf_1_label.Foreground = Brushes.White
+            conf_1_label.Style = Largelblstyle
 
             Dim txtConf1 As New TextBox()
             txtConf1.Name = "newlConf1"
             txtConf1.Width = 150
-            txtConf1.FontSize = 18
-            txtConf1.Height = 30
-            txtConf1.Foreground = Brushes.Black
-            txtConf1.Background = Brushes.White
+            txtConf1.Style = Largetxttyle
             txtConf1.MaxLength = 60
 
             conf_panel_1_sq.Children.Add(conf_1_label)
             conf_panel_1_sq.Children.Add(txtConf1)
 
-            v_sp.Children.Add(conf_panel_1_sq)
+            v_sp1.Children.Add(conf_panel_1_sq)
 
-            Dim gb_conf1 As GroupBox = New GroupBox()
-            gb_conf1.Name = "gb_conf1"
-            gb_conf1.Margin = New Thickness(10, 10, 10, 10)
-            gb_conf1.FontSize = 18
-            gb_conf1.Header = "Conference 1:"
-
-            v_sp.Children.Add(gb_conf1)
-
-            Dim conf_panel_2_sq As StackPanel = New StackPanel()
-            conf_panel_2_sq.Name = "conference_panel_2"
-            conf_panel_2_sq.Orientation = "Horizontal"
-
-            Dim conf_2_label As Label = New Label()
-            conf_2_label.Content = "Conference 2:"
-            conf_2_label.Width = 150
-            conf_2_label.FontSize = 18
-            conf_2_label.Foreground = Brushes.White
-
-            Dim txtConf2 As New TextBox()
-            txtConf2.Name = "newlConf2"
-            txtConf2.Width = 150
-            txtConf2.FontSize = 18
-            txtConf2.Height = 30
-            txtConf2.Foreground = Brushes.Black
-            txtConf2.Background = Brushes.White
-            txtConf2.MaxLength = 60
-
-            conf_panel_2_sq.Children.Add(conf_2_label)
-            conf_panel_2_sq.Children.Add(txtConf2)
-
-            v_sp.Children.Add(conf_panel_2_sq)
-
-            Dim gb_conf2 As GroupBox = New GroupBox()
-            gb_conf2.Name = "gb_conf2"
-            gb_conf2.Margin = New Thickness(10, 10, 10, 10)
-            gb_conf2.FontSize = 18
-            gb_conf2.Header = "Conference 2:"
-
-            v_sp.Children.Add(gb_conf2)
-
-            last_div_first_group = num_confs \ 2
-
-            'set the labels font text colors ext.
-            For i As Integer = 1 To last_div_first_group
-                j = i + last_div_first_group
-                Dim sp1 As StackPanel = New StackPanel()
-                sp1.Orientation = "Horizontal"
-                sp1.Name = "div1_staack"
-
-                Dim div_1_label As Label = New Label()
-                div_1_label.Content = "Division " & i.ToString
-                div_1_label.Width = 150
-                div_1_label.FontSize = 18
-                div_1_label.Foreground = Brushes.White
-
-                Dim txtDivision1 As New TextBox()
-                txtDivision1.Name = "newldiv" & i.ToString
-                txtDivision1.Width = 150
-                txtDivision1.FontSize = 18
-                txtDivision1.Height = 30
-                txtDivision1.Foreground = Brushes.Black
-                txtDivision1.Background = Brushes.LightGray
-                txtDivision1.IsReadOnly = True
-
-                sp1.Children.Add(div_1_label)
-                sp1.Children.Add(txtDivision1)
-
-                gb_conf1.Content = sp1
-
-                Dim sp2 As StackPanel = New StackPanel()
-                sp2.Orientation = "Horizontal"
-                sp1.Name = "div2_staack"
-
-                Dim div_2_label As Label = New Label()
-                div_2_label.Content = "Division " & j.ToString
-                div_2_label.Width = 150
-                div_2_label.FontSize = 18
-                div_2_label.Foreground = Brushes.White
-
-                Dim txtDivision2 As New TextBox()
-                txtDivision2.Name = "newldiv" & j.ToString
-                txtDivision2.Width = 150
-                txtDivision2.FontSize = 18
-                txtDivision2.Height = 30
-                txtDivision2.Foreground = Brushes.Black
-                txtDivision2.Background = Brushes.LightGray
-                txtDivision2.IsReadOnly = True
-
-                sp2.Children.Add(div_2_label)
-                sp2.Children.Add(txtDivision2)
-
-                gb_conf2.Content = sp2
-            Next
-        Else 'No conferences only divisions
             Dim gb_conf1 As GroupBox = New GroupBox()
             gb_conf1.Name = "gb_conf1"
             gb_conf1.Margin = New Thickness(10, 10, 10, 10)
             gb_conf1.FontSize = 18
             gb_conf1.Header = "Divisions:"
+            gb_conf1.Style = GroupBoxstyle
 
-            v_sp.Children.Add(gb_conf1)
+            v_sp1.Children.Add(gb_conf1)
+
+            'register the dynamically added control so that it can be looked up later.
+            Me.RegisterName(txtConf1.Name, txtConf1)
+
+            Dim v_sp2 As StackPanel = New StackPanel()
+            v_sp2.Orientation = Orientation.Vertical
+            v_sp2.VerticalAlignment = VerticalAlignment.Top
+            v_sp2.HorizontalAlignment = HorizontalAlignment.Center
+
+            Dim conf_panel_2_sq As StackPanel = New StackPanel()
+            conf_panel_2_sq.Name = "conference_panel_2"
+            conf_panel_2_sq.Orientation = Orientation.Horizontal
+
+            Dim conf_2_label As Label = New Label()
+            conf_2_label.Content = "Conference 2:"
+            conf_2_label.Style = Largelblstyle
+
+            Dim txtConf2 As New TextBox()
+            txtConf2.Name = "newlConf2"
+            txtConf2.Width = 150
+            txtConf2.Style = Largetxttyle
+            txtConf2.MaxLength = 60
+
+            conf_panel_2_sq.Children.Add(conf_2_label)
+            conf_panel_2_sq.Children.Add(txtConf2)
+
+            v_sp2.Children.Add(conf_panel_2_sq)
+
+            Dim gb_conf2 As GroupBox = New GroupBox()
+            gb_conf2.Name = "gb_conf2"
+            gb_conf2.Margin = New Thickness(10, 10, 10, 10)
+            gb_conf2.FontSize = 18
+            gb_conf2.Header = "Divisions:"
+            gb_conf2.Style = GroupBoxstyle
+
+            v_sp2.Children.Add(gb_conf2)
+
+            'register the dynamically added control so that it can be looked up later.
+            Me.RegisterName(txtConf2.Name, txtConf2)
+
+            Dim st_v_gb1 As StackPanel = New StackPanel()
+            st_v_gb1.Orientation = Orientation.Vertical
+            st_v_gb1.HorizontalAlignment = HorizontalAlignment.Center
+            st_v_gb1.Margin = New Thickness(5, 5, 10, 10)
+
+            Dim st_v_gb2 As StackPanel = New StackPanel()
+            st_v_gb2.Orientation = Orientation.Vertical
+            st_v_gb2.HorizontalAlignment = HorizontalAlignment.Center
+            st_v_gb2.Margin = New Thickness(5, 5, 10, 10)
+
+            last_div_first_group = num_divs \ 2
 
             'set the labels font text colors ext.
-            For i As Integer = 1 To num_divs
+            For i As Integer = 1 To last_div_first_group
+                j = i + last_div_first_group
                 Dim sp1 As StackPanel = New StackPanel()
-                sp1.Orientation = "Horizontal"
+                sp1.Orientation = Orientation.Horizontal
+                sp1.Margin = New Thickness(0, 0, 0, 2)
                 sp1.Name = "div1_staack"
 
                 Dim div_1_label As Label = New Label()
                 div_1_label.Content = "Division " & i.ToString
-                div_1_label.Width = 150
-                div_1_label.FontSize = 18
-                div_1_label.Foreground = Brushes.White
+                div_1_label.Style = Largelblstyle
 
                 Dim txtDivision1 As New TextBox()
                 txtDivision1.Name = "newldiv" & i.ToString
                 txtDivision1.Width = 150
-                txtDivision1.FontSize = 18
-                txtDivision1.Height = 30
-                txtDivision1.Foreground = Brushes.Black
-                txtDivision1.Background = Brushes.LightGray
-                txtDivision1.IsReadOnly = True
+                txtDivision1.Style = Largetxttyle
+
+                'register the dynamically added control so that it can be looked up later.
+                Me.RegisterName(txtDivision1.Name, txtDivision1)
 
                 sp1.Children.Add(div_1_label)
                 sp1.Children.Add(txtDivision1)
 
-                gb_conf1.Content = sp1
+                st_v_gb1.Children.Add(sp1)
+
+                Dim sp2 As StackPanel = New StackPanel()
+                sp2.Orientation = Orientation.Horizontal
+                sp2.Margin = New Thickness(0, 0, 0, 2)
+                sp1.Name = "div2_staack"
+
+                Dim div_2_label As Label = New Label()
+                div_2_label.Content = "Division " & j.ToString
+                div_2_label.Style = Largelblstyle
+
+                Dim txtDivision2 As New TextBox()
+                txtDivision2.Name = "newldiv" & j.ToString
+                txtDivision2.Width = 150
+                txtDivision2.Style = Largetxttyle
+
+                sp2.Children.Add(div_2_label)
+                sp2.Children.Add(txtDivision2)
+
+                st_v_gb2.Children.Add(sp2)
+
+                'register the dynamically added control so that it can be looked up later.
+                Me.RegisterName(txtDivision2.Name, txtDivision2)
+
             Next
+            gb_conf1.Content = st_v_gb1
+            gb_conf2.Content = st_v_gb2
+
+            spDivisions.Children.Add(v_sp1)
+            spDivisions.Children.Add(v_sp2)
+
+        Else 'No conferences only divisions
+            Dim v_sp As StackPanel = New StackPanel()
+            v_sp.Orientation = Orientation.Vertical
+            v_sp.VerticalAlignment = VerticalAlignment.Top
+            v_sp.HorizontalAlignment = HorizontalAlignment.Center
+
+            Dim gb_conf1 As GroupBox = New GroupBox()
+            gb_conf1.Name = "gb_conf1"
+            gb_conf1.Margin = New Thickness(10, 10, 10, 10)
+            gb_conf1.FontSize = 18
+            gb_conf1.Header = "Divisions:"
+            gb_conf1.Style = GroupBoxstyle
+
+            v_sp.Children.Add(gb_conf1)
+            Dim st_v_gb As StackPanel = New StackPanel()
+            st_v_gb.Orientation = Orientation.Vertical
+            st_v_gb.HorizontalAlignment = HorizontalAlignment.Center
+            st_v_gb.Margin = New Thickness(5, 5, 10, 10)
+
+
+            'set the labels font text colors ext.
+            For i As Integer = 1 To num_divs
+                Dim sp1 As StackPanel = New StackPanel()
+                sp1.Orientation = Orientation.Horizontal
+                sp1.Margin = New Thickness(0, 0, 0, 2)
+                sp1.Name = "div1_staack"
+
+                Dim div_1_label As Label = New Label()
+                div_1_label.Content = "Division " & i.ToString
+                div_1_label.Style = Largelblstyle
+
+                Dim txtDivision1 As New TextBox()
+                txtDivision1.Name = "newldiv" & i.ToString
+                txtDivision1.Width = 150
+                txtDivision1.Style = Largetxttyle
+
+                sp1.Children.Add(div_1_label)
+                sp1.Children.Add(txtDivision1)
+
+                st_v_gb.Children.Add(sp1)
+                gb_conf1.Content = st_v_gb
+
+                'register the dynamically added control so that it can be looked up later.
+                Me.RegisterName(txtDivision1.Name, txtDivision1)
+
+            Next
+
+            spDivisions.Children.Add(v_sp)
 
         End If
 
+
     End Sub
-
-
     Private Sub newl1btnLogoPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnLogoPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
         If (OpenFileDialog.ShowDialog() = True) Then
@@ -289,12 +328,12 @@ Public Class NewLeague_Settings
             validate()
 
             If CInt(newlnumconferences.Text) = 2 Then
-                Conferences_list.Add(Me.FindName("newlConf1"))
-                Conferences_list.Add(Me.FindName("newlConf2"))
+                Conferences_list.Add(CType(Me.FindName("newlConf1"), TextBox).Text)
+                Conferences_list.Add(CType(Me.FindName("newlConf2"), TextBox).Text)
             End If
 
             For i As Integer = 1 To CInt(newlnumdivisions.Text)
-                Divisions_list.Add(Me.FindName("newldiv" & i.ToString))
+                Divisions_list.Add(CType(Me.FindName("newldiv" & i.ToString), TextBox).Text)
             Next
 
             Dim nl As Leaguemdl = New Leaguemdl(newl1LogoPath.Text, newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
@@ -311,6 +350,11 @@ Public Class NewLeague_Settings
 
 
     End Sub
-
+    Private Sub unregisterControl(ByVal s As String)
+        Try
+            Me.UnregisterName(s)
+        Catch IG As Exception
+        End Try
+    End Sub
 
 End Class

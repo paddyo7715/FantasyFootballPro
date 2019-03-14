@@ -5,19 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FntasyFootballPro"
         mc:Ignorable="d"
-        Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" >
+        Background="DarkGreen"
+        WindowState="Maximized" 
+        ResizeMode="NoResize" 
+        WindowStyle="None" >
     <DockPanel>
-        <Label DockPanel.Dock="Top" FontSize="42" HorizontalAlignment="Center" VerticalContentAlignment="Bottom" Height="150" Foreground="White">Fantasy Football Pro</Label>
+        <Label DockPanel.Dock="Top" Style="{StaticResource appMainMenuTitlelbltyle}">Fantasy Football Pro</Label>
         <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Image Width="700" Height="600"  Source="Images/MainMenuImage.jpg"></Image>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                <Button Width="160" Height="70" Name="mmNew" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen">New League</Button>
+                <Button Name="mmNew" Style="{StaticResource appMainMenubtnStyle}">New League</Button>
                 <Label Height="20"></Label>
-                <Button Width="160" Height="70" Name="mmLoad" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen">Load League</Button>
+                <Button Name="mmLoad" Style="{StaticResource appMainMenubtnStyle}">Load League</Button>
                 <Label Height="20"></Label>
-                <Button Width="160" Height="70" Name="mmAdmin" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen">Administration</Button>
+                <Button Name="mmAdmin" Style="{StaticResource appMainMenubtnStyle}">Administration</Button>
                 <Label Height="20"></Label>
-                <Button Width="160" Height="70" Name="mmExit" BorderBrush="black" BorderThickness="10" FontSize="14" Background="White" Foreground="DarkGreen" Click="mmExit_Click">Exit</Button>
+                <Button Name="mmExit" Style="{StaticResource appMainMenubtnStyle}" Click="mmExit_Click">Exit</Button>
             </StackPanel>
         </StackPanel>
         <!-- default is to fill -->

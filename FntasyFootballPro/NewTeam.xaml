@@ -10,8 +10,8 @@
     <DockPanel>
         <Label DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="50" Foreground="White">New Team</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button Name="newt1Cancel" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Cancel</Button>
-            <Button Name="newt1Add" FontSize="12" Width="100" VerticalAlignment="Top" Margin="20">Add</Button>
+            <Button Name="newt1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
+            <Button Name="newt1Add" Style="{StaticResource appSubmitStyle}">Add</Button>
         </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="TOP" Margin="10">
             <TabControl  Background="DarkGreen" Foreground="White">

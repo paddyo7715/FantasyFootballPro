@@ -3,7 +3,143 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:FntasyFootballPro"
     StartupUri="MainWindow.xaml">
+    <!-- Global Control Styles -->
+    <!-- ======================================================================================== -->
     <Application.Resources>
-        
+
+       
+        <!-- Submit, Cancel, Back, Forward type buttons -->
+        <Style TargetType="Button" x:Key="appSubmitStyle">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="DarkGreen"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <!-- Select Image buttons -->
+        <Style TargetType="Button" x:Key="appSelectImageStyle">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="DarkGreen"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <!-- Main Menu buttons -->
+        <Style TargetType="Button" x:Key="appMainMenubtnStyle">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="DarkGreen"/>
+            <Setter Property="Background" Value="Wheat"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="10"/>
+        </Style>
+        <!-- Main Menu App Lable -->
+        <Style TargetType="Label" x:Key="appMainMenuTitlelbltyle">
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="250"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+        <!-- Large Label -->
+        <Style TargetType="Label" x:Key="Largelbltyle">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+        <!-- Large short Label -->
+        <Style TargetType="Label" x:Key="LargeShortlbltyle">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+        <!-- Large textbox -->
+        <Style TargetType="TextBox" x:Key="Largetxttyle">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <!-- Large readonly textbox -->
+        <Style TargetType="TextBox" x:Key="LargeReadOnlytxttyle">
+            <Setter Property="IsReadOnly" Value="true"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
+        <!-- Group boxes -->
+        <Style TargetType="GroupBox" x:Key="GroupBoxstyle">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="Background" Value="DarkGreen"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+        </Style>
+
+        <!-- Label Team STandings -->
+        <Style TargetType="Label" x:Key="Teamlbltyle">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+
+        <!-- Conference Label -->
+        <Style TargetType="Label" x:Key="Conflbltyle">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+
+        <!-- Combo boxes -->
+        <Style TargetType="ComboBox" x:Key="ComboBoxstyle">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+
     </Application.Resources>
+    <!-- ======================================================================================== -->
 </Application>
+
+
+
+
+
+
+
+
+ 

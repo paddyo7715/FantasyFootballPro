@@ -16,18 +16,12 @@ Public Class NewLeague_Teams
         Me.NewLeague_Settings = NewLeague_Settings
         Me.New_League = New_League
 
+        Dim Teamlbltyle As Style = Application.Current.FindResource("Teamlbltyle")
+        Dim Conflbltyle As Style = Application.Current.FindResource("Conflbltyle")
+
+
         Dim t_id = 1
         Dim teams_per_division As Integer = CInt(NewLeague_Settings.newlnumteams.Text) \ CInt(NewLeague_Settings.newlnumdivisions.Text)
-
-        Dim League_Teams As List(Of TeamMdl)
-
-        League_Teams = New List(Of TeamMdl)
-        With NewLeague_Settings
-            For i As Integer = 0 To CInt(.newlnumteams.Text) - 1
-                League_Teams.Add(New TeamMdl(i + 1, "New Team"))
-            Next
-        End With
-        Me.New_League.Teams = League_Teams
 
         If CInt(NewLeague_Settings.newlnumconferences.Text) = 2 Then
             Dim v_sp1 As StackPanel = New StackPanel()
@@ -41,9 +35,8 @@ Public Class NewLeague_Teams
 
             Dim conf1_label As Label = New Label()
             conf1_label.Name = "newllblConf1"
-            conf1_label.Foreground = Brushes.White
             conf1_label.Width = 150
-            conf1_label.FontSize = 18
+            conf1_label.Style = Conflbltyle
 
             conf1_sp.Children.Add(conf1_label)
             v_sp1.Children.Add(conf1_sp)
@@ -76,11 +69,8 @@ Public Class NewLeague_Teams
 
                         Dim team_label As Label = New Label()
                         team_label.Name = "newllblTeam" & t_id.ToString
-                        team_label.Foreground = Brushes.White
                         team_label.Padding = New Thickness(10, 0, 0, 0)
-                        team_label.Width = 100
-                        team_label.FontSize = 14
-                        team_label.Foreground = Brushes.White
+                        team_label.Style = Teamlbltyle
                         team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                         sp_team.Children.Add(helmet_img)
@@ -103,9 +93,9 @@ Public Class NewLeague_Teams
 
             Dim conf2_label As Label = New Label()
             conf2_label.Name = "newllblConf1"
-            conf2_label.Foreground = Brushes.White
             conf2_label.Width = 150
-            conf2_label.FontSize = 18
+            conf1_label.Style = Conflbltyle
+
 
             conf2_sp.Children.Add(conf2_label)
             v_sp2.Children.Add(conf2_sp)
@@ -138,11 +128,8 @@ Public Class NewLeague_Teams
 
                         Dim team_label As Label = New Label()
                         team_label.Name = "newllblTeam" & t_id.ToString
-                        team_label.Foreground = Brushes.White
                         team_label.Padding = New Thickness(10, 0, 0, 0)
-                        team_label.Width = 100
-                        team_label.FontSize = 14
-                        team_label.Foreground = Brushes.White
+                        team_label.Style = Teamlbltyle
                         team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                         sp_team.Children.Add(helmet_img)
@@ -187,11 +174,8 @@ Public Class NewLeague_Teams
 
                         Dim team_label As Label = New Label()
                         team_label.Name = "newllblTeam" & t_id.ToString
-                        team_label.Foreground = Brushes.White
                         team_label.Padding = New Thickness(10, 0, 0, 0)
-                        team_label.Width = 100
-                        team_label.FontSize = 14
-                        team_label.Foreground = Brushes.White
+                        team_label.Style = Teamlbltyle
                         team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                         sp_team.Children.Add(helmet_img)

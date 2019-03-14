@@ -38,8 +38,8 @@
         Me.Conferences = Conferences
         Me.Divisions = Divisions
 
-        For i As Integer = 0 To Divisions.Count * (Num_Teams \ Divisions.Count) - 1
-            Teams.Add(New TeamMdl(i + 1, "New Team"))
+        For i As Integer = 1 To Me.Num_Teams
+            Teams.Add(New TeamMdl(i, "New Team"))
         Next
     End Sub
 
