@@ -25,13 +25,13 @@ Public Class NewLeague_Teams
 
         If CInt(NewLeague_Settings.newlnumconferences.Text) = 2 Then
             Dim v_sp1 As StackPanel = New StackPanel()
-            v_sp1.Orientation = "Vertical"
-            v_sp1.VerticalAlignment = "center"
-            v_sp1.HorizontalAlignment = "center"
+            v_sp1.Orientation = Orientation.Vertical
+            v_sp1.VerticalAlignment = HorizontalAlignment.Center
+            v_sp1.HorizontalAlignment = HorizontalAlignment.Center
 
             Dim conf1_sp As StackPanel = New StackPanel()
-            conf1_sp.Orientation = "Horizontal"
-            conf1_sp.HorizontalAlignment = "center"
+            conf1_sp.Orientation = Orientation.Horizontal
+            conf1_sp.HorizontalAlignment = HorizontalAlignment.Center
 
             Dim conf1_label As Label = New Label()
             conf1_label.Name = "newllblConf1"
@@ -53,14 +53,14 @@ Public Class NewLeague_Teams
                     gb_div.Header = gb_hdr_label
 
                     Dim v_sp_in_groupbox As StackPanel = New StackPanel()
-                    v_sp_in_groupbox.Orientation = "Vertical"
+                    v_sp_in_groupbox.Orientation = Orientation.Vertical
                     v_sp_in_groupbox.Width = 350
 
                     gb_div.Content = v_sp_in_groupbox
 
                     For z As Integer = 1 To teams_per_division
                         Dim sp_team As StackPanel = New StackPanel()
-                        sp_team.Orientation = "Hozizontal"
+                        sp_team.Orientation = Orientation.Horizontal
 
                         Dim helmet_img As Image = New Image()
                         helmet_img.Name = "newlimgTeam" & t_id.ToString
@@ -84,18 +84,17 @@ Public Class NewLeague_Teams
             End With
 
             Dim v_sp2 As StackPanel = New StackPanel()
-            v_sp2.Orientation = "Vertical"
-            v_sp2.HorizontalAlignment = "center"
+            v_sp2.Orientation = Orientation.Vertical
+            v_sp2.HorizontalAlignment = HorizontalAlignment.Center
 
             Dim conf2_sp As StackPanel = New StackPanel()
-            conf2_sp.Orientation = "Horizontal"
-            conf2_sp.HorizontalAlignment = "center"
+            conf2_sp.Orientation = Orientation.Horizontal
+            conf2_sp.HorizontalAlignment = HorizontalAlignment.Center
 
             Dim conf2_label As Label = New Label()
             conf2_label.Name = "newllblConf1"
             conf2_label.Width = 150
             conf1_label.Style = Conflbltyle
-
 
             conf2_sp.Children.Add(conf2_label)
             v_sp2.Children.Add(conf2_sp)
@@ -112,14 +111,14 @@ Public Class NewLeague_Teams
                     gb_div.Header = gb_hdr_label
 
                     Dim v_sp_in_groupbox As StackPanel = New StackPanel()
-                    v_sp_in_groupbox.Orientation = "Vertical"
+                    v_sp_in_groupbox.Orientation = Orientation.Vertical
                     v_sp_in_groupbox.Width = 350
 
                     gb_div.Content = v_sp_in_groupbox
 
                     For z As Integer = 1 To teams_per_division
                         Dim sp_team As StackPanel = New StackPanel()
-                        sp_team.Orientation = "Hozizontal"
+                        sp_team.Orientation = Orientation.Horizontal
 
                         Dim helmet_img As Image = New Image()
                         helmet_img.Name = "newlimgTeam" & t_id.ToString
@@ -143,8 +142,8 @@ Public Class NewLeague_Teams
             End With
         Else 'No conferences
             Dim v_sp As StackPanel = New StackPanel()
-            v_sp.Orientation = "Vertical"
-            v_sp.HorizontalAlignment = "center"
+            v_sp.Orientation = Orientation.Vertical
+            v_sp.HorizontalAlignment = HorizontalAlignment.Center
 
             With NewLeague_Settings
                 For i As Integer = 1 To CInt(.newlnumdivisions.Text)
@@ -158,14 +157,14 @@ Public Class NewLeague_Teams
                     gb_div.Header = gb_hdr_label
 
                     Dim v_sp_in_groupbox As StackPanel = New StackPanel()
-                    v_sp_in_groupbox.Orientation = "Vertical"
+                    v_sp_in_groupbox.Orientation = Orientation.Vertical
                     v_sp_in_groupbox.Width = 350
 
                     gb_div.Content = v_sp_in_groupbox
 
                     For z As Integer = 1 To teams_per_division
                         Dim sp_team As StackPanel = New StackPanel()
-                        sp_team.Orientation = "Hozizontal"
+                        sp_team.Orientation = Orientation.Horizontal
 
                         Dim helmet_img As Image = New Image()
                         helmet_img.Name = "newlimgTeam" & t_id.ToString
