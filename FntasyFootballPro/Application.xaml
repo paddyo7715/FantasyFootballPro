@@ -55,6 +55,16 @@
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="white"/>
         </Style>
+        <!-- Medium sized screen title label -->
+        <Style TargetType="Label" x:Key="MedLabelstyle">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="HorizontalAlignment" Value="center"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
         <!-- Large Label -->
         <Style TargetType="Label" x:Key="Largelbltyle">
             <Setter Property="Height" Value="25"/>
@@ -118,7 +128,7 @@
         <Style TargetType="Label" x:Key="Conflbltyle">
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="white"/>
         </Style>
 

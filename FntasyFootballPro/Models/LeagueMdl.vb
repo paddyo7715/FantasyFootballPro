@@ -1,5 +1,4 @@
 ﻿Public Class Leaguemdl
-    Property Logo_Filepath As String = ""
     Property Short_Name As String = ""
     Property Long_Name As String = ""
     Property Starting_Year As Integer
@@ -16,7 +15,7 @@
 
     Property Teams As List(Of TeamMdl) = New List(Of TeamMdl)
 
-    Sub New(ByVal Logo_Filepath As String, ByVal Short_Name As String,
+    Sub New(ByVal Short_Name As String,
             ByVal Long_Name As String, ByVal Starting_Year As Integer,
             ByVal Number_of_weeks As Integer, ByVal Number_of_Games As Integer,
             ByVal Championship_Game_Name As String, ByVal Trophy_Filepath As String,
@@ -24,7 +23,6 @@
             ByVal Conferences As List(Of String),
             ByVal Divisions As List(Of String))
 
-        Me.Logo_Filepath = Logo_Filepath
         Me.Short_Name = Short_Name
         Me.Long_Name = Long_Name
         Me.Starting_Year = Starting_Year

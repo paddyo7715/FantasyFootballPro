@@ -29,7 +29,6 @@ Public Class League_Services
             My.Computer.FileSystem.CopyFile(App_Constants.BLANK_DB_FOLDER & "\" & App_Constants.BLANK_DB, DIRPath_League & "\" & New_League_File)
 
             'Copy the league image files to the league folder
-            My.Computer.FileSystem.CopyFile(nl.Logo_Filepath, DIRPath_League & "\" & Path.GetFileName(nl.Logo_Filepath))
             My.Computer.FileSystem.CopyFile(nl.Trophy_filepath, DIRPath_League & "\" & Path.GetFileName(nl.Trophy_filepath))
 
             'Copy team image files to league folder

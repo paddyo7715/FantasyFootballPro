@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:FntasyFootballPro"
         mc:Ignorable="d"
         Background="DarkGreen"
-        WindowState="Maximized" 
-        ResizeMode="NoResize" 
+        WindowState="Normal" 
+        ResizeMode="CanResize" 
         WindowStyle="None" >
     <DockPanel>
         <Label DockPanel.Dock="Top" Style="{StaticResource appMainMenuTitlelbltyle}">Fantasy Football Pro</Label>

@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False">
     <DockPanel>
-        <Label DockPanel.Dock="Top" FontSize="42" HorizontalAlignment="Center" VerticalContentAlignment="Center" Height="100" Foreground="White">New League Teams</Label>
+        <Label DockPanel.Dock="Top" Name="LeageName" Style="{StaticResource MedLabelstyle}" HorizontalAlignment="Center" VerticalContentAlignment="Center" />
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newl2Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
             <Button Name="newl2Submit" Style="{StaticResource appSubmitStyle}">Submit</Button>
         </StackPanel>
-        <StackPanel Name="sp1" Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Name="sp1" Orientation="Horizontal"  VerticalAlignment="top" HorizontalAlignment="Center">
 
                 
                 

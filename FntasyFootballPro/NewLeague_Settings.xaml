@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:FntasyFootballPro"
         Background="DarkGreen" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False">
     <DockPanel>
-        <Image DockPanel.Dock="Top" Margin="10,20,10,10" Name="newl1LogoImage" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width=" 100" />
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <Label DockPanel.Dock="Top" Style="{StaticResource MedLabelstyle}" >New League</Label>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newl1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
             <Button Name="newl1Next" Style="{StaticResource appSubmitStyle}">Next</Button>
         </StackPanel>
@@ -25,11 +25,6 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <Label Width="350" Style="{StaticResource Largelbltyle}">Long Names:</Label>
                         <TextBox Name="newl1longname" Width="300" Style="{StaticResource Largetxttyle}"  MaxLength="100" />
-                        </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                        <Label Width="350" Style="{StaticResource Largelbltyle}">League Logo Image:</Label>
-                        <TextBox Name="newl1LogoPath" Width="400" Style="{StaticResource Largetxttyle}"  />
-                        <Button Name="newl1btnLogoPath" Style="{StaticResource appSelectImageStyle}">Image File</Button>
                         </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                         <Label Width="350" Style="{StaticResource Largelbltyle}">Starting Year:</Label>
