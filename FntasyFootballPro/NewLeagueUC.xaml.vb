@@ -1,28 +1,31 @@
 ﻿Imports System.IO
 Imports Microsoft.Win32
 
-Public Class NewLeague_Settings
+Public Class NewLeagueUC
+    'pw is the parent window mainwindow
+    Private pw As MainWindow = Application.Current.MainWindow
 
-    Property winMainMenu As MainWindow
+    Public Event Show_MainMenu As EventHandler
+    Public Event Show_TeamDetails As EventHandler
 
-
-    Public Sub New(ByVal winMainMenu As MainWindow)
+    Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-
-        Me.winMainMenu = winMainMenu
 
         Dim icurrentyear As Integer = Date.Today.Year
 
         For i As Integer = icurrentyear - 100 To icurrentyear + 100
             newl1StartingYear.Items.Add(i.ToString)
         Next
+
+        'Create the new league object on the main window
+        pw.New_League = New Leaguemdl()
+
         newl1StartingYear.Text = icurrentyear.ToString
         newl1Structure.SelectedIndex = 0
 
     End Sub
-
 
     Private Sub validate()
 
@@ -63,6 +66,7 @@ Public Class NewLeague_Settings
             Throw New Exception("League " & newl1shortname.Text & " already exists!")
         End If
 
+
     End Sub
 
     Private Sub newl1Structure_SelectionChanged(sender As Object, e As RoutedEventArgs) Handles newl1Structure.SelectionChanged
@@ -76,6 +80,7 @@ Public Class NewLeague_Settings
         Dim num_confs As Integer
         Dim num_playoff_teams As Integer
         Dim last_div_first_group As Integer
+        Dim teams_per_division As Integer
         Dim j As Integer
         Dim Largelblstyle As Style = Application.Current.FindResource("Largelbltyle")
         Dim GroupBoxstyle As Style = Application.Current.FindResource("GroupBoxstyle")
@@ -88,6 +93,7 @@ Public Class NewLeague_Settings
         num_teams = v(3)
         num_confs = v(4)
         num_playoff_teams = v(5)
+        teams_per_division = num_teams \ num_divs
 
         newlnumweeks.Text = num_weeks.ToString
         newlnumgames.Text = num_games.ToString
@@ -98,11 +104,17 @@ Public Class NewLeague_Settings
 
         'Clear previous division selections
         spDivisions.Children.Clear()
+        sp1.Children.Clear()
         Me.unregisterControl("newlConf1")
         Me.unregisterControl("newlConf2")
+        Me.unregisterControl("newllblConf1")
+        Me.unregisterControl("newllblConf2")
 
         For I As Integer = 1 To CInt(num_teams)
             Me.unregisterControl("newldiv" & I.ToString)
+            Me.unregisterControl("newldiv_team" & I.ToString)
+            Me.unregisterControl("newlimgTeam" & I.ToString)
+            Me.unregisterControl("newllblTeam" & I.ToString)
         Next
 
         If num_confs = 2 Then
@@ -124,6 +136,7 @@ Public Class NewLeague_Settings
             txtConf1.Width = 150
             txtConf1.Style = Largetxttyle
             txtConf1.MaxLength = 60
+            txtConf1.AddHandler(TextBox.LostFocusEvent, New RoutedEventHandler(AddressOf confTextbox_LostFocus))
 
             conf_panel_1_sq.Children.Add(conf_1_label)
             conf_panel_1_sq.Children.Add(txtConf1)
@@ -160,6 +173,7 @@ Public Class NewLeague_Settings
             txtConf2.Width = 150
             txtConf2.Style = Largetxttyle
             txtConf2.MaxLength = 60
+            txtConf2.AddHandler(TextBox.LostFocusEvent, New RoutedEventHandler(AddressOf confTextbox_LostFocus))
 
             conf_panel_2_sq.Children.Add(conf_2_label)
             conf_panel_2_sq.Children.Add(txtConf2)
@@ -206,6 +220,7 @@ Public Class NewLeague_Settings
                 txtDivision1.Name = "newldiv" & i.ToString
                 txtDivision1.Width = 150
                 txtDivision1.Style = Largetxttyle
+                txtDivision1.AddHandler(TextBox.LostFocusEvent, New RoutedEventHandler(AddressOf divTextbox_LostFocus))
 
                 'register the dynamically added control so that it can be looked up later.
                 Me.RegisterName(txtDivision1.Name, txtDivision1)
@@ -228,6 +243,7 @@ Public Class NewLeague_Settings
                 txtDivision2.Name = "newldiv" & j.ToString
                 txtDivision2.Width = 150
                 txtDivision2.Style = Largetxttyle
+                txtDivision2.AddHandler(TextBox.LostFocusEvent, New RoutedEventHandler(AddressOf divTextbox_LostFocus))
 
                 sp2.Children.Add(div_2_label)
                 sp2.Children.Add(txtDivision2)
@@ -263,7 +279,6 @@ Public Class NewLeague_Settings
             st_v_gb.HorizontalAlignment = HorizontalAlignment.Center
             st_v_gb.Margin = New Thickness(5, 5, 10, 10)
 
-
             'set the labels font text colors ext.
             For i As Integer = 1 To num_divs
                 Dim sp1 As StackPanel = New StackPanel()
@@ -279,6 +294,7 @@ Public Class NewLeague_Settings
                 txtDivision1.Name = "newldiv" & i.ToString
                 txtDivision1.Width = 150
                 txtDivision1.Style = Largetxttyle
+                txtDivision1.AddHandler(TextBox.LostFocusEvent, New RoutedEventHandler(AddressOf divTextbox_LostFocus))
 
                 sp1.Children.Add(div_1_label)
                 sp1.Children.Add(txtDivision1)
@@ -292,9 +308,208 @@ Public Class NewLeague_Settings
             Next
 
             spDivisions.Children.Add(v_sp)
-
         End If
 
+
+        'setting division from new_teams on teams tab
+        Dim Teamlbltyle As Style = Application.Current.FindResource("Teamlbltyle")
+        '            Dim Conflbltyle As Style = Application.Current.FindResource("Conflbltyle")
+
+        Dim t_id = 1
+        Dim num_divs_per_conf As Integer
+        If num_confs = 0 Then
+            num_divs_per_conf = num_divs
+        Else
+            num_divs_per_conf = num_divs \ num_confs
+        End If
+
+        If num_confs = 2 Then
+            Dim v_sp1 As StackPanel = New StackPanel()
+            v_sp1.Orientation = Orientation.Vertical
+            v_sp1.VerticalAlignment = VerticalAlignment.Top
+            v_sp1.HorizontalAlignment = HorizontalAlignment.Center
+
+            Dim conf1_sp As StackPanel = New StackPanel()
+            conf1_sp.Orientation = Orientation.Horizontal
+            conf1_sp.HorizontalAlignment = HorizontalAlignment.Center
+
+            Dim conf1_label As Label = New Label()
+            conf1_label.Name = "newllblConf1"
+            conf1_label.Width = 150
+            conf1_label.Style = Conflbltyle
+
+            conf1_sp.Children.Add(conf1_label)
+            v_sp1.Children.Add(conf1_sp)
+
+            Me.RegisterName(conf1_label.Name, conf1_label)
+
+            For i As Integer = 1 To num_divs_per_conf
+                Dim gb_hdr_label As Label = New Label()
+                gb_hdr_label.Name = "newldiv_team" & i.ToString
+                gb_hdr_label.Foreground = Brushes.White
+
+                Dim gb_div As GroupBox = New GroupBox()
+                gb_div.Margin = New Thickness(1, 1, 1, 1)
+                gb_div.FontSize = 14
+                gb_div.Header = gb_hdr_label
+
+                Dim v_sp_in_groupbox As StackPanel = New StackPanel()
+                v_sp_in_groupbox.Orientation = Orientation.Vertical
+                v_sp_in_groupbox.Width = 350
+
+                gb_div.Content = v_sp_in_groupbox
+
+                Me.RegisterName(gb_hdr_label.Name, gb_hdr_label)
+
+                For z As Integer = 1 To teams_per_division
+                    Dim sp_team As StackPanel = New StackPanel()
+                    sp_team.Orientation = Orientation.Horizontal
+
+                    Dim helmet_img As Image = New Image()
+                    helmet_img.Name = "newlimgTeam" & t_id.ToString
+                    helmet_img.Width = 20
+                    helmet_img.Height = 20
+
+                    Dim team_label As Label = New Label()
+                    team_label.Name = "newllblTeam" & t_id.ToString
+                    team_label.Padding = New Thickness(10, 0, 0, 0)
+                    team_label.Style = Teamlbltyle
+                    team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
+
+                    sp_team.Children.Add(helmet_img)
+                    sp_team.Children.Add(team_label)
+
+                    v_sp_in_groupbox.Children.Add(sp_team)
+
+                    Me.RegisterName(helmet_img.Name, helmet_img)
+                    Me.RegisterName(team_label.Name, team_label)
+
+                    t_id += 1
+                Next
+                v_sp1.Children.Add(gb_div)
+            Next
+
+            Dim v_sp2 As StackPanel = New StackPanel()
+            v_sp2.Orientation = Orientation.Vertical
+            v_sp2.VerticalAlignment = VerticalAlignment.Top
+            v_sp2.HorizontalAlignment = HorizontalAlignment.Center
+
+            Dim conf2_sp As StackPanel = New StackPanel()
+            conf2_sp.Orientation = Orientation.Horizontal
+            conf2_sp.HorizontalAlignment = HorizontalAlignment.Center
+
+            Dim conf2_label As Label = New Label()
+            conf2_label.Name = "newllblConf2"
+            conf2_label.Width = 150
+            conf2_label.Style = Conflbltyle
+
+            conf2_sp.Children.Add(conf2_label)
+            v_sp2.Children.Add(conf2_sp)
+
+            Me.RegisterName(conf2_label.Name, conf2_label)
+
+            For i As Integer = num_divs_per_conf + 1 To num_divs
+                Dim gb_hdr_label As Label = New Label()
+                gb_hdr_label.Name = "newldiv_team" & i.ToString
+                gb_hdr_label.Foreground = Brushes.White
+
+                Dim gb_div As GroupBox = New GroupBox()
+                gb_div.Margin = New Thickness(1, 1, 1, 1)
+                gb_div.FontSize = 14
+                gb_div.Header = gb_hdr_label
+
+                Dim v_sp_in_groupbox As StackPanel = New StackPanel()
+                v_sp_in_groupbox.Orientation = Orientation.Vertical
+                v_sp_in_groupbox.Width = 350
+
+                gb_div.Content = v_sp_in_groupbox
+
+                Me.RegisterName(gb_hdr_label.Name, gb_hdr_label)
+
+                For z As Integer = 1 To teams_per_division
+                    Dim sp_team As StackPanel = New StackPanel()
+                    sp_team.Orientation = Orientation.Horizontal
+
+                    Dim helmet_img As Image = New Image()
+                    helmet_img.Name = "newlimgTeam" & t_id.ToString
+                    helmet_img.Width = 20
+                    helmet_img.Height = 20
+
+                    Dim team_label As Label = New Label()
+                    team_label.Name = "newllblTeam" & t_id.ToString
+                    team_label.Padding = New Thickness(10, 0, 0, 0)
+                    team_label.Style = Teamlbltyle
+                    team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
+
+                    sp_team.Children.Add(helmet_img)
+                    sp_team.Children.Add(team_label)
+
+                    v_sp_in_groupbox.Children.Add(sp_team)
+
+                    Me.RegisterName(helmet_img.Name, helmet_img)
+                    Me.RegisterName(team_label.Name, team_label)
+
+                    t_id += 1
+                Next
+                v_sp2.Children.Add(gb_div)
+            Next
+
+            sp1.Children.Add(v_sp1)
+            sp1.Children.Add(v_sp2)
+        Else 'No conferences
+            Dim v2_sp As StackPanel = New StackPanel()
+            v2_sp.Orientation = Orientation.Vertical
+            v2_sp.HorizontalAlignment = HorizontalAlignment.Center
+
+            For i As Integer = 1 To num_divs
+                Dim gb_hdr_label As Label = New Label()
+                gb_hdr_label.Name = "newldiv_team" & i.ToString
+                gb_hdr_label.Foreground = Brushes.White
+
+                Dim gb_div As GroupBox = New GroupBox()
+                gb_div.Margin = New Thickness(1, 1, 1, 1)
+                gb_div.FontSize = 14
+                gb_div.Header = gb_hdr_label
+
+                Dim v_sp_in_groupbox As StackPanel = New StackPanel()
+                v_sp_in_groupbox.Orientation = Orientation.Vertical
+                v_sp_in_groupbox.Width = 350
+
+                gb_div.Content = v_sp_in_groupbox
+                Me.RegisterName(gb_hdr_label.Name, gb_hdr_label)
+
+                For z As Integer = 1 To teams_per_division
+                    Dim sp_team As StackPanel = New StackPanel()
+                    sp_team.Orientation = Orientation.Horizontal
+
+                    Dim helmet_img As Image = New Image()
+                    helmet_img.Name = "newlimgTeam" & t_id.ToString
+                    helmet_img.Width = 20
+                    helmet_img.Height = 20
+
+                    Dim team_label As Label = New Label()
+                    team_label.Name = "newllblTeam" & t_id.ToString
+                    team_label.Padding = New Thickness(10, 0, 0, 0)
+                    team_label.Style = Teamlbltyle
+                    team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
+
+                    sp_team.Children.Add(helmet_img)
+                    sp_team.Children.Add(team_label)
+
+                    v_sp_in_groupbox.Children.Add(sp_team)
+
+                    Me.RegisterName(helmet_img.Name, helmet_img)
+                    Me.RegisterName(team_label.Name, team_label)
+
+                    t_id += 1
+                Next
+                v2_sp.Children.Add(gb_div)
+            Next
+
+            sp1.Children.Add(v2_sp)
+        End If
+
+        pw.New_League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
 
     End Sub
     Private Sub newl1btnTrophyPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnTrophyPath.Click
@@ -306,8 +521,15 @@ Public Class NewLeague_Settings
         End If
     End Sub
     Private Sub newl1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newl1Cancel.Click
-        Me.Close()
-        winMainMenu.Show()
+
+        RaiseEvent Show_MainMenu(Me, New EventArgs)
+
+    End Sub
+    Private Sub unregisterControl(ByVal s As String)
+        Try
+            Me.UnregisterName(s)
+        Catch IG As Exception
+        End Try
     End Sub
     Private Sub newl1Next_Click(sender As Object, e As RoutedEventArgs) Handles newl1Next.Click
         Dim Conferences_list As List(Of String) = New List(Of String)
@@ -325,25 +547,48 @@ Public Class NewLeague_Settings
                 Divisions_list.Add(CType(Me.FindName("newldiv" & i.ToString), TextBox).Text)
             Next
 
-            Dim nl As Leaguemdl = New Leaguemdl(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
-            CInt(newlnumweeks.Text), CInt(newlnumgames.Text), newl1championshipgame.Text, newl1TrophyPath.Text,
-            CInt(newlnumteams.Text), CInt(newlnumplayoffteams.Text), Conferences_list, Divisions_list)
+            pw.New_League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
+                        newl1championshipgame.Text, newl1TrophyPath.Text, Conferences_list, Divisions_list)
 
-            Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)
-            NL_Teams.setFields()
-            NL_Teams.Show()
+            '            Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)
+            '           NL_Teams.setFields()
+            '          NL_Teams.Show()
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
 
+    End Sub
+    'This event handler is called when the division name textbox loses focus, so that
+    'the division names can be set on the tab of new teams
+    Private Sub divTextbox_LostFocus(sender As Object, e As RoutedEventArgs)
+        Dim l As TextBox = e.Source
+        Dim n As Integer = CommonUtils.ExtractDivNumber(l.Name)
+        Dim divLabel As Label = Me.FindName("newldiv_team" & n.ToString)
+        divLabel.Content = l.Text
+        '        MessageBox.Show(l.Name & " " & n.ToString)
 
     End Sub
-    Private Sub unregisterControl(ByVal s As String)
-        Try
-            Me.UnregisterName(s)
-        Catch IG As Exception
-        End Try
+    'This method is fired when either conference textbox loses focus so that either conference
+    'label can be set on the teams tab
+    Private Sub confTextbox_LostFocus(sender As Object, e As RoutedEventArgs)
+        Dim l As TextBox = e.Source
+        Dim confLabel As Label = Nothing
+        If l.Name.EndsWith("1") Then
+            confLabel = Me.FindName("newllblConf1")
+        Else
+            confLabel = Me.FindName("newllblConf2")
+        End If
+        confLabel.Content = l.Text
     End Sub
+    Private Sub TeamLabel_MouseDown(sender As Object, e As RoutedEventArgs)
+        '        Dim l As Label = e.Source
+        '       Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
+        '        MessageBox.Show(l.Name & " " & n.ToString)
+        '      Dim NL_Team As NewTeam = New NewTeam(winMainMenu, Me, n - 1, New_League)
+        '     NL_Team.setfields()
+        '    NL_Team.Show()
+    End Sub
+
 
 End Class

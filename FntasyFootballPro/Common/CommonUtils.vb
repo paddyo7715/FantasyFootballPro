@@ -9,6 +9,11 @@ Public Class CommonUtils
         Dim r = s.Substring(i + 4)
         Return CInt(r)
     End Function
+    Public Shared Function ExtractDivNumber(ByVal s As String) As Integer
+        Dim i = s.IndexOf("newldiv")
+        Dim r = s.Substring(i + 7)
+        Return CInt(r)
+    End Function
     Public Shared Function isBlank(ByVal s As String) As Boolean
         If IsNothing(s) OrElse s.Trim.Length = 0 Then
             Return True

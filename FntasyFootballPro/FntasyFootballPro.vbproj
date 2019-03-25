@@ -84,6 +84,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System" />
@@ -124,17 +125,17 @@
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
+    <Compile Include="MainMenuUC.xaml.vb">
+      <DependentUpon>MainMenuUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\LeagueMdl.vb" />
     <Compile Include="Models\PlayerMdl.vb" />
     <Compile Include="Models\TeamMdl.vb" />
-    <Compile Include="NewLeague_Settings.xaml.vb">
-      <DependentUpon>NewLeague_Settings.xaml</DependentUpon>
+    <Compile Include="NewLeagueUC.xaml.vb">
+      <DependentUpon>NewLeagueUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewLeague_Teams.xaml.vb">
-      <DependentUpon>NewLeague_Teams.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NewTeam.xaml.vb">
-      <DependentUpon>NewTeam.xaml</DependentUpon>
+    <Compile Include="NewTeamUC.xaml.vb">
+      <DependentUpon>NewTeamUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Player\Player.vb" />
     <Compile Include="Player\Player_Abilities.vb" />
@@ -154,6 +155,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainMenuUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,15 +175,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewLeague_Settings.xaml">
+    <Page Include="NewLeagueUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewLeague_Teams.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NewTeam.xaml">
+    <Page Include="NewTeamUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

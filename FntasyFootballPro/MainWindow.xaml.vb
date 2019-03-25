@@ -1,15 +1,32 @@
 ﻿Imports System.ComponentModel
 
 Class MainWindow
-    Private Sub mmExit_Click(sender As Object, e As RoutedEventArgs) Handles mmExit.Click
-        Me.Close()
+    Public New_League As Leaguemdl = Nothing
+
+    Private MainMenuUC As MainMenuUC = Nothing
+    Private NewLeagueUC As NewLeagueUC = Nothing
+    Private NewTeamUC As NewTeamUC = Nothing
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        MainMenuUC = New MainMenuUC()
+        NewLeagueUC = New NewLeagueUC()
+
+        sp_uc.Children.Add(MainMenuUC)
+
+        AddHandler MainMenuUC.Shutdown_App, AddressOf Me.MainWindow_Closing
+        AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
+        AddHandler MainMenuUC.Show_NewLeague, AddressOf Me.Show_NewLeague
+        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
+        AddHandler NewTeamUC.Show_MainMenu, AddressOf Me.Show_MainMenu
+
+
     End Sub
 
-    Private Sub mmAdmin_Click(sender As Object, e As RoutedEventArgs) Handles mmAdmin.Click
-        Dim Adm As Administration = New Administration(Me)
-        Adm.clearpage()
-        Adm.Show()
-    End Sub
     Private Sub MainWindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
 
         Dim response = MessageBox.Show("Do you really want to exit?", "Exiting...",
@@ -17,13 +34,29 @@ Class MainWindow
         If (response = MessageBoxResult.No) Then
             e.Cancel = True
         Else
-            Application.Current.Shutdown()
+            CloseApplication()
         End If
 
     End Sub
-
-    Private Sub mmNew_Click(sender As Object, e As RoutedEventArgs) Handles mmNew.Click
-        Dim NewLge As NewLeague_Settings = New NewLeague_Settings(Me)
-        NewLge.Show()
+    Private Sub CloseApplication()
+        Application.Current.Shutdown()
     End Sub
+    Private Sub Show_MainMenu(sender As Object, e As EventArgs)
+
+        sp_uc.Children.Clear()
+        sp_uc.Children.Add(MainMenuUC)
+    End Sub
+    Private Sub Show_NewLeague(sender As Object, e As EventArgs)
+
+        New_League = Nothing
+        sp_uc.Children.Clear()
+        sp_uc.Children.Add(NewLeagueUC)
+    End Sub
+    Private Sub Back_NewLeague(sender As Object, e As EventArgs)
+
+        sp_uc.Children.Clear()
+        sp_uc.Children.Add(NewTeamUC)
+    End Sub
+
+
 End Class

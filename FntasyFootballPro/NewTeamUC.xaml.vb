@@ -1,28 +1,26 @@
-﻿Imports System.IO
-Imports System.Windows
+﻿Imports System.Windows.Controls
 Imports Microsoft.Win32
 
-Public Class NewTeam
-    Property winMainMenu As MainWindow
-    Property NewLeague_Teams As NewLeague_Teams
+Public Class NewTeamUC
+
+    'pw is the parent window mainwindow
+    Private pw As MainWindow = Application.Current.MainWindow
+
+    Public Event backtoNewLeague As EventHandler
+    Public Event Show_MainMenu As EventHandler
+
     Property team_ind As Integer
     Property Roster As List(Of PlayerMdl) = Nothing
-    Property New_League As Leaguemdl = Nothing
     Property Uniform_Img As Uniform_Image
 
     Property Event_from_Code As Boolean = False
 
-    Public Sub New(ByVal winMainMenu As MainWindow, ByVal NewLeague_Teams As NewLeague_Teams,
-                   ByVal team_ind As Integer, ByVal New_League As Leaguemdl)
+    Public Sub New(ByVal team_ind As Integer)
 
         ' This call is required by the designer.
         InitializeComponent()
 
-        Me.NewLeague_Teams = NewLeague_Teams
         Me.team_ind = team_ind
-        Me.winMainMenu = winMainMenu
-        Me.New_League = New_League
-
 
         '        Uniform_Img = New Uniform_Image(My.Application.Info.DirectoryPath + "/Images/blankUniform.png")
         Uniform_Img = New Uniform_Image("../../Images/blankUniform.png")
@@ -56,7 +54,7 @@ Public Class NewTeam
     End Sub
     Public Sub setfields()
 
-        Dim League_Teams As List(Of TeamMdl) = New_League.Teams
+        Dim League_Teams As List(Of TeamMdl) = pw.New_League.Teams
         Dim colorConverter As ColorConverter = New ColorConverter()
         Dim bc As BrushConverter = New BrushConverter()
 
@@ -118,7 +116,6 @@ Public Class NewTeam
             Helmet_image.Source = New BitmapImage(New Uri(League_Teams(team_ind).Helmet_img_path))
         End If
 
-
         If Not IsNothing(League_Teams(team_ind).Uniform) Then
             newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Color)
             newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Logo_Color)
@@ -160,7 +157,6 @@ Public Class NewTeam
             newtAwayPantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_1)
             newtAwayPantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_2)
             newtAwayPantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_3)
-
 
             mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
             helmetColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
@@ -388,7 +384,6 @@ Public Class NewTeam
 
         If Event_from_Code Then Return
 
-
         Event_from_Code = True
         newtHomeJerseySleeve1Color.SelectedColor = newtHomeSleeveColor.SelectedColor
         newtHomeJerseySleeve2Color.SelectedColor = newtHomeSleeveColor.SelectedColor
@@ -486,7 +481,6 @@ Public Class NewTeam
     Private Sub newtAwayJerseyColor_SelectedColorChanged(sender As Object, e As RoutedPropertyChangedEventArgs(Of Color?))
 
         If Event_from_Code Then Return
-
 
         Event_from_Code = True
         newtAwaySleeveColor.SelectedColor = newtAwayJerseyColor.SelectedColor
@@ -617,8 +611,9 @@ Public Class NewTeam
 
     End Sub
     Private Sub newt1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newt1Cancel.Click
-        Me.Close()
-        NewLeague_Teams.Show()
+
+        RaiseEvent backtoNewLeague(Me, New EventArgs)
+
     End Sub
 
     Private Sub newtbtnHelmetImgPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnHelmetImgPath.Click
@@ -644,7 +639,7 @@ Public Class NewTeam
 
         Try
             Mouse.OverrideCursor = Cursors.Wait
-            Roster = ts.Roll_Players(New_League.Teams, "")
+            Roster = ts.Roll_Players(pw.New_League.Teams, "")
             newtPlayersGrid.ItemsSource = Roster
             Mouse.OverrideCursor = Nothing
         Catch ex As Exception
@@ -657,7 +652,7 @@ Public Class NewTeam
 
     Private Sub newt1Add_Click(sender As Object, e As RoutedEventArgs) Handles newt1Add.Click
         Try
-            Dim new_t As TeamMdl = New_League.Teams(team_ind)
+            Dim new_t As TeamMdl = pw.New_League.Teams(team_ind)
             Dim stadium As StadiumMdl = Nothing
             Dim Footwear As FootwearMdl = Nothing
             Dim Helmet As HelmetMdl = Nothing
@@ -775,21 +770,19 @@ Public Class NewTeam
             Home_Pants = New PantsMdl(Home_Pants_Color, Home_Pants_Stripe_1_Color,
                                 Home_Pants_Stripe_2_Color, Home_Pants_Stripe_3_Color)
 
-            Away_Jersey = New JerseyMdl(away_Jersey_Color, away_Sleeve_Color, away_Shoulder_Stripe_Color,
-                                away_Jersey_Number_Color, away_Jersey_Outline_Number_Color,
-                                away_Jersey_Sleeve_1_Color, away_Jersey_Sleeve_2_Color,
-                                away_Jersey_Sleeve_3_Color, away_Jersey_Sleeve_4_Color,
-                                away_Jersey_Sleeve_5_Color, away_Jersey_Sleeve_6_Color)
+            Away_Jersey = New JerseyMdl(Away_Jersey_Color, Away_Sleeve_Color, Away_Shoulder_Stripe_Color,
+                                Away_Jersey_Number_Color, Away_Jersey_Outline_Number_Color,
+                                Away_Jersey_Sleeve_1_Color, Away_Jersey_Sleeve_2_Color,
+                                Away_Jersey_Sleeve_3_Color, Away_Jersey_Sleeve_4_Color,
+                                Away_Jersey_Sleeve_5_Color, Away_Jersey_Sleeve_6_Color)
 
-            Away_Pants = New PantsMdl(away_Pants_Color, away_Pants_Stripe_1_Color,
-                                away_Pants_Stripe_2_Color, away_Pants_Stripe_3_Color)
+            Away_Pants = New PantsMdl(Away_Pants_Color, Away_Pants_Stripe_1_Color,
+                                Away_Pants_Stripe_2_Color, Away_Pants_Stripe_3_Color)
             Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
             new_t.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
 
-            Me.Close()
-            NewLeague_Teams.setFields()
-            NewLeague_Teams.Show()
+            RaiseEvent Show_MainMenu(Me, New EventArgs)
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
@@ -1158,8 +1151,6 @@ Public Class NewTeam
 
     Private Sub Validate()
 
-
-
         If CommonUtils.isBlank(newtCityAbb.Text) Then
             Throw New Exception("City Abbriviation must have a value")
         End If
@@ -1341,8 +1332,6 @@ Public Class NewTeam
         End If
 
     End Sub
-
-
 
 
 End Class

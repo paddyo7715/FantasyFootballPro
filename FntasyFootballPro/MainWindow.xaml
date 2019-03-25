@@ -6,24 +6,9 @@
         xmlns:local="clr-namespace:FntasyFootballPro"
         mc:Ignorable="d"
         Background="DarkGreen"
-        WindowState="Normal" 
+        WindowState="Maximized" 
         ResizeMode="CanResize" 
-        WindowStyle="None" >
-    <DockPanel>
-        <Label DockPanel.Dock="Top" Style="{StaticResource appMainMenuTitlelbltyle}">Fantasy Football Pro</Label>
-        <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Image Width="700" Height="600"  Source="Images/MainMenuImage.jpg"></Image>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                <Button Name="mmNew" Style="{StaticResource appMainMenubtnStyle}">New League</Button>
-                <Label Height="20"></Label>
-                <Button Name="mmLoad" Style="{StaticResource appMainMenubtnStyle}">Load League</Button>
-                <Label Height="20"></Label>
-                <Button Name="mmAdmin" Style="{StaticResource appMainMenubtnStyle}">Administration</Button>
-                <Label Height="20"></Label>
-                <Button Name="mmExit" Style="{StaticResource appMainMenubtnStyle}" Click="mmExit_Click">Exit</Button>
-            </StackPanel>
-        </StackPanel>
-        <!-- default is to fill -->
-
-    </DockPanel>
+        WindowStyle="SingleBorderWindow"
+        Title="Spectator Football">
+    <StackPanel Name="sp_uc" Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
 </Window>
