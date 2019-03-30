@@ -3,24 +3,24 @@ Imports Microsoft.Win32
 
 Public Class NewLeagueUC
     'pw is the parent window mainwindow
-    Private pw As MainWindow = Application.Current.MainWindow
+    Private pw As MainWindow
 
     Public Event Show_MainMenu As EventHandler
-    Public Event Show_TeamDetails As EventHandler
+    Public Event Show_NewTeam As EventHandler
 
-    Public Sub New()
+    Public Sub New(ByVal pw As MainWindow)
 
         ' This call is required by the designer.
         InitializeComponent()
+
+        Me.pw = pw
+        Me.pw.New_League = New Leaguemdl()
 
         Dim icurrentyear As Integer = Date.Today.Year
 
         For i As Integer = icurrentyear - 100 To icurrentyear + 100
             newl1StartingYear.Items.Add(i.ToString)
         Next
-
-        'Create the new league object on the main window
-        pw.New_League = New Leaguemdl()
 
         newl1StartingYear.Text = icurrentyear.ToString
         newl1Structure.SelectedIndex = 0
@@ -510,6 +510,7 @@ Public Class NewLeagueUC
         End If
 
         pw.New_League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
+        setTeamsLabels()
 
     End Sub
     Private Sub newl1btnTrophyPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnTrophyPath.Click
@@ -581,13 +582,29 @@ Public Class NewLeagueUC
         End If
         confLabel.Content = l.Text
     End Sub
+    Public Sub setTeamsLabels()
+        For i As Integer = 1 To CInt(newlnumteams.Text)
+            Dim teamLabel = "newllblTeam" & i.ToString
+            Dim teamImage = "newlimgTeam" & i.ToString
+
+            Dim teamLbl As Label = Me.FindName(teamLabel)
+            Dim teamImg As Image = Me.FindName(teamImage)
+            teamLbl.Content = pw.New_League.Teams(i - 1).City
+            Dim img_path = pw.New_League.Teams(i - 1).Helmet_img_path
+            If Not IsNothing(img_path) AndAlso img_path.Length > 0 Then
+                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
+                teamImg.Source = helmetIMG_source
+            End If
+        Next
+    End Sub
+
+
     Private Sub TeamLabel_MouseDown(sender As Object, e As RoutedEventArgs)
-        '        Dim l As Label = e.Source
-        '       Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
-        '        MessageBox.Show(l.Name & " " & n.ToString)
-        '      Dim NL_Team As NewTeam = New NewTeam(winMainMenu, Me, n - 1, New_League)
-        '     NL_Team.setfields()
-        '    NL_Team.Show()
+
+        Dim l As Label = e.Source
+        Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
+        RaiseEvent Show_NewTeam(Me, New teamEventArgs(n))
+
     End Sub
 
 

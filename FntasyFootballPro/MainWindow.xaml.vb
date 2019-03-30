@@ -14,15 +14,12 @@ Class MainWindow
 
         ' Add any initialization after the InitializeComponent() call.
         MainMenuUC = New MainMenuUC()
-        NewLeagueUC = New NewLeagueUC()
+
 
         sp_uc.Children.Add(MainMenuUC)
 
         AddHandler MainMenuUC.Shutdown_App, AddressOf Me.MainWindow_Closing
-        AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
         AddHandler MainMenuUC.Show_NewLeague, AddressOf Me.Show_NewLeague
-        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
-        AddHandler NewTeamUC.Show_MainMenu, AddressOf Me.Show_MainMenu
 
 
     End Sub
@@ -45,17 +42,45 @@ Class MainWindow
 
         sp_uc.Children.Clear()
         sp_uc.Children.Add(MainMenuUC)
+        NewLeagueUC = Nothing
+        NewTeamUC = Nothing
     End Sub
     Private Sub Show_NewLeague(sender As Object, e As EventArgs)
 
-        New_League = Nothing
-        sp_uc.Children.Clear()
-        sp_uc.Children.Add(NewLeagueUC)
-    End Sub
-    Private Sub Back_NewLeague(sender As Object, e As EventArgs)
+        NewLeagueUC = New NewLeagueUC(Me)
+        NewTeamUC = New NewTeamUC(Me)
+
+        AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
+        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
+        AddHandler NewLeagueUC.Show_NewTeam, AddressOf Me.Show_NewTeamDetail
+
+        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
+        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
+
 
         sp_uc.Children.Clear()
+        sp_uc.Children.Add(NewLeagueUC)
+
+    End Sub
+    Private Sub Back_NewLeague(sender As Object, e As TeamUpdatedEventArgs)
+
+        'Only if the team is updated, update the team labels
+        If e.team_upd = True Then
+            NewLeagueUC.setTeamsLabels()
+        End If
+
+        sp_uc.Children.Clear()
+        sp_uc.Children.Add(NewLeagueUC)
+
+    End Sub
+    Private Sub Show_NewTeamDetail(sender As Object, e As teamEventArgs)
+
+        NewTeamUC = New NewTeamUC(Me)
+        NewTeamUC.setTeamDetail(e.team_num - 1)
+        NewTeamUC.setfields()
+        sp_uc.Children.Clear()
         sp_uc.Children.Add(NewTeamUC)
+
     End Sub
 
 

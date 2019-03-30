@@ -10,7 +10,7 @@
         <Label DockPanel.Dock="Top" Style="{StaticResource MedLabelstyle}" >New League</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newl1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
-            <Button Name="newl1Next" Style="{StaticResource appSubmitStyle}">Next</Button>
+            <Button Name="newl1Next" Style="{StaticResource appSubmitStyle}">Save League</Button>
         </StackPanel>
         <TabControl  Background="DarkGreen" Foreground="White">
             <TabItem Header="Settings" Margin="-2,-2,2,-1">

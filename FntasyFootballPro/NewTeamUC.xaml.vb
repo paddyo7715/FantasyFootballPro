@@ -7,18 +7,21 @@ Public Class NewTeamUC
     Private pw As MainWindow = Application.Current.MainWindow
 
     Public Event backtoNewLeague As EventHandler
-    Public Event Show_MainMenu As EventHandler
 
     Property team_ind As Integer
     Property Roster As List(Of PlayerMdl) = Nothing
     Property Uniform_Img As Uniform_Image
 
     Property Event_from_Code As Boolean = False
-
-    Public Sub New(ByVal team_ind As Integer)
+    Public Sub New(ByVal pw As MainWindow)
 
         ' This call is required by the designer.
         InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Me.pw = pw
+    End Sub
+    Public Sub setTeamDetail(ByVal team_ind As Integer)
 
         Me.team_ind = team_ind
 
@@ -612,7 +615,7 @@ Public Class NewTeamUC
     End Sub
     Private Sub newt1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newt1Cancel.Click
 
-        RaiseEvent backtoNewLeague(Me, New EventArgs)
+        RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(False))
 
     End Sub
 
@@ -782,7 +785,7 @@ Public Class NewTeamUC
 
             new_t.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
 
-            RaiseEvent Show_MainMenu(Me, New EventArgs)
+            RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(True))
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)

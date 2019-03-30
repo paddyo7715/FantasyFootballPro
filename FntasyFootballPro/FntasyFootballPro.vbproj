@@ -122,6 +122,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonUtils.vb" />
+    <Compile Include="Common\teamEventArgs.vb" />
+    <Compile Include="Common\TeamUpdatedEventArgs.vb" />
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
