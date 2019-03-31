@@ -244,6 +244,7 @@
   <ItemGroup>
     <Folder Include="Administration\" />
     <Folder Include="Database\" />
+    <Folder Include="Images\Helmets\" />
     <Folder Include="NameFiles\" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +261,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\blankUniform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Philadelphia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Trophies\trophy.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FntasyFootballPro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <DockPanel>
+    <DockPanel Height="730">
         <Label DockPanel.Dock="Top" Style="{StaticResource MedLabelstyle}" >New League</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newl1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>

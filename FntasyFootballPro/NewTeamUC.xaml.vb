@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Controls
+﻿Imports System.IO
+Imports System.Windows.Controls
 Imports Microsoft.Win32
 
 Public Class NewTeamUC
@@ -344,7 +345,6 @@ Public Class NewTeamUC
 
         If Event_from_Code Then Return
 
-
         Event_from_Code = True
         newtHomeSleeveColor.SelectedColor = newtHomeJerseyColor.SelectedColor
         newtHomeShoulderStripeColor.SelectedColor = newtHomeJerseyColor.SelectedColor
@@ -621,6 +621,13 @@ Public Class NewTeamUC
 
     Private Sub newtbtnHelmetImgPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnHelmetImgPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
+        Dim init_folder As String = Directory.GetCurrentDirectory()
+        init_folder = Path.GetFullPath(Path.Combine(init_folder, "..\..\Images\Helmets"))
+
+        OpenFileDialog.InitialDirectory = init_folder
+        OpenFileDialog.Multiselect = False
+        OpenFileDialog.Filter = "Image Files|*.jpg;*.gif;*.png;*.bmp"
+
         If (OpenFileDialog.ShowDialog() = True) Then
             Dim filepath As String = OpenFileDialog.FileName
             newtHelmetImgPath.Text = filepath
@@ -629,14 +636,19 @@ Public Class NewTeamUC
     End Sub
     Private Sub newtbtnStadiumPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnStadiumPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
+        Dim init_folder As String = Directory.GetCurrentDirectory()
+        init_folder = Path.GetFullPath(Path.Combine(init_folder, "..\..\Images\Stadiums"))
+
+        OpenFileDialog.InitialDirectory = init_folder
+        OpenFileDialog.Multiselect = False
+        OpenFileDialog.Filter = "Image Files|*.jpg;*.gif;*.png;*.bmp"
+
         If (OpenFileDialog.ShowDialog() = True) Then
             Dim filepath As String = OpenFileDialog.FileName
             newtStadiumPath.Text = filepath
             Stadium_image.Source = New BitmapImage(New Uri(filepath))
         End If
     End Sub
-
-
     Private Sub newtRollTeam_Click(sender As Object, e As RoutedEventArgs) Handles newtRollTeam.Click
         Dim ts As New Team_Services()
 
@@ -701,7 +713,6 @@ Public Class NewTeamUC
             Dim Away_Pants_Stripe_1_Color As String = Nothing
             Dim Away_Pants_Stripe_2_Color As String = Nothing
             Dim Away_Pants_Stripe_3_Color As String = Nothing
-
 
             Dim City_Abr As String = newtCityAbb.Text
             Dim City As String = newtCity.Text
@@ -791,7 +802,6 @@ Public Class NewTeamUC
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub
-
     Public Sub setHomeUniform()
         Dim mc As System.Windows.Media.Color = Nothing
         Dim helmetColor As System.Drawing.Color = Nothing

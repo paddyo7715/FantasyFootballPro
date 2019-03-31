@@ -15,7 +15,6 @@ Class MainWindow
         ' Add any initialization after the InitializeComponent() call.
         MainMenuUC = New MainMenuUC()
 
-
         sp_uc.Children.Add(MainMenuUC)
 
         AddHandler MainMenuUC.Shutdown_App, AddressOf Me.MainWindow_Closing
@@ -48,15 +47,9 @@ Class MainWindow
     Private Sub Show_NewLeague(sender As Object, e As EventArgs)
 
         NewLeagueUC = New NewLeagueUC(Me)
-        NewTeamUC = New NewTeamUC(Me)
 
         AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
-        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
         AddHandler NewLeagueUC.Show_NewTeam, AddressOf Me.Show_NewTeamDetail
-
-        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
-        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
-
 
         sp_uc.Children.Clear()
         sp_uc.Children.Add(NewLeagueUC)
@@ -78,6 +71,8 @@ Class MainWindow
         NewTeamUC = New NewTeamUC(Me)
         NewTeamUC.setTeamDetail(e.team_num - 1)
         NewTeamUC.setfields()
+        AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
+
         sp_uc.Children.Clear()
         sp_uc.Children.Add(NewTeamUC)
 

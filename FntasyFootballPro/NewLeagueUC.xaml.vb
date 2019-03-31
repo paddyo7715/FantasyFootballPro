@@ -310,7 +310,6 @@ Public Class NewLeagueUC
             spDivisions.Children.Add(v_sp)
         End If
 
-
         'setting division from new_teams on teams tab
         Dim Teamlbltyle As Style = Application.Current.FindResource("Teamlbltyle")
         '            Dim Conflbltyle As Style = Application.Current.FindResource("Conflbltyle")
@@ -515,6 +514,12 @@ Public Class NewLeagueUC
     End Sub
     Private Sub newl1btnTrophyPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnTrophyPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
+        Dim init_folder As String = Directory.GetCurrentDirectory()
+        init_folder = Path.GetFullPath(Path.Combine(init_folder, "..\..\Images\Trophies"))
+
+        OpenFileDialog.InitialDirectory = init_folder
+        OpenFileDialog.Multiselect = False
+        OpenFileDialog.Filter = "Image Files|*.jpg;*.gif;*.png;*.bmp"
         If (OpenFileDialog.ShowDialog() = True) Then
             Dim filepath As String = OpenFileDialog.FileName
             newl1TrophyPath.Text = filepath
@@ -592,7 +597,8 @@ Public Class NewLeagueUC
             teamLbl.Content = pw.New_League.Teams(i - 1).City
             Dim img_path = pw.New_League.Teams(i - 1).Helmet_img_path
             If Not IsNothing(img_path) AndAlso img_path.Length > 0 Then
-                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
+                '                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
+                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri(img_path))
                 teamImg.Source = helmetIMG_source
             End If
         Next

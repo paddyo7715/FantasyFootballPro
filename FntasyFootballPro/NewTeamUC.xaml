@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <DockPanel>
+    <DockPanel Height="730">
         <Label DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="50" Foreground="White">New Team</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newt1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
@@ -195,9 +195,9 @@
                                     <GroupBox.Header>
                                         Home Uniform:
                                     </GroupBox.Header>
-                                    <StackPanel Width="200" Height="400" Orientation="horizontal" HorizontalAlignment="Center">
+                                    <StackPanel Width="180" Height="360" Orientation="horizontal" HorizontalAlignment="Center">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Image Name="newtHomeUniform" Width="165" Height="370" />
+                                            <Image Name="newtHomeUniform" Width="165" Height="358" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -209,9 +209,9 @@
                                     <GroupBox.Header>
                                         Away Uniform:
                                     </GroupBox.Header>
-                                    <StackPanel Width="200" Height="400" Orientation="horizontal" HorizontalAlignment="Center">
+                                    <StackPanel Width="180" Height="360" Orientation="horizontal" HorizontalAlignment="Center">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Image Name="newtAwayUniform" Width="165" Height="370" />
+                                            <Image Name="newtAwayUniform" Width="165" Height="358" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -303,7 +303,7 @@
                             <StackPanel Orientation="Vertical">
                                 <Button Name="newtRollTeam" FontSize="12" Width="100" HorizontalAlignment="left" Margin="20">Roll Team</Button>
 
-                                <ListView Margin="10" Name="newtPlayersGrid" AlternationCount="2" FontSize="10" Background="White" Width="750" Height="500">
+                                <ListView Margin="10" Name="newtPlayersGrid" AlternationCount="2" FontSize="10" Background="White" Width="750" Height="400">
 
                                     <ListView.Resources>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
