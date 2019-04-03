@@ -303,14 +303,16 @@
                             <StackPanel Orientation="Vertical">
                                 <Button Name="newtRollTeam" FontSize="12" Width="100" HorizontalAlignment="left" Margin="20">Roll Team</Button>
 
-                                <ListView Margin="10" Name="newtPlayersGrid" AlternationCount="2" FontSize="10" Background="White" Width="750" Height="400">
+                                <ListView Margin="10" Name="newtPlayersGrid" HorizontalContentAlignment="Center"  AlternationCount="2" FontSize="10" Background="White" Width="900" Height="400">
 
                                     <ListView.Resources>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
                                         </Style>
+                                
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Focusable" Value="false"/>
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
                                             <Style.Triggers>
                                                 <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
                                                     <Setter Property="Background" Value="LightBlue" />
@@ -325,24 +327,24 @@
                                         <GridView>
                                             <GridViewColumn Header="First Name" Width="75" DisplayMemberBinding="{Binding First_Name}" />
                                             <GridViewColumn Header="Last Name" Width="75" DisplayMemberBinding="{Binding Last_Name}" />
-                                            <GridViewColumn Header="Age" Width="30" DisplayMemberBinding="{Binding Age}" />
-                                            <GridViewColumn Header="Pos" Width="30" DisplayMemberBinding="{Binding Pos}" />
-                                            <GridViewColumn Header="Num" Width="30" DisplayMemberBinding="{Binding Jersey_Number}" />
+                                            <GridViewColumn Header="Age" Width="40" DisplayMemberBinding="{Binding Age}"  />
+                                            <GridViewColumn Header="Pos" Width="40" DisplayMemberBinding="{Binding Pos}" />
+                                            <GridViewColumn Header="Num" Width="40" DisplayMemberBinding="{Binding Jersey_Number}" />
                                             <GridViewColumn Header="Acc" Width="30" DisplayMemberBinding="{Binding Ratings.Accuracy_Rating}" />
                                             <GridViewColumn Header="Dsc" Width="30" DisplayMemberBinding="{Binding Ratings.Decision_Making}" />
-                                            <GridViewColumn Header="Arm" Width="30" DisplayMemberBinding="{Binding Ratings.Arm_Strength_Rating}" />
-                                            <GridViewColumn Header="PBlk" Width="30" DisplayMemberBinding="{Binding Ratings.Pass_Block_Rating}" />
-                                            <GridViewColumn Header="RBlk" Width="30" DisplayMemberBinding="{Binding Ratings.Run_Block_Rating}" />
-                                            <GridViewColumn Header="RPwr" Width="30" DisplayMemberBinding="{Binding Ratings.Running_Power_Rating}" />
-                                            <GridViewColumn Header="Spd" Width="30" DisplayMemberBinding="{Binding Ratings.Speed_Rating}" />
-                                            <GridViewColumn Header="Agil" Width="30" DisplayMemberBinding="{Binding Ratings.Agilty_Rating}" />
-                                            <GridViewColumn Header="Hnd" Width="30" DisplayMemberBinding="{Binding Ratings.Hands_Rating}" />
-                                            <GridViewColumn Header="Patt" Width="30" DisplayMemberBinding="{Binding Ratings.Pass_Attack}" />
-                                            <GridViewColumn Header="RAtt" Width="30" DisplayMemberBinding="{Binding Ratings.Run_Attack}" />
-                                            <GridViewColumn Header="Tack" Width="30" DisplayMemberBinding="{Binding Ratings.Tackle_Rating}" />
-                                            <GridViewColumn Header="Leg S" Width="30" DisplayMemberBinding="{Binding Ratings.Leg_Strength}" />
-                                            <GridViewColumn Header="Leg A" Width="30" DisplayMemberBinding="{Binding Ratings.Kicking_Accuracy}" />
-                                            <GridViewColumn Header="Fumb" Width="30" DisplayMemberBinding="{Binding Ratings.Fumble_Rating}" />
+                                            <GridViewColumn Header="Arm" Width="40" DisplayMemberBinding="{Binding Ratings.Arm_Strength_Rating}" />
+                                            <GridViewColumn Header="PBlk" Width="40" DisplayMemberBinding="{Binding Ratings.Pass_Block_Rating}" />
+                                            <GridViewColumn Header="RBlk" Width="40" DisplayMemberBinding="{Binding Ratings.Run_Block_Rating}" />
+                                            <GridViewColumn Header="RPwr" Width="40" DisplayMemberBinding="{Binding Ratings.Running_Power_Rating}" />
+                                            <GridViewColumn Header="Spd" Width="40" DisplayMemberBinding="{Binding Ratings.Speed_Rating}" />
+                                            <GridViewColumn Header="Agil" Width="40" DisplayMemberBinding="{Binding Ratings.Agilty_Rating}" />
+                                            <GridViewColumn Header="Hnd" Width="40" DisplayMemberBinding="{Binding Ratings.Hands_Rating}" />
+                                            <GridViewColumn Header="Patt" Width="40" DisplayMemberBinding="{Binding Ratings.Pass_Attack}" />
+                                            <GridViewColumn Header="RAtt" Width="40" DisplayMemberBinding="{Binding Ratings.Run_Attack}" />
+                                            <GridViewColumn Header="Tack" Width="40" DisplayMemberBinding="{Binding Ratings.Tackle_Rating}" />
+                                            <GridViewColumn Header="Leg S" Width="40" DisplayMemberBinding="{Binding Ratings.Leg_Strength}" />
+                                            <GridViewColumn Header="Leg A" Width="40" DisplayMemberBinding="{Binding Ratings.Kicking_Accuracy}" />
+                                            <GridViewColumn Header="Fumb" Width="40" DisplayMemberBinding="{Binding Ratings.Fumble_Rating}" />
                                         </GridView>
                                     </ListView.View>
                                 </ListView>

@@ -4,30 +4,46 @@
                                  ByVal league_DB_Connecdtion As String) As List(Of PlayerMdl)
         Dim r As List(Of PlayerMdl) = New List(Of PlayerMdl)
         Dim p As Player = New Player()
+        Dim i As Integer = 0
 
         'offense
-        r.Add(p.CreatePlayer(PlayerMdl.Position.QB, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.RB, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.RB, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.WR, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.WR, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.K, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.P, League_Teams, r, 0, ""))
+        For i = 1 To App_Constants.QB_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.QB, League_Teams, r, 0, ""))
+        Next
+
+        For i = 1 To App_Constants.RB_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.RB, League_Teams, r, 0, ""))
+        Next
+
+        For i = 1 To App_Constants.WR_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.WR, League_Teams, r, 0, ""))
+        Next
+
+        For i = 1 To App_Constants.OL_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
+        Next
 
         'Defense
-        r.Add(p.CreatePlayer(PlayerMdl.Position.DL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.DL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.DL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.DL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.DL, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.LB, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.CB, League_Teams, r, 0, ""))
-        r.Add(p.CreatePlayer(PlayerMdl.Position.CB, League_Teams, r, 0, ""))
+        For i = 1 To App_Constants.DL_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.DL, League_Teams, r, 0, ""))
+        Next
+
+        For i = 1 To App_Constants.LB_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.LB, League_Teams, r, 0, ""))
+        Next
+
+        For i = 1 To App_Constants.DB_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.DB, League_Teams, r, 0, ""))
+        Next
+
+        'Special Teams
+        For i = 1 To App_Constants.K_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.K, League_Teams, r, 0, ""))
+        Next
+
+        For i = 1 To App_Constants.P_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.P, League_Teams, r, 0, ""))
+        Next
 
         Return r
     End Function

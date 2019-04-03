@@ -3,9 +3,10 @@
         QB
         RB
         WR
+        TE
         OL
         DL
-        CB
+        DB
         LB
         K
         P

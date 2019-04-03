@@ -11,7 +11,19 @@ Public Class App_Constants
     Public Const BLANK_DB As String = "BlankDB.db"
 
     'Players
-    Public Const PLAYERS_PER_TEAM = 17
+    Public Const QB_PER_TEAM = 3
+    Public Const RB_PER_TEAM = 4
+    Public Const WR_PER_TEAM = 4
+    Public Const TE_PER_TEAM = 2
+    Public Const OL_PER_TEAM = 10
+
+    Public Const DL_PER_TEAM = 8
+    Public Const LB_PER_TEAM = 7
+    Public Const DB_PER_TEAM = 8
+
+    Public Const K_PER_TEAM = 1
+    Public Const P_PER_TEAM = 1
+
     'Numbering
     Public Const QBLOWNUM As Integer = 7
     Public Const QBHIGHNUM As Integer = 18
@@ -25,14 +37,17 @@ Public Class App_Constants
     Public Const WRLOWNUM As Integer = 80
     Public Const WRHIGHNUM As Integer = 89
 
+    Public Const TELOWNUM As Integer = 40
+    Public Const TEHIGHNUM As Integer = 89
+
     Public Const DLLOWNUM As Integer = 70
     Public Const DLHIGHNUM As Integer = 99
 
     Public Const LBLOWNUM As Integer = 50
     Public Const LBHIGHNUM As Integer = 59
 
-    Public Const CBLOWNUM As Integer = 20
-    Public Const CBHIGHNUM As Integer = 49
+    Public Const DBLOWNUM As Integer = 20
+    Public Const DBHIGHNUM As Integer = 49
 
     Public Const KLOWNUM As Integer = 1
     Public Const KHIGHNUM As Integer = 6
@@ -71,8 +86,24 @@ Public Class App_Constants
     Public Const NEWLEAGE_HIGH_AGE As Integer = 31
 
     'Abilities
-    Public Const ABILITY_LOW_RATING As Integer = 40
-    Public Const ABILITY_HIGH_RATING As Integer = 100
     Public Const OL_RUN_PASS_BLOCK_DELTA As Integer = 5
+
+    Public Const PRIMARY_ABILITY_LOW_RATING As Integer = 40
+    Public Const PRIMARY_ABILITY_HIGH_RATING As Integer = 100
+
+    Public Const SECONDARY_1_ABILITY_LOW_RATING As Integer = 30
+    Public Const SECONDARY_1_ABILITY_HIGH_RATING As Integer = 80
+
+    Public Const SECONDARY_2_ABILITY_LOW_RATING As Integer = 20
+    Public Const SECONDARY_2_ABILITY_HIGH_RATING As Integer = 70
+
+    Public Const SECONDARY_3_ABILITY_LOW_RATING As Integer = 10
+    Public Const SECONDARY_3_ABILITY_HIGH_RATING As Integer = 60
+
+    Public Const TERTIARY_ABILITY_LOW_RATING As Integer = 1
+    Public Const TERTIARY_ABILITY_HIGH_RATING As Integer = 10
+
+
+
 
 End Class
