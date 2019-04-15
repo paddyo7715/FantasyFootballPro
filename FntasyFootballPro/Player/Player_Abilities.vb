@@ -2,6 +2,7 @@
 
 Public Class Player_Abilities
 
+    Property OverAll As Single
     Property Accuracy_Rating As Integer
     Property Decision_Making As Integer
     Property Arm_Strength_Rating As Integer

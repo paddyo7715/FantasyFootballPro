@@ -1,7 +1,5 @@
 ﻿Public Class TeamMdl
 
-    Public Const PLAYERS_PER_TEAM = 18
-
     Property id As Integer
     Property Owner As String
     Property City_Abr As String = ""

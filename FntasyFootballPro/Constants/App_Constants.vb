@@ -52,6 +52,56 @@ Public Class App_Constants
     Public Const KLOWNUM As Integer = 1
     Public Const KHIGHNUM As Integer = 6
 
+    'Player Ratings Percentages
+    Public Const QB_FUMBLE_PERCENT = 0.03
+    Public Const QB_ARMSTRENGTH_PERCENT = 0.15
+    Public Const QB_ACCURACY_RATING = 0.45
+    Public Const QB_DESISION_RATING = 0.37
+
+    Public Const RB_RUNNING_PWER_PERCENT = 0.28
+    Public Const RB_SPEED_PERCENT = 0.2
+    Public Const RB_AGILITY_PERCENT = 0.28
+    Public Const RB_FUMBLE_PERCENT = 0.06
+    Public Const RB_HANDS_PERCENT = 0.18
+
+    Public Const WR_SPEED_PERCENT = 0.35
+    Public Const WR_AGILITY_PERCENT = 0.35
+    Public Const WR_FUMBLE_PERCENT = 0.06
+    Public Const WR_HANDS_PERCENT = 0.24
+
+    Public Const TE_SPEED_PERCENT = 0.2
+    Public Const TE_AGILITY_PERCENT = 0.3
+    Public Const TE_FUMBLE_PERCENT = 0.03
+    Public Const TE_HANDS_PERCENT = 0.3
+    Public Const TE_PASS_BLOCK_PERCENT = 0.04
+    Public Const TE_RUN_BLOCK_PERCENT = 0.13
+
+    Public Const OL_PASS_BLOCK_PERCENT = 0.28
+    Public Const OL_RUN_BLOCK_PERCENT = 0.44
+    Public Const OL_AGILITY_PERCENT = 0.28
+
+    Public Const DL_PASS_ATTACK_PERCENT = 0.2
+    Public Const DL_RUN_ATTACK_PERCENT = 0.33
+    Public Const DL_TACKLE_PERCENT = 0.2
+    Public Const DL_AGILITY_PERCENT = 0.2
+    Public Const DL_SPEED_PERCENT = 0.07
+
+    Public Const DB_SPEED_PERCENT = 0.28
+    Public Const DB_HANDS_PERCENT = 0.16
+    Public Const DB_TACKLING_PERCENT = 0.28
+    Public Const DB_AGILITY_PERCENT = 0.28
+
+    Public Const LB_PASS_ATTACK_PERCENT = 0.3
+    Public Const LB_RUN_ATTACK_PERCENT = 0.2
+    Public Const LB_TACKLE_PERCENT = 0.2
+    Public Const LB_HANDS_PERCENT = 0.06
+    Public Const LB_SPEED_PERCENT = 0.12
+    Public Const LB_AGILITY_PERCENT = 0.12
+
+    Public Const K_KICK_ACC = 0.65
+    Public Const K_LEG_STRENGTH = 0.35
+
+
     'Stock Uniform Colors
     Public Shared STOCK_GREY_COLOR As Color = Color.FromArgb(40, 40, 40)
 
@@ -92,13 +142,13 @@ Public Class App_Constants
     Public Const PRIMARY_ABILITY_HIGH_RATING As Integer = 100
 
     Public Const SECONDARY_1_ABILITY_LOW_RATING As Integer = 30
-    Public Const SECONDARY_1_ABILITY_HIGH_RATING As Integer = 80
+    Public Const SECONDARY_1_ABILITY_HIGH_RATING As Integer = 90
 
     Public Const SECONDARY_2_ABILITY_LOW_RATING As Integer = 20
-    Public Const SECONDARY_2_ABILITY_HIGH_RATING As Integer = 70
+    Public Const SECONDARY_2_ABILITY_HIGH_RATING As Integer = 80
 
     Public Const SECONDARY_3_ABILITY_LOW_RATING As Integer = 10
-    Public Const SECONDARY_3_ABILITY_HIGH_RATING As Integer = 60
+    Public Const SECONDARY_3_ABILITY_HIGH_RATING As Integer = 70
 
     Public Const TERTIARY_ABILITY_LOW_RATING As Integer = 1
     Public Const TERTIARY_ABILITY_HIGH_RATING As Integer = 10

@@ -10,5 +10,43 @@
         ResizeMode="CanResize" 
         WindowStyle="SingleBorderWindow"
         Title="Spectator Football">
-    <StackPanel Name="sp_uc" Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New" />
+                <MenuItem Header="Open" />
+                <Separator />
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="League">
+                <MenuItem Header="Standings" />
+                <MenuItem Header="Playoffs" />
+                <MenuItem Header="Schedule" />
+                <MenuItem Header="Team Stats" />
+                <MenuItem Header="Player Stats" />
+                <MenuItem Header="Champions" />
+                <MenuItem Header="Records" />
+                <MenuItem Header="League Info" />
+            </MenuItem>
+            <MenuItem Header="History">
+            </MenuItem>
+            <MenuItem Header="Command">
+                <MenuItem Header="End Season" />
+                <MenuItem Header="Return to Current Year" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Education" />
+                <MenuItem Header="Changes" />
+                <MenuItem Header="About" />
+            </MenuItem>
+
+
+
+
+
+
+
+        </Menu>
+        <StackPanel Name="sp_uc" Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
+    </DockPanel>
 </Window>

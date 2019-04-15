@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports FntasyFootballPro.Leaguemdl
 Imports Microsoft.Win32
 
 Public Class NewLeagueUC
@@ -553,8 +554,11 @@ Public Class NewLeagueUC
                 Divisions_list.Add(CType(Me.FindName("newldiv" & i.ToString), TextBox).Text)
             Next
 
+            Dim lyears As List(Of Integer) = New List(Of Integer)(New Integer() {CInt(newl1StartingYear.Text)})
+
             pw.New_League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
-                        newl1championshipgame.Text, newl1TrophyPath.Text, Conferences_list, Divisions_list)
+                        newl1championshipgame.Text, newl1TrophyPath.Text, Conferences_list, Divisions_list,
+                        lyears, League_State.Regular_Season)
 
             '            Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)
             '           NL_Teams.setFields()

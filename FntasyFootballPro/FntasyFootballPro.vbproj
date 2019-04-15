@@ -127,11 +127,13 @@
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
+    <Compile Include="League\League.vb" />
     <Compile Include="MainMenuUC.xaml.vb">
       <DependentUpon>MainMenuUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\LeagueMdl.vb" />
     <Compile Include="Models\PlayerMdl.vb" />
+    <Compile Include="Models\StatsMdl.vb" />
     <Compile Include="Models\TeamMdl.vb" />
     <Compile Include="NewLeagueUC.xaml.vb">
       <DependentUpon>NewLeagueUC.xaml</DependentUpon>

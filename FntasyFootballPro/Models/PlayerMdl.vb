@@ -6,8 +6,8 @@
         TE
         OL
         DL
-        DB
         LB
+        DB
         K
         P
     End Enum
@@ -21,6 +21,10 @@
     Property Pos As Position
 
     Property Ratings As Player_Abilities
+
+    Property Stats As StatsMdl = Nothing
+
+    Property Awards As List(Of String)
 
 End Class
 

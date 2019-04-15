@@ -19,6 +19,10 @@
             r.Add(p.CreatePlayer(PlayerMdl.Position.WR, League_Teams, r, 0, ""))
         Next
 
+        For i = 1 To App_Constants.TE_PER_TEAM
+            r.Add(p.CreatePlayer(PlayerMdl.Position.TE, League_Teams, r, 0, ""))
+        Next
+
         For i = 1 To App_Constants.OL_PER_TEAM
             r.Add(p.CreatePlayer(PlayerMdl.Position.OL, League_Teams, r, 0, ""))
         Next

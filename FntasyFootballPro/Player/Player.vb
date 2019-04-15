@@ -141,6 +141,10 @@
                 r.Run_Block_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
 
+                r.OverAll = (r.Fumble_Rating * App_Constants.QB_FUMBLE_PERCENT) +
+                           (r.Arm_Strength_Rating * App_Constants.QB_ARMSTRENGTH_PERCENT) +
+                           (r.Accuracy_Rating * App_Constants.QB_ACCURACY_RATING) +
+                           (r.Decision_Making * App_Constants.QB_DESISION_RATING)
 
             Case PlayerMdl.Position.RB
                 r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -161,6 +165,12 @@
                 r.Run_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Run_Block_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
 
+                r.OverAll = (r.Fumble_Rating * App_Constants.RB_FUMBLE_PERCENT) +
+                            (r.Running_Power_Rating * App_Constants.RB_RUNNING_PWER_PERCENT) +
+                            (r.Speed_Rating * App_Constants.RB_SPEED_PERCENT) +
+                            ((r.Hands_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.RB_HANDS_PERCENT) +
+                            (r.Agilty_Rating * App_Constants.RB_AGILITY_PERCENT)
+
             Case PlayerMdl.Position.WR
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
                 r.Agilty_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -180,6 +190,36 @@
                 r.Run_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Run_Block_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
 
+                r.OverAll = (r.Fumble_Rating * App_Constants.WR_FUMBLE_PERCENT) +
+                            (r.Speed_Rating * App_Constants.WR_SPEED_PERCENT) +
+                            (r.Hands_Rating * App_Constants.WR_HANDS_PERCENT) +
+                            (r.Agilty_Rating * App_Constants.WR_AGILITY_PERCENT)
+
+            Case PlayerMdl.Position.TE
+                r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.SECONDARY_1_ABILITY_LOW_RATING, App_Constants.SECONDARY_1_ABILITY_HIGH_RATING)
+                r.Agilty_Rating = CommonUtils.getRandomNum(App_Constants.SECONDARY_1_ABILITY_LOW_RATING, App_Constants.SECONDARY_1_ABILITY_HIGH_RATING)
+                r.Hands_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
+                r.Fumble_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
+                r.Pass_Block_Rating = CommonUtils.getRandomNum(App_Constants.SECONDARY_1_ABILITY_LOW_RATING, App_Constants.SECONDARY_1_ABILITY_HIGH_RATING)
+                r.Run_Block_Rating = CommonUtils.getRandomNum(App_Constants.SECONDARY_1_ABILITY_LOW_RATING, App_Constants.SECONDARY_1_ABILITY_HIGH_RATING)
+
+                r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.SECONDARY_1_ABILITY_LOW_RATING, App_Constants.SECONDARY_1_ABILITY_HIGH_RATING)
+
+                r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Accuracy_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Decision_Making = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Arm_Strength_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Kicking_Accuracy = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Leg_Strength = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Pass_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+                r.Run_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+
+                r.OverAll = (r.Fumble_Rating * App_Constants.TE_FUMBLE_PERCENT) +
+                            ((r.Speed_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.TE_SPEED_PERCENT) +
+                            (r.Hands_Rating * App_Constants.TE_HANDS_PERCENT) +
+                            ((r.Agilty_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.TE_AGILITY_PERCENT) +
+                            ((r.Pass_Block_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.TE_PASS_BLOCK_PERCENT) +
+                            ((r.Run_Block_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.TE_RUN_BLOCK_PERCENT)
 
             Case PlayerMdl.Position.OL
                 r.Pass_Block_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -200,6 +240,10 @@
                 r.Pass_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Run_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+
+                r.OverAll = (r.Pass_Block_Rating * App_Constants.OL_PASS_BLOCK_PERCENT) +
+                            (r.Run_Block_Rating * App_Constants.OL_RUN_BLOCK_PERCENT) +
+                            ((r.Agilty_Rating + 100 - App_Constants.SECONDARY_3_ABILITY_HIGH_RATING) * App_Constants.OL_AGILITY_PERCENT)
 
             Case PlayerMdl.Position.DL
                 r.Pass_Attack = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -222,6 +266,12 @@
                 r.Leg_Strength = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
 
+                r.OverAll = (r.Pass_Attack * App_Constants.DL_PASS_ATTACK_PERCENT) +
+                            (r.Run_Attack * App_Constants.DL_RUN_ATTACK_PERCENT) +
+                            (r.Tackle_Rating * App_Constants.DL_TACKLE_PERCENT) +
+                            ((r.Agilty_Rating + 100 - App_Constants.SECONDARY_3_ABILITY_HIGH_RATING) * App_Constants.DL_AGILITY_PERCENT) +
+                            ((r.Speed_Rating + 100 - App_Constants.SECONDARY_3_ABILITY_HIGH_RATING) * App_Constants.DL_SPEED_PERCENT)
+
             Case PlayerMdl.Position.DB
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
                 r.Hands_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -240,6 +290,11 @@
                 r.Pass_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Run_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+
+                r.OverAll = (r.Speed_Rating * App_Constants.DB_SPEED_PERCENT) +
+                            (r.Hands_Rating * App_Constants.DB_HANDS_PERCENT) +
+                            (r.Tackle_Rating * App_Constants.DB_TACKLING_PERCENT) +
+                            (r.Agilty_Rating * App_Constants.DB_AGILITY_PERCENT)
 
             Case PlayerMdl.Position.LB
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -262,6 +317,13 @@
                 r.Leg_Strength = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Running_Power_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
 
+                r.OverAll = (r.Pass_Attack * App_Constants.LB_PASS_ATTACK_PERCENT) +
+                            (r.Run_Attack * App_Constants.LB_RUN_ATTACK_PERCENT) +
+                            (r.Tackle_Rating * App_Constants.LB_TACKLE_PERCENT) +
+                            ((r.Hands_Rating + 100 - App_Constants.SECONDARY_2_ABILITY_HIGH_RATING) * App_Constants.LB_HANDS_PERCENT) +
+                            ((r.Speed_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.LB_SPEED_PERCENT) +
+                            ((r.Agilty_Rating + 100 - App_Constants.SECONDARY_1_ABILITY_HIGH_RATING) * App_Constants.LB_AGILITY_PERCENT)
+
             Case PlayerMdl.Position.K, PlayerMdl.Position.P
                 r.Kicking_Accuracy = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
                 r.Leg_Strength = CommonUtils.getRandomNum(App_Constants.PRIMARY_ABILITY_LOW_RATING, App_Constants.PRIMARY_ABILITY_HIGH_RATING)
@@ -281,6 +343,9 @@
                 r.Speed_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Run_Attack = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
                 r.Tackle_Rating = CommonUtils.getRandomNum(App_Constants.TERTIARY_ABILITY_LOW_RATING, App_Constants.TERTIARY_ABILITY_HIGH_RATING)
+
+                r.OverAll = (r.Kicking_Accuracy * App_Constants.K_KICK_ACC) +
+                            (r.Leg_Strength * App_Constants.K_LEG_STRENGTH)
 
         End Select
 

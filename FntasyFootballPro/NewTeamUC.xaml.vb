@@ -655,6 +655,10 @@ Public Class NewTeamUC
         Try
             Mouse.OverrideCursor = Cursors.Wait
             Roster = ts.Roll_Players(pw.New_League.Teams, "")
+
+            Roster = Roster.OrderBy(Function(x) x.Pos).
+            ThenByDescending(Function(x) x.Ratings.OverAll).ToList
+
             newtPlayersGrid.ItemsSource = Roster
             Mouse.OverrideCursor = Nothing
         Catch ex As Exception

@@ -1,4 +1,11 @@
 ﻿Public Class Leaguemdl
+    Public Enum League_State
+        Regular_Season
+        Playoffs
+        Season_Complete
+        Prev_Season
+    End Enum
+
     Property Short_Name As String = ""
     Property Long_Name As String = ""
     Property Starting_Year As Integer
@@ -8,6 +15,10 @@
     Property Trophy_filepath As String = ""
     Property Num_Teams As Integer
     Property Num_Playoff_Teams As Integer
+
+    Property Years As List(Of Integer)
+
+    Property State As League_State = Nothing
 
     Property Conferences As List(Of String) = New List(Of String)
     Property Divisions As List(Of String) = New List(Of String)
@@ -28,7 +39,9 @@
             ByVal Long_Name As String, ByVal Starting_Year As Integer,
             ByVal Championship_Game_Name As String, ByVal Trophy_Filepath As String,
             ByVal Conferences As List(Of String),
-            ByVal Divisions As List(Of String))
+            ByVal Divisions As List(Of String),
+            ByVal Years As List(Of Integer),
+            ByVal State As League_State)
 
         Me.Short_Name = Short_Name
         Me.Long_Name = Long_Name
@@ -38,6 +51,9 @@
 
         Me.Conferences = Conferences
         Me.Divisions = Divisions
+
+        Me.Years = Years
+        Me.State = State
 
     End Sub
 

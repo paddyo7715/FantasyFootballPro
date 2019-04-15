@@ -303,7 +303,7 @@
                             <StackPanel Orientation="Vertical">
                                 <Button Name="newtRollTeam" FontSize="12" Width="100" HorizontalAlignment="left" Margin="20">Roll Team</Button>
 
-                                <ListView Margin="10" Name="newtPlayersGrid" HorizontalContentAlignment="Center"  AlternationCount="2" FontSize="10" Background="White" Width="900" Height="400">
+                                <ListView Margin="10" Name="newtPlayersGrid" HorizontalContentAlignment="Center"  AlternationCount="2" FontSize="10" Background="White" Width="940" Height="400">
 
                                     <ListView.Resources>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -330,6 +330,7 @@
                                             <GridViewColumn Header="Age" Width="40" DisplayMemberBinding="{Binding Age}"  />
                                             <GridViewColumn Header="Pos" Width="40" DisplayMemberBinding="{Binding Pos}" />
                                             <GridViewColumn Header="Num" Width="40" DisplayMemberBinding="{Binding Jersey_Number}" />
+                                            <GridViewColumn Header="All" Width="50" DisplayMemberBinding="{Binding Ratings.OverAll, StringFormat='{}{0:#0.00}' }"  />
                                             <GridViewColumn Header="Acc" Width="30" DisplayMemberBinding="{Binding Ratings.Accuracy_Rating}" />
                                             <GridViewColumn Header="Dsc" Width="30" DisplayMemberBinding="{Binding Ratings.Decision_Making}" />
                                             <GridViewColumn Header="Arm" Width="40" DisplayMemberBinding="{Binding Ratings.Arm_Strength_Rating}" />

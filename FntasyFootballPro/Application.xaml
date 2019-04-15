@@ -47,11 +47,11 @@
         <!-- Main Menu App Lable -->
         <Style TargetType="Label" x:Key="appMainMenuTitlelbltyle">
             <Setter Property="Width" Value="600"/>
-            <Setter Property="Height" Value="250"/>
+            <Setter Property="Height" Value="70"/>
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="42"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="white"/>
         </Style>
