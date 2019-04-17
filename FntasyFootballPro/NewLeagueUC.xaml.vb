@@ -15,7 +15,7 @@ Public Class NewLeagueUC
         InitializeComponent()
 
         Me.pw = pw
-        Me.pw.New_League = New Leaguemdl()
+        Me.pw.League = New Leaguemdl()
 
         Dim icurrentyear As Integer = Date.Today.Year
 
@@ -509,7 +509,7 @@ Public Class NewLeagueUC
             sp1.Children.Add(v2_sp)
         End If
 
-        pw.New_League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
+        pw.League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
         setTeamsLabels()
 
     End Sub
@@ -556,7 +556,7 @@ Public Class NewLeagueUC
 
             Dim lyears As List(Of Integer) = New List(Of Integer)(New Integer() {CInt(newl1StartingYear.Text)})
 
-            pw.New_League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
+            pw.League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
                         newl1championshipgame.Text, newl1TrophyPath.Text, Conferences_list, Divisions_list,
                         lyears, League_State.Regular_Season)
 
@@ -598,8 +598,8 @@ Public Class NewLeagueUC
 
             Dim teamLbl As Label = Me.FindName(teamLabel)
             Dim teamImg As Image = Me.FindName(teamImage)
-            teamLbl.Content = pw.New_League.Teams(i - 1).City
-            Dim img_path = pw.New_League.Teams(i - 1).Helmet_img_path
+            teamLbl.Content = pw.League.Teams(i - 1).City
+            Dim img_path = pw.League.Teams(i - 1).Helmet_img_path
             If Not IsNothing(img_path) AndAlso img_path.Length > 0 Then
                 '                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
                 Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri(img_path))

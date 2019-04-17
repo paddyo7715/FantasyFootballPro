@@ -3,9 +3,15 @@ Imports System.Windows.Controls
 Imports Microsoft.Win32
 
 Public Class NewTeamUC
+    Public Enum form_func
+        New_Team
+        Stock_Team
+        Update_Team
+    End Enum
+
 
     'pw is the parent window mainwindow
-    Private pw As MainWindow = Application.Current.MainWindow
+    Private team As TeamMdl = Nothing
 
     Public Event backtoNewLeague As EventHandler
 
@@ -13,20 +19,33 @@ Public Class NewTeamUC
     Property Roster As List(Of PlayerMdl) = Nothing
     Property Uniform_Img As Uniform_Image
 
+    Property Form_Function As form_func = Nothing
+
     Property Event_from_Code As Boolean = False
-    Public Sub New(ByVal pw As MainWindow)
+    Public Sub New(ByVal team As TeamMdl, ByVal func As String)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        Me.pw = pw
+        '      Me.pw = pw
+        Me.Form_Function = Form_Function
+        Me.team = team
+
+        Select Case func
+            Case "New_League"
+                Form_Function = form_func.New_Team
+        End Select
+
+        If Not Form_Function = form_func.New_Team Then
+            Players_tab.Visibility = True
+        Else
+            Players_tab.Visibility = False
+        End If
+
     End Sub
-    Public Sub setTeamDetail(ByVal team_ind As Integer)
+    Public Sub setTeamDetail()
 
-        Me.team_ind = team_ind
-
-        '        Uniform_Img = New Uniform_Image(My.Application.Info.DirectoryPath + "/Images/blankUniform.png")
         Uniform_Img = New Uniform_Image("../../Images/blankUniform.png")
         Uniform_Img.Flip_All_Colors(True,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
@@ -58,7 +77,6 @@ Public Class NewTeamUC
     End Sub
     Public Sub setfields()
 
-        Dim League_Teams As List(Of TeamMdl) = pw.New_League.Teams
         Dim colorConverter As ColorConverter = New ColorConverter()
         Dim bc As BrushConverter = New BrushConverter()
 
@@ -100,67 +118,67 @@ Public Class NewTeamUC
         Dim AwayPants_Stripe_2 As System.Drawing.Color = Nothing
         Dim AwayPants_Stripe_3 As System.Drawing.Color = Nothing
 
-        newtCityAbb.Text = League_Teams(team_ind).City_Abr
-        newtCity.Text = League_Teams(team_ind).City
-        newtNickname.Text = League_Teams(team_ind).Nickname
-        newtHelmetImgPath.Text = League_Teams(team_ind).Helmet_img_path
+        newtCityAbb.Text = team.City_Abr
+        newtCity.Text = team.City
+        newtNickname.Text = team.Nickname
+        newtHelmetImgPath.Text = team.Helmet_img_path
 
-        If Not IsNothing(League_Teams(team_ind).Stadium) Then
-            newtStadium.Text = League_Teams(team_ind).Stadium.Stadium_Name
-            newtStadiumLocation.Text = League_Teams(team_ind).Stadium.Stadium_Location
-            newtStadiumPath.Text = League_Teams(team_ind).Stadium.Stadium_Img_Path
-            Stadium_image.Source = New BitmapImage(New Uri(League_Teams(team_ind).Stadium.Stadium_Img_Path))
-            newtStadiumCapacity.Text = League_Teams(team_ind).Stadium.Capacity
-            newl1FieldType.SelectedIndex = League_Teams(team_ind).Stadium.Field_Type - 1
-            newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Stadium.Field_Color)
+        If Not IsNothing(team.Stadium) Then
+            newtStadium.Text = team.Stadium.Stadium_Name
+            newtStadiumLocation.Text = team.Stadium.Stadium_Location
+            newtStadiumPath.Text = team.Stadium.Stadium_Img_Path
+            Stadium_image.Source = New BitmapImage(New Uri(team.Stadium.Stadium_Img_Path))
+            newtStadiumCapacity.Text = team.Stadium.Capacity
+            newl1FieldType.SelectedIndex = team.Stadium.Field_Type - 1
+            newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(team.Stadium.Field_Color)
         End If
 
-        If Not IsNothing(League_Teams(team_ind).Helmet_img_path) AndAlso League_Teams(team_ind).Helmet_img_path.Length > 0 Then
-            newtHelmetImgPath.Text = League_Teams(team_ind).Helmet_img_path
-            Helmet_image.Source = New BitmapImage(New Uri(League_Teams(team_ind).Helmet_img_path))
+        If Not IsNothing(team.Helmet_img_path) AndAlso team.Helmet_img_path.Length > 0 Then
+            newtHelmetImgPath.Text = team.Helmet_img_path
+            Helmet_image.Source = New BitmapImage(New Uri(team.Helmet_img_path))
         End If
 
-        If Not IsNothing(League_Teams(team_ind).Uniform) Then
-            newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Color)
-            newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Logo_Color)
-            newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Helmet.Helmet_Facemask_Color)
+        If Not IsNothing(team.Uniform) Then
+            newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Color)
+            newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Logo_Color)
+            newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Facemask_Color)
 
-            newtSockColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Footwear.Socks_Color)
-            newtCleatsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Footwear.Cleats_Color)
+            newtSockColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Footwear.Socks_Color)
+            newtCleatsColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Footwear.Cleats_Color)
 
-            newtHomeJerseyColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Jersey_Color)
-            newtHomeSleeveColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Color)
-            newtHomeShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Shoulder_Stripe_Color)
-            newtHomeJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Number_Color)
-            newtHomeNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Number_Outline_Color)
-            newtHomeJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe1)
-            newtHomeJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe2)
-            newtHomeJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe3)
-            newtHomeJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe4)
-            newtHomeJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe5)
-            newtHomeJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Jersey.Sleeve_Stripe6)
+            newtHomeJerseyColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Jersey_Color)
+            newtHomeSleeveColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Color)
+            newtHomeShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Shoulder_Stripe_Color)
+            newtHomeJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Number_Color)
+            newtHomeNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Number_Outline_Color)
+            newtHomeJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe1)
+            newtHomeJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe2)
+            newtHomeJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe3)
+            newtHomeJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe4)
+            newtHomeJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe5)
+            newtHomeJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe6)
 
-            newtHomePantsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Pants_Color)
-            newtHomePantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Stripe_Color_1)
-            newtHomePantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Stripe_Color_2)
-            newtHomePantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Home_Pants.Stripe_Color_3)
+            newtHomePantsColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Pants_Color)
+            newtHomePantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Stripe_Color_1)
+            newtHomePantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Stripe_Color_2)
+            newtHomePantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Stripe_Color_3)
 
-            newtAwayJerseyColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Jersey_Color)
-            newtAwaySleeveColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Color)
-            newtAwayShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Shoulder_Stripe_Color)
-            newtAwayJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Number_Color)
-            newtAwayNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Number_Outline_Color)
-            newtAwayJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe1)
-            newtAwayJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe2)
-            newtAwayJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe3)
-            newtAwayJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe4)
-            newtAwayJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe5)
-            newtAwayJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Jersey.Sleeve_Stripe6)
+            newtAwayJerseyColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Jersey_Color)
+            newtAwaySleeveColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Color)
+            newtAwayShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Shoulder_Stripe_Color)
+            newtAwayJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Number_Color)
+            newtAwayNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Number_Outline_Color)
+            newtAwayJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe1)
+            newtAwayJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe2)
+            newtAwayJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe3)
+            newtAwayJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe4)
+            newtAwayJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe5)
+            newtAwayJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe6)
 
-            newtAwayPantsColor.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Pants_Color)
-            newtAwayPantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_1)
-            newtAwayPantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_2)
-            newtAwayPantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(League_Teams(team_ind).Uniform.Away_Pants.Stripe_Color_3)
+            newtAwayPantsColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Pants_Color)
+            newtAwayPantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Stripe_Color_1)
+            newtAwayPantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Stripe_Color_2)
+            newtAwayPantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Stripe_Color_3)
 
             mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
             helmetColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
@@ -296,8 +314,8 @@ Public Class NewTeamUC
             newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
         End If
 
-        If Not IsNothing(League_Teams(team_ind).Players) AndAlso League_Teams(team_ind).Players.Count > 0 Then
-            newtPlayersGrid.ItemsSource = League_Teams(team_ind).Players
+        If Not IsNothing(team.Players) AndAlso team.Players.Count > 0 Then
+            newtPlayersGrid.ItemsSource = team.Players
         End If
 
     End Sub
@@ -615,7 +633,9 @@ Public Class NewTeamUC
     End Sub
     Private Sub newt1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newt1Cancel.Click
 
-        RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(False))
+        If Form_Function = form_func.New_Team Then
+            RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(False))
+        End If
 
     End Sub
 
@@ -654,7 +674,7 @@ Public Class NewTeamUC
 
         Try
             Mouse.OverrideCursor = Cursors.Wait
-            Roster = ts.Roll_Players(pw.New_League.Teams, "")
+            Roster = ts.Roll_Players("")
 
             Roster = Roster.OrderBy(Function(x) x.Pos).
             ThenByDescending(Function(x) x.Ratings.OverAll).ToList
@@ -671,7 +691,6 @@ Public Class NewTeamUC
 
     Private Sub newt1Add_Click(sender As Object, e As RoutedEventArgs) Handles newt1Add.Click
         Try
-            Dim new_t As TeamMdl = pw.New_League.Teams(team_ind)
             Dim stadium As StadiumMdl = Nothing
             Dim Footwear As FootwearMdl = Nothing
             Dim Helmet As HelmetMdl = Nothing
@@ -798,7 +817,7 @@ Public Class NewTeamUC
                                 Away_Pants_Stripe_2_Color, Away_Pants_Stripe_3_Color)
             Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
-            new_t.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
+            team.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
 
             RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(True))
 
@@ -1344,9 +1363,12 @@ Public Class NewTeamUC
             Throw New Exception("Away pants stripe 3 color must have a value")
         End If
 
-        If IsNothing(Roster) OrElse Roster.Count = 0 Then
-            Throw New Exception("You must roll the team player")
+        If Form_Function = form_func.New_Team Then
+            If IsNothing(Roster) OrElse Roster.Count = 0 Then
+                Throw New Exception("You must roll the team player")
+            End If
         End If
+
 
     End Sub
 

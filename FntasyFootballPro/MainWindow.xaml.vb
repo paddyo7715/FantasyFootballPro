@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 
 Class MainWindow
-    Public New_League As Leaguemdl = Nothing
+    Public League As Leaguemdl = Nothing
 
     Private MainMenuUC As MainMenuUC = Nothing
     Private NewLeagueUC As NewLeagueUC = Nothing
@@ -68,8 +68,9 @@ Class MainWindow
     End Sub
     Private Sub Show_NewTeamDetail(sender As Object, e As teamEventArgs)
 
-        NewTeamUC = New NewTeamUC(Me)
-        NewTeamUC.setTeamDetail(e.team_num - 1)
+        Dim team_ind As Integer = e.team_num - 1
+        NewTeamUC = New NewTeamUC(League.Teams(team_ind), "New_League")
+        NewTeamUC.setTeamDetail()
         NewTeamUC.setfields()
         AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
 

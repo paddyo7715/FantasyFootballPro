@@ -1,6 +1,5 @@
 ﻿Public Class Player
-    Public Function CreatePlayer(ByVal pos As PlayerMdl.Position, ByVal League_Teams As List(Of TeamMdl),
-                             ByVal Players As List(Of PlayerMdl),
+    Public Function CreatePlayer(ByVal pos As PlayerMdl.Position, ByVal Players As List(Of PlayerMdl),
                              ByVal team_ind As Integer, ByVal league_DB_Connecdtion As String) As PlayerMdl
 
         Dim r As PlayerMdl = New PlayerMdl()
