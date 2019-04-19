@@ -11,7 +11,7 @@
         WindowStyle="SingleBorderWindow"
         Title="Spectator Football">
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
+        <Menu Name="Main_menu_top" DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="New" />
                 <MenuItem Header="Open" />
@@ -38,6 +38,10 @@
                 <MenuItem Header="Education" />
                 <MenuItem Header="Changes" />
                 <MenuItem Header="About" />
+            </MenuItem>
+            <MenuItem Header="Admin">
+                <MenuItem Header="Add Player Name" />
+                <MenuItem Header="Manage Stock Teams" />
             </MenuItem>
 
 

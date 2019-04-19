@@ -17,6 +17,13 @@ Class MainWindow
 
         sp_uc.Children.Add(MainMenuUC)
 
+        'If run from Visual Studio using the debugger then make the admin menu item visible
+        If Not Debugger.IsAttached() Then
+            Dim AdminMenuItem As MenuItem
+            AdminMenuItem = DirectCast(Main_menu_top.Items(Main_menu_top.Items.Count - 1), MenuItem)
+            AdminMenuItem.Visibility = Windows.Visibility.Collapsed
+        End If
+
         AddHandler MainMenuUC.Shutdown_App, AddressOf Me.MainWindow_Closing
         AddHandler MainMenuUC.Show_NewLeague, AddressOf Me.Show_NewLeague
 
