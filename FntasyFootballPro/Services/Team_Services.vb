@@ -50,4 +50,14 @@
 
         Return r
     End Function
+    Public Function getAllStockTeams() As List(Of TeamMdl)
+        Dim r As List(Of TeamMdl) = New List(Of TeamMdl)
+        Dim StockTeamDAO = New Stock_TeamsDAO()
+        r = StockTeamDAO.getAllStockTeams()
+        Return r
+    End Function
+    Public Sub AddStockTeam(Team As TeamMdl)
+        Dim StockTeamDAO = New Stock_TeamsDAO()
+        StockTeamDAO.AddStockTeam(Team)
+    End Sub
 End Class

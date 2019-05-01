@@ -13,10 +13,10 @@
     <DockPanel>
         <Menu Name="Main_menu_top" DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New" />
+                <MenuItem Header="New" Click = "Show_NewLeague" />
                 <MenuItem Header="Open" />
                 <Separator />
-                <MenuItem Header="Exit" />
+                <MenuItem Header="Exit" Click = "mmTopExit_Click" />
             </MenuItem>
             <MenuItem Header="League">
                 <MenuItem Header="Standings" />
@@ -28,20 +28,14 @@
                 <MenuItem Header="Records" />
                 <MenuItem Header="League Info" />
             </MenuItem>
-            <MenuItem Header="History">
-            </MenuItem>
-            <MenuItem Header="Command">
-                <MenuItem Header="End Season" />
-                <MenuItem Header="Return to Current Year" />
-            </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="Education" />
                 <MenuItem Header="Changes" />
                 <MenuItem Header="About" />
             </MenuItem>
             <MenuItem Header="Admin">
-                <MenuItem Header="Add Player Name" />
-                <MenuItem Header="Manage Stock Teams" />
+                <MenuItem Header="Add Player Name" Click="Show_PlayerNames" />
+                <MenuItem Header="Manage Stock Teams" Click="Show_StockTeams" />
             </MenuItem>
 
 

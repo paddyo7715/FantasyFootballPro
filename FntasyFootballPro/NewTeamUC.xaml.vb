@@ -5,15 +5,15 @@ Imports Microsoft.Win32
 Public Class NewTeamUC
     Public Enum form_func
         New_Team
-        Stock_Team
+        Stock_Team_New
+        Stock_Team_Edit
         Update_Team
     End Enum
-
-
     'pw is the parent window mainwindow
     Private team As TeamMdl = Nothing
 
     Public Event backtoNewLeague As EventHandler
+    Public Event backtoStockTeams As EventHandler
 
     Property team_ind As Integer
     Property Roster As List(Of PlayerMdl) = Nothing
@@ -35,6 +35,9 @@ Public Class NewTeamUC
         Select Case func
             Case "New_League"
                 Form_Function = form_func.New_Team
+            Case "New_Stock_Team"
+                Form_Function = form_func.Stock_Team_New
+
         End Select
 
         If Not Form_Function = form_func.New_Team Then
@@ -819,7 +822,17 @@ Public Class NewTeamUC
 
             team.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
 
-            RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(True))
+            Select Case Form_Function
+                Case form_func.New_Team
+                    RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(True))
+                Case form_func.Stock_Team_New
+                    Dim ts As Team_Services = New Team_Services()
+                    ts.AddStockTeam(team)
+                    RaiseEvent backtoStockTeams(Me, New EventArgs)
+            End Select
+
+
+
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)

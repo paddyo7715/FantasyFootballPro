@@ -121,15 +121,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AdministrationUC.xaml.vb">
-      <DependentUpon>AdministrationUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Common\CommonUtils.vb" />
     <Compile Include="Common\teamEventArgs.vb" />
     <Compile Include="Common\TeamUpdatedEventArgs.vb" />
     <Compile Include="Constants\App_Constants.vb" />
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
+    <Compile Include="DAO\Stock_TeamsDAO.vb" />
     <Compile Include="League\League.vb" />
     <Compile Include="MainMenuUC.xaml.vb">
       <DependentUpon>MainMenuUC.xaml</DependentUpon>
@@ -144,8 +142,12 @@
     <Compile Include="NewTeamUC.xaml.vb">
       <DependentUpon>NewTeamUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlayerNamesUC.xaml.vb">
+      <DependentUpon>PlayerNamesUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Player\Player.vb" />
     <Compile Include="Player\Player_Abilities.vb" />
+    <Compile Include="Player\Uniform.vb" />
     <Compile Include="Schedule\Schedule.vb" />
     <Compile Include="Schedule\Validate_Sched.vb" />
     <Compile Include="Services\Administration_Services.vb" />
@@ -157,15 +159,10 @@
     <Compile Include="Models\PantsMdl.vb" />
     <Compile Include="Models\StadiumMdl.vb" />
     <Compile Include="Models\UniformMdl.vb" />
+    <Compile Include="StockTeamsUC.xaml.vb">
+      <DependentUpon>StockTeamsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Team\Uniform_Image.vb" />
-    <Page Include="Administration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AdministrationUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainMenuUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,9 +171,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Administration.xaml.vb">
-      <DependentUpon>Administration.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -191,6 +185,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewTeamUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlayerNamesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StockTeamsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,7 +255,6 @@
   <ItemGroup>
     <Folder Include="Administration\" />
     <Folder Include="Database\" />
-    <Folder Include="Images\Helmets\" />
     <Folder Include="NameFiles\" />
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Trophies\trophy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Oranges.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />

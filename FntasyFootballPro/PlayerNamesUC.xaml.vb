@@ -2,16 +2,8 @@
 Imports System.Windows
 Imports Microsoft.Win32
 
-Public Class Administration
-    Property winMainMenu As MainWindow
-    Public Sub New(ByVal winMainMenu As MainWindow)
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        Me.winMainMenu = winMainMenu
-
-    End Sub
+Public Class PlayerNamesUC
+    Public Event Show_MainMenu As EventHandler
 
     Private Sub admUbtnSelectFile_Click(sender As Object, e As RoutedEventArgs) Handles admUbtnSelectFile.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
@@ -21,8 +13,7 @@ Public Class Administration
     End Sub
 
     Private Sub admBack_Click(sender As Object, e As RoutedEventArgs) Handles admBack.Click
-        Me.Close()
-        winMainMenu.Show()
+        RaiseEvent Show_MainMenu(Me, New EventArgs)
     End Sub
     Public Sub clearpage()
         Dim adm_service As Administration_Services = New Administration_Services
@@ -57,4 +48,6 @@ Public Class Administration
             MessageBox.Show("An error occured while trying to add the new names " + CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub
+
+
 End Class

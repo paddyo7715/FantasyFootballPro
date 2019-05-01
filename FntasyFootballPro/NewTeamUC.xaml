@@ -301,7 +301,7 @@
                             </GroupBox.Header>
 
                             <StackPanel Orientation="Vertical">
-                                <Button Name="newtRollTeam" FontSize="12" Width="100" HorizontalAlignment="left" Margin="20">Roll Team</Button>
+                                <Button Name="newtRollTeam" HorizontalAlignment="left" Style="{StaticResource appSubmitStyle}">Roll Team</Button>
 
                                 <ListView Margin="10" Name="newtPlayersGrid" HorizontalContentAlignment="Center"  AlternationCount="2" FontSize="10" Background="White" Width="940" Height="400">
 

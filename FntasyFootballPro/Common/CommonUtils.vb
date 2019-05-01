@@ -41,7 +41,7 @@ Public Class CommonUtils
     Public Shared Function getRandomNum(ByVal iLow As Integer, ByVal iHigh As Integer) As Integer
         Dim r As Integer
 
-        r = random.Next(iLow, iHigh)
+        r = random.Next(iLow, iHigh + 1)
 
         Return r.ToString
     End Function
