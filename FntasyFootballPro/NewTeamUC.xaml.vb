@@ -49,7 +49,7 @@ Public Class NewTeamUC
     End Sub
     Public Sub setTeamDetail()
 
-        Uniform_Img = New Uniform_Image("../../Images/blankUniform.png")
+        Uniform_Img = New Uniform_Image(CommonUtils.getAppPath & "/Images/blankUniform.png")
         Uniform_Img.Flip_All_Colors(True,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
@@ -644,8 +644,8 @@ Public Class NewTeamUC
 
     Private Sub newtbtnHelmetImgPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnHelmetImgPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
-        Dim init_folder As String = Directory.GetCurrentDirectory()
-        init_folder = Path.GetFullPath(Path.Combine(init_folder, "..\..\Images\Helmets"))
+        Dim init_folder As String = CommonUtils.getAppPath
+        init_folder += "\Images\Helmets"
 
         OpenFileDialog.InitialDirectory = init_folder
         OpenFileDialog.Multiselect = False
@@ -659,8 +659,8 @@ Public Class NewTeamUC
     End Sub
     Private Sub newtbtnStadiumPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnStadiumPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
-        Dim init_folder As String = Directory.GetCurrentDirectory()
-        init_folder = Path.GetFullPath(Path.Combine(init_folder, "..\..\Images\Stadiums"))
+        Dim init_folder As String = CommonUtils.getAppPath
+        init_folder += "\Images\Stadiums"
 
         OpenFileDialog.InitialDirectory = init_folder
         OpenFileDialog.Multiselect = False

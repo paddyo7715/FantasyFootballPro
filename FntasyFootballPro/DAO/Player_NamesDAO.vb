@@ -7,7 +7,7 @@ Public Class Player_NamesDAO
 
     Public Sub New()
         Dim constr As String = ""
-        constr = ConfigurationManager.ConnectionStrings("SettingsConnectionString").ConnectionString
+        constr = CommonUtils.getSettingsDBConnectionString
         SettingsConnection.ConnectionString = constr
 
     End Sub

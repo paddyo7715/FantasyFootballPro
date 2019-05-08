@@ -9,7 +9,7 @@ Public Class Stock_TeamsDAO
 
     Public Sub New()
         Dim constr As String = ""
-        constr = ConfigurationManager.ConnectionStrings("SettingsConnectionString").ConnectionString
+        constr = CommonUtils.getSettingsDBConnectionString
         SettingsConnection.ConnectionString = constr
 
     End Sub
@@ -147,7 +147,7 @@ Public Class Stock_TeamsDAO
                     Away_Pants_Stripe_Color_1 = rdr.GetString(rdr.GetOrdinal("Away_Pants_Stripe_Color_1"))
                     Away_Pants_Stripe_Color_2 = rdr.GetString(rdr.GetOrdinal("Away_Pants_Stripe_Color_2"))
                     Away_Pants_Stripe_Color_3 = rdr.GetString(rdr.GetOrdinal("Away_Pants_Stripe_Color_3"))
-                    Stadium_Field_Type = rdr.GetString(rdr.GetOrdinal("Stadium_Field_Type"))
+                    Stadium_Field_Type = rdr.GetInt16(rdr.GetOrdinal("Stadium_Field_Type"))
                     Stadium_Field_Color = rdr.GetString(rdr.GetOrdinal("Stadium_Field_Color"))
 
                     Dim stadium = New StadiumMdl(Stadium_Name, Stadium_Location,

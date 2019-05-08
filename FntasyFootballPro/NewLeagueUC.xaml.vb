@@ -515,8 +515,8 @@ Public Class NewLeagueUC
     End Sub
     Private Sub newl1btnTrophyPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnTrophyPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
-        Dim init_folder As String = Directory.GetCurrentDirectory()
-        init_folder = Path.GetFullPath(Path.Combine(init_folder, "..\..\Images\Trophies"))
+        Dim init_folder As String = CommonUtils.getAppPath
+        init_folder += "\Images\Trophies"
 
         OpenFileDialog.InitialDirectory = init_folder
         OpenFileDialog.Multiselect = False

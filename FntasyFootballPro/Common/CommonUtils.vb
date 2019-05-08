@@ -3,7 +3,18 @@
 Public Class CommonUtils
 
     Private Shared random As New Random()
+    Public Shared Function getSettingsDBConnectionString()
+        Return "Data Source=" & CommonUtils.getAppPath & "\Database\Settings.db;"
+    End Function
 
+    Public Shared Function getAppPath() As String
+        Dim c As String = Environment.CurrentDirectory
+
+        c = c.Replace("\bin\Debug", "")
+        c = c.Replace("\bin\Release", "")
+
+        Return c
+    End Function
     Public Shared Function ExtractTeamNumber(ByVal s As String) As Integer
         Dim i = s.IndexOf("Team")
         Dim r = s.Substring(i + 4)

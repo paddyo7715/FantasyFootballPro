@@ -21,7 +21,7 @@
             Dim h_sp As StackPanel = New StackPanel
             h_sp.Orientation = Orientation.Horizontal
 
-            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri("../../Images/Helmets/" & st.Helmet_img_path))
+            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri("file:///../../Images/Helmets/" & st.Helmet_img_path))
             Dim helmet_img As Image = New Image()
             helmet_img.Width = 50
             helmet_img.Height = 50

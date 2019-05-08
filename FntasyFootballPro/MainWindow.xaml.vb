@@ -94,7 +94,7 @@ Class MainWindow
     Private Sub Show_PlayerNames(sender As Object, e As EventArgs)
 
         PlayerNamesUC = New PlayerNamesUC()
-
+        PlayerNamesUC.clearpage()
         AddHandler PlayerNamesUC.Show_MainMenu, AddressOf Me.Show_MainMenu
 
         sp_uc.Children.Clear()
