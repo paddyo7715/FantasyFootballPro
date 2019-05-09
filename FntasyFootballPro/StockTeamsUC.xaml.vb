@@ -21,7 +21,7 @@
             Dim h_sp As StackPanel = New StackPanel
             h_sp.Orientation = Orientation.Horizontal
 
-            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri("file:///../../Images/Helmets/" & st.Helmet_img_path))
+            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Helmets/" & st.Helmet_img_path))
             Dim helmet_img As Image = New Image()
             helmet_img.Width = 50
             helmet_img.Height = 50
@@ -48,7 +48,7 @@
             team_label.FontSize = 18
             team_label.Background = BackBrush
 
-            Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri("../../Images/Stadiums/" & st.Stadium.Stadium_Img_Path))
+            Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Stadiums/" & st.Stadium.Stadium_Img_Path))
             Dim std_img As Image = New Image()
             std_img.Width = 50
             std_img.Height = 50

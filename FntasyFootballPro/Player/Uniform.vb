@@ -4,13 +4,13 @@
 
     Public Sub New(ByVal color_string As String, ByVal axis_start As Single)
         Me.color_string = color_string
-        Me.value = value
+        Me.value = axis_start
     End Sub
 End Class
 
 Public Class Uniform
     Public Shared Function getColorList(ByVal u As UniformMdl) As List(Of Uniform_Color_percents)
-        Dim r As List(Of Uniform_Color_percents)
+        Dim r As List(Of Uniform_Color_percents) = New List(Of Uniform_Color_percents)
 
         Dim letter_color As String = u.Home_Jersey.Number_Color
 
@@ -99,6 +99,7 @@ Public Class Uniform
         For Each p In lup_l
             If lup.color_string = p.color_string Then
                 p.value += lup.value
+                bfound = True
                 Exit For
             End If
         Next
