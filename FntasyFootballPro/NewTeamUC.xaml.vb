@@ -636,9 +636,12 @@ Public Class NewTeamUC
     End Sub
     Private Sub newt1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newt1Cancel.Click
 
-        If Form_Function = form_func.New_Team Then
-            RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(False))
-        End If
+        Select Case Form_Function
+            Case form_func.New_Team
+                RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(False))
+            Case form_func.Stock_Team_New
+                RaiseEvent backtoStockTeams(Me, New EventArgs)
+        End Select
 
     End Sub
 
@@ -826,13 +829,10 @@ Public Class NewTeamUC
                 Case form_func.New_Team
                     RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(True))
                 Case form_func.Stock_Team_New
-                    Dim ts As Team_Services = New Team_Services()
-                    ts.AddStockTeam(team)
+                    Dim sts As StockTeams_Services = New StockTeams_Services()
+                    sts.AddStockTeam(team)
                     RaiseEvent backtoStockTeams(Me, New EventArgs)
             End Select
-
-
-
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)

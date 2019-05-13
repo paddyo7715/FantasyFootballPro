@@ -106,8 +106,8 @@ Class MainWindow
         Try
             Mouse.OverrideCursor = Cursors.Wait
             League = Nothing
-            Dim ts As Team_Services = New Team_Services()
-            Dim st_list As List(Of TeamMdl) = ts.getAllStockTeams
+            Dim sts As StockTeams_Services = New StockTeams_Services()
+            Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
             Stock_teams = New StockTeamsUC(st_list)
             AddHandler Stock_teams.Show_MainMenu, AddressOf Me.Show_MainMenu
             AddHandler Stock_teams.Show_NewStockTeam, AddressOf Me.Show_NewStockTeam

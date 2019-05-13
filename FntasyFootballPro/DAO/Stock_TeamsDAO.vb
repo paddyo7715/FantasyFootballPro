@@ -288,6 +288,33 @@ Public Class Stock_TeamsDAO
         End Try
 
     End Sub
+    Public Sub DeleteStockTeam(ByVal t_id As Integer)
+
+        Dim sSQL As String = Nothing
+
+        Dim cmdTeam As SQLiteCommand = Nothing
+
+        Try
+            SettingsConnection.Open()
+            sSQL = "DELETE FROM STOCK_TEAMS WHERE ID = @ID"
+            cmdTeam = SettingsConnection.CreateCommand
+            cmdTeam.CommandText = sSQL
+            cmdTeam.Parameters.Add("@ID", Data.DbType.Int32).Value = t_id
+            Dim i As Integer = cmdTeam.ExecuteNonQuery()
+
+            If i <> 1 Then
+                Throw New Exception("Error deleting stock team ")
+            End If
+
+        Finally
+            If Not IsNothing(cmdTeam) Then cmdTeam.Dispose()
+            If SettingsConnection.State = ConnectionState.Open Then
+                SettingsConnection.Close()
+            End If
+        End Try
+
+
+    End Sub
 
 
 End Class

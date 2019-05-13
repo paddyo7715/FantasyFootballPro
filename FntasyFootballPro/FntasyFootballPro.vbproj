@@ -152,6 +152,7 @@
     <Compile Include="Schedule\Validate_Sched.vb" />
     <Compile Include="Services\Administration_Services.vb" />
     <Compile Include="Services\League_Services.vb" />
+    <Compile Include="Services\StockTeams_Services.vb" />
     <Compile Include="Services\Team_Services.vb" />
     <Compile Include="Models\FootwearMdl.vb" />
     <Compile Include="Models\HelmetMdl.vb" />
@@ -273,9 +274,6 @@
     <Resource Include="Images\blankUniform.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Stadiums\Philadelphia.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Trophies\trophy.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +281,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Stadiums\Orland.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Buffalo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Blizzard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Washington.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Diplomats.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />

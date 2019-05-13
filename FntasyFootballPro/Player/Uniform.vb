@@ -84,8 +84,8 @@ Public Class Uniform
                 bFirst = False
             End If
 
-            r(i).value = running_value / tot_values
             running_value += r(i).value
+            r(i).value = running_value / tot_values
 
         Next
 
