@@ -18,7 +18,7 @@ Public Class StockTeamsUC
     End Sub
     Private Sub setStockTeams()
 
-        newtPlayersGrid.Items.Clear()
+        StockTeamsGrid.Items.Clear()
 
         For Each st In st_list
 
@@ -39,22 +39,29 @@ Public Class StockTeamsUC
             team_label.Content = st.City & " " & st.Nickname
             team_label.Height = 50
             team_label.Width = 360
+            team_label.VerticalContentAlignment = VerticalContentAlignment.Center
 
             If Color_Percents_List.Count > 2 Then
                 Dim BackBrush As LinearGradientBrush = New LinearGradientBrush()
-                BackBrush.StartPoint = New Point(0, 0)
-                BackBrush.EndPoint = New Point(1, 1)
+                BackBrush.StartPoint = New Point(0.5, 0)
+                BackBrush.EndPoint = New Point(0.5, 1)
 
+                Dim running_value As Single = 0
                 For i As Integer = 1 To Color_Percents_List.Count - 1
                     BackBrush.GradientStops.Add(New GradientStop(
-                    CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), Color_Percents_List(i).value))
+                    CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), running_value))
+
+                    running_value += Color_Percents_List(i).value
+
+                    BackBrush.GradientStops.Add(New GradientStop(
+                    CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), running_value))
                 Next
                 team_label.Background = BackBrush
             Else
                 team_label.Background = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(1).color_string))
             End If
             team_label.FontFamily = New FontFamily("Times New Roman")
-            team_label.FontSize = 18
+            team_label.FontSize = 24
 
 
             Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Stadiums/" & st.Stadium.Stadium_Img_Path))
@@ -67,8 +74,9 @@ Public Class StockTeamsUC
             h_sp.Children.Add(helmet_img)
             h_sp.Children.Add(team_label)
             h_sp.Children.Add(std_img)
+            h_sp.Margin = New System.Windows.Thickness(5)
 
-            newtPlayersGrid.Items.Add(h_sp)
+            StockTeamsGrid.Items.Add(h_sp)
         Next
 
     End Sub
@@ -85,7 +93,7 @@ Public Class StockTeamsUC
 
     Private Sub DelstockT_Click(sender As Object, e As RoutedEventArgs) Handles DelstockT.Click
         Dim sts As StockTeams_Services = Nothing
-        Dim id As Integer = newtPlayersGrid.SelectedIndex
+        Dim id As Integer = StockTeamsGrid.SelectedIndex
         Dim drow As DataRowView = Nothing
 
         If id <> -1 Then
