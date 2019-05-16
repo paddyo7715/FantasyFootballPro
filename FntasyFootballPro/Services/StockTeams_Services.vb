@@ -10,7 +10,8 @@
         StockTeamDAO.AddStockTeam(Team)
     End Sub
     Public Sub DeleteStockTeam(ByVal t_id As Integer)
-
+        Dim StockTeamDAO = New Stock_TeamsDAO()
+        StockTeamDAO.DeleteStockTeam(t_id)
     End Sub
 
 End Class

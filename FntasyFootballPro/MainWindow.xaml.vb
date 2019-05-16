@@ -7,7 +7,7 @@ Class MainWindow
     Private NewLeagueUC As NewLeagueUC = Nothing
     Private NewTeamUC As NewTeamUC = Nothing
     Private PlayerNamesUC As PlayerNamesUC = Nothing
-    Private Stock_teams As StockTeamsUC = Nothing
+    Private Stock_teamsUC As StockTeamsUC = Nothing
 
     Public Sub New()
 
@@ -108,11 +108,11 @@ Class MainWindow
             League = Nothing
             Dim sts As StockTeams_Services = New StockTeams_Services()
             Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
-            Stock_teams = New StockTeamsUC(st_list)
-            AddHandler Stock_teams.Show_MainMenu, AddressOf Me.Show_MainMenu
-            AddHandler Stock_teams.Show_NewStockTeam, AddressOf Me.Show_NewStockTeam
+            Stock_teamsUC = New StockTeamsUC(st_list)
+            AddHandler Stock_teamsUC.Show_MainMenu, AddressOf Me.Show_MainMenu
+            AddHandler Stock_teamsUC.Show_NewStockTeam, AddressOf Me.Show_NewStockTeam
             sp_uc.Children.Clear()
-            sp_uc.Children.Add(Stock_teams)
+            sp_uc.Children.Add(Stock_teamsUC)
             Mouse.OverrideCursor = Nothing
         Catch ex As Exception
             Mouse.OverrideCursor = Nothing

@@ -43,8 +43,8 @@ Public Class StockTeamsUC
 
             If Color_Percents_List.Count > 2 Then
                 Dim BackBrush As LinearGradientBrush = New LinearGradientBrush()
-                BackBrush.StartPoint = New Point(0.5, 0)
-                BackBrush.EndPoint = New Point(0.5, 1)
+                BackBrush.StartPoint = New Point(0, 0)
+                BackBrush.EndPoint = New Point(1, 1)
 
                 Dim running_value As Single = 0
                 For i As Integer = 1 To Color_Percents_List.Count - 1
@@ -93,8 +93,10 @@ Public Class StockTeamsUC
 
     Private Sub DelstockT_Click(sender As Object, e As RoutedEventArgs) Handles DelstockT.Click
         Dim sts As StockTeams_Services = Nothing
-        Dim id As Integer = StockTeamsGrid.SelectedIndex
+        Dim num_selected As Integer = StockTeamsGrid.SelectedIndex
         Dim drow As DataRowView = Nothing
+
+        Dim id As Integer = st_list(num_selected).id
 
         If id <> -1 Then
 
@@ -105,6 +107,8 @@ Public Class StockTeamsUC
                     Mouse.OverrideCursor = Cursors.Wait
                     sts = New StockTeams_Services()
                     sts.DeleteStockTeam(id)
+                    Dim d_team As TeamMdl = st_list(num_selected)
+                    st_list.Remove(d_team)
                     setStockTeams()
                     Mouse.OverrideCursor = Nothing
                 Catch ex As Exception

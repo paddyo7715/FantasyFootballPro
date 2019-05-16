@@ -147,7 +147,7 @@
     </Compile>
     <Compile Include="Player\Player.vb" />
     <Compile Include="Player\Player_Abilities.vb" />
-    <Compile Include="Player\Uniform.vb" />
+    <Compile Include="Team\Uniform.vb" />
     <Compile Include="Schedule\Schedule.vb" />
     <Compile Include="Schedule\Validate_Sched.vb" />
     <Compile Include="Services\Administration_Services.vb" />
