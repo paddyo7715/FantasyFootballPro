@@ -111,6 +111,7 @@ Class MainWindow
             Stock_teamsUC = New StockTeamsUC(st_list)
             AddHandler Stock_teamsUC.Show_MainMenu, AddressOf Me.Show_MainMenu
             AddHandler Stock_teamsUC.Show_NewStockTeam, AddressOf Me.Show_NewStockTeam
+            AddHandler Stock_teamsUC.Show_UpdateStockTeam, AddressOf Me.Show_UpdateStockTeam
             sp_uc.Children.Clear()
             sp_uc.Children.Add(Stock_teamsUC)
             Mouse.OverrideCursor = Nothing
@@ -124,6 +125,18 @@ Class MainWindow
 
         Dim stock_team As TeamMdl = New TeamMdl(0, "")
         NewTeamUC = New NewTeamUC(stock_team, "New_Stock_Team")
+        NewTeamUC.setTeamDetail()
+        NewTeamUC.setfields()
+        AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams
+
+        sp_uc.Children.Clear()
+        sp_uc.Children.Add(NewTeamUC)
+
+    End Sub
+    Private Sub Show_UpdateStockTeam(sender As Object, e As StockteamEventArgs)
+
+        Dim stock_team As TeamMdl = e.team
+        NewTeamUC = New NewTeamUC(stock_team, "Update_Stock_Team")
         NewTeamUC.setTeamDetail()
         NewTeamUC.setfields()
         AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams

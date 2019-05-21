@@ -13,5 +13,9 @@
         Dim StockTeamDAO = New Stock_TeamsDAO()
         StockTeamDAO.DeleteStockTeam(t_id)
     End Sub
+    Public Sub UpdateStockTeam(ByVal Team As TeamMdl)
+        Dim StockTeamDAO = New Stock_TeamsDAO()
+        StockTeamDAO.UpdateStockTeam(Team)
+    End Sub
 
 End Class

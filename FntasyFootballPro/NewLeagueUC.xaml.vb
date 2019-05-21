@@ -607,8 +607,6 @@ Public Class NewLeagueUC
             End If
         Next
     End Sub
-
-
     Private Sub TeamLabel_MouseDown(sender As Object, e As RoutedEventArgs)
 
         Dim l As Label = e.Source

@@ -5,6 +5,7 @@ Public Class StockTeamsUC
 
     Public Event Show_MainMenu As EventHandler
     Public Event Show_NewStockTeam As EventHandler
+    Public Event Show_UpdateStockTeam As EventHandler
 
     Public Sub New(ByVal st_list As List(Of TeamMdl))
 
@@ -83,6 +84,12 @@ Public Class StockTeamsUC
     Private Sub canstockT_Click(sender As Object, e As RoutedEventArgs) Handles canstockT.Click
 
         RaiseEvent Show_MainMenu(Me, New EventArgs)
+
+    End Sub
+    Private Sub EditstockT_Click(sender As Object, e As RoutedEventArgs) Handles AddstockT.Click
+
+        Dim i As Integer = StockTeamsGrid.SelectedIndex
+        RaiseEvent Show_UpdateStockTeam(Me, New StockteamEventArgs(st_list(i)))
 
     End Sub
     Private Sub AddstockT_Click(sender As Object, e As RoutedEventArgs) Handles AddstockT.Click

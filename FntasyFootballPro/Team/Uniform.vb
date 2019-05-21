@@ -24,7 +24,7 @@ Public Class Uniform
         End If
 
         If u.Home_Pants.Pants_Color <> letter_color Then
-            addUpdate_Uniform(r, New Uniform_Color_percents(u.Home_Pants.Pants_Color, 25.0))
+            addUpdate_Uniform(r, New Uniform_Color_percents(u.Home_Pants.Pants_Color, 50.0))
         End If
 
         If u.Home_Jersey.Sleeve_Color <> letter_color Then

@@ -37,7 +37,8 @@ Public Class NewTeamUC
                 Form_Function = form_func.New_Team
             Case "New_Stock_Team"
                 Form_Function = form_func.Stock_Team_New
-
+            Case "Update_Stock_Team"
+                Form_Function = form_func.Stock_Team_Edit
         End Select
 
         If Not Form_Function = form_func.New_Team Then
@@ -641,6 +642,9 @@ Public Class NewTeamUC
                 RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(False))
             Case form_func.Stock_Team_New
                 RaiseEvent backtoStockTeams(Me, New EventArgs)
+            Case form_func.Stock_Team_Edit
+                RaiseEvent backtoStockTeams(Me, New EventArgs)
+
         End Select
 
     End Sub
@@ -831,6 +835,10 @@ Public Class NewTeamUC
                 Case form_func.Stock_Team_New
                     Dim sts As StockTeams_Services = New StockTeams_Services()
                     sts.AddStockTeam(team)
+                    RaiseEvent backtoStockTeams(Me, New EventArgs)
+                Case form_func.Stock_Team_Edit
+                    Dim sts As StockTeams_Services = New StockTeams_Services()
+                    sts.UpdateStockTeam(team)
                     RaiseEvent backtoStockTeams(Me, New EventArgs)
             End Select
 

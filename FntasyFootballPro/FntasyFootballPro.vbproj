@@ -122,6 +122,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonUtils.vb" />
+    <Compile Include="Common\StockteamEventArgs.vb" />
     <Compile Include="Common\teamEventArgs.vb" />
     <Compile Include="Common\TeamUpdatedEventArgs.vb" />
     <Compile Include="Constants\App_Constants.vb" />
