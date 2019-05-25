@@ -52,7 +52,7 @@ Public Class StockTeamsUC
                     BackBrush.GradientStops.Add(New GradientStop(
                     CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), running_value))
 
-                    running_value += Color_Percents_List(i).value
+                    running_value = Color_Percents_List(i).value
 
                     BackBrush.GradientStops.Add(New GradientStop(
                     CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), running_value))
@@ -86,7 +86,7 @@ Public Class StockTeamsUC
         RaiseEvent Show_MainMenu(Me, New EventArgs)
 
     End Sub
-    Private Sub EditstockT_Click(sender As Object, e As RoutedEventArgs) Handles AddstockT.Click
+    Private Sub EditstockT_Click(sender As Object, e As RoutedEventArgs) Handles EditstockT.Click
 
         Dim i As Integer = StockTeamsGrid.SelectedIndex
         RaiseEvent Show_UpdateStockTeam(Me, New StockteamEventArgs(st_list(i)))

@@ -122,24 +122,43 @@ Public Class NewTeamUC
         Dim AwayPants_Stripe_2 As System.Drawing.Color = Nothing
         Dim AwayPants_Stripe_3 As System.Drawing.Color = Nothing
 
+        Dim stadium_img_path As String = ""
+        Dim helmet_img_path As String = ""
+
         newtCityAbb.Text = team.City_Abr
         newtCity.Text = team.City
         newtNickname.Text = team.Nickname
-        newtHelmetImgPath.Text = team.Helmet_img_path
+        newtHelmetImgPath.Text = helmet_img_path
 
         If Not IsNothing(team.Stadium) Then
+            If team.Stadium.Stadium_Img_Path = Path.GetFileName(team.Stadium.Stadium_Img_Path) Then
+                Dim init_folder As String = CommonUtils.getAppPath
+                init_folder += "\Images\Stadiums"
+                stadium_img_path = init_folder + "\" + Path.GetFileName(team.Stadium.Stadium_Img_Path)
+            Else
+                stadium_img_path = team.Stadium.Stadium_Img_Path
+            End If
+
             newtStadium.Text = team.Stadium.Stadium_Name
             newtStadiumLocation.Text = team.Stadium.Stadium_Location
-            newtStadiumPath.Text = team.Stadium.Stadium_Img_Path
-            Stadium_image.Source = New BitmapImage(New Uri(team.Stadium.Stadium_Img_Path))
+            newtStadiumPath.Text = stadium_img_path
+            Stadium_image.Source = New BitmapImage(New Uri(stadium_img_path))
             newtStadiumCapacity.Text = team.Stadium.Capacity
             newl1FieldType.SelectedIndex = team.Stadium.Field_Type - 1
             newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(team.Stadium.Field_Color)
         End If
 
         If Not IsNothing(team.Helmet_img_path) AndAlso team.Helmet_img_path.Length > 0 Then
-            newtHelmetImgPath.Text = team.Helmet_img_path
-            Helmet_image.Source = New BitmapImage(New Uri(team.Helmet_img_path))
+            If team.Helmet_img_path = Path.GetFileName(team.Helmet_img_path) Then
+                Dim init_folder As String = CommonUtils.getAppPath
+                init_folder += "\Images\Helmets"
+                helmet_img_path = init_folder + "\" + Path.GetFileName(team.Helmet_img_path)
+            Else
+                helmet_img_path = team.Helmet_img_path
+            End If
+
+            newtHelmetImgPath.Text = helmet_img_path
+            Helmet_image.Source = New BitmapImage(New Uri(helmet_img_path))
         End If
 
         If Not IsNothing(team.Uniform) Then
