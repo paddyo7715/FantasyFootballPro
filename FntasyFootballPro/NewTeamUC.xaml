@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel Height="730">
-        <Label DockPanel.Dock="Top" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="50" Foreground="White">New Team</Label>
+        <Label DockPanel.Dock="Top" Name="lblTitle" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="50" Foreground="White">New Team</Label>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newt1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
             <Button Name="newt1Add" Style="{StaticResource appSubmitStyle}">Add</Button>

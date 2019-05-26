@@ -35,10 +35,16 @@ Public Class NewTeamUC
         Select Case func
             Case "New_League"
                 Form_Function = form_func.New_Team
+                lblTitle.Content = "New Team"
+                newt1Add.Content = "Add"
             Case "New_Stock_Team"
                 Form_Function = form_func.Stock_Team_New
+                lblTitle.Content = "New Stock Team"
+                newt1Add.Content = "Add"
             Case "Update_Stock_Team"
                 Form_Function = form_func.Stock_Team_Edit
+                lblTitle.Content = "Update Stock Team"
+                newt1Add.Content = "Save"
         End Select
 
         If Not Form_Function = form_func.New_Team Then

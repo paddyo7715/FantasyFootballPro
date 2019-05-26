@@ -370,7 +370,8 @@ Public Class Stock_TeamsDAO
                         Stadium_Field_Type =@Stadium_Field_Type,
                         Stadium_Field_Color =@Stadium_Field_Color,
                         Stadium_Capacity =@Stadium_Capacity,
-                        Stadium_Img_Path = @Stadium_Img_path"
+                        Stadium_Img_Path = @Stadium_Img_path
+                        WHERE ID = @ID"
             cmdTeam = SettingsConnection.CreateCommand
             cmdTeam.CommandText = sSQL
             cmdTeam.Parameters.Add("@City_Abr", Data.DbType.String).Value = t.City_Abr
@@ -418,6 +419,7 @@ Public Class Stock_TeamsDAO
             cmdTeam.Parameters.Add("@Stadium_Field_Color", Data.DbType.String).Value = t.Stadium.Field_Color
             cmdTeam.Parameters.Add("@Stadium_Capacity", Data.DbType.String).Value = t.Stadium.Capacity
             cmdTeam.Parameters.Add("@Stadium_Img_path", Data.DbType.String).Value = Path.GetFileName(t.Stadium.Stadium_Img_Path)
+            cmdTeam.Parameters.Add("@ID", Data.DbType.Int16).Value = t.id
             Dim i As Integer = cmdTeam.ExecuteNonQuery()
 
             If i <> 1 Then

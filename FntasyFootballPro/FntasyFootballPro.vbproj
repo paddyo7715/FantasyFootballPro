@@ -284,9 +284,6 @@
     <Resource Include="Images\Stadiums\Orland.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Stadiums\Buffalo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Helmets\Blizzard.png" />
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +297,42 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Helmets\Colonials.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Legends.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Ironmen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Pittsburgh.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Marauders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Tampa_Bay.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Buffalo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\New_York.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Bulldogs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Memphis.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Birmingham.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Warhawks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Charlotte.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />

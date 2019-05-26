@@ -20,7 +20,7 @@
                     <Button Name="EditstockT" Style="{StaticResource appSubmitStyle}">Edit</Button>
                     <Button Name="DelstockT" Style="{StaticResource appSubmitStyle}">Delete</Button>
                 </StackPanel>
-                <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="510" Height="400">
+                <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="510" Height="420">
                 </ListView>
                 <StackPanel Height="100" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <Button Name="canstockT" Style="{StaticResource appSubmitStyle}">Cancel</Button>
