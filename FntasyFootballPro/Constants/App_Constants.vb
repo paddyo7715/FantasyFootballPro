@@ -153,7 +153,8 @@ Public Class App_Constants
     Public Const TERTIARY_ABILITY_LOW_RATING As Integer = 1
     Public Const TERTIARY_ABILITY_HIGH_RATING As Integer = 10
 
-
+    'Teams
+    Public Const EMPTY_TEAM_SLOT As String = "Empty Team Slot"
 
 
 End Class

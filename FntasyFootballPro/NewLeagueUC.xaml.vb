@@ -63,6 +63,14 @@ Public Class NewLeagueUC
             End If
         Next
 
+        For i As Integer = 1 To CInt(newlnumdivisions.Text)
+            Dim teamlabel = "newllblTeam" & i.ToString
+            Dim tlabel As Label = Me.FindName(teamlabel)
+            If tlabel.Content = App_Constants.EMPTY_TEAM_SLOT Then
+                Throw New Exception("All Empty Team Slots must be filled with a team!")
+            End If
+        Next
+
         If Directory.Exists(DIRPath) Then
             Throw New Exception("League " & newl1shortname.Text & " already exists!")
         End If
@@ -592,13 +600,48 @@ Public Class NewLeagueUC
         confLabel.Content = l.Text
     End Sub
     Public Sub setTeamsLabels()
+        Dim Teamlbltyle As Style = Application.Current.FindResource("Teamlbltyle")
+
         For i As Integer = 1 To CInt(newlnumteams.Text)
             Dim teamLabel = "newllblTeam" & i.ToString
             Dim teamImage = "newlimgTeam" & i.ToString
 
             Dim teamLbl As Label = Me.FindName(teamLabel)
             Dim teamImg As Image = Me.FindName(teamImage)
-            teamLbl.Content = pw.League.Teams(i - 1).City
+            teamLbl.Style = Teamlbltyle
+
+            Dim st As TeamMdl = pw.League.Teams(i - 1)
+            If st.City <> App_Constants.EMPTY_TEAM_SLOT Then
+                Dim Color_Percents_List As List(Of Uniform_Color_percents) = Nothing
+                Color_Percents_List = Uniform.getColorList(st.Uniform)
+
+                teamLbl.Foreground = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(0).color_string))
+                teamLbl.Content = st.City & " " & st.Nickname
+                teamLbl.VerticalContentAlignment = VerticalContentAlignment.Center
+
+                If Color_Percents_List.Count > 2 Then
+                    Dim BackBrush As LinearGradientBrush = New LinearGradientBrush()
+                    BackBrush.StartPoint = New Point(0, 0)
+                    BackBrush.EndPoint = New Point(1, 1)
+
+                    Dim running_value As Single = 0
+                    For ii As Integer = 1 To Color_Percents_List.Count - 1
+                        BackBrush.GradientStops.Add(New GradientStop(
+                        CommonUtils.getColorfromHex(Color_Percents_List(ii).color_string), running_value))
+
+                        running_value = Color_Percents_List(ii).value
+
+                        BackBrush.GradientStops.Add(New GradientStop(
+                        CommonUtils.getColorfromHex(Color_Percents_List(ii).color_string), running_value))
+                    Next
+                    teamLbl.Background = BackBrush
+                Else
+                    teamLbl.Background = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(1).color_string))
+                End If
+            Else
+                teamLbl.Content = App_Constants.EMPTY_TEAM_SLOT
+            End If
+
             Dim img_path = pw.League.Teams(i - 1).Helmet_img_path
             If Not IsNothing(img_path) AndAlso img_path.Length > 0 Then
                 '                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))

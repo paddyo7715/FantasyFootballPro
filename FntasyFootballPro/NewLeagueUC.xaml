@@ -83,12 +83,18 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="Teams">
-                <StackPanel Name="sp1" Orientation="Horizontal" Height="580" VerticalAlignment="top" HorizontalAlignment="Center">
-
-
-
-
-
+                <StackPanel Orientation="Horizontal" Width="1000" VerticalAlignment="top" HorizontalAlignment="Center">
+                    <StackPanel Name="sp1" Orientation="Horizontal" Width="650"  VerticalAlignment="top" HorizontalAlignment="right">
+                    </StackPanel>
+                    <GroupBox FontSize="12" FontWeight="Bold" Style="{StaticResource GroupBoxstyle}" >
+                        <GroupBox.Header>
+                            Stock Teams:
+                        </GroupBox.Header>
+                        <StackPanel Orientation="Vertical" Width="350" HorizontalAlignment="left">
+                            <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="350" Height="420">
+                            </ListView>
+                        </StackPanel>
+                    </GroupBox>
                 </StackPanel>
             </TabItem>
         </TabControl>

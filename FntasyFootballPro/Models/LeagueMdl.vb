@@ -32,7 +32,7 @@
         Me.Num_Playoff_Teams = Num_Playoff_Teams
 
         For i As Integer = 1 To Me.Num_Teams
-            Teams.Add(New TeamMdl(i, "New Team"))
+            Teams.Add(New TeamMdl(i, App_Constants.EMPTY_TEAM_SLOT))
         Next
     End Sub
     Public Sub setBasicInfo(ByVal Short_Name As String,
