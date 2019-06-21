@@ -59,13 +59,22 @@ Class MainWindow
     End Sub
     Private Sub Show_NewLeague(sender As Object, e As EventArgs)
 
-        NewLeagueUC = New NewLeagueUC(Me)
+        Try
+            Mouse.OverrideCursor = Cursors.Wait
+            Dim sts As StockTeams_Services = New StockTeams_Services()
+            Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
+            NewLeagueUC = New NewLeagueUC(Me, st_list)
 
-        AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
-        AddHandler NewLeagueUC.Show_NewTeam, AddressOf Me.Show_NewTeamDetail
+            AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
+            AddHandler NewLeagueUC.Show_NewTeam, AddressOf Me.Show_NewTeamDetail
 
-        sp_uc.Children.Clear()
-        sp_uc.Children.Add(NewLeagueUC)
+            sp_uc.Children.Clear()
+            sp_uc.Children.Add(NewLeagueUC)
+            Mouse.OverrideCursor = Nothing
+        Catch ex As Exception
+            Mouse.OverrideCursor = Nothing
+            MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End Try
 
     End Sub
     Private Sub Back_NewLeague(sender As Object, e As TeamUpdatedEventArgs)

@@ -5,17 +5,19 @@ Imports Microsoft.Win32
 Public Class NewLeagueUC
     'pw is the parent window mainwindow
     Private pw As MainWindow
+    Private st_list As List(Of TeamMdl)
 
     Public Event Show_MainMenu As EventHandler
     Public Event Show_NewTeam As EventHandler
 
-    Public Sub New(ByVal pw As MainWindow)
+    Public Sub New(ByVal pw As MainWindow, ByVal st_list As List(Of TeamMdl))
 
         ' This call is required by the designer.
         InitializeComponent()
 
         Me.pw = pw
         Me.pw.League = New Leaguemdl()
+        Me.st_list = st_list
 
         Dim icurrentyear As Integer = Date.Today.Year
 
@@ -26,7 +28,74 @@ Public Class NewLeagueUC
         newl1StartingYear.Text = icurrentyear.ToString
         newl1Structure.SelectedIndex = 0
 
+        setStockTeams()
+
     End Sub
+    Private Sub setStockTeams()
+
+        StockTeamsGrid.Items.Clear()
+
+        For Each st In st_list
+
+            Dim h_sp As StackPanel = New StackPanel
+            h_sp.Orientation = Orientation.Horizontal
+
+            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Helmets/" & st.Helmet_img_path))
+            Dim helmet_img As Image = New Image()
+            helmet_img.Width = 25
+            helmet_img.Height = 25
+            helmet_img.Source = BitmapImage
+
+            Dim Color_Percents_List As List(Of Uniform_Color_percents) = Nothing
+            Color_Percents_List = Uniform.getColorList(st.Uniform)
+
+            Dim team_label As Label = New Label()
+            team_label.Foreground = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(0).color_string))
+            team_label.Content = st.City & " " & st.Nickname
+            team_label.Height = 25
+            team_label.Width = 180
+            team_label.VerticalContentAlignment = VerticalContentAlignment.Center
+
+            If Color_Percents_List.Count > 2 Then
+                Dim BackBrush As LinearGradientBrush = New LinearGradientBrush()
+                BackBrush.StartPoint = New Point(0, 0)
+                BackBrush.EndPoint = New Point(1, 1)
+
+                Dim running_value As Single = 0
+                For i As Integer = 1 To Color_Percents_List.Count - 1
+                    BackBrush.GradientStops.Add(New GradientStop(
+                    CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), running_value))
+
+                    running_value = Color_Percents_List(i).value
+
+                    BackBrush.GradientStops.Add(New GradientStop(
+                    CommonUtils.getColorfromHex(Color_Percents_List(i).color_string), running_value))
+                Next
+                team_label.Background = BackBrush
+            Else
+                team_label.Background = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(1).color_string))
+            End If
+            team_label.FontFamily = New FontFamily("Times New Roman")
+            team_label.FontSize = 12
+
+
+            '            Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Stadiums/" & st.Stadium.Stadium_Img_Path))
+            '            Dim std_img As Image = New Image()
+            '           std_img.Width = 40
+            '          std_img.Height = 25
+
+            'std_img.Source = BitmapImageST
+
+            h_sp.Children.Add(helmet_img)
+            h_sp.Children.Add(team_label)
+            'h_sp.Children.Add(std_img)
+            h_sp.Margin = New System.Windows.Thickness(5)
+
+            StockTeamsGrid.Items.Add(h_sp)
+        Next
+
+    End Sub
+
 
     Private Sub validate()
 
@@ -381,6 +450,7 @@ Public Class NewLeagueUC
                     Dim team_label As Label = New Label()
                     team_label.Name = "newllblTeam" & t_id.ToString
                     team_label.Padding = New Thickness(10, 0, 0, 0)
+                    team_label.Width = 250
                     team_label.Style = Teamlbltyle
                     team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
@@ -446,6 +516,7 @@ Public Class NewLeagueUC
                     Dim team_label As Label = New Label()
                     team_label.Name = "newllblTeam" & t_id.ToString
                     team_label.Padding = New Thickness(10, 0, 0, 0)
+                    team_label.Width = 250
                     team_label.Style = Teamlbltyle
                     team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
@@ -498,6 +569,7 @@ Public Class NewLeagueUC
                     Dim team_label As Label = New Label()
                     team_label.Name = "newllblTeam" & t_id.ToString
                     team_label.Padding = New Thickness(10, 0, 0, 0)
+                    team_label.Width = 250
                     team_label.Style = Teamlbltyle
                     team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 

@@ -337,6 +337,33 @@
   <ItemGroup>
     <Resource Include="Images\Stadiums\Oklahoma.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Bullies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Marshalls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Aces.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Las_Vegas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Americans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Bombers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Brooklyn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Breakers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Seattle.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
