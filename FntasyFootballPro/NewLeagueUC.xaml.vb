@@ -6,7 +6,8 @@ Public Class NewLeagueUC
     'pw is the parent window mainwindow
     Private pw As MainWindow
     Private st_list As List(Of TeamMdl)
-
+    Private dragSource As ListBox = Nothing
+    Public Property startPoint As Point
     Public Event Show_MainMenu As EventHandler
     Public Event Show_NewTeam As EventHandler
 
@@ -452,10 +453,15 @@ Public Class NewLeagueUC
                     team_label.Padding = New Thickness(10, 0, 0, 0)
                     team_label.Width = 250
                     team_label.Style = Teamlbltyle
+
                     team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
+                    sp_team.AllowDrop = True
+                    sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
+                    sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
+
 
                     v_sp_in_groupbox.Children.Add(sp_team)
 
@@ -522,6 +528,9 @@ Public Class NewLeagueUC
 
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
+                    sp_team.AllowDrop = True
+                    sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
+                    sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
 
                     v_sp_in_groupbox.Children.Add(sp_team)
 
@@ -575,6 +584,10 @@ Public Class NewLeagueUC
 
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
+                    sp_team.AllowDrop = True
+                    sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
+                    sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
+
 
                     v_sp_in_groupbox.Children.Add(sp_team)
 
@@ -729,6 +742,58 @@ Public Class NewLeagueUC
         RaiseEvent Show_NewTeam(Me, New teamEventArgs(n))
 
     End Sub
+
+    Private Sub sp_team_dragenter(sender As Object, e As DragEventArgs)
+
+        Dim tb As StackPanel = TryCast(sender, StackPanel)
+        tb.Background = Brushes.Green
+
+    End Sub
+
+    Private Sub sp_team_dragleave(sender As Object, e As DragEventArgs)
+
+        Dim tb As StackPanel = TryCast(sender, StackPanel)
+        tb.Background = Brushes.Transparent
+
+    End Sub
+
+    Private Sub StockTeamsGrid_PreviewMouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles StockTeamsGrid.PreviewMouseLeftButtonDown
+
+        Dim parent As ListBox = CType(sender, ListBox)
+        dragSource = parent
+        Dim data As Object = GetDataFromListBox(dragSource, e.GetPosition(parent))
+
+        If data IsNot Nothing Then
+            DragDrop.DoDragDrop(parent, data, DragDropEffects.Move)
+        End If
+
+    End Sub
+
+    Private Shared Function GetDataFromListBox(ByVal source As ListBox, ByVal point As Point) As Object
+        Dim element As UIElement = TryCast(source.InputHitTest(point), UIElement)
+
+        If element IsNot Nothing Then
+            Dim data As Object = DependencyProperty.UnsetValue
+
+            While data Is DependencyProperty.UnsetValue
+                data = source.ItemContainerGenerator.ItemFromContainer(element)
+
+                If data Is DependencyProperty.UnsetValue Then
+                    element = TryCast(VisualTreeHelper.GetParent(element), UIElement)
+                End If
+
+                If element Is source Then
+                    Return Nothing
+                End If
+            End While
+
+            If data IsNot DependencyProperty.UnsetValue Then
+                Return data
+            End If
+        End If
+
+        Return Nothing
+    End Function
 
 
 End Class

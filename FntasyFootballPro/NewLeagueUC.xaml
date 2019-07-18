@@ -91,7 +91,8 @@
                             Stock Teams:
                         </GroupBox.Header>
                         <StackPanel Orientation="Vertical" Width="270" >
-                            <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="250" Height="420">
+                            <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="250" Height="420"
+                            PreviewMouseLeftButtonDown="StockTeamsGrid_PreviewMouseLeftButtonDown">
                             </ListView>
                         </StackPanel>
                     </GroupBox>
