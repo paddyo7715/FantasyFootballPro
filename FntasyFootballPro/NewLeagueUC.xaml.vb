@@ -7,6 +7,8 @@ Public Class NewLeagueUC
     Private pw As MainWindow
     Private st_list As List(Of TeamMdl)
     Private dragSource As ListBox = Nothing
+    Private UnselNewTeamSP As Style = Application.Current.FindResource("UnselNewTeamSP")
+    Private DragEnt_NewTeamSP As Style = Application.Current.FindResource("DragEnt_NewTeamSP")
     Public Property startPoint As Point
     Public Event Show_MainMenu As EventHandler
     Public Event Show_NewTeam As EventHandler
@@ -165,6 +167,9 @@ Public Class NewLeagueUC
         Dim GroupBoxstyle As Style = Application.Current.FindResource("GroupBoxstyle")
         Dim Largetxttyle As Style = Application.Current.FindResource("Largetxttyle")
         Dim Conflbltyle As Style = Application.Current.FindResource("Conflbltyle")
+        Dim UnselNewTeamSP As Style = Application.Current.FindResource("UnselNewTeamSP")
+        Dim DragEnt_NewTeamSP As Style = Application.Current.FindResource("DragEnt_NewTeamSP")
+
 
         num_weeks = v(0)
         num_games = v(1)
@@ -442,6 +447,7 @@ Public Class NewLeagueUC
                 For z As Integer = 1 To teams_per_division
                     Dim sp_team As StackPanel = New StackPanel()
                     sp_team.Orientation = Orientation.Horizontal
+                    sp_team.Style = UnselNewTeamSP
 
                     Dim helmet_img As Image = New Image()
                     helmet_img.Name = "newlimgTeam" & t_id.ToString
@@ -461,7 +467,7 @@ Public Class NewLeagueUC
                     sp_team.AllowDrop = True
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
-
+                    sp_team.Style = UnselNewTeamSP
 
                     v_sp_in_groupbox.Children.Add(sp_team)
 
@@ -531,6 +537,7 @@ Public Class NewLeagueUC
                     sp_team.AllowDrop = True
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
+                    sp_team.Style = UnselNewTeamSP
 
                     v_sp_in_groupbox.Children.Add(sp_team)
 
@@ -587,7 +594,7 @@ Public Class NewLeagueUC
                     sp_team.AllowDrop = True
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
-
+                    sp_team.Style = UnselNewTeamSP
 
                     v_sp_in_groupbox.Children.Add(sp_team)
 
@@ -746,14 +753,14 @@ Public Class NewLeagueUC
     Private Sub sp_team_dragenter(sender As Object, e As DragEventArgs)
 
         Dim tb As StackPanel = TryCast(sender, StackPanel)
-        tb.Background = Brushes.Green
+        tb.Style = DragEnt_NewTeamSP
 
     End Sub
 
     Private Sub sp_team_dragleave(sender As Object, e As DragEventArgs)
 
         Dim tb As StackPanel = TryCast(sender, StackPanel)
-        tb.Background = Brushes.Transparent
+        tb.Style = UnselNewTeamSP
 
     End Sub
 
