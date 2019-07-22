@@ -31,6 +31,8 @@
         Me.Num_Teams = Num_Teams
         Me.Num_Playoff_Teams = Num_Playoff_Teams
 
+        Teams = New List(Of TeamMdl)
+
         For i As Integer = 1 To Me.Num_Teams
             Teams.Add(New TeamMdl(i, App_Constants.EMPTY_TEAM_SLOT))
         Next

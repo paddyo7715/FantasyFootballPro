@@ -7,6 +7,8 @@ Public Class NewLeagueUC
     Private pw As MainWindow
     Private st_list As List(Of TeamMdl)
     Private dragSource As ListBox = Nothing
+    Private drag_data As StackPanel = Nothing
+    Private drag_from As String = Nothing
     Private UnselNewTeamSP As Style = Application.Current.FindResource("UnselNewTeamSP")
     Private DragEnt_NewTeamSP As Style = Application.Current.FindResource("DragEnt_NewTeamSP")
     Public Property startPoint As Point
@@ -43,7 +45,7 @@ Public Class NewLeagueUC
             Dim h_sp As StackPanel = New StackPanel
             h_sp.Orientation = Orientation.Horizontal
 
-            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Helmets/" & st.Helmet_img_path))
+            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & App_Constants.APP_HELMET_FOLDER & st.Helmet_img_path))
             Dim helmet_img As Image = New Image()
             helmet_img.Width = 25
             helmet_img.Height = 25
@@ -80,14 +82,6 @@ Public Class NewLeagueUC
             End If
             team_label.FontFamily = New FontFamily("Times New Roman")
             team_label.FontSize = 12
-
-
-            '            Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Stadiums/" & st.Stadium.Stadium_Img_Path))
-            '            Dim std_img As Image = New Image()
-            '           std_img.Width = 40
-            '          std_img.Height = 25
-
-            'std_img.Source = BitmapImageST
 
             h_sp.Children.Add(helmet_img)
             h_sp.Children.Add(team_label)
@@ -185,6 +179,8 @@ Public Class NewLeagueUC
         newlnumteams.Text = num_teams.ToString
         newlnumconferences.Text = num_confs.ToString
         newlnumplayoffteams.Text = num_playoff_teams.ToString
+
+        pw.League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
 
         'Clear previous division selections
         spDivisions.Children.Clear()
@@ -467,6 +463,8 @@ Public Class NewLeagueUC
                     sp_team.AllowDrop = True
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
+                    sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
+
                     sp_team.Style = UnselNewTeamSP
 
                     v_sp_in_groupbox.Children.Add(sp_team)
@@ -537,6 +535,7 @@ Public Class NewLeagueUC
                     sp_team.AllowDrop = True
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
+                    sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
                     sp_team.Style = UnselNewTeamSP
 
                     v_sp_in_groupbox.Children.Add(sp_team)
@@ -594,6 +593,7 @@ Public Class NewLeagueUC
                     sp_team.AllowDrop = True
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
+                    sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
                     sp_team.Style = UnselNewTeamSP
 
                     v_sp_in_groupbox.Children.Add(sp_team)
@@ -609,7 +609,7 @@ Public Class NewLeagueUC
             sp1.Children.Add(v2_sp)
         End If
 
-        pw.League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
+
         setTeamsLabels()
 
     End Sub
@@ -659,10 +659,6 @@ Public Class NewLeagueUC
             pw.League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
                         newl1championshipgame.Text, newl1TrophyPath.Text, Conferences_list, Divisions_list,
                         lyears, League_State.Regular_Season)
-
-            '            Dim NL_Teams As NewLeague_Teams = New NewLeague_Teams(winMainMenu, Me, nl)
-            '           NL_Teams.setFields()
-            '          NL_Teams.Show()
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
@@ -742,6 +738,42 @@ Public Class NewLeagueUC
             End If
         Next
     End Sub
+    Private Sub sp_team_drop(sender As Object, e As DragEventArgs)
+
+        Dim old_sp As StackPanel = CType(sender, StackPanel)
+        Dim old_image As Image = old_sp.Children.Item(0)
+        Dim old_label As Label = old_sp.Children.Item(1)
+
+        Dim drag_data_image As Image = drag_data.Children.Item(0)
+        Dim drag_data_label As Label = drag_data.Children.Item(1)
+
+
+        If drag_from = "stock" Then
+
+            'Get the full stock team that was dragged
+            Dim new_team As TeamMdl = Team.get_team_from_name(drag_data_label.Content, st_list)
+            'get the imdex of the team label that the new team is to be dropped on
+            Dim old_index As Integer = CommonUtils.ExtractTeamNumber(old_label.Name) - 1
+
+            old_sp.Style = UnselNewTeamSP
+
+            old_image.Source = CType(drag_data.Children.Item(0), Image).Source
+            old_label.Content = CType(drag_data.Children.Item(1), Label).Content
+
+            dragSource.Items.Remove(drag_data)
+            Dim cloned_team As TeamMdl = New TeamMdl(new_team)
+            cloned_team.setID(old_index)
+            'Set prefix the helmet image path and stadium image path with the app folders for this
+            'computer, because these stock teams were created on the developer's computer and
+            'would not be correct.
+            cloned_team.setStockImagePaths(App_Constants.APP_HELMET_FOLDER & new_team.Helmet_img_path,
+            App_Constants.APP_STADIUM_FOLDER & new_team.Stadium.Stadium_Img_Path)
+            pw.League.Teams(old_index) = cloned_team
+        End If
+
+
+
+    End Sub
     Private Sub TeamLabel_MouseDown(sender As Object, e As RoutedEventArgs)
 
         Dim l As Label = e.Source
@@ -766,11 +798,13 @@ Public Class NewLeagueUC
 
     Private Sub StockTeamsGrid_PreviewMouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles StockTeamsGrid.PreviewMouseLeftButtonDown
 
+        drag_data = Nothing
+        drag_from = "stock"
         Dim parent As ListBox = CType(sender, ListBox)
         dragSource = parent
         Dim data As Object = GetDataFromListBox(dragSource, e.GetPosition(parent))
-
         If data IsNot Nothing Then
+            drag_data = CType(data, StackPanel)
             DragDrop.DoDragDrop(parent, data, DragDropEffects.Move)
         End If
 
