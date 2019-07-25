@@ -9,9 +9,11 @@ Public Class NewLeagueUC
     Private dragSource As ListBox = Nothing
     Private drag_data As StackPanel = Nothing
     Private drag_from As String = Nothing
+    Private dragSource_team As StackPanel = Nothing
     Private UnselNewTeamSP As Style = Application.Current.FindResource("UnselNewTeamSP")
     Private DragEnt_NewTeamSP As Style = Application.Current.FindResource("DragEnt_NewTeamSP")
     Public Property startPoint As Point
+
     Public Event Show_MainMenu As EventHandler
     Public Event Show_NewTeam As EventHandler
 
@@ -461,6 +463,8 @@ Public Class NewLeagueUC
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
                     sp_team.AllowDrop = True
+
+                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseMove))
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
                     sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
@@ -533,6 +537,7 @@ Public Class NewLeagueUC
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
                     sp_team.AllowDrop = True
+                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseMove))
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
                     sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
@@ -591,6 +596,7 @@ Public Class NewLeagueUC
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
                     sp_team.AllowDrop = True
+                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseMove))
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
                     sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
@@ -740,15 +746,19 @@ Public Class NewLeagueUC
     End Sub
     Private Sub sp_team_drop(sender As Object, e As DragEventArgs)
 
+        If sender Is e.Source Then Return
+
         Dim old_sp As StackPanel = CType(sender, StackPanel)
         Dim old_image As Image = old_sp.Children.Item(0)
         Dim old_label As Label = old_sp.Children.Item(1)
 
-        Dim drag_data_image As Image = drag_data.Children.Item(0)
-        Dim drag_data_label As Label = drag_data.Children.Item(1)
+        Dim drag_data_image As Image = Nothing
+        Dim drag_data_label As Label = Nothing
 
 
         If drag_from = "stock" Then
+            drag_data_image = drag_data.Children.Item(0)
+            drag_data_label = drag_data.Children.Item(1)
 
             'Get the full stock team that was dragged
             Dim new_team As TeamMdl = Team.get_team_from_name(drag_data_label.Content, st_list)
@@ -766,19 +776,42 @@ Public Class NewLeagueUC
             'Set prefix the helmet image path and stadium image path with the app folders for this
             'computer, because these stock teams were created on the developer's computer and
             'would not be correct.
-            cloned_team.setStockImagePaths(App_Constants.APP_HELMET_FOLDER & new_team.Helmet_img_path,
-            App_Constants.APP_STADIUM_FOLDER & new_team.Stadium.Stadium_Img_Path)
+            cloned_team.setStockImagePaths(CommonUtils.getAppPath & App_Constants.APP_HELMET_FOLDER & new_team.Helmet_img_path,
+            CommonUtils.getAppPath & App_Constants.APP_STADIUM_FOLDER & new_team.Stadium.Stadium_Img_Path)
             pw.League.Teams(old_index) = cloned_team
         End If
 
 
 
     End Sub
-    Private Sub TeamLabel_MouseDown(sender As Object, e As RoutedEventArgs)
+    Private Sub TeamLabel_MouseMove(sender As Object, e As MouseEventArgs)
 
-        Dim l As Label = e.Source
-        Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
-        RaiseEvent Show_NewTeam(Me, New teamEventArgs(n))
+        ' Get the current mouse position
+        Dim mousePos As Point = e.GetPosition(Nothing)
+        Dim diff As Vector = startPoint - mousePos
+
+        If e.LeftButton = MouseButtonState.Pressed And
+          (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance Or
+          Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance) Then
+            drag_data = Nothing
+            drag_from = "league"
+            Dim parent As StackPanel = CType(sender, StackPanel)
+            dragSource_team = parent
+            If dragSource_team IsNot Nothing Then
+                DragDrop.DoDragDrop(parent, dragSource_team, DragDropEffects.Move)
+            End If
+        End If
+    End Sub
+
+    Private Sub TeamLabel_MouseDown(sender As Object, e As MouseButtonEventArgs)
+
+        startPoint = e.GetPosition(Nothing)
+
+        If e.ClickCount = 2 Then
+            Dim l As Label = e.Source
+            Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
+            RaiseEvent Show_NewTeam(Me, New teamEventArgs(n))
+        End If
 
     End Sub
 
@@ -811,6 +844,7 @@ Public Class NewLeagueUC
     End Sub
 
     Private Shared Function GetDataFromListBox(ByVal source As ListBox, ByVal point As Point) As Object
+
         Dim element As UIElement = TryCast(source.InputHitTest(point), UIElement)
 
         If element IsNot Nothing Then

@@ -20,6 +20,7 @@
         Me.Owner = tc.Owner
         Me.City = tc.City
         Me.Nickname = tc.Nickname
+        Me.City_Abr = tc.City_Abr
 
         Dim std As StadiumMdl = New StadiumMdl(tc.Stadium.Stadium_Name, tc.Stadium.Stadium_Location, tc.Stadium.Field_Type,
             tc.Stadium.Field_Color, tc.Stadium.Capacity, tc.Stadium.Stadium_Img_Path)
