@@ -90,6 +90,8 @@ Class MainWindow
     End Sub
     Private Sub Show_NewTeamDetail(sender As Object, e As teamEventArgs)
 
+        Mouse.OverrideCursor = Cursors.Wait
+
         Dim team_ind As Integer = e.team_num - 1
         NewTeamUC = New NewTeamUC(League.Teams(team_ind), "New_League")
         NewTeamUC.setTeamDetail()
@@ -98,6 +100,8 @@ Class MainWindow
 
         sp_uc.Children.Clear()
         sp_uc.Children.Add(NewTeamUC)
+
+        Mouse.OverrideCursor = Nothing
 
     End Sub
     Private Sub Show_PlayerNames(sender As Object, e As EventArgs)

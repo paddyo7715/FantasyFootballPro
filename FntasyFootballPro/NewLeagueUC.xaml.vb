@@ -458,13 +458,13 @@ Public Class NewLeagueUC
                     team_label.Width = 250
                     team_label.Style = Teamlbltyle
 
-                    team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
                     sp_team.AllowDrop = True
 
-                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseMove))
+                    sp_team.AddHandler(StackPanel.MouseDownEvent, New RoutedEventHandler(AddressOf sp_team_MouseDown))
+                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf sp_team_MouseMove))
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
                     sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
@@ -532,12 +532,12 @@ Public Class NewLeagueUC
                     team_label.Padding = New Thickness(10, 0, 0, 0)
                     team_label.Width = 250
                     team_label.Style = Teamlbltyle
-                    team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
                     sp_team.AllowDrop = True
-                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseMove))
+                    sp_team.AddHandler(StackPanel.MouseDownEvent, New RoutedEventHandler(AddressOf sp_team_MouseDown))
+                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf sp_team_MouseMove))
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
                     sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
@@ -591,12 +591,12 @@ Public Class NewLeagueUC
                     team_label.Padding = New Thickness(10, 0, 0, 0)
                     team_label.Width = 250
                     team_label.Style = Teamlbltyle
-                    team_label.AddHandler(Label.MouseDownEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseDown))
 
                     sp_team.Children.Add(helmet_img)
                     sp_team.Children.Add(team_label)
                     sp_team.AllowDrop = True
-                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf TeamLabel_MouseMove))
+                    sp_team.AddHandler(StackPanel.MouseDownEvent, New RoutedEventHandler(AddressOf sp_team_MouseDown))
+                    sp_team.AddHandler(StackPanel.MouseMoveEvent, New RoutedEventHandler(AddressOf sp_team_MouseMove))
                     sp_team.AddHandler(StackPanel.DragEnterEvent, New DragEventHandler(AddressOf sp_team_dragenter))
                     sp_team.AddHandler(StackPanel.DragLeaveEvent, New DragEventHandler(AddressOf sp_team_dragleave))
                     sp_team.AddHandler(StackPanel.DropEvent, New DragEventHandler(AddressOf sp_team_drop))
@@ -748,9 +748,9 @@ Public Class NewLeagueUC
 
         If sender Is e.Source Then Return
 
-        Dim old_sp As StackPanel = CType(sender, StackPanel)
-        Dim old_image As Image = old_sp.Children.Item(0)
-        Dim old_label As Label = old_sp.Children.Item(1)
+        Dim new_sp As StackPanel = CType(sender, StackPanel)
+        Dim new_image As Image = new_sp.Children.Item(0)
+        Dim new_label As Label = new_sp.Children.Item(1)
 
         Dim drag_data_image As Image = Nothing
         Dim drag_data_label As Label = Nothing
@@ -763,28 +763,43 @@ Public Class NewLeagueUC
             'Get the full stock team that was dragged
             Dim new_team As TeamMdl = Team.get_team_from_name(drag_data_label.Content, st_list)
             'get the imdex of the team label that the new team is to be dropped on
-            Dim old_index As Integer = CommonUtils.ExtractTeamNumber(old_label.Name) - 1
+            Dim new_index As Integer = CommonUtils.ExtractTeamNumber(new_label.Name) - 1
 
-            old_sp.Style = UnselNewTeamSP
+            new_sp.Style = UnselNewTeamSP
 
-            old_image.Source = CType(drag_data.Children.Item(0), Image).Source
-            old_label.Content = CType(drag_data.Children.Item(1), Label).Content
+            new_image.Source = CType(drag_data.Children.Item(0), Image).Source
+            new_label.Content = CType(drag_data.Children.Item(1), Label).Content
 
             dragSource.Items.Remove(drag_data)
             Dim cloned_team As TeamMdl = New TeamMdl(new_team)
-            cloned_team.setID(old_index)
+            cloned_team.setID(new_index)
             'Set prefix the helmet image path and stadium image path with the app folders for this
             'computer, because these stock teams were created on the developer's computer and
             'would not be correct.
             cloned_team.setStockImagePaths(CommonUtils.getAppPath & App_Constants.APP_HELMET_FOLDER & new_team.Helmet_img_path,
             CommonUtils.getAppPath & App_Constants.APP_STADIUM_FOLDER & new_team.Stadium.Stadium_Img_Path)
-            pw.League.Teams(old_index) = cloned_team
+            pw.League.Teams(new_index) = cloned_team
+        ElseIf drag_from = "league" Then
+            drag_data_image = drag_data.Children.Item(0)
+            drag_data_label = drag_data.Children.Item(1)
+
+            'get the new team id from the label name
+            Dim new_index As Integer = CommonUtils.ExtractTeamNumber(new_label.Name) - 1
+            'get the old team id from the label name
+            Dim old_index As Integer = CommonUtils.ExtractTeamNumber(drag_data_label.Name) - 1
+
+            'Set new team in league to the old team and change the id to the new slot
+            pw.League.Teams(new_index) = pw.League.Teams(old_index)
+            pw.League.Teams(new_index).setID(new_index)
+
+            'Set old slot to a new blank team
+            Dim blank_team As TeamMdl = New TeamMdl(old_index, App_Constants.EMPTY_TEAM_SLOT)
+            pw.League.Teams(old_index) = blank_team
+
         End If
 
-
-
     End Sub
-    Private Sub TeamLabel_MouseMove(sender As Object, e As MouseEventArgs)
+    Private Sub sp_team_MouseMove(sender As Object, e As MouseEventArgs)
 
         ' Get the current mouse position
         Dim mousePos As Point = e.GetPosition(Nothing)
@@ -803,12 +818,13 @@ Public Class NewLeagueUC
         End If
     End Sub
 
-    Private Sub TeamLabel_MouseDown(sender As Object, e As MouseButtonEventArgs)
+    Private Sub sp_team_MouseDown(sender As Object, e As MouseButtonEventArgs)
 
         startPoint = e.GetPosition(Nothing)
 
         If e.ClickCount = 2 Then
-            Dim l As Label = e.Source
+            Dim s As StackPanel = sender
+            Dim l As Label = s.Children(1)
             Dim n As Integer = CommonUtils.ExtractTeamNumber(l.Name)
             RaiseEvent Show_NewTeam(Me, New teamEventArgs(n))
         End If
