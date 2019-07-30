@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Collections.ObjectModel
+Imports System.IO
 Imports System.Windows.Controls
 Imports Microsoft.Win32
 
@@ -19,9 +20,12 @@ Public Class NewTeamUC
     Property Roster As List(Of PlayerMdl) = Nothing
     Property Uniform_Img As Uniform_Image
 
+    Public ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
+
     Property Form_Function As form_func = Nothing
 
     Property Event_from_Code As Boolean = False
+
     Public Sub New(ByVal team As TeamMdl, ByVal func As String)
 
         ' This call is required by the designer.
@@ -31,6 +35,9 @@ Public Class NewTeamUC
         '      Me.pw = pw
         Me.Form_Function = Form_Function
         Me.team = team
+
+        '       ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Black, "Black"))
+        '       ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Blue, "Blue"))
 
         Select Case func
             Case "New_League"
@@ -52,6 +59,55 @@ Public Class NewTeamUC
         Else
             Players_tab.Visibility = False
         End If
+
+        'For some reason, I couldn't set the recentcolors in xaml
+        newtHelmentColor.RecentColors = ColorList
+        newtHelmentLogoColor.RecentColors = ColorList
+        newtFacemaskColor.RecentColors = ColorList
+        newtSockColor.RecentColors = ColorList
+        newtCleatsColor.RecentColors = ColorList
+
+        newtHomeJerseyColor.RecentColors = ColorList
+        newtHomeSleeveColor.RecentColors = ColorList
+
+        newtHomeJerseyNumberColor.RecentColors = ColorList
+        newtHomeNumberOutlineColor.RecentColors = ColorList
+
+        newtHomeShoulderStripeColor.RecentColors = ColorList
+
+        newtHomeJerseySleeve1Color.RecentColors = ColorList
+        newtHomeJerseySleeve2Color.RecentColors = ColorList
+        newtHomeJerseySleeve3Color.RecentColors = ColorList
+        newtHomeJerseySleeve4Color.RecentColors = ColorList
+        newtHomeJerseySleeve5Color.RecentColors = ColorList
+        newtHomeJerseySleeve6Color.RecentColors = ColorList
+
+        newtHomePantsColor.RecentColors = ColorList
+        newtHomePantsStripe1Color.RecentColors = ColorList
+        newtHomePantsStripe2Color.RecentColors = ColorList
+        newtHomePantsStripe3Color.RecentColors = ColorList
+
+        newtAwayJerseyColor.RecentColors = ColorList
+        newtAwaySleeveColor.RecentColors = ColorList
+
+        newtAwayJerseyNumberColor.RecentColors = ColorList
+        newtAwayNumberOutlineColor.RecentColors = ColorList
+
+        newtAwayShoulderStripeColor.RecentColors = ColorList
+
+        newtAwayJerseySleeve1Color.RecentColors = ColorList
+        newtAwayJerseySleeve2Color.RecentColors = ColorList
+        newtAwayJerseySleeve3Color.RecentColors = ColorList
+        newtAwayJerseySleeve4Color.RecentColors = ColorList
+        newtAwayJerseySleeve5Color.RecentColors = ColorList
+        newtAwayJerseySleeve6Color.RecentColors = ColorList
+
+        newtAwayPantsColor.RecentColors = ColorList
+        newtAwayPantsStripe1Color.RecentColors = ColorList
+        newtAwayPantsStripe2Color.RecentColors = ColorList
+        newtAwayPantsStripe3Color.RecentColors = ColorList
+
+
 
     End Sub
     Public Sub setTeamDetail()

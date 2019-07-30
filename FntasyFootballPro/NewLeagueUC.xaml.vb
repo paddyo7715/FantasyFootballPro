@@ -7,9 +7,10 @@ Public Class NewLeagueUC
     Private pw As MainWindow
     Private st_list As List(Of TeamMdl)
     Private dragSource As ListBox = Nothing
+    Private dragSource_team As StackPanel = Nothing
     Private drag_data As StackPanel = Nothing
     Private drag_from As String = Nothing
-    Private dragSource_team As StackPanel = Nothing
+    '    Private dragSource_team As StackPanel = Nothing
     Private UnselNewTeamSP As Style = Application.Current.FindResource("UnselNewTeamSP")
     Private DragEnt_NewTeamSP As Style = Application.Current.FindResource("DragEnt_NewTeamSP")
     Public Property startPoint As Point
@@ -788,6 +789,17 @@ Public Class NewLeagueUC
             'get the old team id from the label name
             Dim old_index As Integer = CommonUtils.ExtractTeamNumber(drag_data_label.Name) - 1
 
+
+
+            new_sp.Style = UnselNewTeamSP
+
+
+            new_image.Source = CType(drag_data.Children.Item(0), Image).Source
+            new_label.Content = CType(drag_data.Children.Item(1), Label).Content
+
+            drag_data_image.Source = Nothing
+            drag_data_label.Content = App_Constants.EMPTY_TEAM_SLOT
+
             'Set new team in league to the old team and change the id to the new slot
             pw.League.Teams(new_index) = pw.League.Teams(old_index)
             pw.League.Teams(new_index).setID(new_index)
@@ -811,9 +823,9 @@ Public Class NewLeagueUC
             drag_data = Nothing
             drag_from = "league"
             Dim parent As StackPanel = CType(sender, StackPanel)
-            dragSource_team = parent
-            If dragSource_team IsNot Nothing Then
-                DragDrop.DoDragDrop(parent, dragSource_team, DragDropEffects.Move)
+            drag_data = parent
+            If drag_data IsNot Nothing Then
+                DragDrop.DoDragDrop(parent, drag_data, DragDropEffects.Move)
             End If
         End If
     End Sub
