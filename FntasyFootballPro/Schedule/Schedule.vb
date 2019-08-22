@@ -10,8 +10,6 @@
     Private sched As List(Of String) = New List(Of String)
     Private rha As Random = New Random()
 
-
-
     Public Sub New(ByVal Short_Name As String, ByVal Number_of_Teams As Integer, ByVal Num_Teams_Per_Division As Integer,
                    ByVal Conferences As Integer, ByVal weeks As Integer, ByVal byes As Integer)
 
@@ -29,7 +27,11 @@
 
     Private Function getConference(ByVal Team As Integer) As Integer
 
-        Return (Team - 1) \ (Teams \ Conferences) + 1
+        If Conferences = 0 Then
+            Return 1
+        Else
+            Return (Team - 1) \ (Teams \ Conferences) + 1
+        End If
 
     End Function
 
@@ -149,8 +151,8 @@ START_METHOD:
         i = 1
         tries = 0
 
+        'Create division games
         Do While (i <= Me.Teams)
-            'Create division games
             Dim cur_div As Integer = Me.getDivision(i)
             Dim beg_div As Integer = ((cur_div * Me.TeamsperDiv) + (1 - Me.TeamsperDiv))
             Dim cur_conf As Integer = Me.getConference(i)
@@ -172,12 +174,13 @@ START_METHOD:
             i += 1
         Loop
 
-        Console.Out.WriteLine("Finished scheduling div games")
+        '        file.WriteLine("Finished scheduling div games")
 
-        'Create if we should start scheduling home or away
-        'Create all other games         
+        'Create all other games        
+        '
+        Dim num_of_weeks = (((Teams / 2) * Weeks) - (Teams * (TeamsperDiv - 1))) / (Teams / 2)
         Dim wg_count As Integer = 0
-        Do While (wg_count < 10)
+        Do While (wg_count < num_of_weeks)
             Dim t As Integer
             Dim ii As Integer
             Dim wgcount As Integer = (Me.Teams \ 2)
@@ -194,19 +197,22 @@ START_METHOD:
                 Dim away As Integer = 0
                 ii = (rha.Next(Me.Teams) + 1)
                 t = (rha.Next(Me.Teams) + 1)
-                If (ii = t) Then
-                    Continue While
-                End If
 
-                'if same division then pick new teams.
                 tries += 1
 
                 If (tries = 2000) Then
                     wgames = New String((wgcount) - 1) {}
                     wg_now = 0
                     tries = 0
+                    '                    file.WriteLine("tries exceed If (tries = 2000) starting over")
                 End If
 
+                'if teams are equal then pick new teams.
+                If (ii = t) Then
+                    Continue While
+                End If
+
+                'if same division then pick new teams.
                 If (getDivision(ii) = getDivision(t)) Then
                     Continue While
                 End If
@@ -236,17 +242,117 @@ START_METHOD:
             End While
 
             sched.AddRange(wgames)
-            Console.Out.WriteLine(("Number of Games Scheduled " + sched.Count.ToString))
+            '           file.WriteLine(("Number of Games Scheduled " + sched.Count.ToString))
             wg_count += 1
         Loop
 
-        Console.Out.WriteLine(("Finished scheduling all other games sched size " + sched.Count.ToString))
+        'Make sure that all teams have an even number of home and away games.
+        tries = 0
+EVEN_HOME_AND_AWAY:
+
+        Dim g As Integer = 0
+        For i = 1 To Me.Teams
+            Do While 1 = 1
+                Dim Even_non_Div As List(Of Integer) = New List(Of Integer)
+                Dim need_to_flip_even_other As Boolean = True
+
+                If (tries >= 2000) Then
+                    '                    file.WriteLine("trying to even out teams failed, starting completely over.")
+                    GoTo START_METHOD
+                End If
+
+                tries += 1
+
+                Dim g1() As Integer = Me.game_types(i)
+                Dim ha_diff_i As Integer = g1(0) - g1(1)
+
+                'if the team has an too many home games then continue.
+                If ha_diff_i <= 0 Then
+                    need_to_flip_even_other = False
+                    Exit Do
+                End If
+
+                'go thru the games and try to find a game for this team where they play another team that has 
+                'the opposite home/away defecit
+                g = 0
+                Do While g < sched.Count() - 1
+
+                    Dim other_team As Integer = 0
+                    Dim p_game() As String = sched(g).Split(",")
+                    Dim h As Integer = p_game(0)
+                    Dim a As Integer = p_game(1)
+
+                    If h = i Then
+                        other_team = CInt(p_game(1))
+                    ElseIf a = i Then
+                        other_team = CInt(p_game(0))
+                    End If
+
+                    'if the team i is not either the home or away store the game to possibly 
+                    'shift if no other actual candidate is found then check the next game
+                    If other_team = 0 Then
+                        g += 1
+                        Continue Do
+                    End If
+
+                    'if the two teams are in the same division then the game can not be flipped.
+                    If getDivision(i) = getDivision(other_team) Then
+                        g += 1
+                        Continue Do
+                    End If
+
+                    Dim other_team_totals() As Integer = Me.game_types(other_team)
+
+                    Dim other_diff As Integer = other_team_totals(0) - other_team_totals(1)
+
+                    'if the other team has an even number of home and away then write to list of
+                    'possible even games to home and away flip with this game if a better candidate
+                    'is not found.
+                    If other_diff = 0 And h = i Then
+                        Even_non_Div.Add(g)
+                    End If
+
+                    'if the other team has an imbalace of home and away games in the other direction then
+                    'swap the home and away game.
+                    If (h = i And ha_diff_i > 0 And other_diff < 0) Then
+                        need_to_flip_even_other = False
+                        sched(g) = a.ToString & "," & h.ToString
+                        '                        file.WriteLine("home and away switched to " & a.ToString & "," & h.ToString)
+                        Exit Do
+                    End If
+                    g += 1
+                Loop 'Do While g < sched.Count() - 1
+
+                'If this team (i) had two many home games but couldn't find a game with a team with too many 
+                'away games to flip then flip a random game with an opponent that has an even number of home
+                'and away games and then start the home/away evening out all over.
+
+                If need_to_flip_even_other Then
+
+                    If Even_non_Div.Count = 0 Then
+                        '                        file.WriteLine("no even team to flip as last resort.  Starting whole process again")
+                        GoTo START_METHOD
+                    End If
+
+                    Dim rand_g As Integer = CommonUtils.getRandomNum(0, Even_non_Div.Count - 1)
+                    Dim p_game() As String = sched(Even_non_Div(rand_g)).Split(",")
+                    Dim h As Integer = p_game(0)
+                    Dim a As Integer = p_game(1)
+                    sched(Even_non_Div(rand_g)) = a.ToString & "," & h.ToString
+                    '                    file.WriteLine("game " & rand_g & " changed to " & a.ToString & "," & h.ToString)
+                    GoTo EVEN_HOME_AND_AWAY
+                End If
+
+            Loop 'Do While 1 = 1
+        Next
+
+        '       file.WriteLine(("Finished scheduling all other games sched size " + sched.Count.ToString))
         'Print out game totals for each team
-        Console.Out.WriteLine("Game totals:")
+        '       file.WriteLine("Game totals:")
         Dim yyu As Integer = 1
-        Do While (yyu <= 40)
+        Do While (yyu <= Teams)
             Dim zt() As Integer = Me.game_types(yyu)
-            Console.Out.WriteLine(yyu.ToString + " " + zt(0).ToString + " " + zt(1).ToString + " " + zt(2).ToString + " " + zt(3).ToString)
+            '            file.WriteLine(yyu.ToString + " " + zt(0).ToString + " " + zt(1).ToString + " " + zt(2).ToString + " " + zt(3).ToString)
             yyu += 1
         Loop
 
@@ -257,7 +363,7 @@ START_METHOD:
                 Exit Do
             End If
 
-            Console.Out.WriteLine(("Week " + w.ToString))
+            '            file.WriteLine(("Week " + w.ToString))
             Dim games As Integer = Teams \ 2
             Dim wi As Integer = 0
             Dim week_arr() As String = New String((games) - 1) {}
@@ -268,6 +374,7 @@ START_METHOD:
                 tries += 1
                 If (tries >= 50000) Then
                     tries = 0
+                    '                    file.WriteLine("tries exceed If (tries >= 50000) starting over")
                     Exit While
                 End If
 
@@ -301,22 +408,24 @@ START_METHOD:
             w = (w + 1)
         Loop
 
-        Console.Out.WriteLine("Scheduling left over games")
+        '        file.WriteLine("Scheduling left over games")
         tries = 0
         While (sched.Count > 0)
-            Console.Out.WriteLine(("Left over games: " + sched.Count.ToString))
+            '           file.WriteLine(("Left over games: " + sched.Count.ToString))
             Dim r2 As Random = New Random
             Dim lo_rand As Integer = r2.Next(sched.Count)
             Dim lo_game As String = Nothing
 
             tries += 1
             If (tries >= 200000) Then
+                '                file.WriteLine("exceeded tries >= 200000) goto outer ")
                 GoTo OUTER_DO
             End If
 
             Dim w3 As Integer = 1
             Do While (w3 <= (Weeks + byes))
                 lo_game = CType(sched(lo_rand), String)
+
                 If (sched_games_for_week(w3, Weekly_sched) _
                             = (Me.Teams \ 2)) Then
                     w3 += 1
@@ -326,10 +435,15 @@ START_METHOD:
                 Dim t2() As String = lo_game.Split(",")
                 Dim h As String = Me.sched_weekly_team_game(w3, t2(0), Weekly_sched, True)
                 Dim a As String = Me.sched_weekly_team_game(w3, t2(1), Weekly_sched, False)
-                If ((h Is Nothing) _
-                            OrElse (a Is Nothing)) Then
+                If ((h Is Nothing) OrElse (a Is Nothing)) Then
                     Dim bw As Integer = (r2.Next(2) + 1)
                     If (bw = 2) Then
+                        w3 += 1
+                        Continue Do
+                    End If
+
+                    'to fix the issue of the null pointer exception caused by both h and a being nothing
+                    If IsNothing(h) And IsNothing(a) Then
                         w3 += 1
                         Continue Do
                     End If
@@ -339,6 +453,11 @@ START_METHOD:
                         ng = h
                     Else
                         ng = a
+                    End If
+
+                    'bpo debug
+                    If IsNothing(ng) Then
+                        Dim zzz = 5
                     End If
 
                     Dim n_index As Integer = sched_game_index(ng, Weekly_sched)
@@ -482,3 +601,4 @@ OUTER_DO:
     End Function
 
 End Class
+

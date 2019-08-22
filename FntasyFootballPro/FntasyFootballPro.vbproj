@@ -368,6 +368,66 @@
   <ItemGroup>
     <Resource Include="Images\Stadiums\Chicago.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Bulls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Dallas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Champs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\San_Fransisco.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Rebels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Atlanta.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Minnesota.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Cougars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Crusaders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\SLC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Firebirds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Arizona.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Force.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Denver.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Gators.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Miami.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Knights.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\New_Jersey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Helmets\Mustangs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stadiums\Baltimore.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

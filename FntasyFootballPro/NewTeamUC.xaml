@@ -80,11 +80,11 @@
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" >
                                         <Label Width="60" FontSize="12" Foreground="White">Helmet:</Label>
-                                        <xctk:ColorPicker Name="newtHelmentColor" ShowRecentColors="true" SelectedColorChanged="newtHelmentColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                        <xctk:ColorPicker Name="newtHelmentColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHelmentColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         <Label Width="50" FontSize="12" Foreground="White">Logo:</Label>
-                                        <xctk:ColorPicker Name="newtHelmentLogoColor" ShowRecentColors="true" SelectedColorChanged="newtHelmentLogoColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                        <xctk:ColorPicker Name="newtHelmentLogoColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHelmentLogoColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         <Label Width="70" FontSize="12" Foreground="White">Facemask:</Label>
-                                        <xctk:ColorPicker Name="newtFacemaskColor" ShowRecentColors="true" SelectedColorChanged="newtFacemaskColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                        <xctk:ColorPicker Name="newtFacemaskColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtFacemaskColor_SelectedColorChanged"  Height="20"  Width="40" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <Label Width="100" FontSize="12" Foreground="White">Helmet Image:</Label>
@@ -108,11 +108,11 @@
                                 <StackPanel Orientation="Vertical" Width="300">
                                     <StackPanel Orientation="Horizontal">
                                         <Label Width="100" FontSize="12" Foreground="White">Socks Color:</Label>
-                                        <xctk:ColorPicker Name="newtSockColor" ShowRecentColors="true" SelectedColorChanged="newtSockColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                        <xctk:ColorPicker Name="newtSockColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtSockColor_SelectedColorChanged"  Height="20"  Width="40" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <Label Width="100" FontSize="12" Foreground="White">Cleats Color:</Label>
-                                        <xctk:ColorPicker Name="newtCleatsColor" ShowRecentColors="true" SelectedColorChanged="newtCleatsColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                        <xctk:ColorPicker Name="newtCleatsColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtCleatsColor_SelectedColorChanged"  Height="20"  Width="40" />
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
@@ -127,38 +127,38 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="40" FontSize="12" Foreground="White">Jersey:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseyColor" ShowRecentColors="true" SelectedColorChanged="newtHomeJerseyColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseyColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHomeJerseyColor_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="50" FontSize="12" Foreground="White">Sleeve:</Label>
-                                            <xctk:ColorPicker Name="newtHomeSleeveColor" ShowRecentColors="true" SelectedColorChanged="newtHomeSleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeSleeveColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHomeSleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Number:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseyNumberColor" ShowRecentColors="true" SelectedColorChanged="newtHomeJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseyNumberColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHomeJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="100" FontSize="12" Foreground="White">Number Outline:</Label>
-                                            <xctk:ColorPicker Name="newtHomeNumberOutlineColor" ShowRecentColors="true" SelectedColorChanged="newtHomeNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeNumberOutlineColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHomeNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="100" FontSize="12" Foreground="White">Shoulder Loop:</Label>
-                                            <xctk:ColorPicker Name="newtHomeShoulderStripeColor" ShowRecentColors="true"  SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeShoulderStripeColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomeShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="25" FontSize="12" Foreground="White">1:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseySleeve1Color" ShowRecentColors="true" SelectedColorChanged="newtHomeJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve1Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHomeJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">2:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseySleeve2Color" ShowRecentColors="true" SelectedColorChanged="newtHomeJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve2Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtHomeJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">3:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseySleeve3Color" ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve3Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <Label Width="25" FontSize="12" Foreground="White">4:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseySleeve4Color" ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve4Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">5:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseySleeve5Color" ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve5Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">6:</Label>
-                                            <xctk:ColorPicker Name="newtHomeJerseySleeve6Color" ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomeJerseySleeve6Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomeJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -170,19 +170,19 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <Label Width="60" FontSize="12" Foreground="White">Pants:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsColor" ShowRecentColors="true"  SelectedColorChanged="newtHomePantsColor_SelectedColorChanged" Height="20" Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomePantsColor_SelectedColorChanged" Height="20" Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsStripe1Color" ShowRecentColors="true"  SelectedColorChanged="newtHomePantsStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsStripe1Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomePantsStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsStripe2Color" ShowRecentColors="true"  SelectedColorChanged="newtHomePantsStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsStripe2Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomePantsStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
-                                            <xctk:ColorPicker Name="newtHomePantsStripe3Color" ShowRecentColors="true"  SelectedColorChanged="newtHomePantsStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtHomePantsStripe3Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtHomePantsStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
 
                                     </StackPanel>
@@ -225,38 +225,38 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="40" FontSize="12" Foreground="White">Jersey:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseyColor" ShowRecentColors="true" SelectedColorChanged="newtAwayJerseyColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseyColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtAwayJerseyColor_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="50" FontSize="12" Foreground="White">Sleeve:</Label>
-                                            <xctk:ColorPicker Name="newtAwaySleeveColor" ShowRecentColors="true" SelectedColorChanged="newtAwaySleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwaySleeveColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true" SelectedColorChanged="newtAwaySleeveColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Number:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseyNumberColor" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseyNumberColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseyNumberColor_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="100" FontSize="12" Foreground="White">Number Outline:</Label>
-                                            <xctk:ColorPicker Name="newtAwayNumberOutlineColor" ShowRecentColors="true"  SelectedColorChanged="newtAwayNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayNumberOutlineColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayNumberOutlineColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="100" FontSize="12" Foreground="White">Shoulder Loop:</Label>
-                                            <xctk:ColorPicker Name="newtAwayShoulderStripeColor" ShowRecentColors="true"  SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayShoulderStripeColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayShoulderStripeColor_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="130" FontSize="12" Foreground="White">Sleeve Stripe Colors:</Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="25" FontSize="12" Foreground="White">1:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseySleeve1Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseySleeve1Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve1Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">2:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseySleeve2Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseySleeve2Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve2Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">3:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseySleeve3Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseySleeve3Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve3Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <Label Width="25" FontSize="12" Foreground="White">4:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseySleeve4Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseySleeve4Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve4Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">5:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseySleeve5Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseySleeve5Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve5Color_SelectedColorChanged"  Height="20"  Width="40" />
                                             <Label Width="25" FontSize="12" Foreground="White">6:</Label>
-                                            <xctk:ColorPicker Name="newtAwayJerseySleeve6Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayJerseySleeve6Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayJerseySleeve6Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
@@ -268,19 +268,19 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <Label Width="60" FontSize="12" Foreground="White">Pants:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsColor" ShowRecentColors="true"  SelectedColorChanged="newtAwayPantsColor_SelectedColorChanged" Height="20" Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsColor" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayPantsColor_SelectedColorChanged" Height="20" Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 1:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsStripe1Color" SelectedColorChanged="newtAwayPantsStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsStripe1Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors" ShowRecentColors="true" SelectedColorChanged="newtAwayPantsStripe1Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 2:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsStripe2Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayPantsStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsStripe2Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayPantsStripe2Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" >
                                             <Label Width="60" FontSize="12" Foreground="White">Stripe 3:</Label>
-                                            <xctk:ColorPicker Name="newtAwayPantsStripe3Color" ShowRecentColors="true"  SelectedColorChanged="newtAwayPantsStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
+                                            <xctk:ColorPicker Name="newtAwayPantsStripe3Color" MaxDropDownWidth="400" RecentColorsHeader="Team Colors"  ShowRecentColors="true"  SelectedColorChanged="newtAwayPantsStripe3Color_SelectedColorChanged"  Height="20"  Width="40" />
                                         </StackPanel>
 
                                     </StackPanel>

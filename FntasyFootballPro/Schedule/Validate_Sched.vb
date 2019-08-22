@@ -32,6 +32,11 @@
         For i As Integer = 1 To Teams
             Dim total_games As Integer
             Dim div_games As Integer
+            Dim home_games As Integer
+            Dim away_games As Integer
+            Dim home_div_games As Integer
+            Dim away_div_games As Integer
+
             total_games = 0
             div_games = 0
 
@@ -43,10 +48,24 @@
 
                 If sWeek.StartsWith("Week") Then Continue For
 
+
+
                 If ht = i.ToString Or at = i.ToString Then
                     total_games += 1
 
+                    If ht = i.ToString Then
+                        home_games += 1
+                    ElseIf at = i.ToString Then
+                        away_games += 1
+                    End If
+
                     If getDivision(ht.ToString) = getDivision(at.ToString) Then
+                        If ht = i.ToString Then
+                            home_div_games += 1
+                        ElseIf at = i.ToString Then
+                            away_div_games += 1
+                        End If
+
                         div_games += 1
                     End If
                 End If
@@ -58,6 +77,22 @@
 
             If div_games < (TeamsperDiv - 1) * 2 Then
                 Throw New Exception("Schedule Error: Invalid number of divisional games for team " & i.ToString)
+            End If
+
+            If home_div_games / (TeamsperDiv * 2) <> 2.0 Then
+                Throw New Exception("Schedule Error: Team " & i.ToString & " does not have " & TeamsperDiv * 2 & "home divisional games schedule")
+            End If
+
+            If away_div_games / (TeamsperDiv * 2) <> 2.0 Then
+                Throw New Exception("Schedule Error: Team " & i.ToString & " does not have " & TeamsperDiv * 2 & "away divisional games schedule")
+            End If
+
+            If home_games / 2 <> Weeks / 2 Then
+                Throw New Exception("Schedule Error: Team " & i.ToString & " does not have " & Weeks \ 2 & "home games schedule")
+            End If
+
+            If away_games / 2 <> Weeks / 2 Then
+                Throw New Exception("Schedule Error: Team " & i.ToString & " does not have " & Weeks \ 2 & "away games schedule")
             End If
 
             For w = 1 To Weeks + byes
