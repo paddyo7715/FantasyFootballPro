@@ -25,6 +25,36 @@ Public Class NewTeamUC
     Property Form_Function As form_func = Nothing
 
     Property Event_from_Code As Boolean = False
+    Private Function getColorName(ByVal c As String,
+                                  ByVal availableColors As ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem),
+                                  ByVal standardColors As ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)) As String
+        Dim r As String = Nothing
+        Dim bfound As Boolean = False
+
+        For Each a In availableColors
+            If a.Color.ToString = c Then
+                r = a.Name
+                bfound = True
+                Exit For
+            End If
+        Next
+
+        If Not bfound Then
+            For Each s In standardColors
+                If s.Color.ToString = c Then
+                    r = s.Name
+                    bfound = True
+                    Exit For
+                End If
+            Next
+        End If
+
+        Return r
+
+
+
+    End Function
+
 
     Public Sub New(ByVal team As TeamMdl, ByVal func As String)
 
@@ -36,8 +66,9 @@ Public Class NewTeamUC
         Me.Form_Function = Form_Function
         Me.team = team
 
-        '       ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Black, "Black"))
+        'ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Black, "Black"))
         '       ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Blue, "Blue"))
+        Dim all_uniform_colors As List(Of String) = New List(Of String)
 
         Select Case func
             Case "New_League"
@@ -52,12 +83,24 @@ Public Class NewTeamUC
                 Form_Function = form_func.Stock_Team_Edit
                 lblTitle.Content = "Update Stock Team"
                 newt1Add.Content = "Save"
+                all_uniform_colors = Uniform.getAllColorList(team.Uniform)
         End Select
 
         If Not Form_Function = form_func.New_Team Then
             Players_tab.Visibility = True
         Else
             Players_tab.Visibility = False
+        End If
+
+        'if we are editing a team then load the uniform colors in the recent colors
+        If all_uniform_colors.Count > 0 Then
+            For Each c In all_uniform_colors
+                Dim color_val As System.Windows.Media.Color = CommonUtils.getColorfromHex(c)
+                Dim color_name As String = color_val.ToString
+                Dim possible_color_name As String = getColorName(color_name, newtHelmentColor.AvailableColors, newtHelmentColor.StandardColors)
+                If Not IsNothing(possible_color_name) Then color_name = possible_color_name
+                ColorList.add(New Xceed.Wpf.Toolkit.ColorItem(CommonUtils.getColorfromHex(c), color_name))
+            Next
         End If
 
         'For some reason, I couldn't set the recentcolors in xaml

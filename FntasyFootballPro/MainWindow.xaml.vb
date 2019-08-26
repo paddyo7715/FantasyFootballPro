@@ -148,14 +148,22 @@ Class MainWindow
     End Sub
     Private Sub Show_UpdateStockTeam(sender As Object, e As StockteamEventArgs)
 
-        Dim stock_team As TeamMdl = e.team
-        NewTeamUC = New NewTeamUC(stock_team, "Update_Stock_Team")
-        NewTeamUC.setTeamDetail()
-        NewTeamUC.setfields()
-        AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams
+        Try
+            Mouse.OverrideCursor = Cursors.Wait
+            Dim stock_team As TeamMdl = e.team
+            NewTeamUC = New NewTeamUC(stock_team, "Update_Stock_Team")
+            NewTeamUC.setTeamDetail()
+            NewTeamUC.setfields()
+            AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams
 
-        sp_uc.Children.Clear()
-        sp_uc.Children.Add(NewTeamUC)
+            sp_uc.Children.Clear()
+            sp_uc.Children.Add(NewTeamUC)
+            Mouse.OverrideCursor = Nothing
+        Catch ex As Exception
+            Mouse.OverrideCursor = Nothing
+            MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
+        End Try
+
 
     End Sub
 

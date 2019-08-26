@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Reflection
 
 Public Class CommonUtils
 
@@ -133,5 +134,6 @@ Public Class CommonUtils
         Return r
 
     End Function
+
 
 End Class
