@@ -24,6 +24,8 @@
     Property Divisions As List(Of String) = New List(Of String)
 
     Property Teams As List(Of TeamMdl) = New List(Of TeamMdl)
+
+    Property Schedule As List(Of String) = Nothing
     Public Sub setOrganization(ByVal Number_of_weeks As Integer, ByVal Number_of_Games As Integer,
                                ByVal Num_Teams As Integer, ByVal Num_Playoff_Teams As Integer)
         Me.Number_of_weeks = Number_of_weeks
@@ -57,6 +59,9 @@
         Me.Years = Years
         Me.State = State
 
+    End Sub
+    Public Sub setSchedule(ByVal Schedule As List(Of String))
+        Me.Schedule = Schedule
     End Sub
 
 End Class

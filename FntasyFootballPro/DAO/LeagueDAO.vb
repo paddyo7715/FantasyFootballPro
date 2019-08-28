@@ -199,18 +199,13 @@ Public Class LeagueDAO
                 Next
             Next
 
-            strStage = "Creating schedule"
-            '            Dim ls As New Schedule("APFL", 40, 5, 2, 18, 2)
-            Dim ls As New Schedule(nl.Short_Name, nl.Teams.Count, nl.Num_Teams \ nl.Divisions.Count, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks - nl.Number_of_Games)
-
-            Dim s As List(Of String) = Nothing
-            s = ls.Generate_Regular_Schedule()
-            Dim val_sched As New Validate_Sched(nl.Short_Name, nl.Teams.Count, nl.Num_Teams \ nl.Divisions.Count, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks - nl.Number_of_Games)
 
             strStage = "Inserting schedule into database"
             Dim w As String = Nothing
             Dim h As String = Nothing
             Dim a As String = Nothing
+
+            Dim s = nl.Schedule
 
             For Each g In s
                 Dim m() As String = g.Split(",")

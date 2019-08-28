@@ -61,10 +61,14 @@
         Helmet_img_path = helmet_folder
         Stadium.Stadium_Img_Path = stadium_folder
     End Sub
+    Public Sub setPlayers(ByVal Players As List(Of PlayerMdl))
+
+    End Sub
+
 
 
     Public Sub setFields(ByVal Owner As String, ByVal City_Abr As String, ByVal City As String, ByVal Nickname As String,
-                       ByVal Stadium As StadiumMdl, ByVal uniform As UniformMdl, ByVal Helmet_img_path As String, ByVal Players As List(Of PlayerMdl))
+                       ByVal Stadium As StadiumMdl, ByVal uniform As UniformMdl, ByVal Helmet_img_path As String)
 
         Me.Owner = Owner
         Me.City_Abr = City_Abr
@@ -73,8 +77,6 @@
         Me.Stadium = Stadium
         Me.Uniform = uniform
         Me.Helmet_img_path = Helmet_img_path
-
-        Me.Players = Players
 
     End Sub
     Public Sub setID(ByVal id As Integer)

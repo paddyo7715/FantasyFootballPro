@@ -17,7 +17,7 @@ Public Class NewTeamUC
     Public Event backtoStockTeams As EventHandler
 
     Property team_ind As Integer
-    Property Roster As List(Of PlayerMdl) = Nothing
+    '    Property Roster As List(Of PlayerMdl) = Nothing
     Property Uniform_Img As Uniform_Image
 
     Public ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
@@ -85,12 +85,6 @@ Public Class NewTeamUC
                 newt1Add.Content = "Save"
                 all_uniform_colors = Uniform.getAllColorList(team.Uniform)
         End Select
-
-        If Not Form_Function = form_func.New_Team Then
-            Players_tab.Visibility = True
-        Else
-            Players_tab.Visibility = False
-        End If
 
         'if we are editing a team then load the uniform colors in the recent colors
         If all_uniform_colors.Count > 0 Then
@@ -440,10 +434,6 @@ Public Class NewTeamUC
             SocksColor, CleatsColor)
 
             newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
-        End If
-
-        If Not IsNothing(team.Players) AndAlso team.Players.Count > 0 Then
-            newtPlayersGrid.ItemsSource = team.Players
         End If
 
     End Sub
@@ -803,25 +793,7 @@ Public Class NewTeamUC
             Stadium_image.Source = New BitmapImage(New Uri(filepath))
         End If
     End Sub
-    Private Sub newtRollTeam_Click(sender As Object, e As RoutedEventArgs) Handles newtRollTeam.Click
-        Dim ts As New Team_Services()
 
-        Try
-            Mouse.OverrideCursor = Cursors.Wait
-            Roster = ts.Roll_Players("")
-
-            Roster = Roster.OrderBy(Function(x) x.Pos).
-            ThenByDescending(Function(x) x.Ratings.OverAll).ToList
-
-            newtPlayersGrid.ItemsSource = Roster
-            Mouse.OverrideCursor = Nothing
-        Catch ex As Exception
-            Mouse.OverrideCursor = Nothing
-            MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
-        End Try
-
-
-    End Sub
 
     Private Sub newt1Add_Click(sender As Object, e As RoutedEventArgs) Handles newt1Add.Click
         Try
@@ -951,7 +923,7 @@ Public Class NewTeamUC
                                 Away_Pants_Stripe_2_Color, Away_Pants_Stripe_3_Color)
             Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
-            team.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text, Roster)
+            team.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text)
 
             Select Case Form_Function
                 Case form_func.New_Team
@@ -1506,12 +1478,6 @@ Public Class NewTeamUC
 
         If IsNothing(newtAwayPantsStripe3Color.SelectedColor) Then
             Throw New Exception("Away pants stripe 3 color must have a value")
-        End If
-
-        If Form_Function = form_func.New_Team Then
-            If IsNothing(Roster) OrElse Roster.Count = 0 Then
-                Throw New Exception("You must roll the team player")
-            End If
         End If
 
 

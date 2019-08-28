@@ -82,6 +82,13 @@
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="white"/>
         </Style>
+        <!-- Quick Help Lable -->
+        <Style TargetType="Label" x:Key="quickhelplabelstyle">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
         <!-- Large textbox -->
         <Style TargetType="TextBox" x:Key="Largetxttyle">
             <Setter Property="Height" Value="25"/>

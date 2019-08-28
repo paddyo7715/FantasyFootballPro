@@ -3,6 +3,7 @@ Imports System.IO
 
 Public Class League_Services
     Public Sub CreateNewLeague(ByVal nl As Leaguemdl)
+        Dim ts As New Team_Services()
 
         'Check if Fantasy Football Pro Directory exists under My Documents.  If not then create it.
         Dim DIRPath As String = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.LEAGUE_DB_FOLDER)
@@ -37,6 +38,17 @@ Public Class League_Services
                 My.Computer.FileSystem.CopyFile(t.Stadium.Stadium_Img_Path, DIRPath_League & "\" & Path.GetFileName(t.Stadium.Stadium_Img_Path))
             Next
 
+            'Create players for each team
+            For Each t In nl.Teams
+                Dim Roster As List(Of PlayerMdl) = ts.Roll_Players("")
+                Roster = Roster.OrderBy(Function(x) x.Pos).
+                ThenByDescending(Function(x) x.Ratings.OverAll).ToList
+                t.setPlayers(Roster)
+            Next
+
+            'Creating schedule
+            nl.setSchedule(create_schedule(nl.Short_Name, nl.Num_Teams, nl.Divisions.Count, nl.Conferences.Count, nl.Number_of_Games, nl.Number_of_weeks))
+
             'Write the league records to the database
             LeagueDAO.Create_New_League(League_con_string)
 
@@ -46,5 +58,22 @@ Public Class League_Services
         End Try
 
     End Sub
+    Public Function create_schedule(ByVal Short_Name As String, ByVal Num_Teams As Integer, ByVal Num_Divisions As Integer,
+                                    ByVal Num_Conferences As Integer, ByVal Number_of_Games As Integer, ByVal Number_of_weeks As Integer) As List(Of String)
+
+        Try
+            Dim ls As New Schedule(Short_Name, Num_Teams, Num_Teams \ Num_Divisions, Num_Conferences, Number_of_Games, Number_of_weeks - Number_of_Games)
+
+            Dim s As List(Of String) = Nothing
+            s = ls.Generate_Regular_Schedule()
+            Dim val_sched As New Validate_Sched(Short_Name, Num_Teams, Num_Teams \ Num_Divisions, Num_Conferences, Number_of_Games, Number_of_weeks - Number_of_Games)
+
+            Return s
+        Catch e As Exception
+            Throw New Exception("Error attempting to create schedule")
+        End Try
+
+
+    End Function
 
 End Class

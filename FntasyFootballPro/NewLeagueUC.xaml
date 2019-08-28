@@ -89,19 +89,27 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="Teams">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="top" >
-                    <StackPanel Name="sp1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="top" >
-                    </StackPanel>
-                    <GroupBox FontSize="12" FontWeight="Bold" Style="{StaticResource GroupBoxstyle}" >
-                        <GroupBox.Header>
-                            Stock Teams:
-                        </GroupBox.Header>
-                        <StackPanel Orientation="Vertical" Width="270" >
-                            <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="250" Height="420"
-                            PreviewMouseLeftButtonDown="StockTeamsGrid_PreviewMouseLeftButtonDown">
-                            </ListView>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="top" >
+                        <StackPanel Name="sp1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="top" >
                         </StackPanel>
-                    </GroupBox>
+                        <GroupBox FontSize="12" FontWeight="Bold" Style="{StaticResource GroupBoxstyle}" >
+                            <GroupBox.Header>
+                                Stock Teams:
+                            </GroupBox.Header>
+                            <StackPanel Orientation="Vertical" Width="270" >
+                                <ListView Margin="10" Name="StockTeamsGrid" HorizontalContentAlignment="left"  Background="LightGray" Width="250" Height="420"
+                            PreviewMouseLeftButtonDown="StockTeamsGrid_PreviewMouseLeftButtonDown">
+                                </ListView>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <Label Style="{StaticResource quickhelplabelstyle}" Content="Quick Help&#10;
+* To Add teams you can either double-click on an empty team slot or drag and drop a stock team on an empty team slot.&#10;
+* To edit a filled in team slot by double clicking on it.&#10;
+* It is also possible to drag and drop a team into another team slot" />
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
         </TabControl>

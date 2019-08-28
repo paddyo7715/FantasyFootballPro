@@ -179,7 +179,7 @@ Public Class Stock_TeamsDAO
                     Dim Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
                     Dim Team As TeamMdl = New TeamMdl(ID, City)
-                    Team.setFields("", City_Abr, City, nickname, stadium, Uniform, Helmet_img_path, New List(Of PlayerMdl))
+                    Team.setFields("", City_Abr, City, nickname, stadium, Uniform, Helmet_img_path)
                     r.Add(Team)
                 End While
             End Using
