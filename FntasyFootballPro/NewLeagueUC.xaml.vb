@@ -898,5 +898,10 @@ Public Class NewLeagueUC
         Return Nothing
     End Function
 
-
+    Private Sub help_btn_Click(sender As Object, e As RoutedEventArgs) Handles help_btn.Click
+        Dim hlp_form As Help_NewLeague = New Help_NewLeague()
+        hlp_form.Top = (System.Windows.SystemParameters.PrimaryScreenHeight - hlp_form.Height) / 2
+        hlp_form.Left = (System.Windows.SystemParameters.PrimaryScreenWidth - hlp_form.Width) / 2
+        hlp_form.ShowDialog()
+    End Sub
 End Class

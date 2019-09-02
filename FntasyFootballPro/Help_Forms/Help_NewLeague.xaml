@@ -1,0 +1,32 @@
+﻿<Window x:Class="Help_NewLeague"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FntasyFootballPro"
+        mc:Ignorable="d"
+        Height="340" Width="400" WindowStyle="none" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True">
+    <Border Style="{StaticResource HelpBD}" BorderThickness="1">
+        <StackPanel Style="{StaticResource HelpSP}" Height="330" Width="390" Orientation="Vertical" >
+            <Label Style="{StaticResource HelpTT}" HorizontalAlignment="Center">Create New League Form</Label>
+            <TextBlock Style="{StaticResource HelpTB}" Width="370" Height="250" Margin="5,5,5,0" >
+The New League form allows you to define a new league and contains<LineBreak/> two tabs: <Bold>Settings</Bold> and <Bold>Teams.</Bold><LineBreak/><LineBreak/>
+
+<Bold>Settins:</Bold><LineBreak/>
+On this tab you specify such information as the league and<LineBreak/> champoinship game name, starting year and structure of your league.<LineBreak/>  
+The structure of your league will specify the number of teams, division,<LineBreak/> conferences, games in a season and number of playoff teams for your<LineBreak/> leage.  
+Once you chose a league structure, you can then specify names for the conferences and divisions corresponding to your choice.<LineBreak/>
+<Span Foreground="Red"><Bold>Caution:</Bold></Span> Changing the league structure selection will wipe out <LineBreak/>conference\division names and any teams you create\select on the teams tab, so be sure to decide your league structure early.
+<LineBreak/>
+<LineBreak/>                
+<Bold>Teams:</Bold><LineBreak/>
+On this tab, you populate your league with teams.  <LineBreak/>There are two ways to populate your league with teams:  You can <LineBreak/>double-click an Empty Team Slot and manually create a team, or you <LineBreak/>can drag-and-drop a stock team to an Empty Team Slot.
+Note that once <LineBreak/>you poplate an Empty Team Slot with a team, you can update it by <LineBreak/>double-clicking, and it is also possible to move a team from one slot to <LineBreak/>another via drag-and-drop.
+
+            </TextBlock>
+            <Button Name="hlp_nl_close" Style="{StaticResource appSubmitStyle}">Close</Button>
+        </StackPanel>
+    </Border>
+
+</Window>
+

@@ -9,7 +9,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel Height="730">
-        <Label DockPanel.Dock="Top" Name="lblTitle" FontSize="32" HorizontalAlignment="Center" VerticalContentAlignment="bottom" Height="50" Foreground="White">New Team</Label>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1" Name="lblTitle" Style="{StaticResource MedLabelstyle}" />
+            <Button Grid.Column="2" Name="help_btn" Focusable="false" Style="{StaticResource appHelpBTN}">Help ?</Button>
+        </Grid>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button Name="newt1Cancel" Style="{StaticResource appSubmitStyle}">Cancel</Button>
             <Button Name="newt1Add" Style="{StaticResource appSubmitStyle}">Add</Button>

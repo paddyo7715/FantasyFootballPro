@@ -37,13 +37,6 @@
                 <MenuItem Header="Add Player Name" Click="Show_PlayerNames" />
                 <MenuItem Header="Manage Stock Teams" Click="Show_StockTeams" />
             </MenuItem>
-
-
-
-
-
-
-
         </Menu>
         <StackPanel Name="sp_uc" Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
     </DockPanel>

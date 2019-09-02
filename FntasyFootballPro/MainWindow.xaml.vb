@@ -94,7 +94,7 @@ Class MainWindow
 
         Dim team_ind As Integer = e.team_num - 1
         NewTeamUC = New NewTeamUC(League.Teams(team_ind), "New_League")
-        NewTeamUC.setTeamDetail()
+        NewTeamUC.setBaseUniform()
         NewTeamUC.setfields()
         AddHandler NewTeamUC.backtoNewLeague, AddressOf Me.Back_NewLeague
 
@@ -138,7 +138,7 @@ Class MainWindow
 
         Dim stock_team As TeamMdl = New TeamMdl(0, "")
         NewTeamUC = New NewTeamUC(stock_team, "New_Stock_Team")
-        NewTeamUC.setTeamDetail()
+        NewTeamUC.setBaseUniform()
         NewTeamUC.setfields()
         AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams
 
@@ -152,7 +152,7 @@ Class MainWindow
             Mouse.OverrideCursor = Cursors.Wait
             Dim stock_team As TeamMdl = e.team
             NewTeamUC = New NewTeamUC(stock_team, "Update_Stock_Team")
-            NewTeamUC.setTeamDetail()
+            NewTeamUC.setBaseUniform()
             NewTeamUC.setfields()
             AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams
 

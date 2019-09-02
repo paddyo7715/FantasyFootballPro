@@ -6,7 +6,45 @@
     <!-- Global Control Styles -->
     <!-- ======================================================================================== -->
     <Application.Resources>
-      
+        <!-- Help Title -->
+        <Style TargetType="Label" x:Key="HelpTT">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="DarkBlue"/>
+        </Style>
+
+        <!-- help form -->
+        <Style TargetType="StackPanel" x:Key="HelpSP">
+            <Setter Property="Background" Value="LightSlateGray"/>
+        </Style>
+        <!-- help border -->
+        <Style TargetType="Border" x:Key="HelpBD">
+            <Setter Property="Background" Value="black"/>
+            <Setter Property="BorderBrush" Value="black"/>
+        </Style>
+        <!-- help textblock -->
+        <Style TargetType="TextBlock" x:Key="HelpTB">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+
+        <!-- Help Button -->
+        <Style TargetType="Button" x:Key="appHelpBTN">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         <!-- Submit, Cancel, Back, Forward type buttons -->
         <Style TargetType="Button" x:Key="appSubmitStyle">
             <Setter Property="Width" Value="100"/>

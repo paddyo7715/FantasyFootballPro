@@ -129,6 +129,12 @@
     <Compile Include="DAO\LeagueDAO.vb" />
     <Compile Include="DAO\Player_DAO.vb" />
     <Compile Include="DAO\Stock_TeamsDAO.vb" />
+    <Compile Include="Help_Forms\Help_NewLeague.xaml.vb">
+      <DependentUpon>Help_NewLeague.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help_Forms\Help_NewTeam.xaml.vb">
+      <DependentUpon>Help_NewTeam.xaml</DependentUpon>
+    </Compile>
     <Compile Include="League\League.vb" />
     <Compile Include="MainMenuUC.xaml.vb">
       <DependentUpon>MainMenuUC.xaml</DependentUpon>
@@ -166,6 +172,14 @@
       <DependentUpon>StockTeamsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Team\Uniform_Image.vb" />
+    <Page Include="Help_Forms\Help_NewLeague.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help_Forms\Help_NewTeam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainMenuUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

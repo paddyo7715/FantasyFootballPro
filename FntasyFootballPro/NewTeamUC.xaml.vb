@@ -20,11 +20,156 @@ Public Class NewTeamUC
     '    Property Roster As List(Of PlayerMdl) = Nothing
     Property Uniform_Img As Uniform_Image
 
-    Public ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
+    Public Recent_ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
+    Public Standard_ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
+
 
     Property Form_Function As form_func = Nothing
 
     Property Event_from_Code As Boolean = False
+
+    Public Sub New(ByVal team As TeamMdl, ByVal func As String)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        '      Me.pw = pw
+        Me.Form_Function = Form_Function
+        Me.team = team
+
+        Dim all_uniform_colors As List(Of String) = New List(Of String)
+
+        Select Case func
+            Case "New_League"
+                Form_Function = form_func.New_Team
+                lblTitle.Content = "New Team"
+                newt1Add.Content = "Add"
+            Case "New_Stock_Team"
+                Form_Function = form_func.Stock_Team_New
+                lblTitle.Content = "New Stock Team"
+                newt1Add.Content = "Add"
+            Case "Update_Stock_Team"
+                Form_Function = form_func.Stock_Team_Edit
+                lblTitle.Content = "Update Stock Team"
+                newt1Add.Content = "Save"
+                all_uniform_colors = Uniform.getAllColorList(team.Uniform)
+        End Select
+
+        'if we are editing a team then load the uniform colors in the recent colors
+        If all_uniform_colors.Count > 0 Then
+            For Each c In all_uniform_colors
+                Dim color_val As System.Windows.Media.Color = CommonUtils.getColorfromHex(c)
+                Dim color_name As String = color_val.ToString
+                Dim possible_color_name As String = getColorName(color_name, newtHelmentColor.AvailableColors, newtHelmentColor.StandardColors)
+                If Not IsNothing(possible_color_name) Then color_name = possible_color_name
+                Recent_ColorList.add(New Xceed.Wpf.Toolkit.ColorItem(CommonUtils.getColorfromHex(c), color_name))
+            Next
+        End If
+
+        'Create the standard color list and exclude the transparent color, since is causes problems
+        For Each sc In newtHelmentColor.StandardColors
+            If sc.Name = "Transparent" Then
+                Continue For
+            End If
+            Standard_ColorList.add(New Xceed.Wpf.Toolkit.ColorItem(sc.Color, sc.Name))
+        Next
+
+        'Set the transparent less coloritem array to the stand color for each color picker
+        newtHelmentColor.StandardColors = Standard_ColorList
+        newtHelmentLogoColor.StandardColors = Standard_ColorList
+        newtFacemaskColor.StandardColors = Standard_ColorList
+        newtSockColor.StandardColors = Standard_ColorList
+        newtCleatsColor.StandardColors = Standard_ColorList
+
+        newtHomeJerseyColor.StandardColors = Standard_ColorList
+        newtHomeSleeveColor.StandardColors = Standard_ColorList
+
+        newtHomeJerseyNumberColor.StandardColors = Standard_ColorList
+        newtHomeNumberOutlineColor.StandardColors = Standard_ColorList
+
+        newtHomeShoulderStripeColor.StandardColors = Standard_ColorList
+
+        newtHomeJerseySleeve1Color.StandardColors = Standard_ColorList
+        newtHomeJerseySleeve2Color.StandardColors = Standard_ColorList
+        newtHomeJerseySleeve3Color.StandardColors = Standard_ColorList
+        newtHomeJerseySleeve4Color.StandardColors = Standard_ColorList
+        newtHomeJerseySleeve5Color.StandardColors = Standard_ColorList
+        newtHomeJerseySleeve6Color.StandardColors = Standard_ColorList
+
+        newtHomePantsColor.StandardColors = Standard_ColorList
+        newtHomePantsStripe1Color.StandardColors = Standard_ColorList
+        newtHomePantsStripe2Color.StandardColors = Standard_ColorList
+        newtHomePantsStripe3Color.StandardColors = Standard_ColorList
+
+        newtAwayJerseyColor.StandardColors = Standard_ColorList
+        newtAwaySleeveColor.StandardColors = Standard_ColorList
+
+        newtAwayJerseyNumberColor.StandardColors = Standard_ColorList
+        newtAwayNumberOutlineColor.StandardColors = Standard_ColorList
+
+        newtAwayShoulderStripeColor.StandardColors = Standard_ColorList
+
+        newtAwayJerseySleeve1Color.StandardColors = Standard_ColorList
+        newtAwayJerseySleeve2Color.StandardColors = Standard_ColorList
+        newtAwayJerseySleeve3Color.StandardColors = Standard_ColorList
+        newtAwayJerseySleeve4Color.StandardColors = Standard_ColorList
+        newtAwayJerseySleeve5Color.StandardColors = Standard_ColorList
+        newtAwayJerseySleeve6Color.StandardColors = Standard_ColorList
+
+        newtAwayPantsColor.StandardColors = Standard_ColorList
+        newtAwayPantsStripe1Color.StandardColors = Standard_ColorList
+        newtAwayPantsStripe2Color.StandardColors = Standard_ColorList
+        newtAwayPantsStripe3Color.StandardColors = Standard_ColorList
+
+        'For some reason, I couldn't set the recentcolors in xaml
+        newtHelmentColor.RecentColors = Recent_ColorList
+        newtHelmentLogoColor.RecentColors = Recent_ColorList
+        newtFacemaskColor.RecentColors = Recent_ColorList
+        newtSockColor.RecentColors = Recent_ColorList
+        newtCleatsColor.RecentColors = Recent_ColorList
+
+        newtHomeJerseyColor.RecentColors = Recent_ColorList
+        newtHomeSleeveColor.RecentColors = Recent_ColorList
+
+        newtHomeJerseyNumberColor.RecentColors = Recent_ColorList
+        newtHomeNumberOutlineColor.RecentColors = Recent_ColorList
+
+        newtHomeShoulderStripeColor.RecentColors = Recent_ColorList
+
+        newtHomeJerseySleeve1Color.RecentColors = Recent_ColorList
+        newtHomeJerseySleeve2Color.RecentColors = Recent_ColorList
+        newtHomeJerseySleeve3Color.RecentColors = Recent_ColorList
+        newtHomeJerseySleeve4Color.RecentColors = Recent_ColorList
+        newtHomeJerseySleeve5Color.RecentColors = Recent_ColorList
+        newtHomeJerseySleeve6Color.RecentColors = Recent_ColorList
+
+        newtHomePantsColor.RecentColors = Recent_ColorList
+        newtHomePantsStripe1Color.RecentColors = Recent_ColorList
+        newtHomePantsStripe2Color.RecentColors = Recent_ColorList
+        newtHomePantsStripe3Color.RecentColors = Recent_ColorList
+
+        newtAwayJerseyColor.RecentColors = Recent_ColorList
+        newtAwaySleeveColor.RecentColors = Recent_ColorList
+
+        newtAwayJerseyNumberColor.RecentColors = Recent_ColorList
+        newtAwayNumberOutlineColor.RecentColors = Recent_ColorList
+
+        newtAwayShoulderStripeColor.RecentColors = Recent_ColorList
+
+        newtAwayJerseySleeve1Color.RecentColors = Recent_ColorList
+        newtAwayJerseySleeve2Color.RecentColors = Recent_ColorList
+        newtAwayJerseySleeve3Color.RecentColors = Recent_ColorList
+        newtAwayJerseySleeve4Color.RecentColors = Recent_ColorList
+        newtAwayJerseySleeve5Color.RecentColors = Recent_ColorList
+        newtAwayJerseySleeve6Color.RecentColors = Recent_ColorList
+
+        newtAwayPantsColor.RecentColors = Recent_ColorList
+        newtAwayPantsStripe1Color.RecentColors = Recent_ColorList
+        newtAwayPantsStripe2Color.RecentColors = Recent_ColorList
+        newtAwayPantsStripe3Color.RecentColors = Recent_ColorList
+
+    End Sub
     Private Function getColorName(ByVal c As String,
                                   ByVal availableColors As ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem),
                                   ByVal standardColors As ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)) As String
@@ -51,106 +196,15 @@ Public Class NewTeamUC
 
         Return r
 
-
-
     End Function
 
-
-    Public Sub New(ByVal team As TeamMdl, ByVal func As String)
-
-        ' This call is required by the designer.
-        InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
-        '      Me.pw = pw
-        Me.Form_Function = Form_Function
-        Me.team = team
-
-        'ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Black, "Black"))
-        '       ColorList.Add(New Xceed.Wpf.Toolkit.ColorItem(Colors.Blue, "Blue"))
-        Dim all_uniform_colors As List(Of String) = New List(Of String)
-
-        Select Case func
-            Case "New_League"
-                Form_Function = form_func.New_Team
-                lblTitle.Content = "New Team"
-                newt1Add.Content = "Add"
-            Case "New_Stock_Team"
-                Form_Function = form_func.Stock_Team_New
-                lblTitle.Content = "New Stock Team"
-                newt1Add.Content = "Add"
-            Case "Update_Stock_Team"
-                Form_Function = form_func.Stock_Team_Edit
-                lblTitle.Content = "Update Stock Team"
-                newt1Add.Content = "Save"
-                all_uniform_colors = Uniform.getAllColorList(team.Uniform)
-        End Select
-
-        'if we are editing a team then load the uniform colors in the recent colors
-        If all_uniform_colors.Count > 0 Then
-            For Each c In all_uniform_colors
-                Dim color_val As System.Windows.Media.Color = CommonUtils.getColorfromHex(c)
-                Dim color_name As String = color_val.ToString
-                Dim possible_color_name As String = getColorName(color_name, newtHelmentColor.AvailableColors, newtHelmentColor.StandardColors)
-                If Not IsNothing(possible_color_name) Then color_name = possible_color_name
-                ColorList.add(New Xceed.Wpf.Toolkit.ColorItem(CommonUtils.getColorfromHex(c), color_name))
-            Next
-        End If
-
-        'For some reason, I couldn't set the recentcolors in xaml
-        newtHelmentColor.RecentColors = ColorList
-        newtHelmentLogoColor.RecentColors = ColorList
-        newtFacemaskColor.RecentColors = ColorList
-        newtSockColor.RecentColors = ColorList
-        newtCleatsColor.RecentColors = ColorList
-
-        newtHomeJerseyColor.RecentColors = ColorList
-        newtHomeSleeveColor.RecentColors = ColorList
-
-        newtHomeJerseyNumberColor.RecentColors = ColorList
-        newtHomeNumberOutlineColor.RecentColors = ColorList
-
-        newtHomeShoulderStripeColor.RecentColors = ColorList
-
-        newtHomeJerseySleeve1Color.RecentColors = ColorList
-        newtHomeJerseySleeve2Color.RecentColors = ColorList
-        newtHomeJerseySleeve3Color.RecentColors = ColorList
-        newtHomeJerseySleeve4Color.RecentColors = ColorList
-        newtHomeJerseySleeve5Color.RecentColors = ColorList
-        newtHomeJerseySleeve6Color.RecentColors = ColorList
-
-        newtHomePantsColor.RecentColors = ColorList
-        newtHomePantsStripe1Color.RecentColors = ColorList
-        newtHomePantsStripe2Color.RecentColors = ColorList
-        newtHomePantsStripe3Color.RecentColors = ColorList
-
-        newtAwayJerseyColor.RecentColors = ColorList
-        newtAwaySleeveColor.RecentColors = ColorList
-
-        newtAwayJerseyNumberColor.RecentColors = ColorList
-        newtAwayNumberOutlineColor.RecentColors = ColorList
-
-        newtAwayShoulderStripeColor.RecentColors = ColorList
-
-        newtAwayJerseySleeve1Color.RecentColors = ColorList
-        newtAwayJerseySleeve2Color.RecentColors = ColorList
-        newtAwayJerseySleeve3Color.RecentColors = ColorList
-        newtAwayJerseySleeve4Color.RecentColors = ColorList
-        newtAwayJerseySleeve5Color.RecentColors = ColorList
-        newtAwayJerseySleeve6Color.RecentColors = ColorList
-
-        newtAwayPantsColor.RecentColors = ColorList
-        newtAwayPantsStripe1Color.RecentColors = ColorList
-        newtAwayPantsStripe2Color.RecentColors = ColorList
-        newtAwayPantsStripe3Color.RecentColors = ColorList
-
-
-
-    End Sub
-    Public Sub setTeamDetail()
+    Public Sub setBaseUniform()
 
         Uniform_Img = New Uniform_Image(CommonUtils.getAppPath & "/Images/blankUniform.png")
-        Uniform_Img.Flip_All_Colors(True,
+
+        'If you are editing a team then there is no need to set the images to grey
+        If Form_Function = Form_Function.New_Team Or Form_Function = Form_Function.Stock_Team_New Then
+            Uniform_Img.Flip_All_Colors(True,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
@@ -162,18 +216,18 @@ Public Class NewTeamUC
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR)
 
-        Uniform_Img.Flip_All_Colors(False,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
-           App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR)
-
+            Uniform_Img.Flip_All_Colors(False,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
+               App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR)
+        End If
         newtHomeUniform.Source = Uniform_Img.getHomeUniform_Image
         newtAwayUniform.Source = Uniform_Img.getAwayUniform_Image
 
@@ -1480,6 +1534,17 @@ Public Class NewTeamUC
             Throw New Exception("Away pants stripe 3 color must have a value")
         End If
 
+
+    End Sub
+    Private Sub help_btn_Click(sender As Object, e As RoutedEventArgs) Handles help_btn.Click
+
+        Select Case Form_Function
+            Case form_func.New_Team
+                Dim hlp_form As Help_NewTeam = New Help_NewTeam()
+                hlp_form.Top = (System.Windows.SystemParameters.PrimaryScreenHeight - hlp_form.Height) / 2
+                hlp_form.Left = (System.Windows.SystemParameters.PrimaryScreenWidth - hlp_form.Width) / 2
+                hlp_form.ShowDialog()
+        End Select
 
     End Sub
 

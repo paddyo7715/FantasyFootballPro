@@ -1,0 +1,36 @@
+﻿<Window x:Class="Help_NewTeam"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FntasyFootballPro"
+        mc:Ignorable="d"
+        Height="400" Width="400" WindowStyle="none" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True">
+    <Border Style="{StaticResource HelpBD}" BorderThickness="1">
+        <StackPanel Style="{StaticResource HelpSP}" Height="390" Width="390" Orientation="Vertical" >
+            <Label Style="{StaticResource HelpTT}" HorizontalAlignment="Center">Create New Team Form</Label>
+            <TextBlock Style="{StaticResource HelpTB}" Width="370" Height="310" Margin="5,5,5,0" >
+
+The New Team Form is used to create or edit a new team and has two <LineBreak/>tabs: <Bold>General</Bold> and <Bold>Uniform.</Bold>
+<LineBreak/>  
+<LineBreak/>  
+<Bold>General:</Bold><LineBreak/>
+On the general tab, you define team attributes, such as city and <LineBreak/>nickname, as well as the stadium that the team will call home.<LineBreak/>
+Stadium Capacity is free-form, so you can put anthing you like into that <LineBreak/>field example: 72,000. 
+<LineBreak/>
+<LineBreak/>                
+<Bold>Uniform</Bold><LineBreak/>
+On the uniform tab, you define the new team's home and away uniform.  <LineBreak/>There are many elements to set for a uniform, and you will find a <LineBreak/>drop-down box next to each one.  
+To set a color for a particular uniform <LineBreak/>attriubte, click on its color drop down box and select a color from <LineBreak/>either 
+the Standard or Advanced tabs.  Note that there must be a <LineBreak/>selection for each uniform attribute and you must complete both the <LineBreak/>home and away uniforms.
+Note that under the Standard tab of the color <LineBreak/>picker there is the Team Colors section.  The Team Colors section <LineBreak/>contains the colors that you have used thus far to design this team's <LineBreak/>unform.  
+This is helpful if you have selected one or more colors from the <LineBreak/>advanced tab and you don't want to keep selecting that color from the <LineBreak/>advanced tab if you want to use that color for another part of the <LineBreak/>uniform.
+Note that blank helmets are available in <LineBreak/>C:\Users\Brenden\source\repos\FantasyFootballPro\FntasyFootballPro\<LineBreak/>Images\Helmets
+
+
+            </TextBlock>
+            <Button Name="hlp_nl_close" Style="{StaticResource appSubmitStyle}">Close</Button>
+        </StackPanel>
+    </Border>
+
+</Window>
