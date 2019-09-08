@@ -12,7 +12,6 @@
     Property Number_of_weeks As Integer
     Property Number_of_Games As Integer
     Property Championship_Game_Name As String = ""
-    Property Trophy_filepath As String = ""
     Property Num_Teams As Integer
     Property Num_Playoff_Teams As Integer
 
@@ -41,7 +40,7 @@
     End Sub
     Public Sub setBasicInfo(ByVal Short_Name As String,
             ByVal Long_Name As String, ByVal Starting_Year As Integer,
-            ByVal Championship_Game_Name As String, ByVal Trophy_Filepath As String,
+            ByVal Championship_Game_Name As String,
             ByVal Conferences As List(Of String),
             ByVal Divisions As List(Of String),
             ByVal Years As List(Of Integer),
@@ -51,7 +50,6 @@
         Me.Long_Name = Long_Name
         Me.Starting_Year = Starting_Year
         Me.Championship_Game_Name = Championship_Game_Name
-        Me.Trophy_filepath = Trophy_Filepath
 
         Me.Conferences = Conferences
         Me.Divisions = Divisions

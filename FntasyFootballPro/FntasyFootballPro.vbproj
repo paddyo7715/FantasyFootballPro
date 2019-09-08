@@ -143,6 +143,9 @@
     <Compile Include="Models\PlayerMdl.vb" />
     <Compile Include="Models\StatsMdl.vb" />
     <Compile Include="Models\TeamMdl.vb" />
+    <Compile Include="My Project\Progress_Dialog.xaml.vb">
+      <DependentUpon>Progress_Dialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewLeagueUC.xaml.vb">
       <DependentUpon>NewLeagueUC.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="My Project\Progress_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewLeagueUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

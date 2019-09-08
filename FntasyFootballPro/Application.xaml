@@ -6,6 +6,38 @@
     <!-- Global Control Styles -->
     <!-- ======================================================================================== -->
     <Application.Resources>
+        <!-- Progress form -->
+        <Style TargetType="StackPanel" x:Key="ProgressSP">
+            <Setter Property="Background" Value="LightSlateGray"/>
+        </Style>
+        <!-- Progress border -->
+        <Style TargetType="Border" x:Key="ProgressBD">
+            <Setter Property="Background" Value="black"/>
+            <Setter Property="BorderBrush" Value="black"/>
+        </Style>
+        <!-- Progress Button -->
+        <Style TargetType="Button" x:Key="appProgressBTN">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="black"/>
+        </Style>
+        <!-- Progress small label -->
+        <Style TargetType="Label" x:Key="appProgressSmallLBL">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="normal"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <!-- Progress Status Lable -->
+        <Style TargetType="Label" x:Key="appProgressLBL">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
         <!-- Help Title -->
         <Style TargetType="Label" x:Key="HelpTT">
             <Setter Property="FontFamily" Value="Verdana"/>
@@ -13,7 +45,6 @@
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="DarkBlue"/>
         </Style>
-
         <!-- help form -->
         <Style TargetType="StackPanel" x:Key="HelpSP">
             <Setter Property="Background" Value="LightSlateGray"/>
@@ -31,7 +62,6 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Background" Value="LightBlue"/>
         </Style>
-
         <!-- Help Button -->
         <Style TargetType="Button" x:Key="appHelpBTN">
             <Setter Property="Width" Value="100"/>

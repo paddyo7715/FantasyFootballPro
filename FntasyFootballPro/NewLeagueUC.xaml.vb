@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports FntasyFootballPro.Leaguemdl
 Imports Microsoft.Win32
 
@@ -17,6 +18,9 @@ Public Class NewLeagueUC
 
     Public Event Show_MainMenu As EventHandler
     Public Event Show_NewTeam As EventHandler
+
+    Public bw As BackgroundWorker = Nothing
+    Public pop As Progress_Dialog = New Progress_Dialog()
 
     Public Sub New(ByVal pw As MainWindow, ByVal st_list As List(Of TeamMdl))
 
@@ -105,7 +109,6 @@ Public Class NewLeagueUC
         If CommonUtils.isBlank(newl1shortname.Text) Then Throw New Exception("League Short Name must be supplied!")
         If CommonUtils.isBlank(newl1longname.Text) Then Throw New Exception("League Long Name must be supplied!")
         If CommonUtils.isBlank(newl1championshipgame.Text) Then Throw New Exception("Championship Game must be supplied!")
-        If CommonUtils.isBlank(newl1TrophyPath.Text) Then Throw New Exception("League trophy image must be supplied!")
 
         If CommonUtils.isBlank(newlnumweeks.Text) OrElse Not IsNumeric(newlnumweeks.Text) Then Throw New Exception("Invalid Value for Number of Weeks!")
         If CommonUtils.isBlank(newlnumgames.Text) OrElse Not IsNumeric(newlnumgames.Text) Then Throw New Exception("Invalid Value for Number of Games!")
@@ -620,20 +623,6 @@ Public Class NewLeagueUC
         setTeamsLabels()
 
     End Sub
-    Private Sub newl1btnTrophyPath_Click(sender As Object, e As RoutedEventArgs) Handles newl1btnTrophyPath.Click
-        Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
-        Dim init_folder As String = CommonUtils.getAppPath
-        init_folder += "\Images\Trophies"
-
-        OpenFileDialog.InitialDirectory = init_folder
-        OpenFileDialog.Multiselect = False
-        OpenFileDialog.Filter = "Image Files|*.jpg;*.gif;*.png;*.bmp"
-        If (OpenFileDialog.ShowDialog() = True) Then
-            Dim filepath As String = OpenFileDialog.FileName
-            newl1TrophyPath.Text = filepath
-            newl1TrophyImage.Source = New BitmapImage(New Uri(filepath))
-        End If
-    End Sub
     Private Sub newl1Cancel_Click(sender As Object, e As RoutedEventArgs) Handles newl1Cancel.Click
 
         RaiseEvent Show_MainMenu(Me, New EventArgs)
@@ -664,14 +653,59 @@ Public Class NewLeagueUC
             Dim lyears As List(Of Integer) = New List(Of Integer)(New Integer() {CInt(newl1StartingYear.Text)})
 
             pw.League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
-                        newl1championshipgame.Text, newl1TrophyPath.Text, Conferences_list, Divisions_list,
+                        newl1championshipgame.Text, Conferences_list, Divisions_list,
                         lyears, League_State.Regular_Season)
+
+            'Background Worker code for popup
+            pop.btnclose.Visibility = False
+
+            bw = New BackgroundWorker()
+
+            ' Add any initialization after the InitializeComponent() call.
+            AddHandler bw.DoWork, AddressOf bw_DoWork
+            AddHandler bw.ProgressChanged, AddressOf bw_ProgressChanged
+            AddHandler bw.RunWorkerCompleted, AddressOf bw_RunWorkerCompleted
+
+            bw.WorkerReportsProgress = True
+            bw.RunWorkerAsync(pw.League)
+
+            'Progress Bar Window
+            pop.ShowDialog()
 
         Catch ex As Exception
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
 
     End Sub
+    Private Sub bw_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
+
+        Dim lg As Leaguemdl = e.Argument
+
+        Dim s As League_Services = New League_Services()
+        s.CreateNewLeague(lg, bw)
+
+    End Sub
+    Private Sub bw_RunWorkerCompleted(ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs)
+
+        'Progress Bar Window close
+        pop.statuslbl.Content = "League Created Successfully!"
+        pop.btnclose.Visibility = True
+    End Sub
+    Private Sub bw_ProgressChanged(ByVal sender As Object, ByVal e As ProgressChangedEventArgs)
+        Dim user_state_Struct As String = e.UserState
+        Dim user_stats As String() = user_state_Struct.Split("|")
+
+        pop.Title = user_stats(0)
+        pop.prgTest.Value = e.ProgressPercentage
+        pop.prglbl.Content = user_stats(1)
+
+        If user_stats(0) = "Error" Then
+            pop.prgTest.Foreground = Brushes.Red
+        End If
+
+
+    End Sub
+
     'This event handler is called when the division name textbox loses focus, so that
     'the division names can be set on the tab of new teams
     Private Sub divTextbox_LostFocus(sender As Object, e As RoutedEventArgs)

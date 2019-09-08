@@ -44,7 +44,7 @@ Public Class LeagueDAO
             tr = League_con.BeginTransaction
 
             strStage = "Inserting League Record"
-            sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name,Championship_Game_Image_Path , Num_Teams, Playoff_Teams) VALUES(@Short_Name, @Long_Name, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name,@Championship_Game_Image_Path , @Num_Teams, @Playoff_Teams)"
+            sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name, Num_Teams, Playoff_Teams) VALUES(@Short_Name, @Long_Name, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name, @Num_Teams, @Playoff_Teams)"
 
             cmdLeague = New SQLiteCommand(League_con)
             cmdLeague.CommandText = sSQL
@@ -54,7 +54,6 @@ Public Class LeagueDAO
             cmdLeague.Parameters.Add("@Number_of_weeks", Data.DbType.Int16).Value = nl.Number_of_weeks
             cmdLeague.Parameters.Add("@Number_of_Games", Data.DbType.Int16).Value = nl.Number_of_Games
             cmdLeague.Parameters.Add("@Champtionship_Game_Name", Data.DbType.String).Value = nl.Championship_Game_Name
-            cmdLeague.Parameters.Add("@Championship_Game_Image_Path", Data.DbType.String).Value = Path.GetFileName(nl.Trophy_filepath)
             cmdLeague.Parameters.Add("@Num_Teams", Data.DbType.Int16).Value = nl.Num_Teams
             cmdLeague.Parameters.Add("@Playoff_Teams", Data.DbType.Int16).Value = nl.Num_Playoff_Teams
             cmdLeague.ExecuteNonQuery()

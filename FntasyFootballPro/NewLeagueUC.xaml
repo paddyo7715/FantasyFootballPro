@@ -47,11 +47,6 @@
                                 <TextBox Name="newl1championshipgame" Width="300" Style="{StaticResource Largetxttyle}" MaxLength="100" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                <Label Width="350" Style="{StaticResource Largelbltyle}">Championship Trophy:</Label>
-                                <TextBox Name="newl1TrophyPath" Width="400" Style="{StaticResource Largetxttyle}"  />
-                                <Button Name="newl1btnTrophyPath" Style="{StaticResource appSelectImageStyle}">Image File</Button>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                 <Label  Width="350" Style="{StaticResource Largelbltyle}">Structure:</Label>
                                 <ComboBox Name="newl1Structure" FontSize="14" Width="550" Style="{StaticResource ComboBoxstyle}" IsEditable="False">
                                     <ComboBoxItem Content="Teams 8 Games 10 Weeks 12 Conferences 0 Divisions 2 PlayoffTeams 4"></ComboBoxItem>

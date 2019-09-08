@@ -1,0 +1,22 @@
+﻿<Window x:Class="Progress_Dialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FntasyFootballPro"
+        mc:Ignorable="d"
+        Title="Popup" Height="100" Width="310" WindowStartupLocation="CenterOwner" WindowStyle="none" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True">
+    <Border Style="{StaticResource HelpBD}" BorderThickness="1">
+        <StackPanel Style="{StaticResource ProgressSP}" Height="90" Width="300" Orientation="Vertical" >
+            <StackPanel Height="80" Width="300" Orientation="Vertical" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="top">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="prglbl" Style="{StaticResource appProgressSmallLBL}" Width="240" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="top" />
+                    <Button Name="btnclose" Style="{StaticResource appProgressBTN}" Width="50" VerticalAlignment="top">Close</Button>
+                </StackPanel>
+                <ProgressBar Name="prgTest" Width="290" Height="30" Minimum="1" Maximum="100" HorizontalAlignment="Center" VerticalAlignment="top" />
+                <Label Name="statuslbl" Content=" " Style="{StaticResource appProgressLBL}" Width="290" HorizontalAlignment="Center" VerticalAlignment="top" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>
+
