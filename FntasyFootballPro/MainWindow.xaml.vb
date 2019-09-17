@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports log4net
 
 Class MainWindow
     Public League As Leaguemdl = Nothing
@@ -8,6 +9,8 @@ Class MainWindow
     Private NewTeamUC As NewTeamUC = Nothing
     Private PlayerNamesUC As PlayerNamesUC = Nothing
     Private Stock_teamsUC As StockTeamsUC = Nothing
+
+    Private Shared logger As ILog = LogManager.GetLogger("RollingFile")
 
     Public Sub New()
 
@@ -61,6 +64,7 @@ Class MainWindow
 
         Try
             Mouse.OverrideCursor = Cursors.Wait
+            logger.Info("Entering Create new league")
             Dim sts As StockTeams_Services = New StockTeams_Services()
             Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
             NewLeagueUC = New NewLeagueUC(Me, st_list)

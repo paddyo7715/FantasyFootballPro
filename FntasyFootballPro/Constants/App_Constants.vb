@@ -2,7 +2,8 @@
 
 Public Class App_Constants
     'Folders / Files
-    Public Const LEAGUE_DB_FOLDER As String = "FFPro_Data"
+    Public Const GAME_DOC_FOLDER As String = "Spect_Football_Data"
+    Public Const LOG_FOLDER As String = "Logs"
     Public Const LEAGUE_HELMETS_SUBFOLDER As String = "Helmet_Images"
     Public Const LEAGUE_STADIUM_SUBFOLDER As String = "Stadium_Images"
 

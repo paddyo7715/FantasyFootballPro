@@ -7,20 +7,16 @@ Public Class League_Services
         Dim ts As New Team_Services()
 
         'Check if Fantasy Football Pro Directory exists under My Documents.  If not then create it.
-        Dim DIRPath As String = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.LEAGUE_DB_FOLDER)
-        Dim DIRPath_League As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.LEAGUE_DB_FOLDER & "\" & nl.Short_Name
+        Dim DIRPath As String = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.GAME_DOC_FOLDER)
+        Dim DIRPath_League As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name
         Dim New_League_File As String = nl.Short_Name & "." & App_Constants.DB_FILE_EXT
-        Dim League_con_string As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.LEAGUE_DB_FOLDER & "\" & nl.Short_Name & "\" & nl.Short_Name & "\" & App_Constants.DB_FILE_EXT
+        Dim League_con_string As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name & "\" & nl.Short_Name & "\" & App_Constants.DB_FILE_EXT
         Dim LeagueDAO = New LeagueDAO(nl)
         Dim process_state As String = "Processing..."
         Dim state_struct As String = Nothing
         Dim i As Integer
 
         Try
-            If Not Directory.Exists(DIRPath) Then
-                Directory.CreateDirectory(DIRPath)
-            End If
-
             'Update the progress bar
             i = 0
             process_state = "Creating League Folder Strucuture 1 of 4"
@@ -28,13 +24,13 @@ Public Class League_Services
             bw.ReportProgress(i, state_struct)
 
             'Create the League Folder
-            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.LEAGUE_DB_FOLDER & "\" & nl.Short_Name)
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name)
 
             'Create the helmet image League Folder
-            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.LEAGUE_DB_FOLDER & "\" & nl.Short_Name & "\" & App_Constants.LEAGUE_HELMETS_SUBFOLDER)
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name & "\" & App_Constants.LEAGUE_HELMETS_SUBFOLDER)
 
             'Create the stadium image League folder
-            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.LEAGUE_DB_FOLDER & "\" & nl.Short_Name & "\" & App_Constants.LEAGUE_STADIUM_SUBFOLDER)
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name & "\" & App_Constants.LEAGUE_STADIUM_SUBFOLDER)
 
             'Copy and Create the league database file
             My.Computer.FileSystem.CopyFile(App_Constants.BLANK_DB_FOLDER & "\" & App_Constants.BLANK_DB, DIRPath_League & "\" & New_League_File)

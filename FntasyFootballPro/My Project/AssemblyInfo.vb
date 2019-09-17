@@ -9,6 +9,9 @@ Imports System.Windows
 ' set of attributes. Change these attribute values to modify the information
 ' associated with an assembly.
 
+<Assembly: log4net.Config.XmlConfigurator(ConfigFile:="Log4Net.Config.xml", Watch:=True)>
+
+
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("FntasyFootballPro")>
