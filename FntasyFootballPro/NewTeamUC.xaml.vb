@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Windows.Controls
 Imports Microsoft.Win32
+Imports log4net
 
 Public Class NewTeamUC
     Public Enum form_func
@@ -27,6 +28,7 @@ Public Class NewTeamUC
     Property Form_Function As form_func = Nothing
 
     Property Event_from_Code As Boolean = False
+    Private Shared logger As ILog = LogManager.GetLogger("RollingFile")
 
     Public Sub New(ByVal team As TeamMdl, ByVal func As String)
 
@@ -278,6 +280,8 @@ Public Class NewTeamUC
         Dim stadium_img_path As String = ""
         Dim helmet_img_path As String = ""
 
+        logger.Debug("Basic team info Controls set")
+
         newtCityAbb.Text = team.City_Abr
         newtCity.Text = team.City
         newtNickname.Text = team.Nickname
@@ -291,6 +295,8 @@ Public Class NewTeamUC
             Else
                 stadium_img_path = team.Stadium.Stadium_Img_Path
             End If
+
+            logger.Debug("Setting stadium image control " & stadium_img_path)
 
             newtStadium.Text = team.Stadium.Stadium_Name
             newtStadiumLocation.Text = team.Stadium.Stadium_Location
@@ -310,11 +316,15 @@ Public Class NewTeamUC
                 helmet_img_path = team.Helmet_img_path
             End If
 
+            logger.Debug("Setting helmet image control " & helmet_img_path)
+
             newtHelmetImgPath.Text = helmet_img_path
             Helmet_image.Source = New BitmapImage(New Uri(helmet_img_path))
         End If
 
         If Not IsNothing(team.Uniform) Then
+            logger.Debug("Setting uniform image controls")
+
             newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Color)
             newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Logo_Color)
             newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Facemask_Color)
@@ -901,7 +911,9 @@ Public Class NewTeamUC
             Dim City As String = newtCity.Text
             Dim Nickname As String = newtNickname.Text
 
+            logger.Debug("Just before team validation")
             Validate()
+            logger.Debug("Team validated")
 
             socks_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtSockColor.SelectedColor).Color)
             cleats_color = CommonUtils.getHexfromColor(New SolidColorBrush(newtCleatsColor.SelectedColor).Color)
@@ -993,6 +1005,8 @@ Public Class NewTeamUC
             End Select
 
         Catch ex As Exception
+            logger.Error("Error saving team error")
+            logger.Error(ex)
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
     End Sub

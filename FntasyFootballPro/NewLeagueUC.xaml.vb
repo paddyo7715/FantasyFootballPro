@@ -1,9 +1,11 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
 Imports FntasyFootballPro.Leaguemdl
+Imports log4net
 Imports Microsoft.Win32
 
 Public Class NewLeagueUC
+    Private Shared logger As ILog = LogManager.GetLogger("RollingFile")
     'pw is the parent window mainwindow
     Private pw As MainWindow
     Private st_list As List(Of TeamMdl)
@@ -147,7 +149,6 @@ Public Class NewLeagueUC
             Throw New Exception("League " & newl1shortname.Text & " already exists!")
         End If
 
-
     End Sub
 
     Private Sub newl1Structure_SelectionChanged(sender As Object, e As RoutedEventArgs) Handles newl1Structure.SelectionChanged
@@ -170,7 +171,6 @@ Public Class NewLeagueUC
         Dim UnselNewTeamSP As Style = Application.Current.FindResource("UnselNewTeamSP")
         Dim DragEnt_NewTeamSP As Style = Application.Current.FindResource("DragEnt_NewTeamSP")
 
-
         num_weeks = v(0)
         num_games = v(1)
         num_divs = v(2)
@@ -179,6 +179,15 @@ Public Class NewLeagueUC
         num_playoff_teams = v(5)
         teams_per_division = num_teams \ num_divs
 
+        logger.info("League structure changed to " &
+            "num_weeks " & num_weeks &
+            "num_games " & num_games &
+            "num_divs " & num_divs &
+            "num_teams " & num_teams &
+            "num_confs " & num_confs &
+            "num_playoff_teams " & num_playoff_teams &
+            "teams_per_division " & teams_per_division)
+
         newlnumweeks.Text = num_weeks.ToString
         newlnumgames.Text = num_games.ToString
         newlnumdivisions.Text = num_divs.ToString
@@ -186,9 +195,11 @@ Public Class NewLeagueUC
         newlnumconferences.Text = num_confs.ToString
         newlnumplayoffteams.Text = num_playoff_teams.ToString
 
+        logger.Debug("setOrganization")
         pw.League.setOrganization(num_weeks, num_games, num_teams, num_playoff_teams)
 
         'Clear previous division selections
+        logger.Debug("Clear previous division selections")
         spDivisions.Children.Clear()
         sp1.Children.Clear()
         Me.unregisterControl("newlConf1")
@@ -196,6 +207,7 @@ Public Class NewLeagueUC
         Me.unregisterControl("newllblConf1")
         Me.unregisterControl("newllblConf2")
 
+        logger.Debug("Unregister all team controls")
         For I As Integer = 1 To CInt(num_teams)
             Me.unregisterControl("newldiv" & I.ToString)
             Me.unregisterControl("newldiv_team" & I.ToString)
@@ -204,6 +216,7 @@ Public Class NewLeagueUC
         Next
 
         If num_confs = 2 Then
+            logger.Debug("Num conferences = 2")
             Dim v_sp1 As StackPanel = New StackPanel()
             v_sp1.Orientation = Orientation.Vertical
             v_sp1.VerticalAlignment = VerticalAlignment.Top
@@ -240,6 +253,8 @@ Public Class NewLeagueUC
 
             'register the dynamically added control so that it can be looked up later.
             Me.RegisterName(txtConf1.Name, txtConf1)
+
+            logger.Debug("Conference 1 controls created.")
 
             Dim v_sp2 As StackPanel = New StackPanel()
             v_sp2.Orientation = Orientation.Vertical
@@ -278,6 +293,8 @@ Public Class NewLeagueUC
             'register the dynamically added control so that it can be looked up later.
             Me.RegisterName(txtConf2.Name, txtConf2)
 
+            logger.Debug("Conference 2 controls created.")
+
             Dim st_v_gb1 As StackPanel = New StackPanel()
             st_v_gb1.Orientation = Orientation.Vertical
             st_v_gb1.HorizontalAlignment = HorizontalAlignment.Center
@@ -289,6 +306,8 @@ Public Class NewLeagueUC
             st_v_gb2.Margin = New Thickness(5, 5, 10, 10)
 
             last_div_first_group = num_divs \ 2
+
+            logger.Debug("last_div_first_group " & last_div_first_group)
 
             'set the labels font text colors ext.
             For i As Integer = 1 To last_div_first_group
@@ -316,6 +335,8 @@ Public Class NewLeagueUC
 
                 st_v_gb1.Children.Add(sp1)
 
+                logger.Debug("Division " & i & " created")
+
                 Dim sp2 As StackPanel = New StackPanel()
                 sp2.Orientation = Orientation.Horizontal
                 sp2.Margin = New Thickness(0, 0, 0, 2)
@@ -339,6 +360,7 @@ Public Class NewLeagueUC
                 'register the dynamically added control so that it can be looked up later.
                 Me.RegisterName(txtDivision2.Name, txtDivision2)
 
+                logger.Debug("Division " & j & " created")
             Next
             gb_conf1.Content = st_v_gb1
             gb_conf2.Content = st_v_gb2
@@ -347,6 +369,7 @@ Public Class NewLeagueUC
             spDivisions.Children.Add(v_sp2)
 
         Else 'No conferences only divisions
+            logger.Debug("0 divisions")
             Dim v_sp As StackPanel = New StackPanel()
             v_sp.Orientation = Orientation.Vertical
             v_sp.VerticalAlignment = VerticalAlignment.Top
@@ -391,6 +414,7 @@ Public Class NewLeagueUC
                 'register the dynamically added control so that it can be looked up later.
                 Me.RegisterName(txtDivision1.Name, txtDivision1)
 
+                logger.Debug("Division " & i & " created")
             Next
 
             spDivisions.Children.Add(v_sp)
@@ -480,6 +504,8 @@ Public Class NewLeagueUC
                     Me.RegisterName(helmet_img.Name, helmet_img)
                     Me.RegisterName(team_label.Name, team_label)
 
+                    logger.Debug("Team " & t_id & " control created")
+
                     t_id += 1
                 Next
                 v_sp1.Children.Add(gb_div)
@@ -552,6 +578,8 @@ Public Class NewLeagueUC
                     Me.RegisterName(helmet_img.Name, helmet_img)
                     Me.RegisterName(team_label.Name, team_label)
 
+                    logger.Debug("Team " & t_id & " control created")
+
                     t_id += 1
                 Next
                 v_sp2.Children.Add(gb_div)
@@ -611,6 +639,8 @@ Public Class NewLeagueUC
                     Me.RegisterName(helmet_img.Name, helmet_img)
                     Me.RegisterName(team_label.Name, team_label)
 
+                    logger.Debug("Team " & t_id & " control created")
+
                     t_id += 1
                 Next
                 v2_sp.Children.Add(gb_div)
@@ -639,7 +669,9 @@ Public Class NewLeagueUC
         Dim Divisions_list As List(Of String) = New List(Of String)
 
         Try
+            logger.Info("Create new league clicked")
             validate()
+            logger.Info("league validated!")
 
             If CInt(newlnumconferences.Text) = 2 Then
                 Conferences_list.Add(CType(Me.FindName("newlConf1"), TextBox).Text)
@@ -673,6 +705,8 @@ Public Class NewLeagueUC
             pop.ShowDialog()
 
         Catch ex As Exception
+            logger.Error("Error creating new league")
+            logger.Error(ex)
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
 
@@ -731,18 +765,28 @@ Public Class NewLeagueUC
     Public Sub setTeamsLabels()
         Dim Teamlbltyle As Style = Application.Current.FindResource("Teamlbltyle")
 
+        logger.Info("Setting team labels")
+
         For i As Integer = 1 To CInt(newlnumteams.Text)
             Dim teamLabel = "newllblTeam" & i.ToString
             Dim teamImage = "newlimgTeam" & i.ToString
+            logger.Debug("setting teamlabel and teamimage " & " " & teamImage)
 
             Dim teamLbl As Label = Me.FindName(teamLabel)
             Dim teamImg As Image = Me.FindName(teamImage)
+            logger.Debug("teamlabel and teamimg found")
+
             teamLbl.Style = Teamlbltyle
 
             Dim st As TeamMdl = pw.League.Teams(i - 1)
             If st.City <> App_Constants.EMPTY_TEAM_SLOT Then
+
+                logger.Debug("Setting label for " & st.City)
+
                 Dim Color_Percents_List As List(Of Uniform_Color_percents) = Nothing
                 Color_Percents_List = Uniform.getColorList(st.Uniform)
+
+                logger.Debug(Color_Percents_List.Count & " Uniform colors")
 
                 teamLbl.Foreground = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(0).color_string))
                 teamLbl.Content = st.City & " " & st.Nickname
@@ -772,6 +816,9 @@ Public Class NewLeagueUC
             End If
 
             Dim img_path = pw.League.Teams(i - 1).Helmet_img_path
+
+            logger.Debug("Helmet img_path: " & img_path)
+
             If Not IsNothing(img_path) AndAlso img_path.Length > 0 Then
                 '                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
                 Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri(img_path))
@@ -823,10 +870,7 @@ Public Class NewLeagueUC
             'get the old team id from the label name
             Dim old_index As Integer = CommonUtils.ExtractTeamNumber(drag_data_label.Name) - 1
 
-
-
             new_sp.Style = UnselNewTeamSP
-
 
             new_image.Source = CType(drag_data.Children.Item(0), Image).Source
             new_label.Content = CType(drag_data.Children.Item(1), Label).Content

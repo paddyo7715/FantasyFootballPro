@@ -1,7 +1,10 @@
 ﻿Imports System.Drawing
 
 Public Class App_Constants
+
+
     'Folders / Files
+    Public Const MIN_FREE_DISK_SPACE As Integer = 50
     Public Const GAME_DOC_FOLDER As String = "Spect_Football_Data"
     Public Const LOG_FOLDER As String = "Logs"
     Public Const LEAGUE_HELMETS_SUBFOLDER As String = "Helmet_Images"

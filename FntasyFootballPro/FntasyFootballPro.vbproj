@@ -466,6 +466,11 @@
     <Resource Include="Images\Stadiums\Philadelphia.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Stadiums\Indianapolis.jpg" />
+    <Resource Include="Images\Helmets\Racers.png" />
+    <Resource Include="Images\Helmets\Pioneers.png" />
+    <Resource Include="Images\Stadiums\Kansas_City.jpg" />
+    <Resource Include="Images\Helmets\Leopards.png" />
     <Content Include="Log4Net.Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

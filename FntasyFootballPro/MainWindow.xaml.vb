@@ -32,7 +32,7 @@ Class MainWindow
         AddHandler MainMenuUC.Shutdown_App, AddressOf Me.MainWindow_Closing
         AddHandler MainMenuUC.Show_NewLeague, AddressOf Me.Show_NewLeague
 
-
+        logger.Info("Main form created")
     End Sub
 
     Private Sub MainWindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -42,6 +42,7 @@ Class MainWindow
         If (response = MessageBoxResult.No) Then
             e.Cancel = True
         Else
+            logger.Info("User closing application")
             CloseApplication()
         End If
 
@@ -55,6 +56,7 @@ Class MainWindow
     End Sub
     Private Sub Show_MainMenu(sender As Object, e As EventArgs)
 
+        logger.Info("Showing Main Menu")
         sp_uc.Children.Clear()
         sp_uc.Children.Add(MainMenuUC)
         NewLeagueUC = Nothing
@@ -67,6 +69,7 @@ Class MainWindow
             logger.Info("Entering Create new league")
             Dim sts As StockTeams_Services = New StockTeams_Services()
             Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
+            logger.Debug("Stock Teams Loaded")
             NewLeagueUC = New NewLeagueUC(Me, st_list)
 
             AddHandler NewLeagueUC.Show_MainMenu, AddressOf Me.Show_MainMenu
@@ -77,6 +80,8 @@ Class MainWindow
             Mouse.OverrideCursor = Nothing
         Catch ex As Exception
             Mouse.OverrideCursor = Nothing
+            logger.Error("Error showing new form")
+            logger.Error(ex)
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
 
@@ -95,6 +100,7 @@ Class MainWindow
     Private Sub Show_NewTeamDetail(sender As Object, e As teamEventArgs)
 
         Mouse.OverrideCursor = Cursors.Wait
+        logger.Info("Show new team detail")
 
         Dim team_ind As Integer = e.team_num - 1
         NewTeamUC = New NewTeamUC(League.Teams(team_ind), "New_League")
@@ -110,6 +116,8 @@ Class MainWindow
     End Sub
     Private Sub Show_PlayerNames(sender As Object, e As EventArgs)
 
+        logger.Info("Show Player names")
+
         PlayerNamesUC = New PlayerNamesUC()
         PlayerNamesUC.clearpage()
         AddHandler PlayerNamesUC.Show_MainMenu, AddressOf Me.Show_MainMenu
@@ -122,9 +130,13 @@ Class MainWindow
 
         Try
             Mouse.OverrideCursor = Cursors.Wait
+            logger.Info("Show stock teams")
             League = Nothing
             Dim sts As StockTeams_Services = New StockTeams_Services()
             Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
+
+            logger.Debug("Stock Team List retrieved")
+
             Stock_teamsUC = New StockTeamsUC(st_list)
             AddHandler Stock_teamsUC.Show_MainMenu, AddressOf Me.Show_MainMenu
             AddHandler Stock_teamsUC.Show_NewStockTeam, AddressOf Me.Show_NewStockTeam
@@ -134,12 +146,15 @@ Class MainWindow
             Mouse.OverrideCursor = Nothing
         Catch ex As Exception
             Mouse.OverrideCursor = Nothing
+            logger.Error("Error Showing Stock Team Management Form")
+            logger.Error(ex)
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
 
     End Sub
     Private Sub Show_NewStockTeam(sender As Object, e As EventArgs)
 
+        logger.Info("Show new Stock Team Form")
         Dim stock_team As TeamMdl = New TeamMdl(0, "")
         NewTeamUC = New NewTeamUC(stock_team, "New_Stock_Team")
         NewTeamUC.setBaseUniform()
@@ -154,6 +169,8 @@ Class MainWindow
 
         Try
             Mouse.OverrideCursor = Cursors.Wait
+            logger.Info("Show Update Stock Team form")
+
             Dim stock_team As TeamMdl = e.team
             NewTeamUC = New NewTeamUC(stock_team, "Update_Stock_Team")
             NewTeamUC.setBaseUniform()
@@ -165,9 +182,10 @@ Class MainWindow
             Mouse.OverrideCursor = Nothing
         Catch ex As Exception
             Mouse.OverrideCursor = Nothing
+            logger.Error("Error Showing Update Stock Team Form")
+            logger.Error(ex)
             MessageBox.Show(CommonUtils.substr(ex.Message, 0, 100), "Error", MessageBoxButton.OK, MessageBoxImage.Error)
         End Try
-
 
     End Sub
 

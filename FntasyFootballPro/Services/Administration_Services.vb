@@ -1,4 +1,8 @@
-﻿Public Class Administration_Services
+﻿Imports log4net
+
+Public Class Administration_Services
+    Private Shared logger As ILog = LogManager.GetLogger("RollingFile")
+
     'This service is called when the user elects to create new potential name(s) by going into the
     'Administration function and entering a first and/or last name or selecting a name file to create
     'new potential names for new players.
@@ -11,6 +15,7 @@
         Dim bFileOpen As Boolean = False
         Dim FirstLastName As String = ""
 
+        logger.Info("Adding Player Names.")
 
         If Not CommonUtils.isBlank(FirstName) And FirstName.Trim.Length > 1 Then i += pnDAO.AddFirstName(CommonUtils.CapitalizeFirstLetter(FirstName.Trim))
         If Not CommonUtils.isBlank(LastName) And LastName.Trim.Length > 1 Then i += pnDAO.AddLastName(CommonUtils.CapitalizeFirstLetter(LastName.Trim))

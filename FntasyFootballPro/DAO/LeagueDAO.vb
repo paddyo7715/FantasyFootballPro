@@ -1,9 +1,10 @@
 ﻿Imports System.Data
 Imports System.Data.SQLite
 Imports System.IO
+Imports log4net
 
 Public Class LeagueDAO
-
+    Private Shared logger As ILog = LogManager.GetLogger("RollingFile")
     Property League_con As SQLiteConnection = Nothing
     Property nl As Leaguemdl
 
@@ -37,13 +38,16 @@ Public Class LeagueDAO
 
         Try
             strStage = "Getting connection"
+            logger.Debug(strStage)
             League_con = getLeagueConnection(con_string)
             League_con.Open()
 
             strStage = "Beginning transaction"
+            logger.Debug(strStage)
             tr = League_con.BeginTransaction
 
             strStage = "Inserting League Record"
+            logger.Debug(strStage)
             sSQL = "INSERT INTO LEAGUE (Short_Name, Long_Name,Starting_Year, Number_of_weeks,Number_of_Games, Champtionship_Game_Name, Num_Teams, Playoff_Teams) VALUES(@Short_Name, @Long_Name, @Starting_Year, @Number_of_weeks,@Number_of_Games, @Champtionship_Game_Name, @Num_Teams, @Playoff_Teams)"
 
             cmdLeague = New SQLiteCommand(League_con)
@@ -59,21 +63,26 @@ Public Class LeagueDAO
             cmdLeague.ExecuteNonQuery()
 
             strStage = "Inserting Conferences"
+            logger.Debug(strStage)
             cmdConf = New SQLiteCommand(League_con)
             Dim c_id As Integer = 0
             For Each c In nl.Conferences
                 c_id += 1
+                logger.Debug("Inserting conference " & c_id)
                 sSQL = "INSERT INTO CONFERENCE (ID,Name) VALUES(@ID, @Conf_Name)"
                 cmdConf.CommandText = sSQL
                 cmdConf.Parameters.Add("@ID", Data.DbType.Int16).Value = c_id + 1
                 cmdConf.Parameters.Add("@Conf_Name", Data.DbType.String).Value = c
                 cmdConf.ExecuteNonQuery()
             Next
+
             strStage = "Inserting Divisions"
+            logger.Debug(strStage)
             cmdDiv = New SQLiteCommand(League_con)
 
             For i As Integer = 1 To nl.Num_Teams \ nl.Divisions.Count
                 Dim d As String = nl.Divisions(i)
+                logger.Debug("Inserting division " & d)
                 sSQL = "INSERT INTO DIVISION (ID, Name) VALUES(@ID, @Name)"
                 cmdDiv.CommandText = sSQL
                 cmdDiv.Parameters.Add("@ID", Data.DbType.Int16).Value = i
@@ -82,8 +91,10 @@ Public Class LeagueDAO
             Next
 
             strStage = "Inserting Team"
+            logger.Debug(strStage)
             Dim t_id As Integer = 0
             For Each t In nl.Teams
+                logger.Debug("Inserting team " & t.Nickname)
                 t_id += 1
                 Dim d_num As Integer = CommonUtils.getDivisionNum_from_Team_Number(nl.Num_Teams \ nl.Divisions.Count, t_id)
                 Dim c_num As Integer = CommonUtils.getConferenceNum_from_Team_Number(nl.Conferences.Count, t_id)
@@ -166,6 +177,7 @@ Public Class LeagueDAO
                 cmdTeam.ExecuteNonQuery()
 
                 strStage = "Inserting Players"
+                logger.Debug(strStage)
                 For Each P In t.Players
                     sSQL = "INSERT INTO PLAYERS (Team_ID,Age,Jersey_Number,First_Name,Last_Name,Active,Position,Fumble_Rating,Accuracy_Rating,Decision_Making,Arm_Strength_Rating,Pass_Block_Rating,Run_Block_Rating,Running_Power_Rating,Speed_Rating,Agility_Rating,Hands_Rating,Pass_Attack,Run_Attack,Tackle_Rating,Kicker_Leg_Power,Kicker_Leg_Accuracy) 
                         VALUES(@Team_ID,@Age,@Jersey_Number,@First_Name,@Last_Name,@Active,@Position,@Fumble_Rating,
@@ -200,6 +212,7 @@ Public Class LeagueDAO
 
 
             strStage = "Inserting schedule into database"
+            logger.Debug(strStage)
             Dim w As String = Nothing
             Dim h As String = Nothing
             Dim a As String = Nothing
@@ -224,8 +237,11 @@ Public Class LeagueDAO
             Next
 
             tr.Commit()
+            logger.Info("League successfuly saved to database.")
         Catch ex As Exception
             tr.Rollback()
+            logger.Error("Error inserting league into db")
+            logger.Error(ex)
             Throw New Exception("Error at stage " & strStage & " writing records to database:" & ex.Message)
         Finally
             closeConnection(League_con)
