@@ -29,11 +29,11 @@ Class Application
         'should only be necessary the first time that the game is run
         If Not Directory.Exists(DIRPath) Then
             Directory.CreateDirectory(DIRPath)
-            Directory.CreateDirectory(DIRPath & "\" & Log_folder)
+            Directory.CreateDirectory(DIRPath & Path.DirectorySeparatorChar & Log_folder)
         End If
 
         'Set the folder for the logs
-        log4net.GlobalContext.Properties("logFolder") = DIRPath & "\" & Log_folder
+        log4net.GlobalContext.Properties("logFolder") = DIRPath & Path.DirectorySeparatorChar & Log_folder
         log4net.Config.XmlConfigurator.Configure(New System.IO.FileInfo("Log4Net.Config.xml"))
 
         logger.Info("=================== Start Program ========================")

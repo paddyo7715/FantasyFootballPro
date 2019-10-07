@@ -1,9 +1,9 @@
 ﻿Public Class StockteamEventArgs
     Inherits EventArgs
 
-    Public team As TeamMdl
+    Public team_ind As Integer
 
-    Public Sub New(ByVal team As TeamMdl)
-        Me.team = team
+    Public Sub New(ByVal team_ind As Integer)
+        Me.team_ind = team_ind
     End Sub
 End Class

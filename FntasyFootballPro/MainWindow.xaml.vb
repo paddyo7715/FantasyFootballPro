@@ -3,6 +3,7 @@ Imports log4net
 
 Class MainWindow
     Public League As Leaguemdl = Nothing
+    Public st_list As List(Of TeamMdl) = Nothing
 
     Private MainMenuUC As MainMenuUC = Nothing
     Private NewLeagueUC As NewLeagueUC = Nothing
@@ -68,7 +69,7 @@ Class MainWindow
             Mouse.OverrideCursor = Cursors.Wait
             logger.Info("Entering Create new league")
             Dim sts As StockTeams_Services = New StockTeams_Services()
-            Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
+            st_list = sts.getAllStockTeams
             logger.Debug("Stock Teams Loaded")
             NewLeagueUC = New NewLeagueUC(Me, st_list)
 
@@ -133,7 +134,7 @@ Class MainWindow
             logger.Info("Show stock teams")
             League = Nothing
             Dim sts As StockTeams_Services = New StockTeams_Services()
-            Dim st_list As List(Of TeamMdl) = sts.getAllStockTeams
+            st_list = sts.getAllStockTeams
 
             logger.Debug("Stock Team List retrieved")
 
@@ -171,8 +172,8 @@ Class MainWindow
             Mouse.OverrideCursor = Cursors.Wait
             logger.Info("Show Update Stock Team form")
 
-            Dim stock_team As TeamMdl = e.team
-            NewTeamUC = New NewTeamUC(stock_team, "Update_Stock_Team")
+            Dim team_ind As Integer = e.team_ind
+            NewTeamUC = New NewTeamUC(st_list(team_ind), "Update_Stock_Team")
             NewTeamUC.setBaseUniform()
             NewTeamUC.setfields()
             AddHandler NewTeamUC.backtoStockTeams, AddressOf Me.Show_StockTeams

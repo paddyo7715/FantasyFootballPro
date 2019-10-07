@@ -7,6 +7,10 @@
     <!-- Global Control Styles -->
     <!-- ======================================================================================== -->
     <Application.Resources>
+        <!-- Error Label Color -->
+        <Style TargetType="Label" x:Key="LabelError">
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
         <!-- Progress form -->
         <Style TargetType="StackPanel" x:Key="ProgressSP">
             <Setter Property="Background" Value="LightSlateGray"/>

@@ -12,9 +12,9 @@ Public Class LeagueDAO
         Me.nl = nl
     End Sub
 
-    Public Function getLeagueConnection(ByVal sConnectString As String) As SQLiteConnection
+    Public Function getLeagueConnection(ByVal sLeagueFileLocation As String) As SQLiteConnection
         Dim c As SQLiteConnection = New SQLiteConnection()
-        c.ConnectionString = sConnectString
+        c.ConnectionString = "Data Source=" & sLeagueFileLocation & ";"
         Return c
     End Function
     Public Function createTransaction(ByVal c As SQLiteConnection) As SQLiteTransaction

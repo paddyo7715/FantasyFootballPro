@@ -1,18 +1,19 @@
 ﻿Imports System.Drawing
 Imports System.Reflection
+Imports System.IO
 
 Public Class CommonUtils
 
     Private Shared random As New Random()
     Public Shared Function getSettingsDBConnectionString()
-        Return "Data Source=" & CommonUtils.getAppPath & "\Database\Settings.db;"
+        Return "Data Source=" & CommonUtils.getAppPath & Path.DirectorySeparatorChar & "Database" & Path.DirectorySeparatorChar & "Settings.db;"
     End Function
 
     Public Shared Function getAppPath() As String
         Dim c As String = Environment.CurrentDirectory
 
-        c = c.Replace("\bin\Debug", "")
-        c = c.Replace("\bin\Release", "")
+        c = c.Replace(Path.DirectorySeparatorChar & "bin" & Path.DirectorySeparatorChar & "Debug", "")
+        c = c.Replace(Path.DirectorySeparatorChar & "bin" & Path.DirectorySeparatorChar & "Release", "")
 
         Return c
     End Function

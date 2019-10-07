@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.IO
 
 Public Class App_Constants
 
@@ -10,10 +11,11 @@ Public Class App_Constants
     Public Const LEAGUE_HELMETS_SUBFOLDER As String = "Helmet_Images"
     Public Const LEAGUE_STADIUM_SUBFOLDER As String = "Stadium_Images"
 
-    Public Const APP_HELMET_FOLDER As String = "/Images/Helmets/"
-    Public Const APP_STADIUM_FOLDER As String = "/Images/Stadiums/"
+    'The following three were intended to be constants, but when I added the file seperator variable, they could no longer be Consts
+    Public Shared APP_HELMET_FOLDER As String = Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Helmets" & Path.DirectorySeparatorChar
+    Public Shared APP_STADIUM_FOLDER As String = Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Stadiums" & Path.DirectorySeparatorChar
+    Public Shared BLANK_DB_FOLDER As String = Path.DirectorySeparatorChar & "Database"
 
-    Public Const BLANK_DB_FOLDER As String = "/Database"
     Public Const DB_FILE_EXT As String = "db"
     Public Const BLANK_DB As String = "BlankDB.db"
 

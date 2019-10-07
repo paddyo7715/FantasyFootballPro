@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.IO
 
 Public Class StockTeamsUC
     Private st_list As List(Of TeamMdl) = Nothing
@@ -26,7 +27,7 @@ Public Class StockTeamsUC
             Dim h_sp As StackPanel = New StackPanel
             h_sp.Orientation = Orientation.Horizontal
 
-            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Helmets/" & st.Helmet_img_path))
+            Dim BitmapImage As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Helmets" & Path.DirectorySeparatorChar & st.Helmet_img_path))
             Dim helmet_img As Image = New Image()
             helmet_img.Width = 50
             helmet_img.Height = 50
@@ -65,7 +66,7 @@ Public Class StockTeamsUC
             team_label.FontSize = 24
 
 
-            Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & "/Images/Stadiums/" & st.Stadium.Stadium_Img_Path))
+            Dim BitmapImageST As BitmapImage = New BitmapImage(New Uri(CommonUtils.getAppPath & Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Stadiums" & Path.DirectorySeparatorChar & st.Stadium.Stadium_Img_Path))
             Dim std_img As Image = New Image()
             std_img.Width = 80
             std_img.Height = 50
@@ -89,7 +90,7 @@ Public Class StockTeamsUC
     Private Sub EditstockT_Click(sender As Object, e As RoutedEventArgs) Handles EditstockT.Click
 
         Dim i As Integer = StockTeamsGrid.SelectedIndex
-        RaiseEvent Show_UpdateStockTeam(Me, New StockteamEventArgs(st_list(i)))
+        RaiseEvent Show_UpdateStockTeam(Me, New StockteamEventArgs(i))
 
     End Sub
     Private Sub AddstockT_Click(sender As Object, e As RoutedEventArgs) Handles AddstockT.Click

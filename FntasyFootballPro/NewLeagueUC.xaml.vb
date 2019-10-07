@@ -106,7 +106,7 @@ Public Class NewLeagueUC
     Private Sub validate()
 
         Dim DIRPath As String
-        DIRPath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.GAME_DOC_FOLDER & "/" & newl1shortname.Text)
+        DIRPath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & newl1shortname.Text)
 
         If CommonUtils.isBlank(newl1shortname.Text) Then Throw New Exception("League Short Name must be supplied!")
         If CommonUtils.isBlank(newl1longname.Text) Then Throw New Exception("League Long Name must be supplied!")
@@ -144,6 +144,12 @@ Public Class NewLeagueUC
                 Throw New Exception("All Empty Team Slots must be filled with a team!")
             End If
         Next
+
+        Dim ts As Team_Services = New Team_Services()
+        Dim first_dup_team = ts.FirstDuplicateTeam(pw.League.Teams)
+        If Not IsNothing(first_dup_team) Then
+            Throw New Exception("Duplicate team " & first_dup_team & " found in league!  Leagues can not have duplicate teams!")
+        End If
 
         If Directory.Exists(DIRPath) Then
             Throw New Exception("League " & newl1shortname.Text & " already exists!")
@@ -674,22 +680,22 @@ Public Class NewLeagueUC
             logger.Info("league validated!")
 
             If CInt(newlnumconferences.Text) = 2 Then
-                Conferences_list.Add(CType(Me.FindName("newlConf1"), TextBox).Text)
-                Conferences_list.Add(CType(Me.FindName("newlConf2"), TextBox).Text)
+                Conferences_list.Add(CType(Me.FindName("newlConf1"), TextBox).Text.Trim)
+                Conferences_list.Add(CType(Me.FindName("newlConf2"), TextBox).Text.Trim)
             End If
 
             For i As Integer = 1 To CInt(newlnumdivisions.Text)
-                Divisions_list.Add(CType(Me.FindName("newldiv" & i.ToString), TextBox).Text)
+                Divisions_list.Add(CType(Me.FindName("newldiv" & i.ToString), TextBox).Text.Trim)
             Next
 
             Dim lyears As List(Of Integer) = New List(Of Integer)(New Integer() {CInt(newl1StartingYear.Text)})
 
-            pw.League.setBasicInfo(newl1shortname.Text, newl1longname.Text, CInt(newl1StartingYear.Text),
-                        newl1championshipgame.Text, Conferences_list, Divisions_list,
+            pw.League.setBasicInfo(newl1shortname.Text.Trim, newl1longname.Text.Trim, CInt(newl1StartingYear.Text),
+                        newl1championshipgame.Text.Trim, Conferences_list, Divisions_list,
                         lyears, League_State.Regular_Season)
 
             'Background Worker code for popup
-            pop.btnclose.Visibility = False
+            pop.btnclose.Visibility = Visibility.Hidden
 
             bw = New BackgroundWorker()
 
@@ -720,10 +726,19 @@ Public Class NewLeagueUC
 
     End Sub
     Private Sub bw_RunWorkerCompleted(ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs)
+        Dim lableError As Style = Application.Current.FindResource("LabelError")
+        pop.btnclose.Visibility = Visibility.Visible
 
         'Progress Bar Window close
-        pop.statuslbl.Content = "League Created Successfully!"
-        pop.btnclose.Visibility = True
+        If pop.prgTest.Foreground Is Brushes.Red Then
+
+            pop.statuslbl.Style = lableError
+            pop.statuslbl.Content = "Error!  League Not Create!"
+
+        Else
+            pop.statuslbl.Content = "League Created Successfully!"
+        End If
+
     End Sub
     Private Sub bw_ProgressChanged(ByVal sender As Object, ByVal e As ProgressChangedEventArgs)
         Dim user_state_Struct As String = e.UserState
@@ -783,34 +798,8 @@ Public Class NewLeagueUC
 
                 logger.Debug("Setting label for " & st.City)
 
-                Dim Color_Percents_List As List(Of Uniform_Color_percents) = Nothing
-                Color_Percents_List = Uniform.getColorList(st.Uniform)
-
-                logger.Debug(Color_Percents_List.Count & " Uniform colors")
-
-                teamLbl.Foreground = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(0).color_string))
                 teamLbl.Content = st.City & " " & st.Nickname
                 teamLbl.VerticalContentAlignment = VerticalContentAlignment.Center
-
-                If Color_Percents_List.Count > 2 Then
-                    Dim BackBrush As LinearGradientBrush = New LinearGradientBrush()
-                    BackBrush.StartPoint = New Point(0, 0)
-                    BackBrush.EndPoint = New Point(1, 1)
-
-                    Dim running_value As Single = 0
-                    For ii As Integer = 1 To Color_Percents_List.Count - 1
-                        BackBrush.GradientStops.Add(New GradientStop(
-                        CommonUtils.getColorfromHex(Color_Percents_List(ii).color_string), running_value))
-
-                        running_value = Color_Percents_List(ii).value
-
-                        BackBrush.GradientStops.Add(New GradientStop(
-                        CommonUtils.getColorfromHex(Color_Percents_List(ii).color_string), running_value))
-                    Next
-                    teamLbl.Background = BackBrush
-                Else
-                    teamLbl.Background = New SolidColorBrush(CommonUtils.getColorfromHex(Color_Percents_List(1).color_string))
-                End If
             Else
                 teamLbl.Content = App_Constants.EMPTY_TEAM_SLOT
             End If
@@ -820,7 +809,6 @@ Public Class NewLeagueUC
             logger.Debug("Helmet img_path: " & img_path)
 
             If Not IsNothing(img_path) AndAlso img_path.Length > 0 Then
-                '                Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri("pack://application:,,,/Resources/" & img_path))
                 Dim helmetIMG_source As BitmapImage = New BitmapImage(New Uri(img_path))
                 teamImg.Source = helmetIMG_source
             End If

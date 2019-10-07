@@ -147,7 +147,7 @@
     <Compile Include="Models\StatsMdl.vb" />
     <Compile Include="Models\TeamMdl.vb" />
     <Compile Include="My Project\Module1.vb" />
-    <Compile Include="My Project\Progress_Dialog.xaml.vb">
+    <Compile Include="Progress_Dialog.xaml.vb">
       <DependentUpon>Progress_Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewLeagueUC.xaml.vb">
@@ -204,7 +204,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="My Project\Progress_Dialog.xaml">
+    <Page Include="Progress_Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -471,6 +471,10 @@
     <Resource Include="Images\Helmets\Pioneers.png" />
     <Resource Include="Images\Stadiums\Kansas_City.jpg" />
     <Resource Include="Images\Helmets\Leopards.png" />
+    <Resource Include="Images\Helmets\Reapers.png" />
+    <Resource Include="Images\Stadiums\New_Orleans.jpg" />
+    <Resource Include="Images\Helmets\Rustlers.png" />
+    <Resource Include="Images\Stadiums\Houston.jpg" />
     <Content Include="Log4Net.Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

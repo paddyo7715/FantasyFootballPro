@@ -51,4 +51,22 @@
         Return r
     End Function
 
+    Public Function FirstDuplicateTeam(ByVal Team_List As List(Of TeamMdl)) As String
+        Dim r As String = Nothing
+        Dim hs As HashSet(Of String) = New HashSet(Of String)
+
+        For Each t In Team_List
+            Dim s As String = t.City.ToUpper.Trim & " " & t.Nickname.ToUpper.Trim
+            If hs.Contains(s) Then
+                r = s
+                Exit For
+            Else
+                hs.Add(s)
+            End If
+        Next
+
+        Return r
+
+    End Function
+
 End Class

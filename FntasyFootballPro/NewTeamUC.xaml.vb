@@ -12,33 +12,29 @@ Public Class NewTeamUC
         Update_Team
     End Enum
     'pw is the parent window mainwindow
-    Private team As TeamMdl = Nothing
+    Private this_team As TeamMdl = Nothing
 
     Public Event backtoNewLeague As EventHandler
     Public Event backtoStockTeams As EventHandler
 
-    Property team_ind As Integer
     '    Property Roster As List(Of PlayerMdl) = Nothing
     Property Uniform_Img As Uniform_Image
 
     Public Recent_ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
     Public Standard_ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
 
-
     Property Form_Function As form_func = Nothing
 
     Property Event_from_Code As Boolean = False
     Private Shared logger As ILog = LogManager.GetLogger("RollingFile")
 
-    Public Sub New(ByVal team As TeamMdl, ByVal func As String)
+    Public Sub New(ByVal this_team As TeamMdl, ByVal func As String)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        '      Me.pw = pw
-        Me.Form_Function = Form_Function
-        Me.team = team
+        Me.this_team = this_team
 
         Dim all_uniform_colors As List(Of String) = New List(Of String)
 
@@ -55,7 +51,7 @@ Public Class NewTeamUC
                 Form_Function = form_func.Stock_Team_Edit
                 lblTitle.Content = "Update Stock Team"
                 newt1Add.Content = "Save"
-                all_uniform_colors = Uniform.getAllColorList(team.Uniform)
+                all_uniform_colors = Uniform.getAllColorList(this_team.Uniform)
         End Select
 
         'if we are editing a team then load the uniform colors in the recent colors
@@ -202,10 +198,10 @@ Public Class NewTeamUC
 
     Public Sub setBaseUniform()
 
-        Uniform_Img = New Uniform_Image(CommonUtils.getAppPath & "/Images/blankUniform.png")
+        Uniform_Img = New Uniform_Image(CommonUtils.getAppPath & Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "blankUniform.png")
 
         'If you are editing a team then there is no need to set the images to grey
-        If Form_Function = Form_Function.New_Team Or Form_Function = Form_Function.Stock_Team_New Then
+        If Me.Form_Function = form_func.New_Team Or Me.Form_Function = form_func.Stock_Team_New Then
             Uniform_Img.Flip_All_Colors(True,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
            App_Constants.STOCK_GREY_COLOR, App_Constants.STOCK_GREY_COLOR,
@@ -282,38 +278,38 @@ Public Class NewTeamUC
 
         logger.Debug("Basic team info Controls set")
 
-        newtCityAbb.Text = team.City_Abr
-        newtCity.Text = team.City
-        newtNickname.Text = team.Nickname
+        newtCityAbb.Text = this_team.City_Abr
+        newtCity.Text = this_team.City
+        newtNickname.Text = this_team.Nickname
         newtHelmetImgPath.Text = helmet_img_path
 
-        If Not IsNothing(team.Stadium) Then
-            If team.Stadium.Stadium_Img_Path = Path.GetFileName(team.Stadium.Stadium_Img_Path) Then
+        If Not IsNothing(this_team.Stadium) Then
+            If this_team.Stadium.Stadium_Img_Path = Path.GetFileName(this_team.Stadium.Stadium_Img_Path) Then
                 Dim init_folder As String = CommonUtils.getAppPath
-                init_folder += "\Images\Stadiums"
-                stadium_img_path = init_folder + "\" + Path.GetFileName(team.Stadium.Stadium_Img_Path)
+                init_folder += Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Stadiums"
+                stadium_img_path = init_folder + Path.DirectorySeparatorChar + Path.GetFileName(this_team.Stadium.Stadium_Img_Path)
             Else
-                stadium_img_path = team.Stadium.Stadium_Img_Path
+                stadium_img_path = this_team.Stadium.Stadium_Img_Path
             End If
 
             logger.Debug("Setting stadium image control " & stadium_img_path)
 
-            newtStadium.Text = team.Stadium.Stadium_Name
-            newtStadiumLocation.Text = team.Stadium.Stadium_Location
+            newtStadium.Text = this_team.Stadium.Stadium_Name
+            newtStadiumLocation.Text = this_team.Stadium.Stadium_Location
             newtStadiumPath.Text = stadium_img_path
             Stadium_image.Source = New BitmapImage(New Uri(stadium_img_path))
-            newtStadiumCapacity.Text = team.Stadium.Capacity
-            newl1FieldType.SelectedIndex = team.Stadium.Field_Type - 1
-            newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(team.Stadium.Field_Color)
+            newtStadiumCapacity.Text = this_team.Stadium.Capacity
+            newl1FieldType.SelectedIndex = this_team.Stadium.Field_Type - 1
+            newl1FieldColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Stadium.Field_Color)
         End If
 
-        If Not IsNothing(team.Helmet_img_path) AndAlso team.Helmet_img_path.Length > 0 Then
-            If team.Helmet_img_path = Path.GetFileName(team.Helmet_img_path) Then
+        If Not IsNothing(this_team.Helmet_img_path) AndAlso this_team.Helmet_img_path.Length > 0 Then
+            If this_team.Helmet_img_path = Path.GetFileName(this_team.Helmet_img_path) Then
                 Dim init_folder As String = CommonUtils.getAppPath
-                init_folder += "\Images\Helmets"
-                helmet_img_path = init_folder + "\" + Path.GetFileName(team.Helmet_img_path)
+                init_folder += Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Helmets"
+                helmet_img_path = init_folder + Path.DirectorySeparatorChar + Path.GetFileName(this_team.Helmet_img_path)
             Else
-                helmet_img_path = team.Helmet_img_path
+                helmet_img_path = this_team.Helmet_img_path
             End If
 
             logger.Debug("Setting helmet image control " & helmet_img_path)
@@ -322,49 +318,49 @@ Public Class NewTeamUC
             Helmet_image.Source = New BitmapImage(New Uri(helmet_img_path))
         End If
 
-        If Not IsNothing(team.Uniform) Then
+        If Not IsNothing(this_team.Uniform) Then
             logger.Debug("Setting uniform image controls")
 
-            newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Color)
-            newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Logo_Color)
-            newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Helmet.Helmet_Facemask_Color)
+            newtHelmentColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Helmet.Helmet_Color)
+            newtHelmentLogoColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Helmet.Helmet_Logo_Color)
+            newtFacemaskColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Helmet.Helmet_Facemask_Color)
 
-            newtSockColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Footwear.Socks_Color)
-            newtCleatsColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Footwear.Cleats_Color)
+            newtSockColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Footwear.Socks_Color)
+            newtCleatsColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Footwear.Cleats_Color)
 
-            newtHomeJerseyColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Jersey_Color)
-            newtHomeSleeveColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Color)
-            newtHomeShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Shoulder_Stripe_Color)
-            newtHomeJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Number_Color)
-            newtHomeNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Number_Outline_Color)
-            newtHomeJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe1)
-            newtHomeJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe2)
-            newtHomeJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe3)
-            newtHomeJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe4)
-            newtHomeJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe5)
-            newtHomeJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Jersey.Sleeve_Stripe6)
+            newtHomeJerseyColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Jersey_Color)
+            newtHomeSleeveColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Color)
+            newtHomeShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Shoulder_Stripe_Color)
+            newtHomeJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Number_Color)
+            newtHomeNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Number_Outline_Color)
+            newtHomeJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Stripe1)
+            newtHomeJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Stripe2)
+            newtHomeJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Stripe3)
+            newtHomeJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Stripe4)
+            newtHomeJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Stripe5)
+            newtHomeJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Jersey.Sleeve_Stripe6)
 
-            newtHomePantsColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Pants_Color)
-            newtHomePantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Stripe_Color_1)
-            newtHomePantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Stripe_Color_2)
-            newtHomePantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Home_Pants.Stripe_Color_3)
+            newtHomePantsColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Pants.Pants_Color)
+            newtHomePantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Pants.Stripe_Color_1)
+            newtHomePantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Pants.Stripe_Color_2)
+            newtHomePantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Home_Pants.Stripe_Color_3)
 
-            newtAwayJerseyColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Jersey_Color)
-            newtAwaySleeveColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Color)
-            newtAwayShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Shoulder_Stripe_Color)
-            newtAwayJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Number_Color)
-            newtAwayNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Number_Outline_Color)
-            newtAwayJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe1)
-            newtAwayJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe2)
-            newtAwayJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe3)
-            newtAwayJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe4)
-            newtAwayJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe5)
-            newtAwayJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Jersey.Sleeve_Stripe6)
+            newtAwayJerseyColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Jersey_Color)
+            newtAwaySleeveColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Color)
+            newtAwayShoulderStripeColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Shoulder_Stripe_Color)
+            newtAwayJerseyNumberColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Number_Color)
+            newtAwayNumberOutlineColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Number_Outline_Color)
+            newtAwayJerseySleeve1Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Stripe1)
+            newtAwayJerseySleeve2Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Stripe2)
+            newtAwayJerseySleeve3Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Stripe3)
+            newtAwayJerseySleeve4Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Stripe4)
+            newtAwayJerseySleeve5Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Stripe5)
+            newtAwayJerseySleeve6Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Jersey.Sleeve_Stripe6)
 
-            newtAwayPantsColor.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Pants_Color)
-            newtAwayPantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Stripe_Color_1)
-            newtAwayPantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Stripe_Color_2)
-            newtAwayPantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(team.Uniform.Away_Pants.Stripe_Color_3)
+            newtAwayPantsColor.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Pants.Pants_Color)
+            newtAwayPantsStripe1Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Pants.Stripe_Color_1)
+            newtAwayPantsStripe2Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Pants.Stripe_Color_2)
+            newtAwayPantsStripe3Color.SelectedColor = CommonUtils.getColorfromHex(this_team.Uniform.Away_Pants.Stripe_Color_3)
 
             mc = New SolidColorBrush(newtHelmentColor.SelectedColor).Color
             helmetColor = System.Drawing.Color.FromArgb(mc.A, mc.R, mc.G, mc.B)
@@ -830,7 +826,7 @@ Public Class NewTeamUC
     Private Sub newtbtnHelmetImgPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnHelmetImgPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
         Dim init_folder As String = CommonUtils.getAppPath
-        init_folder += "\Images\Helmets"
+        init_folder += Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Helmets"
 
         OpenFileDialog.InitialDirectory = init_folder
         OpenFileDialog.Multiselect = False
@@ -845,7 +841,7 @@ Public Class NewTeamUC
     Private Sub newtbtnStadiumPath_Click(sender As Object, e As RoutedEventArgs) Handles newtbtnStadiumPath.Click
         Dim OpenFileDialog As OpenFileDialog = New OpenFileDialog()
         Dim init_folder As String = CommonUtils.getAppPath
-        init_folder += "\Images\Stadiums"
+        init_folder += Path.DirectorySeparatorChar & "Images" & Path.DirectorySeparatorChar & "Stadiums"
 
         OpenFileDialog.InitialDirectory = init_folder
         OpenFileDialog.Multiselect = False
@@ -907,9 +903,9 @@ Public Class NewTeamUC
             Dim Away_Pants_Stripe_2_Color As String = Nothing
             Dim Away_Pants_Stripe_3_Color As String = Nothing
 
-            Dim City_Abr As String = newtCityAbb.Text
-            Dim City As String = newtCity.Text
-            Dim Nickname As String = newtNickname.Text
+            Dim City_Abr As String = newtCityAbb.Text.Trim
+            Dim City As String = newtCity.Text.Trim
+            Dim Nickname As String = newtNickname.Text.Trim
 
             logger.Debug("Just before team validation")
             Validate()
@@ -964,9 +960,9 @@ Public Class NewTeamUC
 
             Stadium_Field_Color = CommonUtils.getHexfromColor(New SolidColorBrush(newl1FieldColor.SelectedColor).Color)
 
-            stadium = New StadiumMdl(newtStadium.Text, newtStadiumLocation.Text,
+            stadium = New StadiumMdl(newtStadium.Text.Trim, newtStadiumLocation.Text.Trim,
                                      Field_Type_Int, Stadium_Field_Color,
-                                    newtStadiumCapacity.Text, newtStadiumPath.Text)
+                                    newtStadiumCapacity.Text.Trim, newtStadiumPath.Text.Trim)
             Footwear = New FootwearMdl(socks_color, cleats_color)
             Helmet = New HelmetMdl(helmet_color, helmet_logo_color,
                                 helmet_facemask_color)
@@ -989,18 +985,18 @@ Public Class NewTeamUC
                                 Away_Pants_Stripe_2_Color, Away_Pants_Stripe_3_Color)
             Uniform = New UniformMdl(Helmet, Home_Jersey, Away_Jersey, Home_Pants, Away_Pants, Footwear)
 
-            team.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text)
+            this_team.setFields("C", City_Abr, City, Nickname, stadium, Uniform, newtHelmetImgPath.Text.Trim)
 
             Select Case Form_Function
                 Case form_func.New_Team
                     RaiseEvent backtoNewLeague(Me, New TeamUpdatedEventArgs(True))
                 Case form_func.Stock_Team_New
                     Dim sts As StockTeams_Services = New StockTeams_Services()
-                    sts.AddStockTeam(team)
+                    sts.AddStockTeam(this_team)
                     RaiseEvent backtoStockTeams(Me, New EventArgs)
                 Case form_func.Stock_Team_Edit
                     Dim sts As StockTeams_Services = New StockTeams_Services()
-                    sts.UpdateStockTeam(team)
+                    sts.UpdateStockTeam(this_team)
                     RaiseEvent backtoStockTeams(Me, New EventArgs)
             End Select
 
@@ -1548,6 +1544,13 @@ Public Class NewTeamUC
             Throw New Exception("Away pants stripe 3 color must have a value")
         End If
 
+        'Only if stock team check for duplicate team here
+        If Form_Function = form_func.Stock_Team_New Or Form_Function = form_func.Stock_Team_Edit Then
+            Dim st_services = New StockTeams_Services()
+            If st_services.DoesTeamAlreadyExist(newtCity.Text.Trim, newtNickname.Text.Trim) Then
+                Throw New Exception("This Stock Team Already Exists!  No Duplicate Stock Teams Allowed!")
+            End If
+        End If
 
     End Sub
     Private Sub help_btn_Click(sender As Object, e As RoutedEventArgs) Handles help_btn.Click

@@ -14,9 +14,9 @@ Public Class League_Services
 
         'Create the league folder
         Dim DIRPath As String = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.GAME_DOC_FOLDER)
-        Dim DIRPath_League As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name
+        Dim DIRPath_League As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name
         Dim New_League_File As String = nl.Short_Name & "." & App_Constants.DB_FILE_EXT
-        Dim League_con_string As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name & "\" & nl.Short_Name & "\" & App_Constants.DB_FILE_EXT
+        Dim League_con_string As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name & Path.DirectorySeparatorChar & nl.Short_Name & Path.DirectorySeparatorChar & App_Constants.DB_FILE_EXT
         Dim LeagueDAO = New LeagueDAO(nl)
         Dim process_state As String = "Processing..."
         Dim state_struct As String = Nothing
@@ -24,34 +24,34 @@ Public Class League_Services
 
         Try
             'Update the progress bar
-            i = 0
+            i = 2
             process_state = "Creating League Folder Strucuture 1 of 4"
             state_struct = "Processing..." & "|" & process_state & "|" & ""
             bw.ReportProgress(i, state_struct)
 
             'Create the League Folder
             logger.Info("Creating league folder")
-            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name)
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name)
 
             'Create the helmet image League Folder
             logger.Info("Creating league helmet folder")
-            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name & "\" & App_Constants.LEAGUE_HELMETS_SUBFOLDER)
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name & Path.DirectorySeparatorChar & App_Constants.LEAGUE_HELMETS_SUBFOLDER)
 
             'Create the stadium image League folder
             logger.Info("Creating league image folder")
-            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\" & App_Constants.GAME_DOC_FOLDER & "\" & nl.Short_Name & "\" & App_Constants.LEAGUE_STADIUM_SUBFOLDER)
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name & Path.DirectorySeparatorChar & App_Constants.LEAGUE_STADIUM_SUBFOLDER)
 
             'Copy and Create the league database file
             logger.Info("Starting league database creation and copy")
-            My.Computer.FileSystem.CopyFile(App_Constants.BLANK_DB_FOLDER & "\" & App_Constants.BLANK_DB, DIRPath_League & "\" & New_League_File)
+            My.Computer.FileSystem.CopyFile(CommonUtils.getAppPath & Path.DirectorySeparatorChar & App_Constants.BLANK_DB_FOLDER & Path.DirectorySeparatorChar & App_Constants.BLANK_DB, DIRPath_League & Path.DirectorySeparatorChar & New_League_File)
 
             'Copy team image files to league folder
             logger.Info("Helmet and stadium files copy starting")
             For Each t In nl.Teams
                 logger.Debug("Copying " & t.Helmet_img_path)
-                My.Computer.FileSystem.CopyFile(t.Helmet_img_path, DIRPath_League & "\" & Path.GetFileName(t.Helmet_img_path))
+                My.Computer.FileSystem.CopyFile(t.Helmet_img_path, DIRPath_League & Path.DirectorySeparatorChar & App_Constants.LEAGUE_HELMETS_SUBFOLDER & Path.DirectorySeparatorChar & Path.GetFileName(t.Helmet_img_path))
                 logger.Debug("Copying " & t.Stadium.Stadium_Img_Path)
-                My.Computer.FileSystem.CopyFile(t.Stadium.Stadium_Img_Path, DIRPath_League & "\" & Path.GetFileName(t.Stadium.Stadium_Img_Path))
+                My.Computer.FileSystem.CopyFile(t.Stadium.Stadium_Img_Path, DIRPath_League & Path.DirectorySeparatorChar & App_Constants.LEAGUE_STADIUM_SUBFOLDER & Path.DirectorySeparatorChar & Path.GetFileName(t.Stadium.Stadium_Img_Path))
             Next
 
             'Update the progress bar
@@ -100,7 +100,7 @@ Public Class League_Services
             state_struct = "Error" & "|" & process_state & "|" & "Failed to Create New League"
             bw.ReportProgress(i, state_struct)
 
-            My.Computer.FileSystem.DeleteDirectory(DIRPath_League & "/" & nl.Short_Name, FileIO.DeleteDirectoryOption.DeleteAllContents)
+            My.Computer.FileSystem.DeleteDirectory(DIRPath_League, FileIO.DeleteDirectoryOption.DeleteAllContents)
 
             logger.Error("Create league service failed")
             logger.Error(ex)
