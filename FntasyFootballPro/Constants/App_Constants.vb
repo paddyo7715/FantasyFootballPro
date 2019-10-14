@@ -8,6 +8,7 @@ Public Class App_Constants
     Public Const MIN_FREE_DISK_SPACE As Integer = 50
     Public Const GAME_DOC_FOLDER As String = "Spect_Football_Data"
     Public Const LOG_FOLDER As String = "Logs"
+    Public Const BACKUP_FOLDER As String = "Backup"
     Public Const LEAGUE_HELMETS_SUBFOLDER As String = "Helmet_Images"
     Public Const LEAGUE_STADIUM_SUBFOLDER As String = "Stadium_Images"
 

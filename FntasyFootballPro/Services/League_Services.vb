@@ -33,6 +33,10 @@ Public Class League_Services
             logger.Info("Creating league folder")
             My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name)
 
+            'Create Backup Folder
+            logger.Info("Creating league backup folder")
+            My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name & Path.DirectorySeparatorChar & App_Constants.BACKUP_FOLDER)
+
             'Create the helmet image League Folder
             logger.Info("Creating league helmet folder")
             My.Computer.FileSystem.CreateDirectory(My.Computer.FileSystem.SpecialDirectories.MyDocuments & Path.DirectorySeparatorChar & App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & nl.Short_Name & Path.DirectorySeparatorChar & App_Constants.LEAGUE_HELMETS_SUBFOLDER)

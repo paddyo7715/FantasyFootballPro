@@ -124,6 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="app_Version.vb" />
     <Compile Include="Common\CommonUtils.vb" />
     <Compile Include="Common\StockteamEventArgs.vb" />
     <Compile Include="Common\teamEventArgs.vb" />
@@ -475,6 +476,12 @@
     <Resource Include="Images\Stadiums\New_Orleans.jpg" />
     <Resource Include="Images\Helmets\Rustlers.png" />
     <Resource Include="Images\Stadiums\Houston.jpg" />
+    <Resource Include="Images\Helmets\Sharks.png" />
+    <Resource Include="Images\Stadiums\Jacksonville.jpg" />
+    <Resource Include="Images\Helmets\Shockers.png" />
+    <Resource Include="Images\Stadiums\Cincinnati.jpg" />
+    <Resource Include="Images\Helmets\Stallions.png" />
+    <Resource Include="Images\Stadiums\ST_Louis.jpg" />
     <Content Include="Log4Net.Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

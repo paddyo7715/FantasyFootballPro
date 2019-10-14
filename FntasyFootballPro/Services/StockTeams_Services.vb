@@ -24,6 +24,11 @@ Public Class StockTeams_Services
         Dim StockTeamDAO = New Stock_TeamsDAO()
         StockTeamDAO.UpdateStockTeam(Team)
     End Sub
+    Public Function DoesTeamAlreadyExist_ID(ByVal City As String, ByVal Nickname As String, ByVal original_City As String, ByVal original_Nickname As String) As Boolean
+
+        Return New Stock_TeamsDAO().DoesTeamAlreadyExist_ID(City, Nickname, original_City, original_Nickname)
+
+    End Function
     Public Function DoesTeamAlreadyExist(ByVal City As String, ByVal Nickname As String) As Boolean
 
         Return New Stock_TeamsDAO().DoesTeamAlreadyExist(City, Nickname)

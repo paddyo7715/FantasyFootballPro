@@ -109,7 +109,11 @@ Public Class NewLeagueUC
         DIRPath = System.IO.Path.Combine(My.Computer.FileSystem.SpecialDirectories.MyDocuments, App_Constants.GAME_DOC_FOLDER & Path.DirectorySeparatorChar & newl1shortname.Text)
 
         If CommonUtils.isBlank(newl1shortname.Text) Then Throw New Exception("League Short Name must be supplied!")
+        If Not CommonUtils.isAlpha(newl1shortname.Text, False) Then Throw New Exception("Invalid character in League Short Name!")
+
         If CommonUtils.isBlank(newl1longname.Text) Then Throw New Exception("League Long Name must be supplied!")
+        If Not CommonUtils.isAlpha(newl1longname.Text, True) Then Throw New Exception("Invalid character in League Long Name!")
+
         If CommonUtils.isBlank(newl1championshipgame.Text) Then Throw New Exception("Championship Game must be supplied!")
 
         If CommonUtils.isBlank(newlnumweeks.Text) OrElse Not IsNumeric(newlnumweeks.Text) Then Throw New Exception("Invalid Value for Number of Weeks!")
@@ -690,7 +694,7 @@ Public Class NewLeagueUC
 
             Dim lyears As List(Of Integer) = New List(Of Integer)(New Integer() {CInt(newl1StartingYear.Text)})
 
-            pw.League.setBasicInfo(newl1shortname.Text.Trim, newl1longname.Text.Trim, CInt(newl1StartingYear.Text),
+            pw.League.setBasicInfo(newl1shortname.Text.ToUpper.Trim, newl1longname.Text.Trim, CInt(newl1StartingYear.Text),
                         newl1championshipgame.Text.Trim, Conferences_list, Divisions_list,
                         lyears, League_State.Regular_Season)
 

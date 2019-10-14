@@ -23,6 +23,9 @@ Public Class NewTeamUC
     Public Recent_ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
     Public Standard_ColorList = New ObservableCollection(Of Xceed.Wpf.Toolkit.ColorItem)()
 
+    Private original_city As String = Nothing
+    Private original_nickname As String = Nothing
+
     Property Form_Function As form_func = Nothing
 
     Property Event_from_Code As Boolean = False
@@ -48,6 +51,9 @@ Public Class NewTeamUC
                 lblTitle.Content = "New Stock Team"
                 newt1Add.Content = "Add"
             Case "Update_Stock_Team"
+                original_city = this_team.City
+                original_nickname = this_team.Nickname
+
                 Form_Function = form_func.Stock_Team_Edit
                 lblTitle.Content = "Update Stock Team"
                 newt1Add.Content = "Save"
@@ -1545,12 +1551,18 @@ Public Class NewTeamUC
         End If
 
         'Only if stock team check for duplicate team here
-        If Form_Function = form_func.Stock_Team_New Or Form_Function = form_func.Stock_Team_Edit Then
+        If Form_Function = form_func.Stock_Team_New Then
             Dim st_services = New StockTeams_Services()
             If st_services.DoesTeamAlreadyExist(newtCity.Text.Trim, newtNickname.Text.Trim) Then
                 Throw New Exception("This Stock Team Already Exists!  No Duplicate Stock Teams Allowed!")
             End If
+        ElseIf Form_Function = form_func.Stock_Team_Edit Then
+            Dim st_services = New StockTeams_Services()
+            If st_services.DoesTeamAlreadyExist_ID(newtCity.Text.Trim, newtNickname.Text.Trim, original_city, original_nickname) Then
+                Throw New Exception("This Stock Team Already Exists!  No Duplicate Stock Teams Allowed!")
+            End If
         End If
+
 
     End Sub
     Private Sub help_btn_Click(sender As Object, e As RoutedEventArgs) Handles help_btn.Click

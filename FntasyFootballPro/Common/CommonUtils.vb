@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Reflection
 Imports System.IO
+Imports System.Text.RegularExpressions
 
 Public Class CommonUtils
 
@@ -134,6 +135,23 @@ Public Class CommonUtils
         r = System.Windows.Media.Color.FromRgb(red, green, blue)
         Return r
 
+    End Function
+    Public Shared Function isAlpha(ByVal s As String, ByVal bAllowSpace As Boolean) As Boolean
+        Dim r As Boolean = True
+        Dim pattern As String = Nothing
+
+        If bAllowSpace Then
+            pattern = "^[a-zA-Z ]*$"
+        Else
+            pattern = "^[a-zA-Z]*$"
+        End If
+
+        Dim Regexm As Regex = New Regex(pattern)
+        If Not Regexm.IsMatch(s) Then
+            r = False
+        End If
+
+        Return r
     End Function
 
 

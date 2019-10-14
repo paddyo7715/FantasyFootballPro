@@ -280,8 +280,6 @@ Public Class Stock_TeamsDAO
                 Throw New Exception("Error inserting stock team " & i & " rows inserted")
             End If
 
-
-
         Finally
             If Not IsNothing(cmdTeam) Then cmdTeam.Dispose()
             If SettingsConnection.State = ConnectionState.Open Then
@@ -466,5 +464,42 @@ Public Class Stock_TeamsDAO
 
 
     End Function
+
+    Public Function DoesTeamAlreadyExist_ID(ByVal City As String, ByVal Nickname As String,
+                                            ByVal original_city As String, ByVal original_nickname As String) As Boolean
+        Dim r As Boolean = False
+
+        Dim sSQL As String = Nothing
+
+        Dim cmdTeam As SQLiteCommand = Nothing
+        Try
+            SettingsConnection.Open()
+
+            sSQL = "select count(*) from Stock_Teams where upper(City) = @City and upper(Nickname) = @Nickname and ID <> (select ID from Stock_Teams where upper(City) = @original_City and upper(Nickname) = @original_Nickname);"
+            cmdTeam = SettingsConnection.CreateCommand
+            cmdTeam.CommandText = sSQL
+            cmdTeam.Parameters.Add("@City", Data.DbType.String).Value = City.ToUpper.Trim
+            cmdTeam.Parameters.Add("@Nickname", Data.DbType.String).Value = Nickname.ToUpper.Trim
+            cmdTeam.Parameters.Add("@original_City", Data.DbType.String).Value = original_city.ToUpper.Trim
+            cmdTeam.Parameters.Add("@original_Nickname", Data.DbType.String).Value = original_nickname.ToUpper.Trim
+
+            Dim i As Integer = cmdTeam.ExecuteScalar
+
+            If i > 0 Then
+                r = True
+            End If
+
+            Return r
+
+        Finally
+            If Not IsNothing(cmdTeam) Then cmdTeam.Dispose()
+            If SettingsConnection.State = ConnectionState.Open Then
+                SettingsConnection.Close()
+            End If
+        End Try
+
+
+    End Function
+
 
 End Class
