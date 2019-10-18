@@ -1378,17 +1378,25 @@ Public Class NewTeamUC
             Throw New Exception("City Abbriviation must have a value")
         End If
 
+        If Not CommonUtils.isAlpha(newtCityAbb.Text, False) Then Throw New Exception("Invalid character in City Abbriviation!")
+
         If CommonUtils.isBlank(newtCity.Text) Then
             Throw New Exception("City must have a value")
         End If
+
+        If Not CommonUtils.isAlpha(newtCity.Text, True) Then Throw New Exception("Invalid character in City!")
 
         If CommonUtils.isBlank(newtNickname.Text) Then
             Throw New Exception("Nickname must have a value")
         End If
 
+        If Not CommonUtils.isAlpha(newtNickname.Text, True) Then Throw New Exception("Invalid character in Nickname!")
+
         If CommonUtils.isBlank(newtStadium.Text) Then
             Throw New Exception("Stadium Name must have a value")
         End If
+
+        If Not CommonUtils.isAlpha(newtStadium.Text, True) Then Throw New Exception("Invalid character in Stadium!")
 
         If CommonUtils.isBlank(newtStadiumLocation.Text) Then
             Throw New Exception("Stadium Location must have a value")

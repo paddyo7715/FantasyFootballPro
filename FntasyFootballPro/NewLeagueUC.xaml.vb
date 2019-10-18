@@ -115,13 +115,13 @@ Public Class NewLeagueUC
         If Not CommonUtils.isAlpha(newl1longname.Text, True) Then Throw New Exception("Invalid character in League Long Name!")
 
         If CommonUtils.isBlank(newl1championshipgame.Text) Then Throw New Exception("Championship Game must be supplied!")
+        If Not CommonUtils.isAlpha(newl1championshipgame.Text, True) Then Throw New Exception("Invalid character in Championship Game!")
 
         If CommonUtils.isBlank(newlnumweeks.Text) OrElse Not IsNumeric(newlnumweeks.Text) Then Throw New Exception("Invalid Value for Number of Weeks!")
         If CommonUtils.isBlank(newlnumgames.Text) OrElse Not IsNumeric(newlnumgames.Text) Then Throw New Exception("Invalid Value for Number of Games!")
         If CommonUtils.isBlank(newlnumdivisions.Text) OrElse Not IsNumeric(newlnumdivisions.Text) Then Throw New Exception("Invalid Value for Number of Divisions!")
         If CommonUtils.isBlank(newlnumteams.Text) OrElse Not IsNumeric(newlnumteams.Text) Then Throw New Exception("Invalid Value for Number of Teams!")
-
-        If CommonUtils.isBlank(newlnumplayoffteams.Text) OrElse Not IsNumeric(newlnumplayoffteams.Text) Then Throw New Exception("Invalid Value for Number of PGAME_DOC_FOLDERlayoff Teams")
+        If CommonUtils.isBlank(newlnumplayoffteams.Text) OrElse Not IsNumeric(newlnumplayoffteams.Text) Then Throw New Exception("Invalid Value for Number of Playoff Teams")
 
         For i As Integer = 1 To CInt(newlnumconferences.Text)
             Dim conftxtname = "newlConf" & i.ToString
@@ -130,6 +130,9 @@ Public Class NewLeagueUC
             If IsNothing(conftxtname) OrElse conftxtbox.Text = "" Then
                 Throw New Exception("Conference name " & i.ToString & " must be supplied!")
             End If
+
+            If Not CommonUtils.isAlpha(conftxtbox.Text, True) Then Throw New Exception("Invalid character in Conference Name " & conftxtbox.Text & "!")
+
         Next
 
         For i As Integer = 1 To CInt(newlnumdivisions.Text)
@@ -139,6 +142,8 @@ Public Class NewLeagueUC
             If IsNothing(divtxtbox) OrElse divtxtbox.Text.Trim.Length = 0 Then
                 Throw New Exception("A name for division " & i.ToString & " must be supplied!")
             End If
+
+            If Not CommonUtils.isAlpha(divtxtbox.Text, True) Then Throw New Exception("Invalid character in Division Name " & divtxtbox.Text & "!")
         Next
 
         For i As Integer = 1 To CInt(newlnumdivisions.Text)

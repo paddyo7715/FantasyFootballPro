@@ -482,6 +482,12 @@
     <Resource Include="Images\Stadiums\Cincinnati.jpg" />
     <Resource Include="Images\Helmets\Stallions.png" />
     <Resource Include="Images\Stadiums\ST_Louis.jpg" />
+    <Resource Include="Images\Helmets\Stampeed.png" />
+    <Resource Include="Images\Stadiums\San_Antonio.jpg" />
+    <Resource Include="Images\Helmets\Stars.png" />
+    <Resource Include="Images\Stadiums\Los_Angeles.jpg" />
+    <Resource Include="Images\Helmets\Surfers.png" />
+    <Resource Include="Images\Stadiums\San_Diego.jpg" />
     <Content Include="Log4Net.Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
